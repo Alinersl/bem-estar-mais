@@ -14,6 +14,7 @@ Você pode entender mais a fundo de cada nóticia, comentar sobre o site no fina
 <img src="https://img.icons8.com/?size=100&id=fmFqQmR0UdsR&format=png&color=000000">
 <img src="https://img.icons8.com/?size=100&id=fmFqQmR0UdsR&format=png&color=630DA4">
 <img src="https://img.icons8.com/?size=100&id=V5cGWnc9R4xj&format=png&color=000000">
+<img src="https://img.icons8.com/?size=100&id=0OQR1FYCuA9f&format=png&color=000000">
 </div>
  
 ## Como Rodar
