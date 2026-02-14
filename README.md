@@ -33,12 +33,9 @@ Sendo o meu primeiro projeto desse tipo eu aprendi muitas coisas no geral em CSS
 ## Autor
 Nomes Dos alunos:
 
-Aline Rodrigues Silva
+- Aline Rodrigues Silva
+- Ana Júlia Alves Pereira
+- Felipe Martins
+- Yasmin Procopio
 
-Ana Júlia Alves Pereira
-
-Felipe Martins
-
-Yasmin Procopio
-
-Turma De Tecnologia Em Informática Para Internet (Matutino) - Senac DF
+Turma De Técnico Em Informática Para Internet (Vespertino) - Senac DF
