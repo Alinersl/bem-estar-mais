@@ -37,8 +37,6 @@ Aline Rodrigues Silva
 
 Ana Júlia Alves Pereira
 
-Felipe Martins
-
-Yasmin Procopio
+Felipe Martins Gomes Carvalho
 
 Turma De Tecnologia Em Informática Para Internet (Matutino) - Senac DF
