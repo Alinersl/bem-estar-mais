@@ -12,8 +12,8 @@
 
 <body>
 
+  <!-- Navegador -->
   <header>
-    <!-- Navegador -->
     <nav class="nav">
       <div class="nav-esquerda">
         <a href="index.html">
@@ -27,38 +27,84 @@
 
       <div class="nav-direita">
         <u><a href="#">Home</a></u>
-        <u><a href="#comentarios">Comentários</a></u>
         <u><a href="#sobre">Sobre Nós</a></u>
         <u><a href="#contato">Contato</a></u>
       </div>
     </nav>
 
   </header>
+  <!-- Carrosel-->
+  <div class="carrosel">
 
-  <!-- 2 -->
+    <div class="slide">
+      <img src="./IMAGENS/banner.chocolate.jpg">
+      <div class="text">
+        <h2>🍫 Chocolate melhora o humor?</h2>
+        <p>Entenda como ele age no cérebro</p>
+        <button>Ler mais</button>
+      </div>
+    </div>
+
+    <div class="slide">
+      <img src="https://images.unsplash.com/photo-1502741338009-cac2772e18bc">
+      <div class="text">
+        <h2>💧 Pouca água dá cansaço?</h2>
+        <p>Veja como a hidratação afeta sua energia</p>
+        <button>Ler mais</button>
+      </div>
+    </div>
+
+    <div class="slide">
+      <img src="https://images.unsplash.com/photo-1511690743698-d9d85f2fbf38">
+      <div class="text">
+        <h2>🥚 Ovo faz bem ou mal?</h2>
+        <p>Descubra a verdade</p>
+        <button>Ler mais</button>
+      </div>
+    </div>
+
+    <div class="slide">
+      <img src="https://images.unsplash.com/photo-1574226516831-e1dff420e12f">
+      <div class="text">
+        <h2>🍌 Banana dá energia?</h2>
+        <p>Entenda por que ela é tão recomendada</p>
+        <button>Ler mais</button>
+      </div>
+    </div>
+
+    <div class="prev" onclick="changeSlide(-1)">❮</div>
+    <div class="next" onclick="changeSlide(1)">❯</div>
+
+  </div>
+
+  <!-- NOTÍCIAS -->
+
+  <!-- 1 -->
 
   <div class="container">
+
+    <div class="noticia">
+      <img src="./IMAGENS/img1.png" alt="Beber água">
+      <div class="conteudo">
+        <h2>Beber muita água durante a refeição pode prejudicar a digestão</h2>
+        <p class="data">22 de junho de 2025</p>
+        <p>Orientações de nutricionistas revelam que ingerir mais de 100 a 150 ml de água durante as refeições interfere
+          no processo digestivo.</p>
+        <a href="./NOTÍCIAS/noticia1.html">
+          <button>Saiba Mais</button>
+        </a>
+      </div>
+    </div>
+
+    <!-- 2 -->
+
     <div class="noticia">
       <img src="./IMAGENS/img2.png" alt="Pessoa comendo devagar">
       <div class="conteudo">
         <h2>Comer devagar reduz 20% das calorias</h2>
         <p class="data">27 de janeiro de 2025</p>
         <p>Comer com calma ajuda o cérebro a sentir saciedade e evita exageros durante as refeições.</p>
-        <a href="./NOTÍCIAS/noticia2.html" target="_blank">
-          <button>Saiba Mais</button>
-        </a>
-      </div>
-    </div>
-
-    <!-- 5 -->
-
-    <div class="noticia">
-      <img src="./IMAGENS/img12.png" alt="Açúcar e imunidade">
-      <div class="conteudo">
-        <h2>Açúcar em excesso enfraquece o sistema imunológico</h2>
-        <p class="data">20 de fevereiro de 2025</p>
-        <p>Estudos mostram que o consumo alto de açúcar pode reduzir a resposta imunológica por até 5 horas.</p>
-        <a href="./NOTÍCIAS/noticia5.html" target="_blank">
+        <a href="./NOTÍCIAS/noticia2.html">
           <button>Saiba Mais</button>
         </a>
       </div>
@@ -72,77 +118,7 @@
         <h2>Fibras alimentam as bactérias boas do intestino</h2>
         <p class="data">30 de março de 2025</p>
         <p>As fibras são essenciais para manter a flora intestinal saudável e melhorar a digestão.</p>
-        <a href="./NOTÍCIAS/noticia3.html" target="_blank">
-          <button>Saiba Mais</button>
-        </a>
-      </div>
-    </div>
-
-    <!-- 6 -->
-    <div class="noticia">
-      <img src="./IMAGENS/img10.png" alt="Gorduras boas">
-      <div class="conteudo">
-        <h2>Nem toda gordura engorda</h2>
-        <p class="data">01 de abril de 2025</p>
-        <p>As gorduras boas, como as do abacate e do azeite, são importantes para o metabolismo.</p>
-        <a href="./NOTÍCIAS/noticia6.html" target="_blank">
-          <button>Saiba Mais</button>
-        </a>
-      </div>
-    </div>
-
-    <!-- 7 -->
-
-    <div class="noticia">
-      <img src="./IMAGENS/img11.png" alt="Produtos light e diet">
-      <div class="conteudo">
-        <h2>O que a indústria não quer que você saiba sobre “light”, “diet” e “zero”</h2>
-        <p class="data">03 de maio de 2025</p>
-        <p>Nem sempre os produtos com esses rótulos são mais saudáveis — é preciso ler os ingredientes.</p>
-        <a href="./NOTÍCIAS/noticia7.html" target="_blank">
-          <button>Saiba Mais</button>
-        </a>
-      </div>
-    </div>
-
-    <!-- 1 -->
-
-    <div class="noticia">
-      <img src="./IMAGENS/img1.png" alt="Beber água">
-      <div class="conteudo">
-        <h2>Beber muita água durante a refeição pode prejudicar a digestão</h2>
-        <p class="data">22 de junho de 2025</p>
-        <p>Orientações de nutricionistas revelam que ingerir mais de 100 a 150 ml de água durante as refeições interfere
-          no processo digestivo.</p>
-        <a href="./NOTÍCIAS/noticia1.html" target="_blank">
-          <button>Saiba Mais</button>
-        </a>
-      </div>
-    </div>
-
-    <!-- 8 -->
-
-    <div class="noticia">
-      <img src="./IMAGENS/img8.png" alt="Sono e saúde">
-      <div class="conteudo">
-        <h2>Dormir bem fortalece o sistema imunológico</h2>
-        <p class="data">21 de julho de 2025</p>
-        <p>O sono adequado é essencial para regenerar células e equilibrar os hormônios.</p>
-        <a href="./NOTÍCIAS/noticia8.html" target="_blank">
-          <button>Saiba Mais</button>
-        </a>
-      </div>
-    </div>
-
-    <!-- 9 -->
-
-    <div class="noticia">
-      <img src="./IMAGENS/img9.png" alt="Exercício físico">
-      <div class="conteudo">
-        <h2>Metabolismo lento não é genética</h2>
-        <p class="data">30 de agosto de 2025</p>
-        <p>Estudos recentes mostram: em 80% dos casos, ele é desacelerado por hábitos do dia a dia.</p>
-        <a href="./NOTÍCIAS/noticia9.html" target="_blank">
+        <a href="./NOTÍCIAS/noticia3.html">
           <button>Saiba Mais</button>
         </a>
       </div>
@@ -156,35 +132,106 @@
         <h2>Comer frutas coloridas fortalece a imunidade</h2>
         <p class="data">18 de setembro de 2025</p>
         <p>As cores das frutas indicam diferentes antioxidantes que protegem o corpo.</p>
-        <a href="./NOTÍCIAS/noticia4.html" target="_blank">
+        <a href="./NOTÍCIAS/noticia4.html">
           <button>Saiba Mais</button>
         </a>
       </div>
     </div>
 
-    <!-- 10 -->
+    <!-- 5 -->
 
     <div class="noticia">
+      <img src="./IMAGENS/img12.png" alt="Açúcar e imunidade">
+      <div class="conteudo">
+        <h2>Açúcar em excesso enfraquece o sistema imunológico</h2>
+        <p class="data">20 de fevereiro de 2025</p>
+        <p>Estudos mostram que o consumo alto de açúcar pode reduzir a resposta imunológica por até 5 horas.</p>
+        <a href="./NOTÍCIAS/noticia5.html">
+          <button>Saiba Mais</button>
+        </a>
+      </div>
+    </div>
+
+    <!-- 6 -->
+    <div class="noticia">
+      <img src="./IMAGENS/img10.png" alt="Gorduras boas">
+      <div class="conteudo">
+        <h2>Nem toda gordura engorda, algumas ajudam a emagrecer e proteger o coração</h2>
+        <p class="data">01 de abril de 2025</p>
+        <p>As gorduras boas, como as do abacate e do azeite, são importantes para o metabolismo.</p>
+        <a href="./NOTÍCIAS/noticia6.html">
+          <button>Saiba Mais</button>
+        </a>
+      </div>
+    </div>
+
+    <!-- 7 -->
+
+    <div class="noticia">
+      <img src="./IMAGENS/img11.png" alt="Produtos light e diet">
+      <div class="conteudo">
+        <h2>O que a indústria não quer que você saiba sobre “light”, “diet” e “zero”</h2>
+        <p class="data">03 de maio de 2025</p>
+        <p>Nem sempre os produtos com esses rótulos são mais saudáveis — é preciso ler os ingredientes.</p>
+        <a href="./NOTÍCIAS/noticia7.html">
+          <button>Saiba Mais</button>
+        </a>
+      </div>
+    </div>
+
+
+    <!-- 8 -->
+
+    <div class="noticia">
+      <img src="./IMAGENS/img8.png" alt="Sono e saúde">
+      <div class="conteudo">
+        <h2>Dormir bem fortalece o sistema imunológico</h2>
+        <p class="data">21 de julho de 2025</p>
+        <p>O sono adequado é essencial para regenerar células e equilibrar os hormônios.</p>
+        <a href="./NOTÍCIAS/noticia8.html">
+          <button>Saiba Mais</button>
+        </a>
+      </div>
+    </div>
+
+    <!-- 9 -->
+
+    <div class="noticia">
+      <img src="./IMAGENS/img9.png" alt="Exercício físico">
+      <div class="conteudo">
+        <h2>Metabolismo lento não é genética, é consequência de hábitos</h2>
+        <p class="data">30 de agosto de 2025</p>
+        <p>Estudos recentes mostram: em 80% dos casos, ele é desacelerado por hábitos do dia a dia.</p>
+        <a href="./NOTÍCIAS/noticia9.html">
+          <button>Saiba Mais</button>
+        </a>
+      </div>
+    </div>
+
+
+    <!-- 10 -->
+
+    <!-- <div class="noticia">
       <img src="./IMAGENS/img7.png" alt="Cafeína e energia">
       <div class="conteudo">
         <h2>Excesso de açúcar pode causar ansiedade</h2>
         <p class="data">10 de outubro de 2025</p>
         <p>O consumo exagerado de açúcar pode aumentar o estresse e prejudicar o sono.</p>
-        <a href="./NOTÍCIAS/noticia10.html" target="_blank">
+        <a href="./NOTÍCIAS/noticia10.html">
           <button>Saiba Mais</button>
         </a>
       </div>
-    </div>
+    </div> -->
 
     <!-- 11 -->
 
     <div class="noticia">
       <img src="./IMAGENS/img6.png" alt="Comida caseira">
       <div class="conteudo">
-        <h2>Refeições caseiras são mais nutritivas</h2>
+        <h2>Ultraprocessados podem viciar o cérebro como drogas leves</h2>
         <p class="data">01 de novembro de 2025</p>
         <p>Preparar a própria comida ajuda a controlar os ingredientes e reduzir o consumo de ultraprocessados.</p>
-        <a href="./NOTÍCIAS/noticia11.html" target="_blank">
+        <a href="./NOTÍCIAS/noticia11.html">
           <button>Saiba Mais</button>
         </a>
       </div>
@@ -199,32 +246,31 @@
         <p class="data">03 de novembro de 2025</p>
         <p>Pesquisadores descobriram que um café da manhã rico em proteínas pode reduzir até 60% os desejos
           por açúcar e lanches à noite.</p>
-        <a href="./NOTÍCIAS/noticia12.html" target="_blank">
+        <a href="./NOTÍCIAS/noticia12.html">
           <button>Saiba Mais</button>
         </a>
       </div>
     </div>
+
+    <!-- 13 -->
+
+    <div class="noticia">
+      <img src="./IMAGENS/img13.png" alt="Beber água">
+      <div class="conteudo">
+        <h2>Consumo de ultraprocessados só irá cair com enfrentamento das grandes indústrias</h2>
+        <p class="data">08 de março de 2025</p>
+        <p>Estudo internacional com participação brasileira expõe alta do consumo e prejuízo à saúde e estratégias para
+          aumentar venda de ultraprocessados</p>
+        <a href="./NOTÍCIAS/noticia13.html">
+          <button>Saiba Mais</button>
+        </a>
+      </div>
+    </div>
+
   </div>
 
   <hr>
 
-  <!-- COMENTÁRIOS -->
-  <div id="comentarios">
-
-    <h2 style="color: #C71F37; text-align: center;">Comentários</h2>
-    <div id="listaComentarios"></div>
-    <hr>
-
-    <h2 style="color: #C71F37; text-align: center;">Comente</h2>
-    <form id="form">
-      <input type="text" id="nome" placeholder="Nome" required>
-      <input type="email" id="email" placeholder="Email" required>
-      <textarea id="mensagem" placeholder="Comentário" required></textarea>
-      <button type="submit">Comentar</button>
-    </form>
-  </div>
-
-  <hr>
 
   <!-- SOBRE O SITE -->
   <div id="sobre">
