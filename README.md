@@ -39,4 +39,4 @@ Ana Júlia Alves Pereira
 
 Felipe Martins Gomes Carvalho
 
-Turma De Tecnologia Em Informática Para Internet (Matutino) - Senac DF
+Turma De Técnico Em Informática Para Internet (Vespertino) - Senac DF
