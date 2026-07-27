@@ -1,3 +1,4 @@
+// MODO CLARO E ESCURO
 const botaoDark = document.getElementById('mudar-dark');
 
 if (localStorage.getItem('modo') === 'dark') {
@@ -18,3 +19,9 @@ botaoDark.addEventListener('click', function () {
     botaoDark.textContent = '🌙 Modo Escuro';
   }
 });
+
+// BANNERS
+const logoLink = document.getElementById("logoLink");
+const paginaAtual = window.location.pathname.split("/").pop();
+
+logoLink.href = paginaAtual;

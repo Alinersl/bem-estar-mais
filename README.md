@@ -29,7 +29,7 @@ Git Clone https://github.com/Ana08Julia/bem-estar-mais.git
 Eu faria melhor os comentarios ,colocaria para cada página de nóticia,colocaria banners na tela inicial de forma que pareça mais "profissional"
 
 ## O Que Aprendi
-Sendo o meu primeiro projeto desse tipo eu aprendi muitas coisas no geral em CSS aprendi a arrumar o tamanho das coisas, mais em específico, imagens e banners, a estruturar melhor o código, deixando-o mais organizado, o que deixa mais fácil pra encontrar cada código bem certinho, sendo o cabeçalho, as notícias, dentre outros. Também aprendi a fazer a opção de tema escuro ou claro no site, e como estruturar o código em ordem correta no JavaScript para que não dê erro em nenhuma das exigências
+Sendo o meu primeiro projeto desse tipo eu aprendi muitas coisas no geral em CSS aprendi a ajeitar o tamanho das coisas a estruturar melhor cada coisa ,aprendi a fazer a opção de tema escuro ou claro 
 ## Autor
 Nomes Dos alunos:
 
@@ -37,6 +37,8 @@ Aline Rodrigues Silva
 
 Ana Júlia Alves Pereira
 
-Felipe Martins Gomes Carvalho
+Felipe Martins
 
-Turma De Técnico Em Informática Para Internet (Vespertino) - Senac DF
+Yasmin Procopio
+
+Turma De Tecnologia Em Informática Para Internet (Matutino) - Senac DF

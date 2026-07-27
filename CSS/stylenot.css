@@ -7,17 +7,13 @@ body {
 
 header {
     color: white;
-    text-align: center;
     padding: 20px 0;
     background: linear-gradient(to right, #000000, #d32f2f, #000000, #d32f2f, #000000);
 }
 
 /* IMAGENS */
 .logo {
-    width: 100px;
-    height: 100px;
     margin: 0%;
-    align-self: left;
 }
 
 .noticia img {
@@ -29,11 +25,38 @@ img {
     width: 100%;
     display: flex;
     justify-content: center;
-    height: 400px;
+    height: 500px;
     object-fit: cover;
 }
 
 /* NOTÍCIAS */
+.container-editado {
+    max-width: 600px;
+    display: grid;
+    gap: 20px;
+    margin: 40px auto;
+    padding: 0 20px;
+    padding: 10px;
+}
+
+.container-editado1 {
+    max-width: 620px;
+    display: grid;
+    gap: 20px;
+    margin: 40px auto;
+    padding: 0 20px;
+    padding: 10px;
+}
+
+.container-editado2 {
+    max-width: 290px;
+    display: grid;
+    gap: 20px;
+    margin: 40px auto;
+    padding: 0 20px;
+    padding: 10px;
+}
+
 .container {
     display: grid;
     gap: 20px;
@@ -52,7 +75,6 @@ img {
 
 .conteudo {
     padding: 15px;
-    margin-top: 10px;
     margin: 0;
 }
 
@@ -81,8 +103,6 @@ img {
     font-size: 18px;
     margin: 10px 0;
     text-align: center;
-    justify-content: center;
-    margin: 0;
 }
 
 .conteudo p {
@@ -91,7 +111,11 @@ img {
     line-height: 1.5;
     padding: 0px;
     margin: 10px;
-    font-family: Bookman, URW Bookman L, serif;
+    font-family: serif;
+}
+
+.container-editado p {
+    margin-left: -20px;
 }
 
 h1 {
@@ -107,6 +131,7 @@ p {
 h3 {
     text-align: center;
     color: white;
+    margin: 0 auto;
 }
 
 .data {
@@ -157,15 +182,13 @@ footer p {
 }
 
 .asteriscos {
-    flex-direction: column;
     text-align: left;
     align-items: flex-start;
     margin: 0 auto;
 }
 
 ul.asteriscos {
-    justify-content: center;
-    font-family: Bookman, URW Bookman L, serif;
+    font-family: serif;
 }
 
 ul.asteriscos li {
@@ -198,6 +221,11 @@ ul.asteriscos li {
     align-items: center;
 }
 
+nav-centro {
+    flex: 1;
+    justify-content: center;
+}
+
 /* LOGO */
 .nav-esquerda {
     gap: 90px;
@@ -208,11 +236,7 @@ ul.asteriscos li {
     width: auto;
 }
 
-/*  TÍTULO CENTRAL DO NAVEGADOR */
-.nav-centro {
-    flex: 1;
-    justify-content: center;
-}
+
 
 .nav-centro h1 {
     font-size: 1.8rem;
@@ -407,7 +431,7 @@ body.dark .container {
     color: #ffffff;
     border-radius: 10px;
     padding: 10px;
-   margin: 30px auto;
+    margin: 30px auto;
 }
 
 body.dark .card {

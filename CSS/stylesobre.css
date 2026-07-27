@@ -1,0 +1,450 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: Arial, Helvetica, sans-serif;
+}
+
+body {
+  background-color: #f4f4f4;
+  color: white;
+  overflow-x: hidden;
+  margin: 0;
+  padding: 0;
+}
+
+/* NAVEGADOR */
+nav {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 5px 40px;
+  background: linear-gradient(to right, #000000, #d32f2f, #000000, #d32f2f, #000000);
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  z-index: 1000;
+  box-sizing: border-box;
+}
+
+.nav-direita {
+  display: flex;
+  gap: 25px;
+  justify-content: flex-end;
+}
+
+.nav-esquerda,
+.nav-direita {
+  display: flex;
+  align-items: center;
+}
+
+.nav-direita a {
+  color: #ffffffb0;
+  font-weight: 500;
+  transition: color 0.3s;
+  font-size: 1rem;
+}
+
+.nav-direita a:hover {
+  color: #ffffff;
+}
+
+/* IMAGEM */
+/* logo */
+.nav-esquerda img.logo {
+  height: 50px;
+  width: auto;
+}
+
+.x img {
+  height: 20px;
+  width: 20px;
+  margin-left: 330px;
+  transition: 0.3s;
+}
+
+.x img:hover {
+  transform: scale(1.1);
+  cursor: pointer;
+}
+
+/* CADASTRO */
+.overlay {
+    display: none;
+    position: fixed;
+    inset: 0;
+    background: rgba(0, 0, 0, 0.3);
+    backdrop-filter: blur(8px);
+    -webkit-backdrop-filter: blur(8px);
+    justify-content: center;
+    align-items: center;
+    z-index: 999;
+}
+
+.login-box {
+  background: white;
+  padding: 20px 20px 20px;
+  border-radius: 10px;
+}
+
+input {
+  padding: 10px;
+}
+
+.cadastro h2 {
+  text-align: center;
+  font-size: 30px;
+}
+
+.cadastro p {
+  text-align: center;
+  margin-bottom: 30px;
+  color: #000000;
+}
+
+.input-caixa {
+  margin-bottom: 20px;
+  border-color: #000000;
+}
+
+.input-caixa label {
+  display: block;
+  margin-bottom: 12px;
+  font-weight: bold;
+  color: #000000;
+}
+
+.input-caixa input {
+  width: 100%;
+  padding: 15px;
+  border: 2px solid rgba(0, 0, 0, 0.432);
+  border-radius: 12px;
+  outline: none;
+  font-size: 1rem;
+}
+
+.input-caixa input:focus {
+  border: 2px solid #ff2b2b;
+}
+
+.btn-cad {
+  width: 100%;
+  padding: 16px;
+  border: none;
+  border-radius: 40px;
+  background: #ff2b2b;
+  color: white;
+  font-size: 1rem;
+  font-weight: bold;
+  cursor: pointer;
+  transition: 0.3s;
+  margin-top: 10px;
+}
+
+.btn-cad:hover {
+  background: #ff4d4d;
+  transform: scale(1.03);
+}
+
+/* bonequinho do cadastro */
+.bonequinho {
+  right: 0;
+  bottom: 0;
+  width: 30px;
+  cursor: pointer;
+  transition: 0.3s;
+}
+
+.bonequinho:hover {
+  transform: scale(1.03);
+}
+
+/* CENTRO DO BANNER */
+.banner-center {
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  padding: 20px;
+  width: 100%;
+  min-height: 100vh;
+  background: linear-gradient(rgb(24 24 24 / 91%), rgba(83, 81, 81, 0.226)), url(https://images.unsplash.com/photo-1490645935967-10de6ba17061?q=80&w=1920&auto=format&fit=crop);
+  background-size: cover;
+  background-position: center;
+  display: flex;
+  flex-direction: column;
+}
+
+.banner-center h1 {
+  font-size: 5rem;
+  max-width: 900px;
+  margin-bottom: 20px;
+  line-height: 1.1;
+}
+
+.banner-center span {
+  color: #fb3232;
+}
+
+.banner-center p {
+  max-width: 750px;
+  color: #ffffff;
+  font-size: 1.1rem;
+  margin-bottom: 35px;
+  line-height: 1.7;
+}
+
+.banner-center button {
+  padding: 18px 45px;
+  border: none;
+  border-radius: 40px;
+  background: #ff2e2e;
+  color: white;
+  font-size: 1rem;
+  font-weight: bold;
+  cursor: pointer;
+  transition: 0.3s;
+
+  box-shadow: 0 0 25px rgba(255, 46, 46, 0.4);
+}
+
+.banner-center button:hover {
+  transform: scale(1.08);
+  background: #ff4d4d;
+}
+
+a {
+  color: white;
+  text-decoration: none;
+}
+
+a,
+a:visited,
+a:hover,
+a:active {
+  color: white;
+  text-decoration: none;
+}
+
+/* BENEFÍCIOS */
+.beneficios {
+  padding: 90px 70px;
+  background: #e9ecef;
+}
+
+.titulo {
+  text-align: center;
+  margin-bottom: 60px;
+}
+
+.titulo h2 {
+  font-size: 3rem;
+  color: #ff2e2e;
+  margin-bottom: 15px;
+}
+
+.titulo p {
+  color: #000000;
+}
+
+.cards {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  gap: 25px;
+}
+
+.card {
+  background: #f8f9fa;
+  padding: 35px;
+  border-radius: 20px;
+  transition: 0.3s;
+  border: 1px solid rgba(255, 255, 255, 0.05);
+}
+
+.card:hover {
+  transform: translateY(-10px);
+  border-color: #ff2e2e;
+  box-shadow: 0 0 25px rgba(255, 46, 46, 0.15);
+}
+
+.card h3 {
+  color: #ff2e2e;
+  margin-bottom: 15px;
+  font-size: 1.5rem;
+}
+
+.card p {
+  color: #000000;
+  line-height: 1.6;
+}
+
+/* SOBRE */
+.sobre {
+  padding: 100px 70px;
+  display: flex;
+  gap: 50px;
+  align-items: center;
+  flex-wrap: wrap;
+  background: #dee2e6;
+}
+
+.sobre img {
+  width: 500px;
+  max-width: 100%;
+  border-radius: 25px;
+}
+
+.texto {
+  flex: 1;
+  min-width: 300px;
+}
+
+.texto h2 {
+  font-size: 3rem;
+  margin-bottom: 20px;
+  color: #ff2e2e;
+}
+
+.texto p {
+  color: #000000;
+  line-height: 1.8;
+  margin-bottom: 20px;
+}
+
+/* TEXTO */
+h2 {
+  padding: 0 0 10px;
+  color: #ff2e2e;
+}
+
+/* FOOTER */
+footer {
+  background: linear-gradient(to right, #000000, #d32f2f, #000000, #d32f2f, #000000);
+  padding: 10px;
+  text-align: center;
+  color: #ffffff;
+}
+
+/* MODO CLARO E ESCURO */
+.sol {
+  margin: 10px 0 0 0;
+  cursor: pointer;
+  transition: 0.3s;
+}
+
+.sol img{
+  max-width: 25px;
+}
+
+.sol:hover {
+  transform: scale(1.10);
+}
+
+.lua {
+  margin: 10px 0 0 0;
+  cursor: pointer;
+  display: none;
+  transition: 0.3s;
+}
+
+.lua img {
+  max-width: 20px;
+}
+
+.lua:hover {
+  transform: scale(1.10);
+}
+
+/* MOBILE */
+@media(max-width:850px) {
+
+  nav {
+    flex-direction: column;
+    gap: 5px;
+  }
+
+  .nav-direita {
+    width: 100%;
+    display: flex;
+    justify-content: flex-end;
+    margin-top: -10px;
+  }
+
+  .banner-center h1 {
+    font-size: 3rem;
+  }
+
+  .bonequinho {
+    width: 28px;
+    margin-top: -60px;
+  }
+
+  .hero h1 {
+    font-size: 3rem;
+  }
+
+  .beneficios,
+  .sobre {
+    padding: 50px 25px;
+  }
+}
+
+/* MODO ESCURO */
+body.dark {
+  background: #121212;
+  color: white;
+}
+body.dark .beneficios{
+    background:#181818;
+}
+body.dark nav{
+    background: linear-gradient(to right,#111,#7a0000,#111,#7a0000,#111);
+}
+body.dark .card{
+    background:#333333;
+    border:1px solid #444;
+}
+
+body.dark .cadastro {
+  background: #121212;
+}
+
+body.dark .login-box {
+    background: #121212;
+}
+
+body.dark .card p{
+    color:white;
+}
+body.dark .sobre{
+    background:#1f1f1f;
+}
+
+body.dark .texto p{
+    color:white;
+}
+body.dark .titulo p{
+    color:white;
+}
+
+body.dark .cadastro p{
+    color:white;
+}
+
+body.dark .input-caixa label{
+    color:white;
+}
+
+body.dark .input-caixa input{
+    background:#333;
+    color:white;
+    border:2px solid #555;
+}
+
+body.dark .input-caixa input::placeholder{
+    color:#bbb;
+}
+body.dark footer{
+    background:linear-gradient(to right,#111,#7a0000,#111,#7a0000,#111);
+}
