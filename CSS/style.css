@@ -2,7 +2,7 @@ body {
   font-family: Arial, sans-serif;
   background-color: #f4f4f4;
   margin: 0;
-  padding-top: 90px;
+  padding-top: 64px;
 }
 
 header {
@@ -46,7 +46,7 @@ textarea {
   align-items: center;
   justify-content: space-between;
   background: linear-gradient(to right, #000000, #d32f2f, #000000, #d32f2f, #000000);
-  padding: 15px 50px;
+  padding: 5px 40px;
   position: fixed;
   top: 0;
   left: 0;
@@ -86,7 +86,7 @@ textarea {
 /* IMAGEM */
 /* logo */
 .nav-esquerda img.logo {
-  height: 60px;
+  height: 50px;
   width: auto;
 }
 
@@ -146,8 +146,9 @@ textarea {
   position: relative;
   margin: 10px;
 }
+
 .busca-mobile {
-    display: none;
+  display: none;
 }
 
 /* HAMBURGUER */
@@ -488,29 +489,31 @@ form {
     margin-top: -50px;
     text-align: center;
   }
-/* Esconde a busca do cabeçalho */
-    .nav-direita .busca-container {
-        display: none;
-    }
 
-    .busca-mobile {
-        display: flex;
-        justify-content: center;
-        padding: 15px 0;
-        background: white;
-    }
+  /* Esconde a busca do cabeçalho */
+  .nav-direita .busca-container {
+    display: none;
+  }
 
-    .busca-mobile .busca-container {
-        margin: 0;
-    }
+  .busca-mobile {
+    display: flex;
+    justify-content: center;
+    padding: 15px 0;
+    background: white;
+  }
 
-    .busca-mobile #campoBuscaMobile {
-        width: 250px;
-        padding: 8px 12px;
-        border-radius: 20px;
-        border: 1px solid #ccc;
-        outline: none;
-    }
+  .busca-mobile .busca-container {
+    margin: 0;
+  }
+
+  .busca-mobile #campoBuscaMobile {
+    width: 250px;
+    padding: 8px 12px;
+    border-radius: 20px;
+    border: 1px solid #ccc;
+    outline: none;
+  }
+
   /* NOTÍCIAS */
   .noticia {
     flex-direction: column;
@@ -550,10 +553,11 @@ form {
   }
 
   /* TEXTOS */
-  .text h2{
+  .text h2 {
     margin: 10px;
     margin-top: -20%;
   }
+
   /* FORMULÁRIO / COMENTÁRIOS */
   /* .contato,
   .contatos {
