@@ -25,3 +25,37 @@ const logoLink = document.getElementById("logoLink");
 const paginaAtual = window.location.pathname.split("/").pop();
 
 logoLink.href = paginaAtual;
+
+
+// BOTAO FAVORITO
+const toast = document.getElementById("toast");
+
+const btnFinal = document.querySelector(".favorito2");
+
+function mostrarMensagem(texto) {
+    toast.textContent = texto;
+    toast.classList.add("show");
+
+    setTimeout(() => {
+        toast.classList.remove("show");
+    }, 2000);
+}
+
+btnFinal.addEventListener("click", () => {
+
+    btnFinal.classList.toggle("ativo");
+
+    const icone = btnFinal.querySelector("i");
+
+    if(btnFinal.classList.contains("ativo")){
+        icone.classList.remove("fa-regular");
+        icone.classList.add("fa-solid");
+
+        mostrarMensagem("❤️ Adicionado com sucesso!");
+    }else{
+        icone.classList.remove("fa-solid");
+        icone.classList.add("fa-regular");
+
+        mostrarMensagem("🤍 Removido dos favoritos!");
+    }
+});
