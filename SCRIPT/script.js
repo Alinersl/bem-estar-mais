@@ -30,9 +30,12 @@ btnEsquerda.addEventListener('click', () => {
 function mover() {
   slides.style.transform = `translateX(-${index * 100}%)`;
 }
+
 ////////////////// PESQUISAR //////////////////
+
 const campoBusca = document.getElementById('campoBusca');
 const sugestoesBox = document.getElementById('sugestoes');
+const noticias = document.querySelectorAll('.noticia');
 
 const sugestoes = [
   "água",
@@ -51,9 +54,22 @@ function removerAcentos(texto) {
   return texto.normalize("NFD").replace(/[\u0300-\u036f]/g, "");
 }
 
-// mostrar sugestões
+// mostrar sugestões e filtrar notícias
 campoBusca.addEventListener('input', () => {
+
   const valor = removerAcentos(campoBusca.value.toLowerCase());
+
+  // Filtrar notícias
+  noticias.forEach(noticia => {
+    const texto = removerAcentos(noticia.textContent.toLowerCase());
+
+    if (valor === "" || texto.includes(valor)) {
+      noticia.style.display = "";
+    } else {
+      noticia.style.display = "none";
+    }
+  });
+
   sugestoesBox.innerHTML = '';
 
   if (valor === '') {
@@ -72,10 +88,8 @@ campoBusca.addEventListener('input', () => {
 
     div.addEventListener('click', () => {
       campoBusca.value = item;
-      sugestoesBox.style.display = 'none';
-
-      // dispara busca automaticamente
       campoBusca.dispatchEvent(new Event('input'));
+      sugestoesBox.style.display = 'none';
     });
 
     sugestoesBox.appendChild(div);
@@ -84,7 +98,7 @@ campoBusca.addEventListener('input', () => {
   sugestoesBox.style.display = filtradas.length ? 'block' : 'none';
 });
 
-// esconder ao clicar fora
+// esconder sugestões ao clicar fora
 document.addEventListener('click', (e) => {
   if (!e.target.closest('.busca-container')) {
     sugestoesBox.style.display = 'none';
