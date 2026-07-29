@@ -32,11 +32,9 @@ Eu faria melhor os comentarios ,colocaria para cada página de nóticia,colocari
 Sendo o meu primeiro projeto desse tipo eu aprendi muitas coisas no geral em CSS aprendi a ajeitar o tamanho das coisas a estruturar melhor cada coisa ,aprendi a fazer a opção de tema escuro ou claro 
 ## Autor
 Nomes Dos alunos:
-
+__________________________
 Aline Rodrigues Silva
-
 Ana Júlia Alves Pereira
-
 Felipe Martins
-
-Turma De Tecnologia Em Informática Para Internet (Matutino) - Senac DF
+__________________________
+Turma De Tecnologia Em Informática Para Internet (Vespertino) - Senac DF
