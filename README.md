@@ -39,6 +39,4 @@ Ana Júlia Alves Pereira
 
 Felipe Martins
 
-Yasmin Procopio
-
 Turma De Tecnologia Em Informática Para Internet (Matutino) - Senac DF
