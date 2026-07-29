@@ -104,3 +104,12 @@ document.addEventListener('click', (e) => {
     sugestoesBox.style.display = 'none';
   }
 });
+
+// botao hamburguer
+
+const botao = document.getElementById("hamburguer-btn");
+const menu = document.getElementById("menu");
+
+botao.addEventListener('click', () => {
+  menu.classList.toggle('ativo');
+})

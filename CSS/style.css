@@ -159,20 +159,51 @@ textarea {
 .dropdown-content {
   display: none;
   position: absolute;
-  background-color: #f9f9f9;
-  min-width: 130px;
-  box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);
-  padding: 12px 16px;
+  top: 45px;
+  right: -35px;
+  background-color: #fff;
+  min-width: 250px; 
+  box-shadow: 0 8px 16px #ca3e40;
+  border-radius: 8px;
+  padding: 10px 0;
+  z-index: 1000;
+}
+.dropdown-content ul{
+    list-style: none;
+    margin: 0;
+    padding: 0;
 }
 
-.hamburguer {
-  width: 35px;
-  cursor: pointer;
-  margin: 9px -30px 0px 0px;
+.dropdown-content li{
+    padding: 5px 18px;
 }
 
-.dropdown:hover .dropdown-content {
-  display: block;
+.dropdown-content li a{
+    display: flex;
+    text-decoration: none;
+    align-items: center;
+    color: #BA181B;
+    
+}
+
+.dropdown-content li:hover{
+    background: #BA181B;
+}
+
+.hamburguer{
+    width: 35px;
+    height: auto;
+    cursor: pointer;
+}
+
+.dropdown-content{
+    display: none;
+}
+.dropdown-content.ativo{
+    display: block;
+}
+img.hamburguer{
+  height: auto;
 }
 
 /* aberto */
