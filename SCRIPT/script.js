@@ -105,9 +105,8 @@ document.addEventListener('click', (e) => {
   }
 });
 
-// botao hamburguer
-
-const botao = document.getElementById("hamburguer-btn");
+// HAMBUREGUER
+const hamburguer = document.getElementById("hamburguer");
 const menu = document.getElementById("menu");
 
 botao.addEventListener('click', () => {
@@ -149,5 +148,13 @@ document.querySelectorAll(".favorito").forEach(btn => {
         }
 
     });
+hamburguer.addEventListener("click", () => {
+    menu.classList.toggle("ativo");
+});
 
+// Fecha o menu ao clicar fora
+document.addEventListener("click", (e) => {
+    if (!e.target.closest(".dropdown")) {
+        menu.classList.remove("ativo");
+    }
 });

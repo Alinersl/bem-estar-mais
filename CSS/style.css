@@ -153,59 +153,26 @@ textarea {
 
 /* HAMBURGUER */
 .dropdown {
-  position: relative;
+    position: relative;
 }
 
-.dropdown-content {
-  display: none;
-  position: absolute;
-  top: 45px;
-  right: -35px;
-  background-color: #fff;
-  min-width: 250px; 
-  box-shadow: 0 8px 16px #ca3e40;
-  border-radius: 8px;
-  padding: 10px 0;
-  z-index: 1000;
-}
-.dropdown-content ul{
-    list-style: none;
-    margin: 0;
-    padding: 0;
-}
-
-.dropdown-content li{
-    padding: 5px 18px;
-}
-
-.dropdown-content li a{
-    display: flex;
-    text-decoration: none;
-    align-items: center;
-    color: #BA181B;
-    
-}
-
-.dropdown-content li:hover{
-    background: #BA181B;
-}
-
-.hamburguer{
+.hamburguer {
     width: 35px;
-    height: auto;
     cursor: pointer;
 }
 
-.dropdown-content{
-    display: none;
+.dropdown-content {
+     display: none;
+    position: absolute;
+    top: 45px;
+    right: 0;      /* em vez de left: 0 */
+    left: auto;    /* remove o alinhamento à esquerda */
+    width: 250px;
+    background: #fff;
+    border-radius: 10px;
+    box-shadow: 0 5px 15px rgba(0,0,0,.2);
+    z-index: 9999;
 }
-.dropdown-content.ativo{
-    display: block;
-}
-img.hamburguer{
-  height: auto;
-}
-
 
 /* aberto */
 .menu-links {
@@ -216,23 +183,36 @@ img.hamburguer{
   background: #BA181B;
   padding: 10px;
   border-radius: 10px;
+  }
+.dropdown-content.ativo {
+     display:block;
+
 }
 
-/* escondido */
-.menu-links.active {
-  display: block;
+.dropdown-content ul {
+    margin: 0;
+    padding: 0;
+    list-style: none;
 }
 
-.menu-links a {
-  display: block;
-  margin: 8px 0;
-  color: white;
-  text-decoration: none;
-  transition: 0.3s;
+.dropdown-content li {
+    width: 100%;
 }
 
-.menu-links a:hover {
-  color: #ff4d4d;
+.dropdown-content li a {
+    display: flex;
+    width: 100%;
+    padding: 10px;
+    color: #333;
+    text-decoration: none;
+    box-sizing: border-box;
+    white-space: nowrap; /* impede quebrar linha */
+    
+}
+
+.dropdown-content li a:hover {
+    background: #5554544d;
+    color: #BA181B;
 }
 
 /* CARROSSEL */
