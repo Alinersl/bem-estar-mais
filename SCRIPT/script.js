@@ -148,13 +148,5 @@ document.querySelectorAll(".favorito").forEach(btn => {
         }
 
     });
-hamburguer.addEventListener("click", () => {
-    menu.classList.toggle("ativo");
-});
 
-// Fecha o menu ao clicar fora
-document.addEventListener("click", (e) => {
-    if (!e.target.closest(".dropdown")) {
-        menu.classList.remove("ativo");
-    }
 });
