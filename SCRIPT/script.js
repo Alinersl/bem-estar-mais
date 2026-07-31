@@ -105,8 +105,9 @@ document.addEventListener('click', (e) => {
   }
 });
 
-// HAMBUREGUER
-const hamburguer = document.getElementById("hamburguer");
+// botao hamburguer
+
+const botao = document.getElementById("hamburguer-btn");
 const menu = document.getElementById("menu");
 
 botao.addEventListener('click', () => {
