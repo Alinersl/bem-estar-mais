@@ -1,4 +1,3 @@
-
 * {
     margin: 0;
     padding: 0;
@@ -24,7 +23,7 @@ body {
     justify-content: space-between;
     align-items: center;
 
-    padding: 0 40px;
+    padding: 5 40px;
 
     position: sticky;
     top: 0;
@@ -32,12 +31,13 @@ body {
 }
 
 .logo {
-    height: 50px;  
+    height: 50px;
     width: auto;
     display: block;
+    margin-left: 37px;
 }
 
-.fav{
+.fav {
     position: absolute;
     top: 15px;
     right: 15px;
@@ -49,19 +49,19 @@ body {
     z-index: 999;
 }
 
-.fav:hover{
+.fav:hover {
     background: transparent;
     border: none;
 }
 
-.fav i{
-    font-size:30px;
-    color:#bdbdbd;
-    transition:0.3s;
+.fav i {
+    font-size: 30px;
+    color: #bdbdbd;
+    transition: 0.3s;
 }
 
-.fav:hover i{
-    transform:scale(1.15);
+.fav:hover i {
+    transform: scale(1.15);
 }
 
 /* LAYOUT */
@@ -79,7 +79,7 @@ body {
     gap: 35px;
 
     padding: 0 20px;
-    
+
 }
 
 /* CONTEUDO */
@@ -125,7 +125,7 @@ body {
 
 /* HERO DA NOTICIA */
 
-.hero-noticia{
+.hero-noticia {
     display: flex;
     justify-content: space-between;
     align-items: flex-start;
@@ -133,11 +133,11 @@ body {
     margin-bottom: 20px;
 }
 
-.hero-texto{
-     width: 52%;
+.hero-texto {
+    width: 52%;
 }
 
-.hero-imagem{
+.hero-imagem {
     flex: 1;
 }
 
@@ -160,11 +160,13 @@ body {
     transform: scale(1.05);
 
 }
-.linha-fina{
+
+.linha-fina {
     font-size: 22px;
     color: #555;
     margin-bottom: 35px;
 }
+
 /* TITULO */
 
 .conteudo h1 {
@@ -262,7 +264,7 @@ body {
 
     box-shadow: 0 5px 18px rgba(0, 0, 0, .08);
 
-     transform: translateX(200px);
+    transform: translateX(200px);
 
 }
 
@@ -302,118 +304,123 @@ body {
 
     transform: translateY(-3px);
 }
-.fim-noticia{
 
-text-align:center;
+.fim-noticia {
 
-padding:40px;
+    text-align: center;
 
-background:white;
+    padding: 40px;
 
-box-shadow: 0 5px 18px rgba(0, 0, 0, .08);
+    background: white;
 
-border-radius: 12px;
+    box-shadow: 0 5px 18px rgba(0, 0, 0, .08);
 
-max-width:1100px;
+    border-radius: 12px;
 
-margin:40px auto;
+    max-width: 1100px;
 
-transform: translateX(200px);
+    margin: 40px auto;
+
+    transform: translateX(200px);
 }
+
 /* perfil */
-.perfil{
+.perfil {
     background: transparent;
     border: none;
     cursor: pointer;
 }
 
-.perfil img{
+.perfil img {
     width: 30px;
     height: 30px;
     transition: .3s;
 }
 
-.perfil:hover img{
+.perfil:hover img {
     transform: scale(1.1);
 }
+
 /* favorito */
-.favorito2 i{
+.favorito2 i {
     margin-right: 10px;
 }
-.favorito2{
 
-background:#fff;
+.favorito2 {
 
-color:#d32f2f;
+    background: #fff;
 
-border:2px solid #d32f2f;
+    color: #d32f2f;
 
-padding:10px 18px;
+    border: 2px solid #d32f2f;
 
-border-radius:30px;
+    padding: 10px 18px;
 
-font-weight:bold;
+    border-radius: 30px;
 
-transition:.3s;
+    font-weight: bold;
 
-}
-
-.favorito2:hover{
-
-background:#d32f2f;
-
-color:white;
+    transition: .3s;
 
 }
 
-.alerta{
+.favorito2:hover {
 
-display:flex;
+    background: #d32f2f;
 
-gap:20px;
-
-background:#fff3f3;
-
-border-left:8px solid #d32f2f;
-
-padding:25px;
-
-margin:35px auto;
-
-max-width:1100px;
-
-border-radius:15px;
+    color: white;
 
 }
 
-.alerta i{
+.alerta {
 
-font-size:35px;
+    display: flex;
 
-color:#d32f2f;
+    gap: 20px;
+
+    background: #fff3f3;
+
+    border-left: 8px solid #d32f2f;
+
+    padding: 25px;
+
+    margin: 35px auto;
+
+    max-width: 1100px;
+
+    border-radius: 15px;
 
 }
+
+.alerta i {
+
+    font-size: 35px;
+
+    color: #d32f2f;
+
+}
+
 /* Coração vermelho */
 
 .fav.ativo i,
-.favorito2.ativo i{
+.favorito2.ativo i {
     color: #e53935;
 }
 
-.favorito2.ativo{
+.favorito2.ativo {
     background: #d32f2f;
     color: white;
 }
 
 /* Mensagem */
 
-.toast{
+.toast {
     position: fixed;
     top: 50%;
     left: 50%;
     transform: translate(-50%, -50%) scale(.8);
 
-    background: rgba(0,0,0,.85);
+    background: rgba(0, 0, 0, .85);
     color: white;
 
     padding: 15px 30px;
@@ -429,7 +436,7 @@ color:#d32f2f;
     z-index: 9999;
 }
 
-.toast.show{
+.toast.show {
     opacity: 1;
     visibility: visible;
     transform: translate(-50%, -50%) scale(1);
@@ -437,11 +444,11 @@ color:#d32f2f;
 
 /* footer */
 footer {
-  color: white;
-  text-align: center;
-  padding: 5px 0;
-  margin-top: 10px;
-  background: linear-gradient(to right, #000000, #d32f2f, #000000, #d32f2f, #000000);
+    color: white;
+    text-align: center;
+    padding: 5px 0;
+    margin-top: 10px;
+    background: linear-gradient(to right, #000000, #d32f2f, #000000, #d32f2f, #000000);
 }
 
 footer p {
