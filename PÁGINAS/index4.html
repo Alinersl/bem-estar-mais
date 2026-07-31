@@ -35,13 +35,26 @@
                 </div>
 
                 <!-- BOTÃO HAMBÚRGUER -->
-                <div class="menu-hamburguer" id="menuBtn"> ☰ </div>
+                <div class="dropdown">
+                    <button id="hamburguer-btn" type="button">
+                        <img src="../IMAGENS/ÍCONES/hamburguer.png" class="hamburguer">
+                    </button>
 
-                <!-- MENU -->
-                <div class="menu-links" id="menuLinks">
-                    <a href="#">Home</a>
-                    <a href=".">Sobre Nós</a>
+                    <div class="dropdown-content" id="menu">
+                        <ul>
+                            <li><a href="./index.html">🏠 Sobre Nós</a></li>
+
+                            <li><a href="#">🆕 Últimas Notícias</a></li>
+                            <li><a href="#">🔥 Mais Lidas</a></li>
+                            <li><a href="#">❤️ Favoritas</a></li>
+                            <li><a href="#">🥗 Alimentação Saudável</a></li>
+                            <li><a href="#">🍽️ Receitas</a></li>
+                            <li><a href="#">🧪 Estudos</a></li>
+                            <li><a href="#">👤 Conta</a></li>
+                        </ul>
+                    </div>
                 </div>
+
 
             </div>
         </nav>
@@ -108,6 +121,9 @@
 
         <!-- 20 -->
         <div class="noticia">
+            <button class="favorito">
+                <i class="fa-regular fa-heart"></i>
+            </button>
             <img src="../IMAGENS/CAPA DAS NOTÍCIAS/capa.not.20.png" alt="capa da notícia 20">
             <div class="conteudo">
                 <h2>Air fryer é mais saudável que fritura comum?</h2>
@@ -121,6 +137,9 @@
 
         <!-- 21 -->
         <div class="noticia">
+            <button class="favorito">
+                <i class="fa-regular fa-heart"></i>
+            </button>
             <img src="../IMAGENS/CAPA DAS NOTÍCIAS/capa.not.21.png" alt="capa da notícia 21">
             <div class="conteudo">
                 <h2>Alimentos enlatados são ruins?</h2>
@@ -134,6 +153,9 @@
 
         <!-- 22 -->
         <div class="noticia">
+            <button class="favorito">
+                <i class="fa-regular fa-heart"></i>
+            </button>
             <img src="../IMAGENS/CAPA DAS NOTÍCIAS/capa.not.22.png" alt="capa da notícia 22">
             <div class="conteudo">
                 <h2>Macarrão instantâneo faz mal?</h2>
@@ -147,6 +169,9 @@
 
         <!-- 23 -->
         <div class="noticia">
+            <button class="favorito">
+                <i class="fa-regular fa-heart"></i>
+            </button>
             <img src="../IMAGENS/CAPA DAS NOTÍCIAS/capa.not.23.png" alt="capa da notícia 23">
             <div class="conteudo">
                 <h2> Açúcar mascavo é mais saudável que o branco?</h2>
@@ -160,6 +185,9 @@
 
         <!-- 24 -->
         <div class="noticia">
+            <button class="favorito">
+                <i class="fa-regular fa-heart"></i>
+            </button>
             <img src="../IMAGENS/CAPA DAS NOTÍCIAS/capa.not.24.png" alt="capa da notícia 24">
             <div class="conteudo">
                 <h2>Energéticos fazem mal à saúde?</h2>
@@ -173,6 +201,9 @@
 
         <!-- 25 -->
         <div class="noticia">
+            <button class="favorito">
+                <i class="fa-regular fa-heart"></i>
+            </button>
             <img src="../IMAGENS/CAPA DAS NOTÍCIAS/capa.not.25.png" alt="capa da notícia 25">
             <div class="conteudo">
                 <h2>Comer distraído aumenta o consumo de comida</h2>
@@ -204,7 +235,7 @@
     <footer>
         <p>© 2025 BemEstar+ | Todos os direitos reservados</p>
     </footer>
-
+    <div id="toast"></div>
     <script src="../SCRIPT/script.js"></script>
 
 </body>

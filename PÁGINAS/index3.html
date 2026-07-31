@@ -35,13 +35,26 @@
                 </div>
 
                 <!-- BOTÃO HAMBÚRGUER -->
-                <div class="menu-hamburguer" id="menuBtn"> ☰ </div>
+                <div class="dropdown">
+                    <button id="hamburguer-btn" type="button">
+                        <img src="../IMAGENS/ÍCONES/hamburguer.png" class="hamburguer">
+                    </button>
 
-                <!-- MENU -->
-                <div class="menu-links" id="menuLinks">
-                    <a href="#">Home</a>
-                    <a href=".">Sobre Nós</a>
+                    <div class="dropdown-content" id="menu">
+                        <ul>
+                            <li><a href="./index.html">🏠 Sobre Nós</a></li>
+
+                            <li><a href="#">🆕 Últimas Notícias</a></li>
+                            <li><a href="#">🔥 Mais Lidas</a></li>
+                            <li><a href="#">❤️ Favoritas</a></li>
+                            <li><a href="#">🥗 Alimentação Saudável</a></li>
+                            <li><a href="#">🍽️ Receitas</a></li>
+                            <li><a href="#">🧪 Estudos</a></li>
+                            <li><a href="#">👤 Conta</a></li>
+                        </ul>
+                    </div>
                 </div>
+
 
             </div>
         </nav>
@@ -108,6 +121,9 @@
 
         <!-- 14 -->
         <div class="noticia">
+            <button class="favorito">
+                <i class="fa-regular fa-heart"></i>
+            </button>
             <img src="../IMAGENS/CAPA DAS NOTÍCIAS/capa.not.14.png" alt="capa da notícia 14">
             <div class="conteudo">
                 <h2>Suco detox funciona ou é só marketing?</h2>
@@ -122,6 +138,9 @@
 
         <!-- 15-->
         <div class="noticia">
+            <button class="favorito">
+                <i class="fa-regular fa-heart"></i>
+            </button>
             <img src="../IMAGENS/CAPA DAS NOTÍCIAS/capa.not.15.png" alt="capa da notícia 15">
             <div class="conteudo">
                 <h2>Novas bebidas saudáveis que estão substituindo refrigerantes</h2>
@@ -137,6 +156,9 @@
 
         <!-- 16-->
         <div class="noticia">
+            <button class="favorito">
+                <i class="fa-regular fa-heart"></i>
+            </button>
             <img src="../IMAGENS/CAPA DAS NOTÍCIAS/capa.not.16.png" alt="capa da notícia 16">
             <div class="conteudo">
                 <h2>O impacto do açúcar no cérebro segundo pesquisas recentes</h2>
@@ -151,6 +173,9 @@
 
         <!-- 17-->
         <div class="noticia">
+            <button class="favorito">
+                <i class="fa-regular fa-heart"></i>
+            </button>
             <img src="../IMAGENS/CAPA DAS NOTÍCIAS/capa.not.17.png" alt="capa da notícia 17">
             <div class="conteudo">
                 <h2>Como montar um prato saudável gastando pouco</h2>
@@ -164,6 +189,9 @@
 
         <!-- 18-->
         <div class="noticia">
+            <button class="favorito">
+                <i class="fa-regular fa-heart"></i>
+            </button>
             <img src="../IMAGENS/CAPA DAS NOTÍCIAS/capa.not.18.png" alt="capa da notícia 18">
             <div class="conteudo">
                 <h2>Glúten faz mal para todo mundo?</h2>
@@ -177,6 +205,9 @@
 
         <!-- 19 -->
         <div class="noticia">
+            <button class="favorito">
+                <i class="fa-regular fa-heart"></i>
+            </button>
             <img src="../IMAGENS/CAPA DAS NOTÍCIAS/capa.not.19.png" alt="capa da notícia 06">
             <div class="conteudo">
                 <h2> Alimentos congelados perdem nutrientes?</h2>
@@ -208,7 +239,7 @@
     <footer>
         <p>© 2025 BemEstar+ | Todos os direitos reservados</p>
     </footer>
-
+    <div id="toast"></div>
     <script src="../SCRIPT/script.js"></script>
 
 </body>
