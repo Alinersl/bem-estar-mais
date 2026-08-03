@@ -48,29 +48,29 @@
                 <h2>Cadastro</h2>
                 <p>Crie sua conta e comece sua jornada saudável!</p>
 
-                <form>
+                <form action="../PHP/cadastro.php" method="POST">
 
                   <div class="input-caixa">
                     <label>Nome</label>
-                    <input type="text" placeholder="Nome de Usuário">
+                    <input type="text" name="nome" placeholder="Nome de Usuário" required>
                   </div>
 
                   <div class="input-caixa">
                     <label>Email</label>
-                    <input type="text" placeholder="Insira seu Email">
+                    <input type="email" name="email" placeholder="Insira seu Email" required>
                   </div>
 
                   <div class="input-caixa">
                     <label>Senha</label>
-                    <input type="password" placeholder="Digite sua Senha">
+                    <input type="password" name="senha" placeholder="Digite sua Senha" required>
                   </div>
+
+                  <button type="submit" class="btn-cad">Cadastrar</button>
 
                 </form>
 
               </div>
             </div>
-
-            <button type="submit" class="btn-cad">Entrar</button>
 
           </div>
         </div>
