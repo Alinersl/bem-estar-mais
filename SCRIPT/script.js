@@ -121,7 +121,6 @@ document.addEventListener("click", (e) => {
 });
 
 // Favoritos
-
 const toast = document.getElementById("toast");
 
 function mostrarMensagem(texto) {
@@ -154,5 +153,29 @@ document.querySelectorAll(".favorito").forEach(btn => {
         }
 
     });
+
+});
+
+// MODO CLARO E ESCURO
+const body = document.body;
+
+const sol = document.getElementById("sol");
+const lua = document.getElementById("lua");
+
+sol.addEventListener("click", () => {
+
+    body.classList.add("dark");
+
+    sol.style.display = "none";
+    lua.style.display = "block";
+
+});
+
+lua.addEventListener("click", () => {
+
+    body.classList.remove("dark");
+
+    lua.style.display = "none";
+    sol.style.display = "block";
 
 });
