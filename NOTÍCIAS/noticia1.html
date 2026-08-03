@@ -9,45 +9,33 @@
 </head>
 
 <body>
-  <header class="nav">
-    <a href="../PÁGINAS/index1.html">
-      <img src="../IMAGENS/LOGO/logo (2).png" alt="Logo Bem Estar+" class="logo">
-    </a>
-    <button class="perfil">
-      <img src="../IMAGENS/ÍCONES/cadastro.png" alt="perfil">
-    </button>
+  <header class="nav"> <a href="../PÁGINAS/index1.html"> <img src="../IMAGENS/LOGO/logo (2).png" alt="Logo Bem Estar+"
+        class="logo"> </a> <button class="perfil"> <img src="../IMAGENS/ÍCONES/cadastro.png" alt="perfil"> </button>
   </header>
 
   <main class="layout">
+
     <article class="conteudo">
+
       <div class="meta">
         <span class="cat">ALIMENTAÇÃO SAUDÁVEL</span>
         <span>22 Jun 2025</span>
         <span>• 4 min de leitura</span>
       </div>
 
-
       <div class="hero-noticia">
 
         <div class="hero-texto">
-
           <h1>Beber muita água durante a refeição pode prejudicar a digestão</h1>
-
-
         </div>
 
-        <div class="hero-imagem">
-          <img src="../IMAGENS/BANNER DAS NOTÍCIAS/banner.not01.png" alt="Copo de água">
-        </div>
-
+        <div class="hero-imagem"> <img src="../IMAGENS/BANNER DAS NOTÍCIAS/banner.not01.png" alt="Copo de água"> </div>
       </div>
 
-      <p class="linha-fina">
-        Especialistas explicam quando beber água durante as refeições pode interferir na digestão e
-        quais hábitos ajudam a manter uma alimentação equilibrada.
-      </p>
-
+      <p class="linha-fina"> Especialistas explicam quando beber água durante as refeições pode interferir na digestão e
+        quais hábitos ajudam a manter uma alimentação equilibrada. </p>
       <section class="resumo">
+
         <h3>Resumo da matéria</h3>
         <ul>
           <li>Até 200 ml normalmente não prejudicam a digestão.</li>
@@ -58,7 +46,6 @@
 
       <h2>O que dizem os especialistas</h2>
       <p>O excesso de água pode reduzir temporariamente a concentração do suco gástrico...</p>
-
       <h2>Curiosidades</h2>
       <ul>
         <li>O pH do estômago é muito ácido.</li>
@@ -78,26 +65,34 @@
       <div class="card">Água gelada faz mal?</div>
       <div class="card">Como hidratar o corpo?</div>
     </aside>
+
     <section class="fim-noticia">
-
       <h2>Gostou desta matéria?</h2>
+      <p>Salve nos favoritos para ler novamente quando quiser.</p> <button class="favorito2"> <i
+          class="fa-regular fa-heart"></i> Salvar nos Favoritos </button>
+    </section>
+  </main>
+  <section class="comentarios">
 
-      <p>Salve nos favoritos para ler novamente quando quiser.</p>
+    <h2><i class="fa-regular fa-comments"></i> Comentários</h2>
 
-      <button class="favorito2">
+    <div class="form-comentario">
 
-        <i class="fa-regular fa-heart"></i>
+      <input type="text" id="nome" placeholder="Seu nome">
 
-        Salvar nos Favoritos
+      <textarea id="comentario" placeholder="Escreva seu comentário..."></textarea>
 
+      <button id="btnComentar">
+        <i class="fa-solid fa-paper-plane"></i>
+        Publicar comentário
       </button>
 
-    </section>
+    </div>
 
-  </main>
-  <div id="toast" class="toast">
-    ❤️ Adicionado com sucesso!
-  </div>
+    <div id="listaComentarios"></div>
+
+  </section>
+  <div id="toast" class="toast"> ❤️ Adicionado com sucesso! </div>
   <footer>
     <p>© 2025 BemEstar+ | Todos os direitos reservados</p>
   </footer>
