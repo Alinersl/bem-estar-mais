@@ -38,6 +38,11 @@ btnFechar.addEventListener("click", () => {
     overlay.style.display = "none";
 });
 
+// Fechar no X branco
+btnFecharBranco.addEventListener("click", () => {
+    overlay.style.display = "none";
+});
+
 // Fechar ao clicar em Entrar
 btnEntrar.addEventListener("click", () => {
     overlay.style.display = "none";

@@ -32,7 +32,6 @@ function mover() {
 }
 
 ////////////////// PESQUISAR //////////////////
-
 const campoBusca = document.getElementById('campoBusca');
 const sugestoesBox = document.getElementById('sugestoes');
 const noticias = document.querySelectorAll('.noticia');
@@ -105,21 +104,27 @@ document.addEventListener('click', (e) => {
   }
 });
 
-// botao hamburguer
+////////////////// HAMBURGUER //////////////////
 
-const botao = document.getElementById("hamburguer-btn");
+const hamburguer = document.getElementById("hamburguer");
 const menu = document.getElementById("menu");
 
-botao.addEventListener('click', () => {
-  menu.classList.toggle('ativo');
-})
+hamburguer.addEventListener("click", () => {
+    menu.classList.toggle("ativo");
+});
 
-// Botao favorito
+// Fecha o menu ao clicar fora
+document.addEventListener("click", (e) => {
+    if (!e.target.closest(".dropdown")) {
+        menu.classList.remove("ativo");
+    }
+});
+
+// Favoritos
+
 const toast = document.getElementById("toast");
-console.log(toast);
-function mostrarMensagem(texto) {
-    console.log("Mostrando:", texto);
 
+function mostrarMensagem(texto) {
     toast.textContent = texto;
     toast.classList.add("show");
 

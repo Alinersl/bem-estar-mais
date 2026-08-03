@@ -95,13 +95,18 @@ textarea {
   width: 100%;
   height: 100%;
   object-fit: cover;
-  filter: brightness(60%)
+  filter: brightness(60%);
 }
 
 /* imagem da notícia */
 .noticia img {
   height: 188px;
   object-fit: cover;
+}
+
+/* hamburguer */
+img.hamburguer {
+  height: auto;
 }
 
 /*PESQUISAR*/
@@ -152,6 +157,16 @@ textarea {
 }
 
 /* HAMBURGUER */
+.hamburguer {
+  width: 35px;
+  height: auto;
+  cursor: pointer;
+  display: block;
+  background: transparent;
+  border: none;
+  padding: 0;
+}
+
 .dropdown {
   position: relative;
 }
@@ -160,52 +175,42 @@ textarea {
   display: none;
   position: absolute;
   top: 45px;
-  right: -35px;
-  background-color: #fff;
-  min-width: 250px; 
-  box-shadow: 0 8px 16px #ca3e40;
-  border-radius: 8px;
-  padding: 10px 0;
-  z-index: 1000;
-}
-.dropdown-content ul{
-    list-style: none;
-    margin: 0;
-    padding: 0;
+  right: 0;
+  left: auto;
+  width: 250px;
+  background: #fff;
+  border-radius: 10px;
+  box-shadow: 0 5px 15px rgba(0, 0, 0, .2);
+  z-index: 9999;
 }
 
-.dropdown-content li{
-    padding: 5px 18px;
+.dropdown-content.ativo {
+  display: block;
 }
 
-.dropdown-content li a{
-    display: flex;
-    text-decoration: none;
-    align-items: center;
-    color: #BA181B;
-    
+.dropdown-content ul {
+  list-style: none;
+  margin: 0;
+  padding: 0;
 }
 
-.dropdown-content li:hover{
-    background: #BA181B;
+.dropdown-content li {
+  padding: 5px 18px;
 }
 
-.hamburguer{
-    width: 35px;
-    height: auto;
-    cursor: pointer;
+.dropdown-content li:hover {
+  background: #aa0e0e;
 }
 
-.dropdown-content{
-    display: none;
-}
-.dropdown-content.ativo{
-    display: block;
-}
-img.hamburguer{
-  height: auto;
+.dropdown-content li a {
+  display: flex;
+  text-decoration: none;
+  color: #BA181B;
 }
 
+.dropdown-content li a:hover {
+  color: #ffffff;
+}
 
 /* aberto */
 .menu-links {
@@ -343,52 +348,57 @@ header p {
   transform: translateY(-50%);
   color: white;
 }
+
 /* ICONE SALVOS*/
-.favorito{
-    position: absolute;
-    top: 15px;
-    right: 15px;
+.favorito {
+  position: absolute;
+  top: 15px;
+  right: 15px;
 
-    background: transparent;
-    border: none;
-    padding: 0;
-    cursor: pointer;
-    z-index: 999;
-}
-
-.favorito:hover{
-    background: transparent;
-    border: none;
-}
-.favorito.ativo i{
-    color: red;
-}
-.favorito i{
-    font-size:24px;
-    color:#bdbdbd;
-    transition:0.3s;
+  background: transparent;
+  border: none;
+  padding: 0;
+  cursor: pointer;
+  z-index: 999;
 }
 
-.favorito:hover i{
-    transform:scale(1.15);
-}
-#toast{
-    position: fixed;
-    bottom: 20px;
-    left: 50%;
-    transform: translateX(-50%);
-    background: #333;
-    color: white;
-    padding: 12px 24px;
-    border-radius: 8px;
-    opacity: 0;
-    transition: opacity .3s;
-    z-index: 9999;
+.favorito:hover {
+  background: transparent;
+  border: none;
 }
 
-#toast.show{
-    opacity: 1;
+.favorito.ativo i {
+  color: red;
 }
+
+.favorito i {
+  font-size: 24px;
+  color: #bdbdbd;
+  transition: 0.3s;
+}
+
+.favorito:hover i {
+  transform: scale(1.15);
+}
+
+#toast {
+  position: fixed;
+  bottom: 20px;
+  left: 50%;
+  transform: translateX(-50%);
+  background: #333;
+  color: white;
+  padding: 12px 24px;
+  border-radius: 8px;
+  opacity: 0;
+  transition: opacity .3s;
+  z-index: 9999;
+}
+
+#toast.show {
+  opacity: 1;
+}
+
 /* BOTÕES*/
 button {
   background-color: #C71F37;
