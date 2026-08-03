@@ -51,36 +51,39 @@ nav {
   color: #ffffff;
 }
 
-/* IMAGEM */
-/* logo */
-.nav-esquerda img.logo {
-  height: 50px;
-  width: auto;
-}
-
-.x-preto img {
-  height: 20px;
-  width: 20px;
-  transition: 0.5s;
-  margin-left: 330px;
+/* MODO CLARO E ESCURO */
+.sol {
+  margin: 10px 0 0 0;
   cursor: pointer;
+  transition: 0.3s;
 }
 
-.x-preto img:hover {
-  transform: scale(1.1);
+.sol:hover {
+  transform: scale(1.10);
+}
+
+.lua {
+  margin: 10px 0 0 0;
+  cursor: pointer;
+  display: none;
+  transition: 0.3s;
+}
+
+.lua:hover {
+  transform: scale(1.10);
 }
 
 /* CADASTRO */
 .overlay {
-    display: none;
-    position: fixed;
-    inset: 0;
-    background: rgba(0, 0, 0, 0.3);
-    backdrop-filter: blur(8px);
-    -webkit-backdrop-filter: blur(8px);
-    justify-content: center;
-    align-items: center;
-    z-index: 999;
+  display: none;
+  position: fixed;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.3);
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+  justify-content: center;
+  align-items: center;
+  z-index: 999;
 }
 
 .login-box {
@@ -148,16 +151,16 @@ input {
   transform: scale(1.03);
 }
 
-/* fechamentos da página */
+/* Fechamentos da página */
 .x-claro {
-    display: block;
+  display: block;
 }
 
 .x-escuro {
-    display: none;
+  display: none;
 }
 
-/* bonequinho do cadastro */
+/* Bonequinho do cadastro */
 .bonequinho {
   right: 0;
   bottom: 0;
@@ -214,7 +217,6 @@ input {
   font-weight: bold;
   cursor: pointer;
   transition: 0.3s;
-
   box-shadow: 0 0 25px rgba(255, 46, 46, 0.4);
 }
 
@@ -297,12 +299,6 @@ a:active {
   background: #dee2e6;
 }
 
-.sobre img {
-  width: 500px;
-  max-width: 100%;
-  border-radius: 25px;
-}
-
 .texto {
   flex: 1;
   min-width: 300px;
@@ -320,12 +316,6 @@ a:active {
   margin-bottom: 20px;
 }
 
-/* TEXTO */
-h2 {
-  padding: 0 0 10px;
-  color: #ff2e2e;
-}
-
 /* FOOTER */
 footer {
   background: linear-gradient(to right, #000000, #d32f2f, #000000, #d32f2f, #000000);
@@ -334,39 +324,52 @@ footer {
   color: #ffffff;
 }
 
-/* MODO CLARO E ESCURO */
-.sol {
-  margin: 10px 0 0 0;
-  cursor: pointer;
-  transition: 0.3s;
+/* TEXTO */
+h2 {
+  padding: 0 0 10px;
+  color: #ff2e2e;
 }
 
-.sol img{
+/* IMAGEM */
+/* logo */
+.nav-esquerda img.logo {
+  height: 50px;
+  width: auto;
+}
+
+/* Fechamento da página de cadastro */
+.x-preto img {
+  height: 20px;
+  width: 20px;
+  transition: 0.5s;
+  margin-left: 330px;
+  cursor: pointer;
+}
+
+.x-preto img:hover {
+  transform: scale(1.1);
+}
+
+/* Sobre */
+.sobre img {
+  width: 500px;
+  max-width: 100%;
+  border-radius: 25px;
+}
+
+/* Modo claro e escuro */
+.sol img {
   max-width: 25px;
-}
-
-.sol:hover {
-  transform: scale(1.10);
-}
-
-.lua {
-  margin: 10px 0 0 0;
-  cursor: pointer;
-  display: none;
-  transition: 0.3s;
 }
 
 .lua img {
   max-width: 20px;
 }
 
-.lua:hover {
-  transform: scale(1.10);
-}
-
 /* MOBILE */
 @media(max-width:850px) {
 
+  /* NAVEGADOR */
   nav {
     flex-direction: column;
     gap: 5px;
@@ -379,19 +382,18 @@ footer {
     margin-top: -10px;
   }
 
-  .banner-center h1 {
-    font-size: 3rem;
-  }
-
+  /* CADASTRO */
   .bonequinho {
     width: 28px;
     margin-top: -60px;
   }
 
-  .hero h1 {
+  /* CENTRO DO BANNER */
+  .banner-center h1 {
     font-size: 3rem;
   }
 
+  /* BENEFÍCIOS */
   .beneficios,
   .sobre {
     padding: 50px 25px;
@@ -403,65 +405,77 @@ body.dark {
   background: #121212;
   color: white;
 }
-body.dark .beneficios{
-    background:#181818;
-}
-body.dark nav{
-    background: linear-gradient(to right,#111,#7a0000,#111,#7a0000,#111);
-}
-body.dark .card{
-    background:#333333;
-    border:1px solid #444;
+
+/* NAVEGADOR */
+body.dark nav {
+  background: linear-gradient(to right, #111, #7a0000, #111, #7a0000, #111);
 }
 
+/* CADASTRO */
 body.dark .cadastro {
   background: #121212;
 }
 
 body.dark .login-box {
-    background: #121212;
+  background: #121212;
 }
 
-body.dark .card p{
-    color:white;
-}
-body.dark .sobre{
-    background:#1f1f1f;
+body.dark .cadastro p {
+  color: white;
 }
 
-body.dark .texto p{
-    color:white;
-}
-body.dark .titulo p{
-    color:white;
+body.dark .input-caixa label {
+  color: white;
 }
 
-body.dark .cadastro p{
-    color:white;
+body.dark .input-caixa input {
+  background: #333;
+  color: white;
+  border: 2px solid #555;
 }
 
-body.dark .input-caixa label{
-    color:white;
+body.dark .input-caixa input::placeholder {
+  color: #bbb;
 }
 
-body.dark .input-caixa input{
-    background:#333;
-    color:white;
-    border:2px solid #555;
+/* BENEFÍCIOS */
+body.dark .beneficios {
+  background: #181818;
 }
 
-body.dark .input-caixa input::placeholder{
-    color:#bbb;
-}
-body.dark footer{
-    background:linear-gradient(to right,#111,#7a0000,#111,#7a0000,#111);
+body.dark .card {
+  background: #333333;
+  border: 1px solid #444;
 }
 
-/* Modo escuro */
-body.dark .x-claro {
-    display: none;
+body.dark .card p {
+  color: white;
+}
+
+body.dark .titulo p {
+  color: white;
+}
+
+/* SOBRE */
+body.dark .sobre {
+  background: #1f1f1f;
 }
 
 body.dark .x-escuro {
-    display: block;
+  display: block;
+}
+
+body.dark .texto p {
+  color: white;
+}
+
+/* FOOTER */
+body.dark footer {
+  background: linear-gradient(to right, #111, #7a0000, #111, #7a0000, #111);
+}
+
+/* IMAGENS */
+/* Fechamento da página do cadastro */
+body.dark .x-claro {
+  display: none;
 }
