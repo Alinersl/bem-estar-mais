@@ -32,7 +32,6 @@ function mover() {
 }
 
 ////////////////// PESQUISAR //////////////////
-
 const campoBusca = document.getElementById('campoBusca');
 const sugestoesBox = document.getElementById('sugestoes');
 const noticias = document.querySelectorAll('.noticia');
@@ -105,21 +104,26 @@ document.addEventListener('click', (e) => {
   }
 });
 
-// botao hamburguer
+////////////////// HAMBURGUER //////////////////
 
-const botao = document.getElementById("hamburguer-btn");
+const hamburguer = document.getElementById("hamburguer");
 const menu = document.getElementById("menu");
 
-botao.addEventListener('click', () => {
-  menu.classList.toggle('ativo');
-})
+hamburguer.addEventListener("click", () => {
+    menu.classList.toggle("ativo");
+});
 
-// Botao favorito
+// Fecha o menu ao clicar fora
+document.addEventListener("click", (e) => {
+    if (!e.target.closest(".dropdown")) {
+        menu.classList.remove("ativo");
+    }
+});
+
+// Favoritos
 const toast = document.getElementById("toast");
-console.log(toast);
-function mostrarMensagem(texto) {
-    console.log("Mostrando:", texto);
 
+function mostrarMensagem(texto) {
     toast.textContent = texto;
     toast.classList.add("show");
 
@@ -149,5 +153,29 @@ document.querySelectorAll(".favorito").forEach(btn => {
         }
 
     });
+
+});
+
+// MODO CLARO E ESCURO
+const body = document.body;
+
+const sol = document.getElementById("sol");
+const lua = document.getElementById("lua");
+
+sol.addEventListener("click", () => {
+
+    body.classList.add("dark");
+
+    sol.style.display = "none";
+    lua.style.display = "block";
+
+});
+
+lua.addEventListener("click", () => {
+
+    body.classList.remove("dark");
+
+    lua.style.display = "none";
+    sol.style.display = "block";
 
 });
