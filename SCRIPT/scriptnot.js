@@ -52,3 +52,41 @@ btnFinal.addEventListener("click", () => {
         mostrarMensagem("🤍 Removido dos favoritos!");
     }
 });
+// COMENTARIOS
+const btnComentar = document.getElementById("btnComentar");
+
+if(btnComentar){
+
+    btnComentar.addEventListener("click", ()=>{
+
+        const nome = document.getElementById("nome").value.trim();
+        const texto = document.getElementById("comentario").value.trim();
+
+        if(nome === "" || texto === ""){
+            alert("Preencha nome e comentário.");
+            return;
+        }
+
+        const lista = document.getElementById("listaComentarios");
+
+        const comentario = document.createElement("div");
+        comentario.className = "comentario";
+
+        const data = new Date();
+
+        comentario.innerHTML = `
+            <h4>${nome}</h4>
+            <small>${data.toLocaleDateString('pt-BR')} às ${data.toLocaleTimeString('pt-BR',{
+                hour:'2-digit',
+                minute:'2-digit'
+            })}</small>
+            <p>${texto}</p>
+        `;
+
+        lista.prepend(comentario);
+
+        document.getElementById("nome").value = "";
+        document.getElementById("comentario").value = "";
+    });
+
+}
