@@ -14,16 +14,12 @@
 
     <!-- NAVEGADOR -->
     <header>
-        <nav class="nav">
+        <nav>
 
             <div class="nav-esquerda">
-                <a href="./index3.html">
+                <a href="./index.html">
                     <img src="../IMAGENS/LOGO/logo (2).png" alt="Logo Bem Estar+" class="logo">
                 </a>
-            </div>
-
-            <div class="nav-centro">
-                <h1>BemEstar+</h1>
             </div>
 
             <div class="nav-direita">
@@ -34,30 +30,41 @@
                     <div id="sugestoes"></div>
                 </div>
 
+                <div class="busca-mobile">
+                    <div class="busca-container">
+                        <input type="text" id="campoBuscaMobile" placeholder="🔍 Buscar...">
+                        <div id="sugestoesMobile"></div>
+                    </div>
+                </div>
+
+                <!-- MODO CLARO E ESCURO -->
+                <div class="sol" id="sol">
+                    <img src="../IMAGENS/ÍCONES/sol.png" alt="Modo claro">
+                </div>
+
+                <div class="lua" id="lua">
+                    <img src="../IMAGENS/ÍCONES/lua.png" alt="Modo escuro">
+                </div>
+
                 <!-- BOTÃO HAMBÚRGUER -->
                 <div class="dropdown">
-                    <button id="hamburguer-btn" type="button">
-                        <img src="../IMAGENS/ÍCONES/hamburguer.png" class="hamburguer">
-                    </button>
+
+                    <img src="../IMAGENS/ÍCONES/hamburguer.png" class="hamburguer" id="hamburguer" alt="Menu">
 
                     <div class="dropdown-content" id="menu">
                         <ul>
                             <li><a href="./index.html">🏠 Sobre Nós</a></li>
-
                             <li><a href="#">🆕 Últimas Notícias</a></li>
                             <li><a href="#">🔥 Mais Lidas</a></li>
                             <li><a href="#">❤️ Favoritas</a></li>
-                            <li><a href="#">🥗 Alimentação Saudável</a></li>
-                            <li><a href="#">🍽️ Receitas</a></li>
-                            <li><a href="#">🧪 Estudos</a></li>
-                            <li><a href="#">👤 Conta</a></li>
+                            <li><a href="./perfil.html">👤 Conta</a></li>
                         </ul>
                     </div>
+
                 </div>
 
-
             </div>
-        </nav>
+            <nav>
     </header>
 
     <!-- CARROSSEL -->
@@ -81,7 +88,9 @@
                 <div class="text">
                     <h2>💧 Pouca água dá cansaço?</h2>
                     <p>Veja como a hidratação afeta sua energia</p>
-                    <button class="button-banner">Saiba Mais</button>
+                    <a href="../NOTÍCIAS DOS BANNERS PRINCIPAIS/not.agua.html">
+                        <button class="button-banner">Saiba Mais</button>
+                    </a>
                 </div>
             </div>
 
@@ -90,7 +99,9 @@
                 <div class="text">
                     <h2>🥚 Ovo faz bem ou mal?</h2>
                     <p>Descubra a verdade</p>
-                    <button class="button-banner">Saiba Mais</button>
+                    <a href="../NOTÍCIAS DOS BANNERS PRINCIPAIS/not.ovo.html">
+                        <button class="button-banner">Saiba Mais</button>
+                    </a>
                 </div>
             </div>
 
@@ -100,7 +111,9 @@
                 <div class="text">
                     <h2>🍌 Banana dá energia?</h2>
                     <p>Entenda por que ela é tão recomendada</p>
-                    <button class="button-banner">Saiba Mais</button>
+                    <a href="../NOTÍCIAS DOS BANNERS PRINCIPAIS/not.banana.html">
+                        <button class="button-banner">Saiba Mais</button>
+                    </a>
                 </div>
             </div>
 
