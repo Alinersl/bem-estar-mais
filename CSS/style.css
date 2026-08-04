@@ -44,14 +44,14 @@ nav {
   justify-content: flex-end;
 }
 
-.nav-direita > a {
+.nav-direita>a {
   color: #ffffff;
   font-weight: 500;
   transition: color 0.3s;
   font-size: 1rem;
 }
 
-.nav-direita > a:hover {
+.nav-direita>a:hover {
   color: #ffffff;
 }
 
@@ -183,7 +183,6 @@ textarea {
   background: #fff;
   border-radius: 10px;
   box-shadow: 0 5px 15px rgba(0, 0, 0, .2);
-  z-index: 9999;
 }
 
 .dropdown-content.ativo {
@@ -198,6 +197,7 @@ textarea {
 
 .dropdown-content li {
   padding: 5px 18px;
+  color: #ffffff;
 }
 
 .dropdown-content li:hover {
@@ -246,12 +246,18 @@ textarea {
 
 .text h2 {
   font-size: 28px;
-  margin: 0;
+  margin: 0 0 5px;
   color: #ffffff;
 }
 
 .text p {
   font-size: 16px;
+  margin: 0 0 24px;
+  line-height: 1.6;
+}
+
+.text .button-banner {
+  margin-top: -5px;
 }
 
 .btn-direita {
@@ -317,14 +323,18 @@ button img {
   color: #BA181B;
   font-size: 18px;
   margin: 10px 0;
-
+  margin-bottom: 20px;
 }
 
 .conteudo p {
   color: #444;
   font-size: 15px;
-  line-height: 1.5;
-  font-family: Bookman, URW Bookman L, serif;
+  font-family: serif;
+  margin-bottom: 10px;
+}
+
+.conteudo a {
+  margin-top: 5px;
 }
 
 .data {
@@ -332,12 +342,16 @@ button img {
   font-size: 13px;
 }
 
+.conteudo .data {
+  display: block;
+  margin-bottom: 20px;
+}
+
 /* FAVORITOS */
 .favorito {
   position: absolute;
   top: 15px;
   right: 15px;
-
   background: transparent;
   border: none;
   padding: 0;
@@ -576,7 +590,7 @@ button:hover {
     font-size: 14px;
   }
 
-    /* FOOTER */
+  /* FOOTER */
   footer {
     padding: 10px 5px;
     margin-top: 5px;
@@ -657,29 +671,29 @@ body.dark .dropdown-content li a:hover {
 /* CARROSSEL */
 body.dark .btn-esquerda,
 body.dark .btn-direita {
-    background: rgba(0, 0, 0, 0.5);
-    transition: 0.3s;
+  background: rgba(0, 0, 0, 0.5);
+  transition: 0.3s;
 }
 
 body.dark .btn-esquerda:hover,
 body.dark .btn-direita:hover {
-    background: rgba(255, 46, 46, 0.45);
+  background: rgba(255, 46, 46, 0.45);
 }
 
 body.dark .btn-esquerda img,
 body.dark .btn-direita img {
-    filter: brightness(0) invert(1);
+  filter: brightness(0) invert(1);
 }
 
 /* NOTÍCIAS */
 body.dark .noticia {
   background: #2b2b2b;
   border: 1px solid #3f3f3f;
-  box-shadow: 0 0 20px rgba(0,0,0,.35);
+  box-shadow: 0 0 20px rgba(0, 0, 0, .35);
 }
 
 body.dark .noticia:hover {
-  box-shadow: 0 0 25px rgba(255,46,46,.12);
+  box-shadow: 0 0 25px rgba(255, 46, 46, .12);
 }
 
 body.dark .conteudo h2 {
@@ -695,12 +709,22 @@ body.dark .data {
 }
 
 /* FAVORITO */
+body.dark .favorito {
+  background: transparent;
+  border: none;
+}
+
+body.dark .favorito:hover {
+  background: transparent;
+  border: none;
+}
+
 body.dark .favorito i {
-  color: #8b8b8b;
+  color: #bdbdbd;
 }
 
 body.dark .favorito.ativo i {
-  color: #ff3d3d;
+  color: red;
 }
 
 /* JANELA DAS PÁGINAS */
@@ -711,19 +735,17 @@ body.dark .paginas a {
 }
 
 body.dark .paginas a:hover {
-  background: #7a0000;
-  border-color: #7a0000;
-  color: white;
+  color: #555;
 }
 
 body.dark .paginas a.active {
   background: #ff2e2e;
-  color: white;
   border-color: #ff2e2e;
 }
 
 body.dark .active-branco {
-  background: #2a2a2a;
+  background: #ff2e2e;
+  color: #ff2e2e;
 }
 
 /* FOOTER */
