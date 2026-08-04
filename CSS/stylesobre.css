@@ -337,7 +337,7 @@ h2 {
   width: auto;
 }
 
-/* Fechamento da página de cadastro */
+/* fechamento da página de cadastro */
 .x-preto img {
   height: 20px;
   width: 20px;
@@ -350,14 +350,14 @@ h2 {
   transform: scale(1.1);
 }
 
-/* Sobre */
+/* sobre */
 .sobre img {
   width: 500px;
   max-width: 100%;
   border-radius: 25px;
 }
 
-/* Modo claro e escuro */
+/* modo claro e escuro */
 .sol img {
   max-width: 25px;
 }

@@ -6,8 +6,21 @@
 body {
   font-family: Arial, sans-serif;
   background-color: #f4f4f4;
-
   padding-top: 64px;
+}
+
+/* HEADER */
+header {
+  text-align: center;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
+  color: white;
+  background: linear-gradient(to right, #000000, #d32f2f, #000000, #d32f2f, #000000);
+}
+
+header p {
+  font-size: 1rem;
+  color: #ffffff;
+  font-family: Bookman, URW Bookman L, serif;
 }
 
 /* NAVEGADOR */
@@ -47,6 +60,13 @@ nav {
 .nav-direita {
   display: flex;
   align-items: center;
+}
+
+.nav-centro h1 {
+  font-size: 1.8rem;
+  color: #ffffff;
+  font-family: 'Segoe UI', sans-serif;
+  margin: 0;
 }
 
 /*PESQUISAR*/
@@ -94,6 +114,26 @@ nav {
 
 .busca-mobile {
   display: none;
+}
+
+label {
+  display: block;
+  margin-top: 15px;
+  color: #555;
+}
+
+input,
+textarea {
+  width: 100%;
+  padding: 10px;
+  margin-top: 5px;
+  border: 1px solid #ccc;
+  border-radius: 8px;
+  font-size: 15px;
+}
+
+textarea {
+  height: 120px;
 }
 
 /* MODO CLARO E ESCURO */
@@ -213,22 +253,36 @@ nav {
   font-size: 16px;
 }
 
-/* Modo claro e escuro */
-.sol img {
-  max-width: 25px;
+.btn-direita {
+  right: 10px;
 }
 
-.lua img {
-  max-width: 20px;
+.btn-esquerda {
+  left: 10px;
 }
 
-header {
-  text-align: center;
-  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
-  color: white;
-  background: linear-gradient(to right, #000000, #d32f2f, #000000, #d32f2f, #000000);
+.btn-esquerda,
+.btn-direita {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  background: rgba(0, 0, 0, 0.5);
+  cursor: pointer;
+  border: 2px none;
 }
 
+.btn-direita:hover,
+.btn-esquerda:hover {
+  background-color: #d8021e62;
+}
+
+button img {
+  width: 40px;
+  height: 40px;
+  object-fit: contain;
+}
+
+/* NOTÍCIAS */
 .container {
   display: grid;
   gap: 20px;
@@ -237,53 +291,6 @@ header {
   padding: 0 20px;
 }
 
-label {
-  display: block;
-  margin-top: 15px;
-  color: #555;
-}
-
-input,
-textarea {
-  width: 100%;
-  padding: 10px;
-  margin-top: 5px;
-  border: 1px solid #ccc;
-  border-radius: 8px;
-  font-size: 15px;
-}
-
-textarea {
-  height: 120px;
-}
-
-/* IMAGEM */
-/* logo */
-.nav-esquerda img.logo {
-  height: 50px;
-  width: auto;
-}
-
-/* banner */
-.slide img {
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-  filter: brightness(60%);
-}
-
-/* imagem da notícia */
-.noticia img {
-  height: 188px;
-  object-fit: cover;
-}
-
-/* hamburguer */
-img.hamburguer {
-  height: auto;
-}
-
-/* NOTÍCIAS */
 .noticia {
   position: relative;
   background: white;
@@ -305,7 +312,6 @@ img.hamburguer {
   height: 100%;
 }
 
-/* TEXTOS */
 .conteudo h2 {
   color: #BA181B;
   font-size: 18px;
@@ -320,50 +326,12 @@ img.hamburguer {
   font-family: Bookman, URW Bookman L, serif;
 }
 
-h1 {
-  margin: 0;
-  text-align: center;
-  color: #C71F37;
-  padding: 20px;
-}
-
-h2 {
-  font-family: Arial, sans-serif;
-  color: #333;
-  margin-bottom: 25px;
-}
-
 .data {
   color: #777;
   font-size: 13px;
 }
 
-footer p {
-  font-family: Arial, sans-serif;
-}
-
-header p {
-  font-size: 1rem;
-  color: #ffffff;
-  font-family: Bookman, URW Bookman L, serif;
-}
-
-.nav-centro h1 {
-  font-size: 1.8rem;
-  color: #ffffff;
-  font-family: 'Segoe UI', sans-serif;
-  margin: 0;
-}
-
-.text {
-  position: absolute;
-  top: 50%;
-  left: 10%;
-  transform: translateY(-50%);
-  color: white;
-}
-
-/* ICONE SALVOS*/
+/* FAVORITOS */
 .favorito {
   position: absolute;
   top: 15px;
@@ -395,7 +363,7 @@ header p {
   transform: scale(1.15);
 }
 
-#toast {
+/* #toast {
   position: fixed;
   bottom: 20px;
   left: 50%;
@@ -411,86 +379,9 @@ header p {
 
 #toast.show {
   opacity: 1;
-}
+} */
 
-/* BOTÕES*/
-button {
-  background-color: #C71F37;
-  border-radius: 8px;
-  color: white;
-  cursor: pointer;
-  padding: 5px 10px;
-  font-family: Arial, sans-serif;
-  border: 2px solid rgb(95, 44, 44);
-}
-
-button:hover {
-  background-color: #E01E37;
-}
-
-.botao-fixo {
-  position: fixed;
-  right: 10px;
-  bottom: 20px;
-  color: white;
-  padding: 10px 20px;
-  border: none;
-}
-
-form button {
-  width: 102%;
-  margin-top: 10px;
-}
-
-/* carrossel */
-.btn-esquerda,
-.btn-direita {
-  position: absolute;
-  top: 50%;
-  transform: translateY(-50%);
-  background: rgba(0, 0, 0, 0.5);
-  cursor: pointer;
-  border: 2px none;
-}
-
-.btn-direita:hover,
-.btn-esquerda:hover {
-  background-color: #d8021e62;
-}
-
-.btn-direita {
-  right: 10px;
-}
-
-.btn-esquerda {
-  left: 10px;
-}
-
-/* ícones */
-button img {
-  width: 40px;
-  height: 40px;
-  object-fit: contain;
-}
-
-/* FOOTER */
-footer {
-  color: white;
-  text-align: center;
-  padding: 10px;
-  background: linear-gradient(to right, #000000, #d32f2f, #000000, #d32f2f, #000000);
-}
-
-/* FORMULÁRIO */
-form {
-  width: 94%;
-  flex-direction: column;
-  padding: 30px;
-  display: flex;
-  justify-content: center;
-}
-
-/* PÁGINAS */
+/* JANELA DAS PÁGINAS */
 .paginas {
   display: flex;
   gap: 10px;
@@ -506,7 +397,6 @@ form {
   color: black;
   padding: 6px 10px;
   border: 1px solid #751e1e;
-  /* 👈 borda em cada número */
   border-radius: 20px;
 }
 
@@ -527,39 +417,82 @@ form {
   background-color: #f4f4f4;
 }
 
-/* BONEQUINHO DO CADASTRO */
-.cadastro {
-  position: relative;
-  left: 20px;
-  top: 3px;
+/* FOOTER */
+footer {
+  color: white;
+  text-align: center;
+  padding: 10px;
+  background: linear-gradient(to right, #000000, #d32f2f, #000000, #d32f2f, #000000);
 }
 
-.bonequinho {
-  right: 0;
-  bottom: 0;
-  width: 35px;
-  cursor: pointer;
+footer p {
+  font-family: Arial, sans-serif;
 }
 
-/* CADASTRO */
-.overlay {
-  position: fixed;
-  top: 0;
-  left: 0;
+/* TEXTO */
+h1 {
+  margin: 0;
+  text-align: center;
+  color: #C71F37;
+  padding: 20px;
+}
+
+h2 {
+  font-family: Arial, sans-serif;
+  color: #333;
+  margin-bottom: 25px;
+}
+
+/* IMAGEM */
+/* modo claro e escuro */
+.sol img {
+  max-width: 25px;
+}
+
+.lua img {
+  max-width: 20px;
+}
+
+/* logo */
+.nav-esquerda img.logo {
+  height: 50px;
+  width: auto;
+}
+
+/* carrossel */
+.slide img {
   width: 100%;
   height: 100%;
-  backdrop-filter: blur(5px);
-  background: rgba(0, 0, 0, 0.3);
-  display: none;
-  justify-content: center;
-  align-items: center;
+  object-fit: cover;
+  filter: brightness(60%);
 }
 
-.login-box {
-  background: white;
-  padding: 20px;
-  border-radius: 10px;
+/* notícia */
+.noticia img {
+  height: 188px;
+  object-fit: cover;
 }
+
+/* hamburguer */
+img.hamburguer {
+  height: auto;
+}
+
+/* BOTÕES*/
+button {
+  background-color: #C71F37;
+  border-radius: 8px;
+  color: white;
+  cursor: pointer;
+  padding: 5px 10px;
+  font-family: Arial, sans-serif;
+  border: 2px solid rgb(95, 44, 44);
+}
+
+button:hover {
+  background-color: #E01E37;
+}
+
 
 /* MOBILE */
 @media (max-width: 768px) {
@@ -579,7 +512,8 @@ form {
     text-align: center;
   }
 
-  /* Esconde a busca do cabeçalho */
+  /* PESQUISAR */
+  /* esconde a busca do cabeçalho */
   .nav-direita .busca-container {
     display: none;
   }
@@ -603,6 +537,29 @@ form {
     outline: none;
   }
 
+  /* BANNER */
+  .button-banner {
+    position: absolute;
+    left: 45%;
+    transform: translate(-50%, -50%);
+    text-align: center;
+  }
+
+  .text h2 {
+    margin: 10px;
+    margin-top: -20%;
+  }
+
+  .text button {
+    margin-top: 30px;
+  }
+
+  .btn-esquerda,
+  .btn-direita {
+    top: 85%;
+    padding: 2px;
+  }
+
   /* NOTÍCIAS */
   .noticia {
     flex-direction: column;
@@ -618,65 +575,7 @@ form {
     font-size: 14px;
   }
 
-  /* BOTÕES */
-  .button-banner {
-    position: absolute;
-    left: 45%;
-    transform: translate(-50%, -50%);
-    text-align: center;
-  }
-
-  .text button {
-    margin-top: 30px;
-  }
-
-  .btn-esquerda,
-  .btn-direita {
-    top: 85%;
-    padding: 2px;
-  }
-
-  button {
-    padding: 8px 15px;
-    font-size: 0.9rem;
-  }
-
-  /* TEXTOS */
-  .text h2 {
-    margin: 10px;
-    margin-top: -20%;
-  }
-
-  /* FORMULÁRIO / COMENTÁRIOS */
-  /* .contato,
-  .contatos {
-    max-width: 95%;
-    margin: 20px auto;
-    padding: 15px;
-  }
-
-  input,
-  textarea {
-    padding: 8px;
-    font-size: 14px;
-  }
-
-  form {
-    width: 100%;
-    padding: 0;
-    margin-top: 15px;
-  }
-
-  form button {
-    width: 100%;
-  }
-
-  #listaComentarios {
-    width: 95%;
-    margin: 15px auto;
-  } */
-
-  /* FOOTER */
+    /* FOOTER */
   footer {
     padding: 10px 5px;
     margin-top: 5px;
@@ -686,50 +585,9 @@ form {
     font-size: 0.8rem;
   }
 
-  /* COMENTÁRIOS */
-  body.dark #comentarios {
-    background-color: #1b1a1a;
-    color: #ffffff;
-    box-shadow: 0 0 10px rgba(255, 255, 255, 0.05);
-  }
-
-  body.dark #listaComentarios .comentario:hover {
-    background: #2a2a2a;
-  }
-
-  #form input,
-  #form textarea {
-    width: 100%;
-    max-width: 100%;
-    box-sizing: border-box;
-    border: 1px solid #ddd;
-    border-radius: 8px;
-    padding: 10px;
-    font-size: 15px;
-    font-family: 'Segoe UI', sans-serif;
-    transition: border 0.3s, box-shadow 0.3s;
-    resize: none;
-  }
-
-  /* MENU */
-  .menu-links {
-    display: none;
-    flex-direction: column;
-    position: absolute;
-    top: 70px;
-    right: 10px;
-    background: rgba(0, 0, 0, 0.9);
-    padding: 15px;
-    border-radius: 10px;
-  }
-
-  .menu-links.active {
-    display: flex;
-  }
-
-  .mobile-menu-btn {
-    display: block;
-    right: 20px;
-    top: 20px;
+  /* BOTÕES */
+  button {
+    padding: 8px 15px;
+    font-size: 0.9rem;
   }
 }
