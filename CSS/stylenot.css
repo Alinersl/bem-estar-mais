@@ -72,6 +72,10 @@ main {
     width: 52%;
 }
 
+.tema h1 {
+    text-align: center;
+}
+
 .topo-imagem {
     flex: 1;
 }
