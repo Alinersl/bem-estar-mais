@@ -379,7 +379,7 @@ button img {
   transform: scale(1.15);
 }
 
-/* #toast {
+#toast {
   position: fixed;
   bottom: 20px;
   left: 50%;
@@ -395,7 +395,7 @@ button img {
 
 #toast.show {
   opacity: 1;
-} */
+}
 
 /* JANELA DAS PÁGINAS */
 .paginas {
