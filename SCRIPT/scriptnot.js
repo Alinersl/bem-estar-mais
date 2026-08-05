@@ -1,24 +1,44 @@
 // MODO CLARO E ESCURO
-// const botaoDark = document.getElementById('mudar-dark');
+document.addEventListener("DOMContentLoaded", () => {
+    const body = document.body;
+    const sol = document.getElementById("sol");
+    const lua = document.getElementById("lua");
 
-// if (localStorage.getItem('modo') === 'dark') {
-//   document.body.classList.add('dark');
-//   botaoDark.textContent = '☀️ Modo Claro';
-// } else {
-//   botaoDark.textContent = '🌙 Modo Escuro';
-// }
+    // Carrega o tema salvo
+    if (localStorage.getItem("tema") === "escuro") {
+        body.classList.add("dark");
 
-// botaoDark.addEventListener('click', function () {
-//   document.body.classList.toggle('dark');
+        if (sol) sol.style.display = "none";
+        if (lua) lua.style.display = "block";
+    } else {
+        body.classList.remove("dark");
 
-//   if (document.body.classList.contains('dark')) {
-//     localStorage.setItem('modo', 'dark');
-//     botaoDark.textContent = '☀️ Modo Claro';
-//   } else {
-//     localStorage.setItem('modo', 'light');
-//     botaoDark.textContent = '🌙 Modo Escuro';
-//   }
-// });
+        if (sol) sol.style.display = "block";
+        if (lua) lua.style.display = "none";
+    }
+
+    // Ativar modo escuro
+    if (sol) {
+        sol.addEventListener("click", () => {
+            body.classList.add("dark");
+            localStorage.setItem("tema", "escuro");
+
+            sol.style.display = "none";
+            if (lua) lua.style.display = "block";
+        });
+    }
+
+    // Voltar ao modo claro
+    if (lua) {
+        lua.addEventListener("click", () => {
+            body.classList.remove("dark");
+            localStorage.setItem("tema", "claro");
+
+            lua.style.display = "none";
+            if (sol) sol.style.display = "block";
+        });
+    }
+});
 
 // BOTAO FAVORITO
 const toast = document.getElementById("toast");
