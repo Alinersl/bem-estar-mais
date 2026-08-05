@@ -26,16 +26,15 @@
 
         <!-- MODO CLARO E ESCURO -->
         <div class="sol" id="sol">
-          <img src="../IMAGENS/ÍCONES/sol.png" alt="Sol para colocar no modo claro">
+          <img src="../IMAGENS/ÍCONES/sol.png" alt="Modo claro">
         </div>
 
         <div class="lua" id="lua">
-          <img src="../IMAGENS/ÍCONES/lua.png" alt="Lua para colocar no modo escuro">
+          <img src="../IMAGENS/ÍCONES/lua.png" alt="Modo escuro">
         </div>
 
         <!-- CADASTRO -->
-        <img src="../IMAGENS/ÍCONES/cadastro.png" alt="Bonequinho para abrir o cadastro" class="bonequinho"
-          id="btnLogin">
+        <img src="../IMAGENS/ÍCONES/cadastro.png" alt="Abrir login" class="bonequinho" id="btnLogin">
 
         <div id="overlay" class="overlay">
           <div class="login-box">
@@ -51,27 +50,29 @@
                 <h2>Cadastro</h2>
                 <p>Crie sua conta e comece sua jornada saudável!</p>
 
-                <form>
+                <form action="../PHP/cadastro.php" method="POST">
+
                   <div class="input-caixa">
                     <label>Nome</label>
-                    <input type="text" placeholder="Nome de Usuário">
+                    <input type="text" name="nome" placeholder="Nome de Usuário" required>
                   </div>
 
                   <div class="input-caixa">
                     <label>Email</label>
-                    <input type="text" placeholder="Insira seu Email">
+                    <input type="email" name="email" placeholder="Insira seu Email" required>
                   </div>
 
                   <div class="input-caixa">
                     <label>Senha</label>
-                    <input type="password" placeholder="Digite sua Senha">
+                    <input type="password" name="senha" placeholder="Digite sua Senha" required>
                   </div>
+
+                  <button type="submit" class="btn-cad">Cadastrar</button>
+
                 </form>
 
               </div>
             </div>
-
-            <button type="submit" class="btn-cad">Entrar</button>
 
           </div>
         </div>
@@ -81,11 +82,11 @@
   </header>
 
   <main>
-
     <!-- CENTRO DO BANNER -->
     <div class="banner-center">
 
       <h1>Sua saúde começa pela sua <span>alimentação</span>.</h1>
+
       <p>Descubra como transformar seu corpo e sua rotina através
         de uma nutrição equilibrada, saudável e inteligente.</p>
 
@@ -101,6 +102,7 @@
 
     <div class="titulo">
       <h2>Por que cuidar da alimentação?</h2>
+
       <p>
         Pequenas mudanças podem trazer resultados gigantes.
       </p>
@@ -110,6 +112,7 @@
 
       <div class="card">
         <h3>Mais Energia</h3>
+
         <p>
           Uma alimentação equilibrada melhora disposição,
           foco e produtividade no dia a dia.
@@ -118,6 +121,7 @@
 
       <div class="card">
         <h3>Saúde Física</h3>
+
         <p>
           Nutrientes corretos ajudam o corpo a funcionar
           melhor e fortalecem o organismo.
@@ -126,6 +130,7 @@
 
       <div class="card">
         <h3>Bem-estar Mental</h3>
+
         <p>
           Comer bem também influencia humor,
           concentração e qualidade do sono.
@@ -143,12 +148,16 @@
       alt="imagem do lado esquerdo do -sobre o site-">
 
     <div class="texto">
+
       <h2>Nutrição é qualidade de vida.</h2>
+
       <p>Nosso objetivo é ajudar pessoas a criarem hábitos
         saudáveis sem dietas impossíveis ou restrições extremas.</p>
+
       <p>Com acompanhamento, receitas e dicas práticas,
         você aprende a cuidar do seu corpo de forma leve,
         moderna e sustentável.</p>
+
     </div>
 
   </section>

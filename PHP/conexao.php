@@ -2,7 +2,7 @@
 $servidor = "localhost";
 $usuario = "root";
 $senha = "senac";
-$banco = "sistemanovo";
+$banco = "bem_estar_definitivo";
 $conexao = new mysqli($servidor, $usuario, $senha, $banco, 3307);
 
 if ($conexao->connect_error){
