@@ -1,24 +1,14 @@
 <?php
-
-$host = "localhost";
-$banco = "bemestar";
+$servidor = "localhost";
 $usuario = "root";
-$senha = "";
+$senha = "senac";
+$banco = "bem_estar_definitivo";
+$conexao = new mysqli($servidor, $usuario, $senha, $banco, 3307);
 
-try {
-
-    $conexao = new PDO(
-        "mysql:host=$host;dbname=$banco;charset=utf8",
-        $usuario,
-        $senha
-    );
-
-    $conexao->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
-
-} catch (PDOException $e) {
-
-    die("Erro na conexão com o banco de dados: " . $e->getMessage());
-
+if ($conexao->connect_error){
+    die("Erro: " . $conexao->connect_error);
 }
 
+echo "Conectado com sucesso";
 ?>
+
