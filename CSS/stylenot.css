@@ -65,6 +65,7 @@ main {
 .container p {
     margin-bottom: 25px;
     font-size: 18px;
+    text-align: justify;
 }
 
 .container ul {
