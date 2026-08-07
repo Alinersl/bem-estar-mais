@@ -6,53 +6,57 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="../CSS/stylenot.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css">
+    <title>Fibras alimentam as bactérias boas do intestino</title>
 </head>
 
 <body>
-    <header class="nav">
-        <a href="../PÁGINAS/index1.html">
-            <img src="../IMAGENS/LOGO/logo (2).png" alt="Logo Bem Estar+" class="logo">
-        </a>
-        <button class="perfil">
-            <img src="../IMAGENS/ÍCONES/cadastro.png" alt="perfil">
-        </button>
+
+    <!-- NAVEGADOR -->
+    <header>
+        <nav>
+
+            <!-- LOGO -->
+            <a href="../PÁGINAS/index1.html">
+                <img src="../IMAGENS/LOGO/logo (2).png" alt="Logo Bem Estar+" class="logo">
+            </a>
+
+            <!-- PERFIL -->
+            <button class="perfil">
+                <img src="../IMAGENS/ÍCONES/cadastro.png" alt="perfil">
+            </button>
+
+        </nav>
     </header>
 
-    <main class="layout">
-        <article class="conteudo">
-            <div class="meta">
-                <span class="cat">ALIMENTAÇÃO SAUDÁVEL</span>
-                <span>22 Jun 2025</span>
-                <span>• 4 min de leitura</span>
+    <main>
+        <div class="container">
+
+            <!-- CABEÇALHO DA NOTÍCIA -->
+            <div class="cabecalho">
+                <span class="titulo">BEM ESTAR+</span>
+                <span>30 Mar 2025</span>
             </div>
 
-
-            <div class="hero-noticia">
-
-                <div class="hero-texto">
-
+            <!-- TOPO DA NOTÍCIA -->
+            <div class="topo">
+                <div class="tema-editado1">
                     <h1>Fibras alimentam as bactérias boas do intestino</h1>
-
-
                 </div>
-
-                <div class="hero-imagem">
-                    <img src="../IMAGENS/BANNER DAS NOTÍCIAS/banner.not03.png" alt="Copo de água">
+                <div class="topo-imagem"> <img src="../IMAGENS/BANNER DAS NOTÍCIAS/banner.not03.png" alt="Fibras">
                 </div>
-
             </div>
 
-            <p class="linha-fina">
-                Novas pesquisas da <i>Universidade de Stanford</i> e da <i>Harvard Medical
+            <!-- FRASE DE INÍCIO -->
+            <p class="sobre">Novas pesquisas da <i>Universidade de Stanford</i> e da <i>Harvard Medical
                     School</i> revelam que
                 as fibras presentes em frutas, legumes, verduras, grãos integrais e sementes são o
                 “combustível” das
                 bactérias benéficas do intestino. Essas bactérias produzem substâncias essenciais para a
                 saúde de
-                todo o corpo.
-            </p>
+                todo o corpo.</p>
 
-            <section class="resumo">
+            <!-- RESUMO DA NOTÍCIA -->
+            <section>
                 <h3>Resumo da matéria</h3>
                 <ul>
                     <li>As fibras podem servir de alimento para bactérias benéficas do intestino.</li>
@@ -62,14 +66,13 @@
                 </ul>
             </section>
 
+            <!-- NOTÍCIA -->
             <h2>O que dizem os especialistas</h2>
             <p>Especialistas em nutrição destacam que a alimentação tem um papel importante na composição e na
                 atividade da microbiota intestinal. Uma dieta variada, com diferentes fontes de fibras, pode
                 favorecer uma maior diversidade de microrganismos benéficos.
-
                 Entre os alimentos que fornecem fibras estão feijão, lentilha, aveia, frutas, verduras, legumes,
                 sementes e cereais integrais.
-
                 Por isso, em vez de apostar em apenas um alimento, a recomendação é manter uma alimentação
                 diversificada. A quantidade de fibras também deve ser aumentada gradualmente, principalmente
                 para quem não está acostumado, pois uma mudança brusca pode provocar gases e desconforto
@@ -93,38 +96,52 @@
                 <li>Varie os alimentos: quanto mais diversificada for a alimentação, maior a variedade de fibras
                     oferecidas à microbiota.</li>
             </ul>
-        </article>
 
-        <aside class="sidebar">
+        </div>
+
+        <div class="cards">
             <h3>🔥 Mais lidas</h3>
             <div class="card">Banana dá energia?</div>
             <div class="card">Água gelada faz mal?</div>
             <div class="card">Como hidratar o corpo?</div>
-        </aside>
-        <section class="fim-noticia">
+        </div>
 
+        <!-- FAVORITOS -->
+        <div class="favoritos">
             <h2>Gostou desta matéria?</h2>
-
             <p>Salve nos favoritos para ler novamente quando quiser.</p>
+            <button class="favorito2"> <i class="fa-regular fa-heart"></i> Salvar nos Favoritos </button>
+        </div>
+    </main>
+    <section class="comentarios">
 
-            <button class="favorito2">
+        <h2><i class="fa-regular fa-comments"></i> Comentários</h2>
 
-                <i class="fa-regular fa-heart"></i>
+        <div class="form-comentario">
 
-                Salvar nos Favoritos
+            <input type="text" id="nome" placeholder="Seu nome">
 
+            <textarea id="comentario" placeholder="Escreva seu comentário..."></textarea>
+
+            <button id="btnComentar">
+                <i class="fa-solid fa-paper-plane"></i>
+                Publicar comentário
             </button>
 
-        </section>
+        </div>
 
-    </main>
-    <div id="toast" class="toast">
-        ❤️ Adicionado com sucesso!
-    </div>
+        <div id="listaComentarios"></div>
+
+    </section>
+
+    <div id="toast" class="toast"> ❤️ Adicionado com sucesso! </div>
+
     <footer>
         <p>© 2025 BemEstar+ | Todos os direitos reservados</p>
     </footer>
+
     <script src="../SCRIPT/scriptnot.js"></script>
+
 </body>
 
 </html>
