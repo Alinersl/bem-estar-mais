@@ -1,3 +1,12 @@
+<?php
+session_start();
+
+if (!isset($_SESSION["id"])) {
+    header("Location: ../PÁGINAS/index.html");
+    exit;
+}
+?>
+
 <!DOCTYPE html>
 <html lang="pt-BR">
 
@@ -18,9 +27,9 @@
 
             <img src="https://i.imgur.com/V5bJQ9R.png" class="foto">
 
-            <h2>Ana Júlia</h2>
+           <h2><?= htmlspecialchars($_SESSION["nome"]) ?></h2>
 
-            <p>anajulia@email.com</p>
+            <p><?= htmlspecialchars($_SESSION["email"]) ?></p>
 
             <button>Editar Perfil</button>
 
