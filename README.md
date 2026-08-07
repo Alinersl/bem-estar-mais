@@ -21,6 +21,7 @@ Você pode entender mais a fundo de cada nóticia, comentar sobre o site no fina
  1. Baixe o repositório (Clique no Botão “Code” > Download ZIP)
  2. Extraia a pasta
  3. Abra o arquivo index.html no navegador
+ 4. Troque o usuario, senha, banco, porta e servidor no arquivo conexao.example.php, e renomeie para conexao.php
 
 ## Como Clonar
 Git Clone https://github.com/Ana08Julia/bem-estar-mais.git

@@ -3,12 +3,10 @@ $servidor = "localhost";
 $usuario = "root";
 $senha = "senac";
 $banco = "bem_estar_definitivo";
-$conexao = new mysqli($servidor, $usuario, $senha, $banco, 3307);
+$porta = 3307;
+$conexao = new mysqli($servidor, $usuario, $senha, $banco, $porta);
 
 if ($conexao->connect_error){
     die("Erro: " . $conexao->connect_error);
 }
-
-echo "Conectado com sucesso";
 ?>
-
