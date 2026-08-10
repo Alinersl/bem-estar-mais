@@ -582,7 +582,7 @@ button:hover {
     position: relative;
     top: 3px;
 }
-}
+
 
 .nav-direita {
     gap: 8px;
@@ -656,6 +656,7 @@ button:hover {
     padding: 8px 15px;
     font-size: 0.9rem;
   }
+   }
 
 
 
