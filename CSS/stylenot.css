@@ -131,6 +131,52 @@ main {
     margin: 55px;
 }
 
+.tema-editado2 {
+    width: 52%;
+}
+
+.tema-editado2 h1 {
+    text-align: center;
+    margin: 0 auto;
+}
+
+.tema-editado3 {
+    width: 52%;
+}
+
+.tema-editado3 h1 {
+    text-align: center;
+    margin: 45px;
+}
+
+.tema-editado4 {
+    width: 52%;
+}
+
+.tema-editado4 {
+    text-align: center;
+    margin: 10px;
+}
+
+.tema-editado5 {
+    width: 52%;
+}
+
+.tema-editado5 {
+    text-align: center;
+    margin: 8px;
+}
+
+.tema-editado6 {
+    width: 52%;
+}
+
+.tema-editado6 {
+    text-align: center;
+    margin: 20px;
+}
+
+
 .topo-imagem {
     flex: 1;
 }
