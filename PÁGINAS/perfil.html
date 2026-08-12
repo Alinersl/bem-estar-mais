@@ -1,0 +1,199 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="../CSS/styleperfi.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css">
+  <title>Beber muita água durante a refeição pode prejudicar a digestão</title>
+</head>
+<body>
+<nav>
+    <div class="nav-esquerda">
+        <a href="./index1.html">
+            <img src="../IMAGENS/LOGO/logo (2).png" alt="Logo Bem Estar+" class="logo">
+        </a>
+    </div>
+
+   
+</nav>
+
+
+<main class="perfil-main">
+
+    <!-- PERFIL DO USUÁRIO -->
+    <div class="perfil-container">
+
+        <div class="perfil-topo">
+
+            <div class="foto-area">
+
+                <img
+                    src="../IMAGENS/ÍCONES/cadastro.png"
+                    alt="Foto de perfil"
+                    class="foto-perfil"
+                    id="fotoPerfil">
+
+                <button
+                    class="trocar-foto"
+                    onclick="document.getElementById('inputFoto').click()">
+
+                    <i class="fa-solid fa-camera"></i>
+
+                </button>
+
+                <input
+                    type="file"
+                    id="inputFoto"
+                    accept="image/*"
+                    onchange="trocarFoto(event)">
+
+            </div>
+
+
+            <div class="dados-perfil">
+
+                <h1>Olá! 👋</h1>
+
+                <p>Bem-vinda ao seu perfil do Bem Estar+</p>
+
+                <button class="entrar-conta">
+                    <i class="fa-solid fa-right-to-bracket"></i>
+                    Entrar na conta
+                </button>
+
+            </div>
+
+        </div>
+
+
+        <!-- ESTATÍSTICAS -->
+
+        <div class="estatisticas">
+
+            <div class="estatistica">
+
+                <i class="fa-solid fa-heart"></i>
+
+                <strong>12</strong>
+
+                <span>Favoritos</span>
+
+            </div>
+
+
+            <div class="estatistica">
+
+                <i class="fa-solid fa-newspaper"></i>
+
+                <strong>28</strong>
+
+                <span>Notícias lidas</span>
+
+            </div>
+            </div>
+
+        <!-- CONFIGURAÇÕES -->
+
+        <div class="configuracoes">
+
+            <h2>
+                <i class="fa-solid fa-gear"></i>
+                Configurações
+            </h2>
+
+
+            <!-- MODO ESCURO -->
+
+            <div class="config-item">
+
+                <div class="config-texto">
+
+                    <i class="fa-solid fa-moon"></i>
+
+                    <div>
+                        <h3>Modo escuro</h3>
+                        <p>Alterar aparência do site</p>
+                    </div>
+
+                </div>
+
+
+                <label class="switch">
+
+                    <input
+                        type="checkbox"
+                        id="modoEscuro"
+                        onchange="alternarTema()">
+
+                    <span class="slider"></span>
+
+                </label>
+
+            </div>
+
+
+            <!-- CONTA -->
+
+            <div class="config-item">
+
+                <div class="config-texto">
+
+                    <i class="fa-solid fa-user"></i>
+
+                    <div>
+                        <h3>Minha conta</h3>
+                        <p>Gerenciar seus dados</p>
+                    </div>
+
+                </div>
+
+                <i class="fa-solid fa-chevron-right seta"></i>
+
+            </div>
+
+
+            <!-- FAVORITOS -->
+
+            <div class="config-item">
+
+                <div class="config-texto">
+
+                    <i class="fa-solid fa-heart"></i>
+
+                    <div>
+                        <h3>Meus favoritos</h3>
+                        <p>Ver todas as notícias favoritas</p>
+                    </div>
+
+                </div>
+
+                <i class="fa-solid fa-chevron-right seta"></i>
+
+            </div>
+
+
+            <!-- SAIR -->
+
+            <button class="sair-conta">
+
+                <i class="fa-solid fa-right-from-bracket"></i>
+
+                Sair da conta
+
+            </button>
+
+        </div>
+
+    </div>
+
+</main>
+
+
+<footer>
+
+    <p>© 2026 Bem Estar+ - Todos os direitos reservados.</p>
+
+</footer>
+</body>
