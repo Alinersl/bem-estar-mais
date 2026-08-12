@@ -88,24 +88,57 @@ nav {
 }
 
 .login-box {
-  background: white;
-  padding: 20px 20px 20px;
-  border-radius: 10px;
+    position: relative;
+
+    width: 500px;
+    max-width: 95%;
+
+    background: white;
+    padding: 40px;
+
+    border-radius: 15px;
+}
+
+.cadastro,
+.login {
+    width: 100%;
+}
+
+.login {
+    display: none;
 }
 
 input {
   padding: 10px;
 }
 
-.cadastro h2 {
-  text-align: center;
-  font-size: 30px;
+.cadastro h2,
+.login h2 {
+    text-align: center;
+    font-size: 30px;
 }
 
-.cadastro p {
-  text-align: center;
-  margin-bottom: 30px;
-  color: #000000;
+.cadastro p,
+.login p {
+    text-align: center;
+    margin-bottom: 30px;
+    color: #000000;
+}
+.trocar-formulario {
+    margin-top: 20px;
+    margin-bottom: 0 !important;
+    text-align: center;
+    color: #000000;
+}
+
+.trocar-formulario span {
+    color: #ff2b2b;
+    font-weight: bold;
+    cursor: pointer;
+}
+
+.trocar-formulario span:hover {
+    text-decoration: underline;
 }
 
 .input-caixa {
@@ -340,11 +373,15 @@ h2 {
 
 /* fechamento da página de cadastro */
 .x-preto img {
-  height: 20px;
-  width: 20px;
-  transition: 0.5s;
-  margin-left: 330px;
-  cursor: pointer;
+    position: absolute;
+    top: 15px;
+    right: 15px;
+
+    width: 20px;
+    height: 20px;
+
+    cursor: pointer;
+    transition: .3s;
 }
 
 .x-preto img:hover {
@@ -419,6 +456,10 @@ body.dark .cadastro {
 
 body.dark .login-box {
   background: #121212;
+}
+
+body.dark .trocar-formulario {
+    color: white;
 }
 
 body.dark .cadastro p {

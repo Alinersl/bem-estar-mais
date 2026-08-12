@@ -37,44 +37,116 @@
         <img src="../IMAGENS/ÍCONES/cadastro.png" alt="Abrir login" class="bonequinho" id="btnLogin">
 
         <div id="overlay" class="overlay">
+
           <div class="login-box">
 
             <div class="x-preto">
-              <img src="../IMAGENS/ÍCONES/x.png" alt="Fechamento da página de cadastro do modo claro" id="btnFechar"
-                class="x-claro">
-              <img src="../IMAGENS/ÍCONES/x-branco.png" alt="Fechamento da página de cadastro do modo escuro"
-                id="btnFecharBranco" class="x-escuro">
 
-              <div class="cadastro">
-                <h2>Cadastro</h2>
-                <p>Crie sua conta e comece sua jornada saudável!</p>
+              <img src="../IMAGENS/ÍCONES/x.png" alt="Fechar" id="btnFechar" class="x-claro">
 
-                <form action="../PHP/cadastro.php" method="POST">
+              <img src="../IMAGENS/ÍCONES/x-branco.png" alt="Fechar" id="btnFecharBranco" class="x-escuro">
 
-                  <div class="input-caixa">
-                    <label>Nome</label>
-                    <input type="text" name="nome" placeholder="Nome de Usuário" required>
-                  </div>
+            </div>
 
-                  <div class="input-caixa">
-                    <label>Email</label>
-                    <input type="email" name="email" placeholder="Insira seu Email" required>
-                  </div>
 
-                  <div class="input-caixa">
-                    <label>Senha</label>
-                    <input type="password" name="senha" placeholder="Digite sua Senha" required>
-                  </div>
+            <!-- CADASTRO -->
 
-                  <button type="submit" class="btn-cad">Cadastrar</button>
+            <div class="cadastro" id="cadastro">
 
-                </form>
+              <h2>Cadastro</h2>
 
-              </div>
+              <p>Crie sua conta e comece sua jornada saudável!</p>
+
+              <form action="../PHP/cadastro.php" method="POST">
+
+                <div class="input-caixa">
+
+                  <label>Nome</label>
+
+                  <input type="text" name="nome" placeholder="Nome de Usuário" required>
+
+                </div>
+
+
+                <div class="input-caixa">
+
+                  <label>Email</label>
+
+                  <input type="email" name="email" placeholder="Insira seu Email" required>
+
+                </div>
+
+
+                <div class="input-caixa">
+
+                  <label>Senha</label>
+
+                  <input type="password" name="senha" placeholder="Digite sua Senha" required>
+
+                </div>
+
+
+                <button type="submit" class="btn-cad">
+                  Cadastrar
+                </button>
+
+              </form>
+
+
+              <p class="trocar-formulario">
+                Já tem uma conta?
+                <span id="irParaLogin">Faça login</span>
+              </p>
+
+            </div>
+
+
+            <!-- LOGIN -->
+
+            <div class="login" id="login">
+
+              <h2>Login</h2>
+
+              <p>Entre na sua conta.</p>
+
+              <form action="../PHP/login.php" method="POST">
+
+                <div class="input-caixa">
+
+                  <label>Email</label>
+
+                  <input type="email" name="email" placeholder="Insira seu Email" required>
+
+                </div>
+
+
+                <div class="input-caixa">
+
+                  <label>Senha</label>
+
+                  <input type="password" name="senha" placeholder="Digite sua Senha" required>
+
+                </div>
+
+
+                <button type="submit" class="btn-cad">
+                  Entrar
+                </button>
+
+              </form>
+
+
+              <p class="trocar-formulario">
+                Não tem uma conta?
+                <span id="irParaCadastro">Cadastre-se</span>
+              </p>
+
             </div>
 
           </div>
+
         </div>
+      </div>
       </div>
 
     </nav>
