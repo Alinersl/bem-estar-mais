@@ -409,23 +409,60 @@ h2 {
 
   /* NAVEGADOR */
   nav {
-    flex-direction: column;
-    gap: 5px;
-  }
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 65px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        padding: 5px 15px;
+    }
 
   .nav-direita {
-    width: 100%;
-    display: flex;
-    justify-content: flex-end;
-    margin-top: -10px;
-  }
+        position: absolute;
+        right: 15px;
+        top: 50%;
+        transform: translateY(-50%);
 
-  /* CADASTRO */
-  .bonequinho {
-    width: 28px;
-    margin-top: -60px;
-  }
+        width: auto;
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+        justify-content: flex-end;
+        gap: 12px;
+        margin: 0;
+    }
 
+
+  /* ÍCONE DO CADASTRO */
+    .bonequinho {
+        width: 28px;
+        margin: 0;
+    }
+
+    /* ÍCONE DO SOL */
+    .sol {
+        margin: 0;
+    }
+
+    .sol img {
+        width: 25px;
+        max-width: 25px;
+    }
+
+    /* ÍCONE DA LUA */
+    .lua {
+        margin: 0;
+    }
+
+    .lua img {
+        width: 20px;
+        max-width: 20px;
+    }
+    
+}
   /* CENTRO DO BANNER */
   .banner-center h1 {
     font-size: 3rem;
@@ -436,7 +473,7 @@ h2 {
   .sobre {
     padding: 50px 25px;
   }
-}
+
 
 /* MODO ESCURO */
 body.dark {

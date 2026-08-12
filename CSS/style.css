@@ -514,19 +514,22 @@ button:hover {
 @media (max-width: 768px) {
 
   /* NAVEGADOR */
-  .nav {
-    flex-direction: column;
-    gap: 5px;
-  }
+  nav {
+    padding: 5px 5px;
+}
 
-  .nav-direita {
-    display: none;
-    width: 100%;
-    flex-direction: column;
-    gap: 10px;
-    margin-top: -50px;
+.nav-direita {
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+    width: auto;
+    flex-direction: row;
+    gap: 15px;
+    margin-top: 0;
+    margin-left: auto;
+    margin-right: 0;
     text-align: center;
-  }
+}
 
   /* PESQUISAR */
   /* esconde a busca do cabeçalho */
@@ -535,10 +538,7 @@ button:hover {
   }
 
   .busca-mobile {
-    display: flex;
-    justify-content: center;
-    padding: 15px 0;
-    background: white;
+     display: none;
   }
 
   .busca-mobile .busca-container {
@@ -575,7 +575,57 @@ button:hover {
     top: 85%;
     padding: 2px;
   }
+/* AJUSTE DOS ÍCONES NO MOBILE */
+.sol,
+.lua {
+    margin-top: 0;
+    position: relative;
+    top: 3px;
+}
 
+
+.nav-direita {
+    gap: 8px;
+}
+
+/* Hambúrguer um pouco maior */
+.hamburguer {
+    width: 40px;
+}
+
+/* Menu proporcional ao hambúrguer */
+.dropdown-content {
+        width: 190px;
+        right: 0;
+        left: auto;
+        top: 48px;
+        padding: 0;
+        box-sizing: border-box;
+        border-radius: 8px;
+    }
+
+/* Itens do menu proporcionais */
+.dropdown-content ul {
+        width: 100%;
+        margin: 0;
+        padding: 0;
+    }
+
+.dropdown-content li {
+        padding: 6px 10px;
+        width: 100%;
+        box-sizing: border-box;
+    }
+
+    .dropdown-content li a {
+        display: flex;
+        align-items: center;
+        justify-content: flex-start;
+        gap: 5px;
+        width: 100%;
+        font-size: 14px;
+        white-space: nowrap;
+    }
   /* NOTÍCIAS */
   .noticia {
     flex-direction: column;
@@ -606,7 +656,8 @@ button:hover {
     padding: 8px 15px;
     font-size: 0.9rem;
   }
-}
+   }
+
 
 
 /* MODO ESCURO */
