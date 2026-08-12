@@ -4,51 +4,70 @@ session_start();
 
 require "conexao.php";
 
+
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
     $email = trim($_POST["email"]);
     $senha = $_POST["senha"];
 
+
     // Verifica se os campos foram preenchidos
+
     if (empty($email) || empty($senha)) {
+
         die("Preencha todos os campos.");
-    }
-
-    // Procura o usuário pelo e-mail
-    $sql = $conexao->prepare("SELECT * FROM usuarios WHERE email = ?");
-    $sql->execute([$email]);
-
-    if ($sql->rowCount() == 1) {
-
-        $usuario = $sql->fetch(PDO::FETCH_ASSOC);
-
-        // Verifica a senha
-        if (password_verify($senha, $usuario["senha"])) {
-
-            $_SESSION["id"] = $usuario["id"];
-            $_SESSION["nome"] = $usuario["nome"];
-            $_SESSION["email"] = $usuario["email"];
-
-            header("Location: ../PÁGINAS/perfil.php");
-            exit;
-
-        } else {
-
-            echo "Senha incorreta.";
-
-        }
-
-    } else {
-
-        echo "E-mail não encontrado.";
 
     }
 
-} else {
 
-    header("Location: ../PÁGINAS/index.html");
+    // Procura o usuário pelo email
+
+    $sql = $conexao->prepare("SELECT id, nome, email, senha, data_cadastro FROM usuarios WHERE email = ?");
+
+    $sql->bind_param("s", $email);
+
+    $sql->execute();
+
+    $resultado = $sql->get_result();
+
+
+    // Verifica se encontrou o usuário
+
+    if ($resultado->num_rows == 0) {
+
+        die("Email ou senha incorretos.");
+
+    }
+
+
+    $usuario = $resultado->fetch_assoc();
+
+
+    // Verifica a senha
+
+    if (!password_verify($senha, $usuario["senha"])) {
+
+        die("Email ou senha incorretos.");
+
+    }
+
+
+    // Guarda os dados do usuário na sessão
+
+    $_SESSION["usuario_id"] = $usuario["id"];
+
+    $_SESSION["usuario_nome"] = $usuario["nome"];
+
+    $_SESSION["usuario_email"] = $usuario["email"];
+
+
+    // Vai para Minha Conta
+
+    header("Location: minha-conta.php");
+
     exit;
 
 }
+
 
 ?>
