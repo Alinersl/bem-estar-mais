@@ -1,10 +1,46 @@
 <?php
+
 session_start();
 
-if (!isset($_SESSION["id"])) {
+require "conexao.php";
+
+
+// Verifica se a pessoa está logada
+
+if (!isset($_SESSION["usuario_id"])) {
+
     header("Location: ../PÁGINAS/index.html");
+
     exit;
+
 }
+
+
+// Pega o ID do usuário que está logado
+
+$id = $_SESSION["usuario_id"];
+
+
+$sql = $conexao->prepare("SELECT id, nome, email, data_cadastro FROM usuarios WHERE id = ?");
+
+$sql->bind_param("i", $id);
+
+$sql->execute();
+
+$resultado = $sql->get_result();
+
+
+if ($resultado->num_rows == 0) {
+
+    echo "Usuário não encontrado.";
+
+    exit;
+
+}
+
+
+$usuario = $resultado->fetch_assoc();
+
 ?>
 
 <!DOCTYPE html>
