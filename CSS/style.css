@@ -212,8 +212,8 @@ textarea {
   color: #BA181B;
 }
 
-.dropdown-content li a:hover {
-  color: #ffffff;
+.dropdown-content li:hover a {
+    color: #ffffff;
 }
 
 /* CARROSSEL */
