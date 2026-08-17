@@ -143,3 +143,28 @@ btnFecharBranco.addEventListener("click", () => {
     overlay.style.display = "none";
 
 });
+// ==============================
+// ERRO DE LOGIN
+// ==============================
+
+const parametros = new URLSearchParams(window.location.search);
+
+if (parametros.get("erro") === "login") {
+
+    overlay.style.display = "flex";
+
+    cadastro.style.display = "none";
+
+    login.style.display = "block";
+
+    const mensagemErro = document.getElementById("mensagemErro");
+
+    if (mensagemErro) {
+
+        mensagemErro.textContent = "Email ou senha inválidos.";
+
+        mensagemErro.style.display = "block";
+
+    }
+
+}
