@@ -103,17 +103,6 @@ btnLogin.addEventListener("click", () => {
 });
 
 
-// ABRIR POPUP AUTOMATICAMENTE AO ENTRAR NO SITE
-
-window.addEventListener("load", () => {
-
-    overlay.style.display = "flex";
-
-    cadastro.style.display = "block";
-
-    login.style.display = "none";
-
-});
 
 
 // IR PARA LOGIN
