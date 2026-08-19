@@ -22,6 +22,7 @@ Você pode entender mais a fundo de cada nóticia, comentar sobre o site no fina
  2. Extraia a pasta
  3. Abra o arquivo index.html no navegador
  4. Troque o usuario, senha, banco, porta e servidor no arquivo conexao.example.php, e renomeie para conexao.php
+ 5. Baixe o MySQL e crie uma nova tabela <img src="![alt text](<print  tutorial.png>)">
 
 ## Como Clonar
 Git Clone https://github.com/Ana08Julia/bem-estar-mais.git
@@ -39,3 +40,4 @@ Ana Júlia Alves Pereira
 Felipe Martins
 __________________________
 Turma De Tecnologia Em Informática Para Internet (Vespertino) - Senac DF
+
