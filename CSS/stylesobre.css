@@ -660,3 +660,51 @@ body.dark footer {
 body.dark .x-claro {
   display: none;
 }
+
+/* ==============================
+   CAMPO DE SENHA COM OLHO
+============================== */
+
+.campo-senha {
+    position: relative;
+    width: 100%;
+}
+
+.campo-senha input {
+    width: 100%;
+    box-sizing: border-box;
+    padding-right: 45px;
+}
+
+.olho-senha {
+    position: absolute;
+
+    right: 10px;
+    top: 50%;
+
+    transform: translateY(-50%);
+
+    width: 35px;
+    height: 35px;
+
+    border: none;
+    background: transparent;
+
+    cursor: pointer;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    color: #555;
+
+    font-size: 17px;
+}
+
+.olho-senha:hover {
+    color: #c71f37;
+}
+
+body.dark .olho-senha {
+    color: white;
+}

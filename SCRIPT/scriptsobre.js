@@ -168,3 +168,44 @@ if (parametros.get("erro") === "login") {
     }
 
 }
+// ==============================
+// ABRIR CADASTRO AUTOMATICAMENTE
+// ==============================
+
+if (parametros.get("abrir") === "cadastro") {
+
+    overlay.style.display = "flex";
+
+    cadastro.style.display = "block";
+
+    login.style.display = "none";
+
+}
+
+// ==============================
+// MOSTRAR / ESCONDER SENHA
+// ==============================
+
+function mostrarSenha(idCampo, botao) {
+
+    const campo = document.getElementById(idCampo);
+
+    const icone = botao.querySelector("i");
+
+    if (campo.type === "password") {
+
+        campo.type = "text";
+
+        icone.classList.remove("fa-eye");
+        icone.classList.add("fa-eye-slash");
+
+    } else {
+
+        campo.type = "password";
+
+        icone.classList.remove("fa-eye-slash");
+        icone.classList.add("fa-eye");
+
+    }
+
+}

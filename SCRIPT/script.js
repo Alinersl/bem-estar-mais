@@ -120,10 +120,14 @@ document.addEventListener("click", (e) => {
   }
 });
 
-// Favoritos
+////////////////// FAVORITOS //////////////////
+
 const toast = document.getElementById("toast");
 
 function mostrarMensagem(texto) {
+
+  if (!toast) return;
+
   toast.textContent = texto;
   toast.classList.add("show");
 
@@ -132,25 +136,184 @@ function mostrarMensagem(texto) {
   }, 2000);
 }
 
-document.querySelectorAll(".favorito").forEach(btn => {
+
+// PEGA FAVORITOS SALVOS
+
+function pegarFavoritos() {
+
+  try {
+
+    return JSON.parse(
+      localStorage.getItem("favoritos")
+    ) || [];
+
+  } catch (erro) {
+
+    return [];
+
+  }
+
+}
+
+
+// PEGA TODOS OS CARDS DE NOTÍCIA
+
+document.querySelectorAll(".noticia").forEach(card => {
+
+  const btn = card.querySelector(".favorito");
+
+  if (!btn) return;
+
+
+  // PEGA O LINK DA NOTÍCIA
+
+  const link = card.querySelector(".conteudo a");
+
+  if (!link) return;
+
+
+  const href = link.getAttribute("href");
+
+
+  // DESCOBRE O ID DA NOTÍCIA
+
+  const resultado = href.match(/noticia(\d+)\.html/i);
+
+  if (!resultado) return;
+
+
+  const idNoticia = Number(resultado[1]);
+
+
+  const icone = btn.querySelector("i");
+
+
+  // ==========================================
+  // VERIFICA SE JÁ ESTÁ FAVORITADA
+  // ==========================================
+
+  let favoritos = pegarFavoritos();
+
+  const jaFavoritada = favoritos.some(
+    item => Number(item.id) === idNoticia
+  );
+
+
+  if (jaFavoritada) {
+
+    btn.classList.add("ativo");
+
+    icone.classList.remove("fa-regular");
+    icone.classList.add("fa-solid");
+
+  }
+
+
+  // ==========================================
+  // CLIQUE NO CORAÇÃO
+  // ==========================================
 
   btn.addEventListener("click", () => {
 
-    btn.classList.toggle("ativo");
+    let favoritos = pegarFavoritos();
 
-    const icone = btn.querySelector("i");
 
-    if (btn.classList.contains("ativo")) {
-      icone.classList.remove("fa-regular");
-      icone.classList.add("fa-solid");
+    const indice = favoritos.findIndex(
+      item => Number(item.id) === idNoticia
+    );
 
-      mostrarMensagem("❤️ Adicionado com sucesso!");
-    } else {
+
+    // ========================================
+    // SE JÁ EXISTE → REMOVE
+    // ========================================
+
+    if (indice !== -1) {
+
+      favoritos.splice(indice, 1);
+
+      localStorage.setItem(
+        "favoritos",
+        JSON.stringify(favoritos)
+      );
+
+
+      btn.classList.remove("ativo");
+
       icone.classList.remove("fa-solid");
       icone.classList.add("fa-regular");
 
-      mostrarMensagem("🤍 Removido dos favoritos!");
+
+      mostrarMensagem(
+        "🤍 Removido dos favoritos!"
+      );
+
+
+      return;
     }
+
+
+    // ========================================
+    // SE NÃO EXISTE → ADICIONA
+    // ========================================
+
+    const tituloElemento =
+      card.querySelector(".conteudo h2");
+
+    const dataElemento =
+      card.querySelector(".data");
+
+    const imagemElemento =
+      card.querySelector("img");
+
+
+    const noticia = {
+
+      id: idNoticia,
+
+      titulo:
+        tituloElemento
+          ? tituloElemento.textContent.trim()
+          : "Notícia",
+
+      data:
+        dataElemento
+          ? dataElemento.textContent.trim()
+          : "",
+
+      imagem:
+        imagemElemento
+          ? imagemElemento.getAttribute("src")
+          : "",
+
+      link: href
+
+    };
+
+
+    favoritos.push(noticia);
+
+
+    localStorage.setItem(
+      "favoritos",
+      JSON.stringify(favoritos)
+    );
+
+
+    btn.classList.add("ativo");
+
+    icone.classList.remove("fa-regular");
+    icone.classList.add("fa-solid");
+
+
+    mostrarMensagem(
+      "❤️ Adicionado aos favoritos!"
+    );
+
+
+    console.log(
+      "Favoritos:",
+      favoritos
+    );
 
   });
 
@@ -212,7 +375,6 @@ document.querySelectorAll('.noticia a').forEach(link => {
       return;
     }
 
-    // Impede a página de abrir imediatamente
     event.preventDefault();
 
     const idNoticia = resultado[1];
@@ -235,7 +397,6 @@ document.querySelectorAll('.noticia a').forEach(link => {
 
     }
 
-    // Só abre a notícia DEPOIS de registrar
     window.location.href = href;
 
   });
