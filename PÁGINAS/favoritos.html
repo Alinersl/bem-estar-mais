@@ -5,9 +5,8 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-    <link rel="stylesheet" href="../CSS/style.css">
-    <link rel="stylesheet"
-        href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+    <link rel="stylesheet" href="../CSS/style.favoritos.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
 
     <title>Favoritas - Bem Estar+</title>
 </head>
@@ -20,19 +19,11 @@
 
             <div class="nav-esquerda">
                 <a href="./index.html">
-                    <img src="../IMAGENS/LOGO/logo (2).png"
-                        alt="Logo Bem Estar+"
-                        class="logo">
+                    <img src="../IMAGENS/LOGO/logo (2).png" alt="Logo Bem Estar+" class="logo">
                 </a>
             </div>
 
             <div class="nav-direita">
-
-                <!-- PESQUISAR -->
-                <div class="busca-container">
-                    <input type="text" id="campoBusca" placeholder="🔍 Buscar...">
-                    <div id="sugestoes"></div>
-                </div>
 
                 <!-- MODO CLARO E ESCURO -->
                 <div class="sol" id="sol">
@@ -43,96 +34,18 @@
                     <img src="../IMAGENS/ÍCONES/lua.png" alt="Modo escuro">
                 </div>
 
-                <!-- MENU -->
-                <div class="dropdown">
-
-                    <img
-                        src="../IMAGENS/ÍCONES/hamburguer.png"
-                        class="hamburguer"
-                        id="hamburguer"
-                        alt="Menu">
-
-                    <div class="dropdown-content" id="menu">
-                        <ul>
-                            <li>
-                                <a href="./index.html#sobre">
-                                    🏠 Sobre Nós
-                                </a>
-                            </li>
-
-                            <li>
-                                <a href="#">
-                                    🆕 Últimas Notícias
-                                </a>
-                            </li>
-
-                            <li>
-                                <a href="./mais-lidas.php">
-                                    🔥 Mais Lidas
-                                </a>
-                            </li>
-
-                            <li>
-                                <a href="./favoritas.php">
-                                    ❤️ Favoritas
-                                </a>
-                            </li>
-
-                            <li>
-                                <a href="../PHP/minha-conta.php">
-                                    👤 Conta
-                                </a>
-                            </li>
-                        </ul>
-                    </div>
-
-                </div>
-
-            </div>
-
         </nav>
     </header>
 
+    <h1>Notícias Favoritas</h1>
 
-    <!-- TÍTULO -->
-    <h1 style="text-align: center; margin-top: 110px; margin-bottom: 35px;">
-        ❤️ Notícias Favoritas
-    </h1>
+    <div class="container" id="listaFavoritos"></div>
 
-
-    <!-- NOTÍCIAS FAVORITAS -->
-    <div class="container" id="listaFavoritos">
-
-        <!-- O JavaScript vai colocar as notícias aqui -->
-
-    </div>
-
-
-    <!-- MENSAGEM CASO NÃO TENHA FAVORITOS -->
-    <div id="semFavoritos"
-        style="
-            display: none;
-            text-align: center;
-            margin: 70px 20px;
-            min-height: 250px;
-        ">
-
-        <i class="fa-regular fa-heart"
-            style="
-                font-size: 55px;
-                color: #C71F37;
-                margin-bottom: 20px;
-            ">
-        </i>
-
+    <div id="semFavoritos">
+        <i class="fa-regular fa-heart icone-favorito"></i>
         <h2>Você ainda não possui notícias favoritas.</h2>
-
-        <p>
-            Clique no ❤️ de uma notícia para adicioná-la aqui.
-        </p>
-
+        <p>Clique no coração de uma notícia para adicioná-la aqui.</p>
     </div>
-
 
     <!-- FOOTER -->
     <footer>
@@ -141,133 +54,7 @@
 
     <div id="toast"></div>
 
-
-    <!-- SEU SCRIPT NORMAL -->
-
-    <!-- SCRIPT DA PÁGINA DE FAVORITOS -->
-    <script>
-
-        document.addEventListener("DOMContentLoaded", () => {
-
-            const lista = document.getElementById("listaFavoritos");
-            const semFavoritos = document.getElementById("semFavoritos");
-
-            // Busca os favoritos salvos
-            let favoritos = JSON.parse(
-                localStorage.getItem("favoritos")
-            ) || [];
-
-
-            // ==============================
-            // NÃO TEM FAVORITOS
-            // ==============================
-
-            if (favoritos.length === 0) {
-
-                semFavoritos.style.display = "block";
-
-                return;
-            }
-
-
-            // ==============================
-            // MOSTRAR FAVORITOS
-            // ==============================
-
-            favoritos.forEach((noticia, index) => {
-
-                const card = document.createElement("div");
-
-                card.classList.add("noticia");
-
-
-                card.innerHTML = `
-
-                    <button
-                        class="favorito ativo"
-                        data-index="${index}"
-                        title="Remover dos favoritos">
-
-                        <i class="fa-solid fa-heart"></i>
-
-                    </button>
-
-
-                    <img
-                        src="${noticia.imagem}"
-                        alt="${noticia.titulo}"
-                    >
-
-
-                    <div class="conteudo">
-
-                        <h2>
-                            ${noticia.titulo}
-                        </h2>
-
-
-                        ${
-                            noticia.data
-                            ?
-                            `<p class="data">
-                                ${noticia.data}
-                            </p>`
-                            :
-                            ""
-                        }
-
-
-                        <a href="${noticia.link}">
-
-                            <button>
-                                Saiba Mais
-                            </button>
-
-                        </a>
-
-                    </div>
-
-                `;
-
-
-                lista.appendChild(card);
-
-            });
-
-
-            // ==============================
-            // REMOVER FAVORITO
-            // ==============================
-
-            document.querySelectorAll(
-                "#listaFavoritos .favorito"
-            ).forEach(botao => {
-
-                botao.addEventListener("click", () => {
-
-                    const index =
-                        Number(botao.dataset.index);
-
-
-                    favoritos.splice(index, 1);
-
-
-                    localStorage.setItem(
-                        "favoritos",
-                        JSON.stringify(favoritos)
-                    );
-
-
-                    // Recarrega para atualizar a página
-                    location.reload();
-
-                });
-
-            });
-
-        });
-
-    </script>
+    <script src="../SCRIPT/scriptfavoritos.js"></script>
 
 </body>
 

@@ -257,9 +257,9 @@ textarea {
   line-height: 1.6;
 }
 
-.text .button-banner {
+/* .text .button-banner {
   margin-top: -5px;
-}
+} */
 
 .btn-direita {
   right: 10px;
@@ -552,7 +552,7 @@ body.dark .titulo-ultimas p {
 
 /* MOBILE */
 
-@media (max-width: 768px) {
+/* @media (max-width: 768px) {
 
     .titulo-ultimas {
         width: 90%;
@@ -566,7 +566,7 @@ body.dark .titulo-ultimas p {
         line-height: 1.18;
     }
 
-}
+} */
 
 /* MOBILE */
 @media (max-width: 768px) {
@@ -714,6 +714,10 @@ body.dark .titulo-ultimas p {
     padding: 8px 15px;
     font-size: 0.9rem;
   }
+
+  .text .button-banner {
+    margin-top: 5px;
+}
    }
 
 
