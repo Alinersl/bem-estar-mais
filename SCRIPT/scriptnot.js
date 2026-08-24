@@ -41,38 +41,199 @@ document.addEventListener("DOMContentLoaded", () => {
 });
 
 
-// BOTAO FAVORITO
-const toast = document.getElementById("toast");
+// ==========================================
+// FAVORITOS
+// ==========================================
 
+const toast = document.getElementById("toast");
 const btnFinal = document.querySelector(".favorito2");
 
 function mostrarMensagem(texto) {
+
+    if (!toast) return;
+
     toast.textContent = texto;
     toast.classList.add("show");
 
     setTimeout(() => {
         toast.classList.remove("show");
     }, 2000);
+
 }
 
-btnFinal.addEventListener("click", () => {
 
-    btnFinal.classList.toggle("ativo");
+// DESCOBRE QUAL NOTÍCIA ESTÁ ABERTA
+
+const paginaAtual = window.location.pathname;
+
+const resultadoFavorito = paginaAtual.match(/noticia(\d+)\.html/i);
+
+const idFavorito = resultadoFavorito
+    ? Number(resultadoFavorito[1])
+    : null;
+
+
+// PEGA FAVORITOS
+
+function pegarFavoritos() {
+
+    try {
+
+        return JSON.parse(
+            localStorage.getItem("favoritos")
+        ) || [];
+
+    } catch {
+
+        return [];
+
+    }
+
+}
+
+
+// VERIFICA SE JÁ ESTÁ SALVA
+
+function estaFavoritada() {
+
+    const favoritos = pegarFavoritos();
+
+    return favoritos.some(item =>
+        Number(item.id) === idFavorito
+    );
+
+}
+
+
+// MUDA O BOTÃO
+
+function atualizarBotaoFavorito() {
+
+    if (!btnFinal) return;
 
     const icone = btnFinal.querySelector("i");
 
-    if(btnFinal.classList.contains("ativo")){
-        icone.classList.remove("fa-regular");
-        icone.classList.add("fa-solid");
+    if (estaFavoritada()) {
 
-        mostrarMensagem("❤️ Adicionado com sucesso!");
-    }else{
-        icone.classList.remove("fa-solid");
-        icone.classList.add("fa-regular");
+        btnFinal.classList.add("ativo");
 
-        mostrarMensagem("🤍 Removido dos favoritos!");
+        if (icone) {
+            icone.className = "fa-solid fa-heart";
+        }
+
+    } else {
+
+        btnFinal.classList.remove("ativo");
+
+        if (icone) {
+            icone.className = "fa-regular fa-heart";
+        }
+
     }
-});
+
+}
+
+
+// CLIQUE
+
+if (btnFinal && idFavorito) {
+
+    atualizarBotaoFavorito();
+
+    btnFinal.addEventListener("click", () => {
+
+        let favoritos = pegarFavoritos();
+
+        const existe = favoritos.findIndex(
+            item => Number(item.id) === idFavorito
+        );
+
+
+        // REMOVE
+
+        if (existe !== -1) {
+
+            favoritos.splice(existe, 1);
+
+            localStorage.setItem(
+                "favoritos",
+                JSON.stringify(favoritos)
+            );
+
+            atualizarBotaoFavorito();
+
+            mostrarMensagem(
+                "🤍 Removido dos favoritos!"
+            );
+
+            return;
+        }
+
+
+        // PEGA DADOS DA NOTÍCIA
+
+        const titulo =
+            document.querySelector(".tema h1");
+
+        const data =
+            document.querySelector(
+                ".cabecalho span:last-child"
+            );
+
+        const numero =
+            String(idFavorito).padStart(2, "0");
+
+
+        const noticia = {
+
+            id: idFavorito,
+
+            titulo: titulo
+                ? titulo.textContent.trim()
+                : "Notícia",
+
+            data: data
+                ? data.textContent.trim()
+                : "",
+
+            imagem:
+                "../IMAGENS/CAPA DAS NOTÍCIAS/capa.not." +
+                numero +
+                ".png",
+
+            link:
+                "../NOTÍCIAS/noticia" +
+                idFavorito +
+                ".html"
+
+        };
+
+
+        favoritos.push(noticia);
+
+
+        localStorage.setItem(
+            "favoritos",
+            JSON.stringify(favoritos)
+        );
+
+
+        atualizarBotaoFavorito();
+
+
+        mostrarMensagem(
+            "❤️ Adicionado aos favoritos!"
+        );
+
+
+        console.log(
+            "Favoritos salvos:",
+            favoritos
+        );
+
+    });
+
+}
 // COMENTARIOS
 
 const btnComentar = document.getElementById("btnComentar");
