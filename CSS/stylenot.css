@@ -154,78 +154,59 @@ main {
     margin: 25px;
 }
 
-.tema-editado1 {
+.tema-editado1,
+.tema-editado2,
+.tema-editado3,
+.tema-editado4,
+.tema-editado5,
+.tema-editado6,
+.tema-editado7,
+.tema-editado8 {
     width: 52%;
+}
+
+.tema-editado1,
+.tema-editado2,
+.tema-editado3,
+.tema-editado4,
+.tema-editado5,
+.tema-editado6,
+.tema-editado7,
+.tema-editado8 {
+    text-align: center;
 }
 
 .tema-editado1 h1 {
-    text-align: center;
     margin: 55px;
 }
 
-.tema-editado2 {
-    width: 52%;
-}
-
 .tema-editado2 h1 {
-    text-align: center;
     margin: 0 auto;
 }
 
-.tema-editado3 {
-    width: 52%;
-}
-
 .tema-editado3 h1 {
-    text-align: center;
     margin: 45px;
 }
 
 .tema-editado4 {
-    width: 52%;
-}
-
-.tema-editado4 {
-    text-align: center;
     margin: 10px;
 }
 
 .tema-editado5 {
-    width: 52%;
-}
-
-.tema-editado5 {
-    text-align: center;
     margin: 8px;
 }
 
 .tema-editado6 {
-    width: 52%;
-}
-
-.tema-editado6 {
-    text-align: center;
     margin: 20px;
 }
 
 .tema-editado7 {
-    width: 52%;
-}
-
-.tema-editado7 {
-    text-align: center;
     margin: 30px;
 }
 
 .tema-editado8 {
-    width: 52%;
-}
-
-.tema-editado8 {
-    text-align: center;
     margin: 80px 0 0 0;
 }
-
 
 .topo-imagem {
     flex: 1;
@@ -297,61 +278,37 @@ section li {
 }
 
 .favorito2 {
-
     background: #fff;
-
     color: #d32f2f;
-
     border: 2px solid #d32f2f;
-
     padding: 10px 18px;
-
     border-radius: 30px;
-
     font-weight: bold;
-
     transition: .3s;
-
 }
 
 .favorito2:hover {
-
     background: #d32f2f;
-
     color: white;
-
 }
 
 .alerta {
-
     display: flex;
-
     gap: 20px;
-
     background: #fff3f3;
-
     border-left: 8px solid #d32f2f;
-
     padding: 25px;
-
     margin: 35px auto;
-
     max-width: 1100px;
-
     border-radius: 15px;
-
 }
 
 .alerta i {
-
     font-size: 35px;
-
     color: #d32f2f;
-
 }
 
-/* Coração vermelho */
-
+/* coração vermelho */
 .fav.ativo i,
 .favorito2.ativo i {
     color: #e53935;
@@ -362,26 +319,20 @@ section li {
     color: white;
 }
 
-/* Mensagem */
-
+/* mensagem */
 .toast {
     position: fixed;
     top: 50%;
     left: 50%;
     transform: translate(-50%, -50%) scale(.8);
-
     background: rgba(0, 0, 0, .85);
     color: white;
-
     padding: 15px 30px;
     border-radius: 10px;
-
     font-size: 18px;
     font-weight: bold;
-
     opacity: 0;
     visibility: hidden;
-
     transition: .3s;
     z-index: 9999;
 }
@@ -409,35 +360,6 @@ section li {
 .lua img {
     max-width: 20px;
 }
-
-/* FAVORITOS */
-.fav {
-    position: absolute;
-    top: 15px;
-    right: 15px;
-    background: transparent;
-    border: none;
-    padding: 0;
-    cursor: pointer;
-    z-index: 999;
-}
-
-.fav:hover {
-    background: transparent;
-    border: none;
-}
-
-.fav i {
-    font-size: 30px;
-    color: #bdbdbd;
-    transition: 0.3s;
-}
-
-.fav:hover i {
-    transform: scale(1.15);
-}
-
-
 
 
 /* TITULO */
