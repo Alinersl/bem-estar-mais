@@ -212,7 +212,6 @@ document.querySelectorAll('.noticia a').forEach(link => {
       return;
     }
 
-    // Impede a página de abrir imediatamente
     event.preventDefault();
 
     const idNoticia = resultado[1];
@@ -235,7 +234,6 @@ document.querySelectorAll('.noticia a').forEach(link => {
 
     }
 
-    // Só abre a notícia DEPOIS de registrar
     window.location.href = href;
 
   });

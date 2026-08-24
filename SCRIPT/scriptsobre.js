@@ -168,3 +168,16 @@ if (parametros.get("erro") === "login") {
     }
 
 }
+// ==============================
+// ABRIR CADASTRO AUTOMATICAMENTE
+// ==============================
+
+if (parametros.get("abrir") === "cadastro") {
+
+    overlay.style.display = "flex";
+
+    cadastro.style.display = "block";
+
+    login.style.display = "none";
+
+}
