@@ -110,90 +110,134 @@ const hamburguer = document.getElementById("hamburguer");
 const menu = document.getElementById("menu");
 
 hamburguer.addEventListener("click", () => {
-    menu.classList.toggle("ativo");
+  menu.classList.toggle("ativo");
 });
 
 // Fecha o menu ao clicar fora
 document.addEventListener("click", (e) => {
-    if (!e.target.closest(".dropdown")) {
-        menu.classList.remove("ativo");
-    }
+  if (!e.target.closest(".dropdown")) {
+    menu.classList.remove("ativo");
+  }
 });
 
 // Favoritos
 const toast = document.getElementById("toast");
 
 function mostrarMensagem(texto) {
-    toast.textContent = texto;
-    toast.classList.add("show");
+  toast.textContent = texto;
+  toast.classList.add("show");
 
-    setTimeout(() => {
-        toast.classList.remove("show");
-    }, 2000);
+  setTimeout(() => {
+    toast.classList.remove("show");
+  }, 2000);
 }
 
 document.querySelectorAll(".favorito").forEach(btn => {
 
-    btn.addEventListener("click", () => {
+  btn.addEventListener("click", () => {
 
-        btn.classList.toggle("ativo");
+    btn.classList.toggle("ativo");
 
-        const icone = btn.querySelector("i");
+    const icone = btn.querySelector("i");
 
-        if (btn.classList.contains("ativo")) {
-            icone.classList.remove("fa-regular");
-            icone.classList.add("fa-solid");
+    if (btn.classList.contains("ativo")) {
+      icone.classList.remove("fa-regular");
+      icone.classList.add("fa-solid");
 
-            mostrarMensagem("❤️ Adicionado com sucesso!");
-        } else {
-            icone.classList.remove("fa-solid");
-            icone.classList.add("fa-regular");
+      mostrarMensagem("❤️ Adicionado com sucesso!");
+    } else {
+      icone.classList.remove("fa-solid");
+      icone.classList.add("fa-regular");
 
-            mostrarMensagem("🤍 Removido dos favoritos!");
-        }
+      mostrarMensagem("🤍 Removido dos favoritos!");
+    }
 
-    });
+  });
 
 });
 
 // MODO CLARO E ESCURO
 document.addEventListener("DOMContentLoaded", () => {
-    const body = document.body;
-    const sol = document.getElementById("sol");
-    const lua = document.getElementById("lua");
+  const body = document.body;
+  const sol = document.getElementById("sol");
+  const lua = document.getElementById("lua");
 
-    // Carrega o tema salvo
-    if (localStorage.getItem("tema") === "escuro") {
-        body.classList.add("dark");
+  // Carrega o tema salvo
+  if (localStorage.getItem("tema") === "escuro") {
+    body.classList.add("dark");
 
-        if (sol) sol.style.display = "none";
-        if (lua) lua.style.display = "block";
-    } else {
-        body.classList.remove("dark");
+    if (sol) sol.style.display = "none";
+    if (lua) lua.style.display = "block";
+  } else {
+    body.classList.remove("dark");
 
-        if (sol) sol.style.display = "block";
-        if (lua) lua.style.display = "none";
+    if (sol) sol.style.display = "block";
+    if (lua) lua.style.display = "none";
+  }
+
+  // Ativar modo escuro
+  if (sol) {
+    sol.addEventListener("click", () => {
+      body.classList.add("dark");
+      localStorage.setItem("tema", "escuro");
+
+      sol.style.display = "none";
+      if (lua) lua.style.display = "block";
+    });
+  }
+
+  // Voltar ao modo claro
+  if (lua) {
+    lua.addEventListener("click", () => {
+      body.classList.remove("dark");
+      localStorage.setItem("tema", "claro");
+
+      lua.style.display = "none";
+      if (sol) sol.style.display = "block";
+    });
+  }
+});
+
+////////////////// CONTADOR DE VISUALIZAÇÕES //////////////////
+
+document.querySelectorAll('.noticia a').forEach(link => {
+
+  link.addEventListener('click', async function (event) {
+
+    const href = this.getAttribute('href');
+
+    const resultado = href.match(/noticia(\d+)\.html/i);
+
+    if (!resultado) {
+      return;
     }
 
-    // Ativar modo escuro
-    if (sol) {
-        sol.addEventListener("click", () => {
-            body.classList.add("dark");
-            localStorage.setItem("tema", "escuro");
+    // Impede a página de abrir imediatamente
+    event.preventDefault();
 
-            sol.style.display = "none";
-            if (lua) lua.style.display = "block";
-        });
+    const idNoticia = resultado[1];
+
+    console.log("Registrando notícia:", idNoticia);
+
+    try {
+
+      const resposta = await fetch(
+        `/bem-estar-mais/PHP/registrarvisualizacoes.php?id=${idNoticia}`
+      );
+
+      const texto = await resposta.text();
+
+      console.log("PHP respondeu:", texto);
+
+    } catch (erro) {
+
+      console.log("Erro ao registrar:", erro);
+
     }
 
-    // Voltar ao modo claro
-    if (lua) {
-        lua.addEventListener("click", () => {
-            body.classList.remove("dark");
-            localStorage.setItem("tema", "claro");
+    // Só abre a notícia DEPOIS de registrar
+    window.location.href = href;
 
-            lua.style.display = "none";
-            if (sol) sol.style.display = "block";
-        });
-    }
+  });
+
 });

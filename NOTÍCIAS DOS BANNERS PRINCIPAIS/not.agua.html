@@ -4,49 +4,60 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="../CSS/style.banner.not.css">
+    <link rel="stylesheet" href="../CSS/stylenot.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css">
+    <title>Pouca água dá cansaço?</title>
 </head>
 
 <body>
-    <header class="nav">
-        <a href="../PÁGINAS/index1.html">
-            <img src="../IMAGENS/LOGO/logo (2).png" alt="Logo Bem Estar+" class="logo">
-        </a>
-        <button class="perfil">
-            <img src="../IMAGENS/ÍCONES/cadastro.png" alt="perfil">
-        </button>
+
+    <!-- NAVEGADOR -->
+    <header>
+        <nav>
+
+            <!-- LOGO -->
+            <a href="../PÁGINAS/index1.html">
+                <img src="../IMAGENS/LOGO/logo (2).png" alt="Logo Bem Estar+" class="logo">
+            </a>
+
+            <!-- MODO CLARO E ESCURO -->
+            <div class="sol" id="sol">
+                <img src="../IMAGENS/ÍCONES/sol.png" alt="Modo claro">
+            </div>
+
+            <div class="lua" id="lua">
+                <img src="../IMAGENS/ÍCONES/lua.png" alt="Modo escuro">
+            </div>
+
+        </nav>
     </header>
 
-    <main class="layout">
-        <article class="conteudo">
-            <div class="meta">
-                <span class="cat">ALIMENTAÇÃO SAUDÁVEL</span>
-                <span>29 Jul 2026</span>
-                <span>• 4 min de leitura</span>
+    <main>
+        <div class="container">
+
+            <!-- CABEÇALHO DA NOTÍCIA -->
+            <div class="cabecalho">
+                <span class="titulo">BEM ESTAR+</span>
+                <span>30 Ago 2025</span>
             </div>
 
-            <div class="hero-noticia">
-
-                <div class="hero-texto">
-
+            <!-- TOPO DA NOTÍCIA -->
+            <div class="topo">
+                <div class="tema-editado3">
                     <h1>Pouca água dá cansaço?</h1>
-
                 </div>
-
-                <div class="hero-imagem">
-                    <img src="../IMAGENS/BANNER PÁGINA PRINCIPAL/banner.agua.png" alt="Pessoa bebendo água">
-                </div>
-
+                <div class="topo-imagem"> <img src="../IMAGENS/BANNER PÁGINA PRINCIPAL/banner.agua.png"
+                        alt="Copo de água"> </div>
             </div>
 
-            <p class="linha-fina">
-                Sentir cansaço ao longo do dia nem sempre está relacionado apenas ao sono. A baixa ingestão de água pode
+            <!-- FRASE DE INÍCIO -->
+            <p class="sobre"> Sentir cansaço ao longo do dia nem sempre está relacionado apenas ao sono. A baixa
+                ingestão de água pode
                 causar desidratação leve, afetando o funcionamento do organismo e provocando sintomas como fadiga, dor
-                de cabeça e dificuldade de concentração.
-            </p>
+                de cabeça e dificuldade de concentração.</p>
 
-            <section class="resumo">
+            <!-- RESUMO DA NOTÍCIA -->
+            <section>
                 <h3>Resumo da matéria</h3>
                 <ul>
                     <li>A desidratação pode causar sensação de cansaço.</li>
@@ -56,10 +67,9 @@
                 </ul>
             </section>
 
+            <!-- NOTÍCIA -->
             <h2>O que dizem os especialistas</h2>
-
-            <p>
-                Especialistas explicam que a água participa de diversas funções do organismo, como o transporte de
+            <p>Especialistas explicam que a água participa de diversas funções do organismo, como o transporte de
                 nutrientes, a regulação da temperatura corporal e o funcionamento das células. Quando o corpo recebe
                 menos água do que precisa, mesmo uma desidratação leve pode causar cansaço, redução da disposição e
                 dificuldade para manter a atenção.
@@ -71,8 +81,21 @@
                 atividade física.
             </p>
 
-            <h2>Curiosidades</h2>
+            <h2>Desidratação</h2>
+            <p>A desidratação acontece quando o organismo perde mais líquidos do que recebe. Mesmo uma redução na
+                quantidade de água disponível no corpo pode estar relacionada à sensação de cansaço, já que a água
+                participa de diversos processos importantes para o funcionamento do organismo.
 
+                Beber pouca água também pode contribuir para sintomas como dor de cabeça e dificuldade de concentração.
+                Isso ocorre porque uma hidratação adequada é importante para o funcionamento do cérebro, para a
+                circulação do sangue e para a regulação da temperatura corporal.
+
+                Por isso, é importante manter a hidratação ao longo do dia, bebendo água regularmente e não apenas
+                quando a sede estiver muito forte. Esse hábito ajuda o organismo a funcionar adequadamente e pode
+                prevenir sintomas relacionados à falta de líquidos.
+            </p>
+
+            <h2>Curiosidades</h2>
             <ul>
                 <li>O corpo humano é composto por aproximadamente 60% de água.</li>
                 <li>A sede costuma ser um sinal de que o organismo já começou a perder líquidos.</li>
@@ -80,7 +103,6 @@
             </ul>
 
             <h2>Recomendações</h2>
-
             <ul>
                 <li>Beba água regularmente durante todo o dia.</li>
                 <li>Tenha sempre uma garrafa de água por perto.</li>
@@ -88,38 +110,45 @@
                 <li>Inclua frutas ricas em água na alimentação.</li>
                 <li>Se o cansaço persistir mesmo com boa hidratação e descanso, procure avaliação médica.</li>
             </ul>
-        </article>
 
-        <aside class="sidebar">
-            <h3>🔥 Mais lidas</h3>
-            <div class="card">Banana dá energia?</div>
-            <div class="card">Água gelada faz mal?</div>
-            <div class="card">Como hidratar o corpo?</div>
-        </aside>
-        <section class="fim-noticia">
+        </div>
 
+        <!-- FAVORITOS -->
+        <div class="favoritos">
             <h2>Gostou desta matéria?</h2>
-
             <p>Salve nos favoritos para ler novamente quando quiser.</p>
+            <button class="favorito2"> <i class="fa-regular fa-heart"></i> Salvar nos Favoritos </button>
+        </div>
+    </main>
+    <section class="comentarios">
 
-            <button class="favorito2">
+        <h2><i class="fa-regular fa-comments"></i> Comentários</h2>
 
-                <i class="fa-regular fa-heart"></i>
+        <div class="form-comentario">
 
-                Salvar nos Favoritos
+            <input type="text" id="nome" placeholder="Seu nome">
 
+            <textarea id="comentario" placeholder="Escreva seu comentário..."></textarea>
+
+            <button id="btnComentar">
+                <i class="fa-solid fa-paper-plane"></i>
+                Publicar comentário
             </button>
 
-        </section>
+        </div>
 
-    </main>
-    <div id="toast" class="toast">
-        ❤️ Adicionado com sucesso!
-    </div>
+        <div id="listaComentarios"></div>
+
+    </section>
+
+    <div id="toast" class="toast"> ❤️ Adicionado com sucesso! </div>
+
     <footer>
         <p>© 2025 BemEstar+ | Todos os direitos reservados</p>
     </footer>
+
     <script src="../SCRIPT/scriptnot.js"></script>
+
 </body>
 
 </html>

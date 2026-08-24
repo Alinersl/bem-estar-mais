@@ -5,7 +5,9 @@ session_start();
 require "conexao.php";
 
 
-// Verifica se a pessoa está logada
+// =========================
+// VERIFICA LOGIN
+// =========================
 
 if (!isset($_SESSION["usuario_id"])) {
 
@@ -16,12 +18,18 @@ if (!isset($_SESSION["usuario_id"])) {
 }
 
 
-// Pega o ID do usuário que está logado
+// =========================
+// PEGA USUÁRIO LOGADO
+// =========================
 
 $id = $_SESSION["usuario_id"];
 
 
-$sql = $conexao->prepare("SELECT id, nome, email, data_cadastro FROM usuarios WHERE id = ?");
+$sql = $conexao->prepare(
+    "SELECT id, nome, email, data_cadastro
+     FROM usuarios
+     WHERE id = ?"
+);
 
 $sql->bind_param("i", $id);
 
@@ -55,140 +63,7 @@ $usuario = $resultado->fetch_assoc();
 
     <title>Minha Conta - Bem Estar+</title>
 
-
-    <style>
-
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-            font-family: Arial, Helvetica, sans-serif;
-        }
-
-
-        body {
-            min-height: 100vh;
-
-            background: #f4f4f4;
-
-            display: flex;
-            justify-content: center;
-            align-items: center;
-
-            color: #000;
-        }
-
-
-        .conta {
-            width: 500px;
-            max-width: 90%;
-
-            background: white;
-
-            padding: 40px;
-
-            border-radius: 20px;
-
-            box-shadow: 0 10px 40px rgba(0, 0, 0, 0.15);
-
-            text-align: center;
-        }
-
-
-        .conta h1 {
-            color: #ff2b2b;
-
-            margin-bottom: 10px;
-        }
-
-
-        .conta p.subtitulo {
-            color: #555;
-
-            margin-bottom: 35px;
-        }
-
-
-        .perfil {
-            text-align: left;
-        }
-
-
-        .informacao {
-            margin-bottom: 20px;
-
-            padding: 15px;
-
-            background: #f4f4f4;
-
-            border-radius: 10px;
-        }
-
-
-        .informacao strong {
-            display: block;
-
-            color: #ff2b2b;
-
-            margin-bottom: 5px;
-        }
-
-
-        .informacao span {
-            color: #222;
-
-            word-break: break-word;
-        }
-
-
-        .btn-sair {
-            display: block;
-
-            margin-top: 30px;
-
-            padding: 15px;
-
-            width: 100%;
-
-            background: #ff2b2b;
-
-            color: white;
-
-            text-decoration: none;
-
-            border-radius: 30px;
-
-            font-weight: bold;
-
-            transition: 0.3s;
-        }
-
-
-        .btn-sair:hover {
-            background: #ff4d4d;
-
-            transform: scale(1.03);
-        }
-
-
-        .btn-voltar {
-            display: block;
-
-            margin-top: 15px;
-
-            color: #ff2b2b;
-
-            text-decoration: none;
-
-            font-weight: bold;
-        }
-
-
-        .btn-voltar:hover {
-            text-decoration: underline;
-        }
-
-    </style>
+    <link rel="stylesheet" href="../CSS/styleperfil.css">
 
 </head>
 
@@ -196,67 +71,366 @@ $usuario = $resultado->fetch_assoc();
 <body>
 
 
-    <div class="conta">
+    <!-- =========================
+         NAVEGAÇÃO
+    ========================== -->
 
-        <h1>Minha Conta</h1>
+    <nav>
 
-        <p class="subtitulo">
-            Bem-vindo, <?php echo htmlspecialchars($usuario["nome"]); ?>!
-        </p>
+        <div>
 
-
-        <div class="perfil">
-
-
-            <div class="informacao">
-
-                <strong>Nome</strong>
-
-                <span>
-                    <?php echo htmlspecialchars($usuario["nome"]); ?>
-                </span>
-
-            </div>
-
-
-            <div class="informacao">
-
-                <strong>Email</strong>
-
-                <span>
-                    <?php echo htmlspecialchars($usuario["email"]); ?>
-                </span>
-
-            </div>
-
-
-            <div class="informacao">
-
-                <strong>Data de cadastro</strong>
-
-                <span>
-                    <?php echo htmlspecialchars($usuario["data_cadastro"]); ?>
-                </span>
-
-            </div>
-
+            <span class="logo">
+                Bem Estar+
+            </span>
 
         </div>
 
 
-        <a href="logout.php" class="btn-sair">
-            Sair da conta
-        </a>
+        <div class="nav-direita">
+
+            <!-- BOTÃO MODO ESCURO -->
+
+            <button
+                class="modo"
+                type="button"
+                onclick="alternarModo()"
+                title="Alterar modo"
+            >
+                ☾
+            </button>
 
 
-        <a href="../PÁGINAS/index.html" class="btn-voltar">
-            Voltar para o site
-        </a>
+            <!-- PERFIL -->
+
+            <button
+                class="perfil"
+                type="button"
+                title="Perfil"
+            >
+                👤
+            </button>
+
+        </div>
+
+    </nav>
 
 
-    </div>
+
+    <!-- =========================
+         CONTEÚDO PRINCIPAL
+    ========================== -->
+
+    <main class="perfil-main">
+
+
+        <!-- =========================
+             CONTAINER
+        ========================== -->
+
+        <div class="perfil-container">
+
+
+            <!-- =========================
+                 TOPO DO PERFIL
+            ========================== -->
+
+            <div class="perfil-topo">
+
+
+                <!-- FOTO -->
+
+                <div class="foto-area">
+
+                    <img
+                        src="../IMAGENS/perfil.png"
+                        alt="Foto de perfil"
+                        class="foto-perfil"
+                    >
+
+                    <button
+                        type="button"
+                        class="trocar-foto"
+                        title="Trocar foto"
+                    >
+                        ✎
+                    </button>
+
+                </div>
+
+
+                <!-- DADOS -->
+
+                <div class="dados-perfil">
+
+                    <h1>
+                        <?php echo htmlspecialchars($usuario["nome"]); ?>
+                    </h1>
+
+                    <p>
+                        <?php echo htmlspecialchars($usuario["email"]); ?>
+                    </p>
+
+
+                    <button
+                        type="button"
+                        class="entrar-conta"
+                    >
+                        Minha conta
+                    </button>
+
+                </div>
+
+
+            </div>
+
+
+
+            <!-- =========================
+                 ESTATÍSTICAS
+            ========================== -->
+
+            <div class="estatisticas">
+
+
+                <div class="estatistica">
+
+                    <i>👤</i>
+
+                    <strong>
+                        <?php echo $usuario["id"]; ?>
+                    </strong>
+
+                    <span>
+                        ID da conta
+                    </span>
+
+                </div>
+
+
+                <div class="estatistica">
+
+                    <i>📧</i>
+
+                    <strong>
+                        ✓
+                    </strong>
+
+                    <span>
+                        Email cadastrado
+                    </span>
+
+                </div>
+
+
+                <div class="estatistica">
+
+                    <i>📅</i>
+
+                    <strong>
+                        <?php
+                        echo date(
+                            "d/m",
+                            strtotime($usuario["data_cadastro"])
+                        );
+                        ?>
+                    </strong>
+
+                    <span>
+                        Data de cadastro
+                    </span>
+
+                </div>
+
+
+            </div>
+
+
+
+            <!-- =========================
+                 CONFIGURAÇÕES
+            ========================== -->
+
+            <div class="configuracoes">
+
+
+                <h2>
+                    Configurações
+                </h2>
+
+
+                <!-- NOME -->
+
+                <div class="config-item">
+
+                    <div class="config-texto">
+
+                        <i>👤</i>
+
+                        <div>
+
+                            <h3>
+                                Nome
+                            </h3>
+
+                            <p>
+                                <?php echo htmlspecialchars($usuario["nome"]); ?>
+                            </p>
+
+                        </div>
+
+                    </div>
+
+                    <span class="seta">
+                        ›
+                    </span>
+
+                </div>
+
+
+
+                <!-- EMAIL -->
+
+                <div class="config-item">
+
+                    <div class="config-texto">
+
+                        <i>✉</i>
+
+                        <div>
+
+                            <h3>
+                                Email
+                            </h3>
+
+                            <p>
+                                <?php echo htmlspecialchars($usuario["email"]); ?>
+                            </p>
+
+                        </div>
+
+                    </div>
+
+                    <span class="seta">
+                        ›
+                    </span>
+
+                </div>
+
+
+
+                <!-- DATA DE CADASTRO -->
+
+                <div class="config-item">
+
+                    <div class="config-texto">
+
+                        <i>📅</i>
+
+                        <div>
+
+                            <h3>
+                                Data de cadastro
+                            </h3>
+
+                            <p>
+                                <?php
+                                echo htmlspecialchars(
+                                    date(
+                                        "d/m/Y",
+                                        strtotime($usuario["data_cadastro"])
+                                    )
+                                );
+                                ?>
+                            </p>
+
+                        </div>
+
+                    </div>
+
+                    <span class="seta">
+                        ›
+                    </span>
+
+                </div>
+
+
+
+                <!-- MODO ESCURO -->
+
+                <div class="config-item">
+
+                    <div class="config-texto">
+
+                        <i>🌙</i>
+
+                        <div>
+
+                            <h3>
+                                Modo escuro
+                            </h3>
+
+                            <p>
+                                Alterar aparência do site
+                            </p>
+
+                        </div>
+
+                    </div>
+
+
+                    <label class="switch">
+
+                        <input
+                            type="checkbox"
+                            id="modoEscuro"
+                            onchange="alternarModoSwitch()"
+                        >
+
+                        <span class="slider"></span>
+
+                    </label>
+
+                </div>
+
+
+            </div>
+
+
+
+            <!-- =========================
+                 SAIR
+            ========================== -->
+
+            <a
+                href="logout.php"
+                class="sair-conta"
+            >
+                ↪ Sair da conta
+            </a>
+
+
+        </div>
+
+    </main>
+
+
+
+    <!-- =========================
+         FOOTER
+    ========================== -->
+
+    <footer>
+
+        <p>
+            © 2026 Bem Estar+ - Todos os direitos reservados.
+        </p>
+
+    </footer>
+
+    </script>
 
 
 </body>
 
 </html>
+```

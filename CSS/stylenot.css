@@ -9,31 +9,58 @@ body {
     background: #f5f5f5;
     color: #222;
     line-height: 1.7;
+
 }
 
 /* NAVEGADOR*/
+/* NAVEGADOR */
 nav {
-    background: linear-gradient(to right, #000, #d32f2f, #000);
-    color: white;
-    height: 70px;
     display: flex;
     justify-content: space-between;
     align-items: center;
-    padding: 5 40px;
-    position: sticky;
+    padding: 5px 40px;
+    background: linear-gradient(to right, #000000, #d32f2f, #000000, #d32f2f, #000000);
+    position: fixed;
     top: 0;
+    left: 0;
+    width: 100%;
     z-index: 1000;
+    box-sizing: border-box;
+}
+
+/* MODO CLARO E ESCURO */
+.sol {
+    margin: 10px 0 0 0;
+    cursor: pointer;
+    transition: 0.3s;
+    display: block;
+}
+
+.sol:hover {
+    transform: scale(1.10);
+}
+
+.lua {
+    margin: 10px 0 0 0;
+    cursor: pointer;
+    display: none;
+    transition: 0.3s;
+}
+
+.lua:hover {
+    transform: scale(1.10);
 }
 
 /* MAIN */
 main {
     width: fit-content;
     max-width: 1400px;
-    margin: 40px auto;
+    margin: 100px auto;
     display: grid;
     grid-template-columns: 1fr;
     gap: 35px;
     padding: 0;
+
 }
 
 
@@ -179,6 +206,24 @@ main {
 .tema-editado6 {
     text-align: center;
     margin: 20px;
+}
+
+.tema-editado7 {
+    width: 52%;
+}
+
+.tema-editado7 {
+    text-align: center;
+    margin: 30px;
+}
+
+.tema-editado8 {
+    width: 52%;
+}
+
+.tema-editado8 {
+    text-align: center;
+    margin: 80px 0 0 0;
 }
 
 
@@ -353,7 +398,16 @@ section li {
     height: 50px;
     width: auto;
     display: block;
-    margin-left: 37px;
+
+}
+
+/* modo claro e escuro */
+.sol img {
+    max-width: 25px;
+}
+
+.lua img {
+    max-width: 20px;
 }
 
 /* FAVORITOS */
@@ -874,4 +928,174 @@ footer p {
         font-size: 13px;
         padding: 10px;
     }
+}
+
+/* =========================
+   MODO ESCURO - NOTÍCIA
+========================= */
+
+body.dark {
+    background: #121212;
+    color: white;
+}
+
+/* HEADER / NAV */
+body.dark nav {
+    background: linear-gradient(to right, #111, #7a0000, #111, #7a0000, #111);
+}
+
+/* CONTEÚDO PRINCIPAL */
+body.dark .container {
+    background: #1e1e1e;
+    color: #f1f1f1;
+    box-shadow: 0 5px 18px rgba(0, 0, 0, .35);
+}
+
+/* TÍTULOS */
+body.dark .container h2 {
+    color: #ff4d4d;
+}
+
+body.dark .tema h1,
+body.dark .tema-editado1 h1,
+body.dark .tema-editado2 h1,
+body.dark .tema-editado3 h1,
+body.dark .tema-editado4 h1,
+body.dark .tema-editado5 h1,
+body.dark .tema-editado6 h1 {
+    color: #ffffff;
+}
+
+/* CABEÇALHO DA NOTÍCIA */
+body.dark .cabecalho {
+    color: #aaa;
+}
+
+body.dark .titulo {
+    color: #ff4d4d;
+}
+
+/* TEXTO */
+body.dark .container p {
+    color: #e8e8e8;
+}
+
+body.dark .sobre {
+    color: #d0d0d0;
+}
+
+/* RESUMO */
+body.dark section {
+    background: #2a1717;
+    border-left-color: #ff4d4d;
+}
+
+body.dark section h3 {
+    color: #ff4d4d;
+}
+
+body.dark section li {
+    color: #eeeeee;
+}
+
+/* MARCAÇÕES DOS TÓPICOS */
+body.dark .container li::before {
+    color: #ff4d4d;
+}
+
+/* IMAGEM */
+body.dark .topo-imagem img {
+    box-shadow: 0 10px 30px rgba(0, 0, 0, .45);
+}
+
+/* FAVORITOS */
+body.dark .favoritos {
+    background: #1e1e1e;
+    color: white;
+    box-shadow: 0 5px 18px rgba(0, 0, 0, .35);
+}
+
+body.dark .favoritos p {
+    color: #d0d0d0;
+}
+
+body.dark .favorito2 {
+    background: #1e1e1e;
+    color: #ff4d4d;
+    border-color: #ff4d4d;
+}
+
+body.dark .favorito2:hover {
+    background: #d32f2f;
+    color: white;
+}
+
+body.dark .favorito2.ativo {
+    background: #d32f2f;
+    color: white;
+}
+
+/* COMENTÁRIOS */
+body.dark .comentarios {
+    background: #1e1e1e;
+    color: white;
+    box-shadow: 0 5px 18px rgba(0, 0, 0, .35);
+}
+
+body.dark .comentarios h2 {
+    color: #ff4d4d;
+}
+
+/* INPUTS */
+body.dark .form-comentario input,
+body.dark .form-comentario textarea {
+    background: #2b2b2b;
+    color: white;
+    border-color: #555;
+}
+
+body.dark .form-comentario input::placeholder,
+body.dark .form-comentario textarea::placeholder {
+    color: #aaa;
+}
+
+/* BOTÃO COMENTÁRIO */
+body.dark .form-comentario button {
+    background: #c71f37;
+    color: white;
+}
+
+body.dark .form-comentario button:hover {
+    background: #e6354d;
+}
+
+/* COMENTÁRIOS PUBLICADOS */
+body.dark .comentario {
+    border-top-color: #444;
+}
+
+body.dark .comentario h4 {
+    color: #ff4d4d;
+}
+
+body.dark .comentario small {
+    color: #aaa;
+}
+
+body.dark .comentario p {
+    color: #eeeeee;
+}
+
+/* FOOTER */
+body.dark footer {
+    background: linear-gradient(to right, #111, #7a0000, #111, #7a0000, #111);
+}
+
+/* ÍCONE LUA / SOL */
+body.dark .sol {
+    display: none;
+}
+
+body.dark .lua {
+    display: block;
 }
