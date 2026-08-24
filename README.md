@@ -28,16 +28,17 @@ Você pode entender mais a fundo de cada nóticia, comentar sobre o site no fina
 Git Clone https://github.com/Ana08Julia/bem-estar-mais.git
 
 ## Melhorias Futuras
-Eu faria melhor os comentarios ,colocaria para cada página de nóticia,colocaria banners na tela inicial de forma que pareça mais "profissional"
+Melhoraria as notícias, colocando mais informações, colocaria enquetes sobre algumas curiosidades e fazendo algumas perguntas, inclementaria lguns vídeos interativos, e daria alguns toques finais nos pequenos detalhes.
 
 ## O Que Aprendi
-Sendo o meu primeiro projeto desse tipo eu aprendi muitas coisas no geral em CSS aprendi a ajeitar o tamanho das coisas a estruturar melhor cada coisa ,aprendi a fazer a opção de tema escuro ou claro 
+Sendo o meu primeiro projeto desse tipo eu aprendi muitas coisas no geral em CSS aprendi a ajeitar o tamanho das coisas a estruturar melhor cada coisa, aprendi a fazer a opção de tema escuro ou claro. Consegui aprender um pouco sobre banco de dados, como fazer uma página de login, de cadastro. Mas ainda tem muito o que melhorar e aprender.
+
 ## Autor
 Nomes Dos alunos:
 __________________________
-Aline Rodrigues Silva
-Ana Júlia Alves Pereira
-Felipe Martins
+- Aline Rodrigues Silva
+- Ana Júlia Alves Pereira
+- Fellipe Martins Gomes Carvalho
 __________________________
 Turma De Tecnologia Em Informática Para Internet (Vespertino) - Senac DF
 

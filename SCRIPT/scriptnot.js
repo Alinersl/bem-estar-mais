@@ -40,6 +40,7 @@ document.addEventListener("DOMContentLoaded", () => {
     }
 });
 
+
 // BOTAO FAVORITO
 const toast = document.getElementById("toast");
 
