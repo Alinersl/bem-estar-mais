@@ -171,12 +171,13 @@ h1 {
     color: #d32f2f;
 }
 
+/* MOBILE */
 @media (max-width: 768px) {
-
     body {
         padding-top: 60px;
     }
 
+    /* NAVEGADOR */
     nav {
         padding: 5px 10px;
     }
@@ -189,25 +190,13 @@ h1 {
         gap: 10px;
     }
 
+    /* MODO CLARO E MODO ESCURO */
     .sol,
     .lua {
         margin-top: 0;
     }
 
-    .sol img {
-        max-width: 22px;
-    }
-
-    .lua img {
-        max-width: 18px;
-    }
-
-    h1 {
-        font-size: 28px;
-        margin: 180px 10px 20px 10px;
-        text-align: center;
-    } 
-
+    /* FAVORITOS */
     #listaFavoritos {
         width: 100%;
         padding: 0 15px;
@@ -235,6 +224,7 @@ h1 {
         line-height: 1.4;
     }
 
+    /* FOOTER */
     footer {
         margin-top: auto;
         padding: 10px 5px;
@@ -242,6 +232,23 @@ h1 {
 
     footer p {
         font-size: 12px;
+    }
+
+    /* IMAGENS */
+    /* modo claro e modo escuro */
+    .sol img {
+        max-width: 22px;
+    }
+
+    .lua img {
+        max-width: 18px;
+    }
+
+    /* TÍTULO */
+    h1 {
+        font-size: 28px;
+        margin: 180px 10px 20px 10px;
+        text-align: center;
     }
 }
 
