@@ -26,7 +26,7 @@ $resultado = $sql->get_result();
 
 if ($resultado->num_rows == 0) {
 
-    header("Location: ../PÁGINAS/index.html?erro=login");
+    header("Location: ../../index.html?erro=login");
     exit;
 
 }
@@ -41,7 +41,7 @@ $usuario = $resultado->fetch_assoc();
 
 if (!password_verify($senha, $usuario["senha"])) {
 
-    header("Location: ../PÁGINAS/index.html?erro=login");
+    header("Location: ../../index.html?erro=login");
     exit;
 
 }

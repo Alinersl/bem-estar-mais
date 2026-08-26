@@ -45,7 +45,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         $_SESSION["usuario_email"] = $email;
 
         // Redireciona para a página principal
-        header("Location: ../PÁGINAS/index1.php");
+        header("Location: ../PAGES/PÁGINAS/index1.html");
         exit;
 
     } else {

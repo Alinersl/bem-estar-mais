@@ -8,7 +8,7 @@ require "conexao.php";
 if (!isset($_SESSION["usuario_id"])) {
 
     header(
-        "Location: ../PÁGINAS/index.html"
+        "Location: ../../index.html"
     );
 
     exit;
@@ -111,7 +111,7 @@ $extensao =
 
 $pasta =
     __DIR__ .
-    "/../IMAGENS/PERFIL_USUARIOS/";
+    "/../ASSETS/IMAGENS/PERFIL_USUARIOS/";
 
 
 
@@ -173,7 +173,7 @@ if (
 // CAMINHO SALVO NO BANCO
 
 $caminhoBanco =
-    "../IMAGENS/PERFIL_USUARIOS/" .
+    "../ASSETS/IMAGENS/PERFIL_USUARIOS/" .
     $nomeArquivo;
 
 

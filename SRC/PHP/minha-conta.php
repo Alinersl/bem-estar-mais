@@ -5,7 +5,7 @@ require "conexao.php";
 
 // VERIFICA O LOGIN
 if (!isset($_SESSION["usuario_id"])) {
-    header("Location: ../PÁGINAS/index.html?abrir=cadastro");
+    header("Location: ../../index.html?abrir=cadastro");
     exit;
 }
 
@@ -36,7 +36,7 @@ if (!empty($usuario["foto_perfil"])) {
 
 } else {
 
-    $fotoPerfil = "../IMAGENS/perfil.png";
+    $fotoPerfil = "../ASSETS/IMAGENS/perfil.png";
 
 }
 
@@ -130,10 +130,7 @@ if (isset($_GET["erro"])) {
 
     <title>Minha Conta - Bem Estar+</title>
 
-    <link
-        rel="stylesheet"
-        href="../CSS/styleperfil.css"
-    >
+    <link rel="stylesheet" href="../ASSETS/CSS/styleperfil.css">
 
 </head>
 
@@ -153,7 +150,7 @@ if (isset($_GET["erro"])) {
     <div>
 
         <a
-            href="../PÁGINAS/index.html"
+            href="../../index.html"
             class="logo-link"
             title="Voltar para a página inicial"
         >

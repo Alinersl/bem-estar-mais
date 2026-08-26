@@ -3,6 +3,7 @@
 include 'conexao.php';
 
 /* BUSCA AS NOTÍCIAS DA MAIS NOVA PARA A MAIS ANTIGA */
+
 $sql = "SELECT id, titulo, data_publicacao
         FROM noticias
         ORDER BY data_publicacao DESC";
@@ -22,7 +23,7 @@ $resultado = $conexao->query($sql);
           content="width=device-width, initial-scale=1.0">
 
     <link rel="stylesheet"
-          href="../CSS/style.css">
+          href="../ASSETS/CSS/style.css">
 
     <link rel="stylesheet"
           href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
@@ -42,10 +43,10 @@ $resultado = $conexao->query($sql);
 
         <div class="nav-esquerda">
 
-            <a href="../PÁGINAS/index.html">
+            <a href="../../index.html">
 
                 <img
-                    src="../IMAGENS/LOGO/logo (2).png"
+                    src="../ASSETS/IMAGENS/LOGO/logo (2).png"
                     alt="Logo Bem Estar+"
                     class="logo"
                 >
@@ -63,7 +64,7 @@ $resultado = $conexao->query($sql);
             <div class="sol" id="sol">
 
                 <img
-                    src="../IMAGENS/ÍCONES/sol.png"
+                    src="../ASSETS/IMAGENS/ÍCONES/sol.png"
                     alt="Modo claro"
                 >
 
@@ -73,7 +74,7 @@ $resultado = $conexao->query($sql);
             <div class="lua" id="lua">
 
                 <img
-                    src="../IMAGENS/ÍCONES/lua.png"
+                    src="../ASSETS/IMAGENS/ÍCONES/lua.png"
                     alt="Modo escuro"
                 >
 
@@ -85,7 +86,7 @@ $resultado = $conexao->query($sql);
             <div class="dropdown">
 
                 <img
-                    src="../IMAGENS/ÍCONES/hamburguer.png"
+                    src="../ASSETS/IMAGENS/ÍCONES/hamburguer.png"
                     class="hamburguer"
                     id="hamburguer"
                     alt="Menu"
@@ -100,37 +101,57 @@ $resultado = $conexao->query($sql);
                     <ul>
 
                         <li>
-                            <a href="../PÁGINAS/index.html#sobre">
+
+                            <a href="../../index.html#sobre">
+
                                 🏠 Sobre Nós
+
                             </a>
+
                         </li>
 
 
                         <li>
-                            <a href="./ultimas-noticias.php">
+
+                            <a href="./ultimasnoticias.php">
+
                                 🆕 Últimas Notícias
+
                             </a>
+
                         </li>
 
 
                         <li>
+
                             <a href="./mais-lidas.php">
+
                                 🔥 Mais Lidas
+
                             </a>
+
                         </li>
 
 
                         <li>
+
                             <a href="#">
+
                                 ❤️ Favoritas
+
                             </a>
+
                         </li>
 
 
                         <li>
+
                             <a href="./minha-conta.php">
+
                                 👤 Conta
+
                             </a>
+
                         </li>
 
                     </ul>
@@ -147,6 +168,7 @@ $resultado = $conexao->query($sql);
 
 
 
+
 <!-- TÍTULO -->
 
 <div class="titulo-ultimas">
@@ -154,10 +176,13 @@ $resultado = $conexao->query($sql);
     <h1>🆕 Últimas Notícias</h1>
 
     <p>
+
         Confira as notícias mais recentes do Bem Estar+
+
     </p>
 
 </div>
+
 
 
 
@@ -221,8 +246,7 @@ if ($resultado && $resultado->num_rows > 0) {
         <!-- CAPA -->
 
         <img
-            src="../IMAGENS/CAPA DAS NOTÍCIAS/capa.not.<?= $numeroImagem ?>.png"
-
+            src="../ASSETS/IMAGENS/CAPA DAS NOTÍCIAS/capa.not.<?= $numeroImagem ?>.png"
             alt="<?= htmlspecialchars($noticia['titulo']) ?>"
         >
 
@@ -253,10 +277,12 @@ if ($resultado && $resultado->num_rows > 0) {
 
             <!-- BOTÃO -->
 
-            <a href="../NOTÍCIAS/noticia<?= $id ?>.html">
+            <a href="../PAGES/NOTÍCIAS/noticia<?= $id ?>.html">
 
                 <button>
+
                     Saiba Mais
+
                 </button>
 
             </a>
@@ -284,12 +310,15 @@ if ($resultado && $resultado->num_rows > 0) {
 
 
 
+
 <!-- FOOTER -->
 
 <footer>
 
     <p>
+
         © 2025 BemEstar+ | Todos os direitos reservados
+
     </p>
 
 </footer>
@@ -298,6 +327,7 @@ if ($resultado && $resultado->num_rows > 0) {
 <!-- MENSAGEM FAVORITOS -->
 
 <div id="toast"></div>
+
 
 
 
@@ -326,6 +356,7 @@ document.addEventListener("click", (e) => {
     }
 
 });
+
 
 
 
@@ -384,6 +415,7 @@ document.querySelectorAll(".favorito").forEach(btn => {
     });
 
 });
+
 
 
 
@@ -454,6 +486,7 @@ lua.addEventListener("click", () => {
 
 
 
+
 ////////////////// VISUALIZAÇÕES //////////////////
 
 document.querySelectorAll('.noticia a').forEach(link => {
@@ -482,7 +515,7 @@ document.querySelectorAll('.noticia a').forEach(link => {
         try {
 
             await fetch(
-                `/bem-estar-mais/PHP/registrarvisualizacoes.php?id=${idNoticia}`
+                `registrarvisualizacoes.php?id=${idNoticia}`
             );
 
         } catch (erro) {
