@@ -402,3 +402,4 @@ document.querySelectorAll('.noticia a').forEach(link => {
   });
 
 });
+

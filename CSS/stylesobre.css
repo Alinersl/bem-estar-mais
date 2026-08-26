@@ -440,20 +440,18 @@ h2 {
   }
 
   .nav-direita {
-    position: absolute;
-    right: 15px;
-    top: 35%;
-    transform: none;
+  position: absolute;
+  right: 15px;
+  top: 35%;
 
-    width: auto;
-    display: flex;
-    flex-direction: row;
-    align-items: center;
-    justify-content: flex-end;
-    gap: 12px;
-    margin: 0;
-  }
-
+  width: auto;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: flex-end;
+  gap: 12px;
+  margin: 0;
+}
   .overlay {
     position: fixed;
     inset: 0;
@@ -539,25 +537,39 @@ h2 {
     margin: 0;
   }
 
-  /* ÍCONE DO SOL */
-  .sol {
-    margin: 0;
-  }
+/* ☀️ SOL / 🌙 LUA NO LADO ESQUERDO */
+.sol,
+.lua {
+  position: fixed;
+  left: 15px;
+  top: 32px;
+  margin: 0;
+  z-index: 1001;
+  cursor: pointer;
+  transform: translateY(-50%);
+}
 
-  .sol img {
-    width: 25px;
-    max-width: 25px;
-  }
+/* TAMANHO DO SOL */
+.sol img {
+  width: 25px;
+  height: 25px;
+  max-width: 25px;
+  object-fit: contain;
+}
 
-  /* ÍCONE DA LUA */
-  .lua {
-    margin: 0;
-  }
+/* TAMANHO DA LUA */
+.lua img {
+  width: 25px;
+  height: 25px;
+  max-width: 25px;
+  object-fit: contain;
+}
 
-  .lua img {
-    width: 20px;
-    max-width: 20px;
-  }
+/* EFEITO AO PASSAR O MOUSE */
+.sol:hover,
+.lua:hover {
+  transform: translateY(-50%) scale(1.10);
+}
 
 }
 
