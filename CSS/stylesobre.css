@@ -89,31 +89,21 @@ nav {
 
 .mensagem-erro {
   display: none;
-
   margin: 10px 0 15px;
-
   padding: 10px 12px;
-
   border-radius: 6px;
-
   background: #ffe5e5;
-
-  color: #d32f2f;
-
+  color:#d32f2f;
   font-size: 14px;
-
   text-align: center;
 }
 
 .login-box {
   position: relative;
-
   width: 500px;
   max-width: 95%;
-
   background: white;
   padding: 40px;
-
   border-radius: 15px;
 }
 
@@ -204,7 +194,7 @@ input {
   transform: scale(1.03);
 }
 
-/* Fechamentos da página */
+/* fechamentos da página */
 .x-claro {
   display: block;
 }
@@ -213,7 +203,7 @@ input {
   display: none;
 }
 
-/* Bonequinho do cadastro */
+/* bonequinho do cadastro */
 .bonequinho {
   right: 0;
   bottom: 0;
@@ -224,6 +214,39 @@ input {
 
 .bonequinho:hover {
   transform: scale(1.03);
+}
+
+/* senha do cadastro */
+.campo-senha {
+    position: relative;
+    width: 100%;
+}
+
+.campo-senha input {
+    width: 100%;
+    box-sizing: border-box;
+    padding-right: 45px;
+}
+
+.olho-senha {
+    position: absolute;
+    right: 10px;
+    top: 50%;
+    transform: translateY(-50%);
+    width: 35px;
+    height: 35px;
+    border: none;
+    background: transparent;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: #555;
+    font-size: 17px;
+}
+
+.olho-senha:hover {
+    color: #c71f37;
 }
 
 /* CENTRO DO BANNER */
@@ -395,10 +418,8 @@ h2 {
   position: absolute;
   top: 15px;
   right: 15px;
-
   width: 20px;
   height: 20px;
-
   cursor: pointer;
   transition: .3s;
 }
@@ -466,7 +487,7 @@ h2 {
     z-index: 9999;
   }
 
-  /* Caixa do cadastro */
+  /* CADASTRO */
   .login-box {
     position: relative;
     width: 100%;
@@ -478,7 +499,6 @@ h2 {
     border-radius: 15px;
   }
 
-  /* Botão X */
   .x-preto {
     position: relative;
     width: 100%;
@@ -494,7 +514,6 @@ h2 {
     cursor: pointer;
   }
 
-  /* Cadastro */
   .cadastro {
     width: 100%;
   }
@@ -509,7 +528,6 @@ h2 {
     margin-bottom: 25px;
   }
 
-  /* Campos */
   .input-caixa {
     width: 100%;
     margin-bottom: 18px;
@@ -526,20 +544,19 @@ h2 {
     font-size: 15px;
   }
 
-  /* Botão cadastrar */
   .btn-cad {
     width: 100%;
     padding: 14px;
     margin-top: 5px;
   }
 
-  /* ÍCONE DO CADASTRO */
+  /* bonequinho do cadastro */
   .bonequinho {
     width: 28px;
     margin: 0;
   }
 
-  /* ÍCONE DO SOL */
+  /* IMAGENS */
   .sol {
     margin: 0;
   }
@@ -549,7 +566,6 @@ h2 {
     max-width: 25px;
   }
 
-  /* ÍCONE DA LUA */
   .lua {
     margin: 0;
   }
@@ -619,6 +635,10 @@ body.dark .input-caixa input::placeholder {
   color: #bbb;
 }
 
+body.dark .olho-senha {
+    color: white;
+}
+
 /* BENEFÍCIOS */
 body.dark .beneficios {
   background: #181818;
@@ -656,55 +676,7 @@ body.dark footer {
 }
 
 /* IMAGENS */
-/* Fechamento da página do cadastro */
+/* fechamento da página do cadastro */
 body.dark .x-claro {
   display: none;
-}
-
-/* ==============================
-   CAMPO DE SENHA COM OLHO
-============================== */
-
-.campo-senha {
-    position: relative;
-    width: 100%;
-}
-
-.campo-senha input {
-    width: 100%;
-    box-sizing: border-box;
-    padding-right: 45px;
-}
-
-.olho-senha {
-    position: absolute;
-
-    right: 10px;
-    top: 50%;
-
-    transform: translateY(-50%);
-
-    width: 35px;
-    height: 35px;
-
-    border: none;
-    background: transparent;
-
-    cursor: pointer;
-
-    display: flex;
-    align-items: center;
-    justify-content: center;
-
-    color: #555;
-
-    font-size: 17px;
-}
-
-.olho-senha:hover {
-    color: #c71f37;
-}
-
-body.dark .olho-senha {
-    color: white;
 }
