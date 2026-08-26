@@ -213,7 +213,7 @@ textarea {
 }
 
 .dropdown-content li:hover a {
-    color: #ffffff;
+  color: #ffffff;
 }
 
 /* CARROSSEL */
@@ -348,6 +348,54 @@ button img {
   margin-bottom: 20px;
 }
 
+/* JANELA DAS PÁGINAS */
+.paginas {
+  display: flex;
+  gap: 10px;
+  align-items: center;
+  font-family: Arial, sans-serif;
+  justify-content: center;
+  text-align: center;
+  margin: 35px;
+}
+
+.paginas a {
+  text-decoration: none;
+  color: black;
+  padding: 6px 10px;
+  border: 1px solid #751e1e;
+  border-radius: 20px;
+}
+
+.paginas a.active {
+  border: 1px solid #751e1e;
+  background-color: red;
+  color: #f4f4f4;
+  font-weight: bold;
+}
+
+.paginas a:hover {
+  border-color: red;
+  color: #751e1e;
+  border: 1px solid #751e1e;
+}
+
+.active-branco {
+  background-color: #f4f4f4;
+}
+
+/* FOOTER */
+footer {
+  color: white;
+  text-align: center;
+  padding: 10px;
+  background: linear-gradient(to right, #000000, #d32f2f, #000000, #d32f2f, #000000);
+}
+
+footer p {
+  font-family: Arial, sans-serif;
+}
+
 /* FAVORITOS */
 .favorito {
   position: absolute;
@@ -395,54 +443,6 @@ button img {
 
 #toast.show {
   opacity: 1;
-}
-
-/* JANELA DAS PÁGINAS */
-.paginas {
-  display: flex;
-  gap: 10px;
-  align-items: center;
-  font-family: Arial, sans-serif;
-  justify-content: center;
-  text-align: center;
-  margin: 35px;
-}
-
-.paginas a {
-  text-decoration: none;
-  color: black;
-  padding: 6px 10px;
-  border: 1px solid #751e1e;
-  border-radius: 20px;
-}
-
-.paginas a.active {
-  border: 1px solid #751e1e;
-  background-color: red;
-  color: #f4f4f4;
-  font-weight: bold;
-}
-
-.paginas a:hover {
-  border-color: red;
-  color: #751e1e;
-  border: 1px solid #751e1e;
-}
-
-.active-branco {
-  background-color: #f4f4f4;
-}
-
-/* FOOTER */
-footer {
-  color: white;
-  text-align: center;
-  padding: 10px;
-  background: linear-gradient(to right, #000000, #d32f2f, #000000, #d32f2f, #000000);
-}
-
-footer p {
-  font-family: Arial, sans-serif;
 }
 
 /* TEXTO */
@@ -509,64 +509,36 @@ button:hover {
   background-color: #E01E37;
 }
 
-/* =========================================
-   ÚLTIMAS NOTÍCIAS
-========================================= */
-
+/* ÚLTIMAS NOTÍCIAS */
 .titulo-ultimas {
-    width: 90%;
-    max-width: 1200px;
-
-    margin: 120px auto 35px;
-
-    text-align: left;
+  width: 90%;
+  max-width: 1200px;
+  margin: 120px auto 35px;
+  text-align: left;
 }
 
 .titulo-ultimas h1 {
-    font-size: 36px;
-
-    margin: 0 0 8px;
-
-    color: #111;
+  font-size: 36px;
+  margin: 0 0 8px;
+  color: #111;
 }
 
 .titulo-ultimas p {
-    font-size: 16px;
-
-    color: #666;
-
-    margin: 0;
+  font-size: 16px;
+  color: #666;
+  margin: 0;
 }
 
 
 /* MODO ESCURO */
-
 body.dark .titulo-ultimas h1 {
-    color: white;
+  color: white;
 }
 
 body.dark .titulo-ultimas p {
-    color: #ccc;
+  color: #ccc;
 }
 
-
-/* MOBILE */
-
-/* @media (max-width: 768px) {
-
-    .titulo-ultimas {
-        width: 90%;
-
-        margin-top: 100px;
-        margin-bottom: 25px;
-    }
-
-    .titulo-ultimas h1 {
-        font-size: 29px;
-        line-height: 1.18;
-    }
-
-} */
 
 /* MOBILE */
 @media (max-width: 768px) {
@@ -574,9 +546,9 @@ body.dark .titulo-ultimas p {
   /* NAVEGADOR */
   nav {
     padding: 5px 5px;
-}
+  }
 
-.nav-direita {
+  .nav-direita {
     display: flex;
     align-items: center;
     justify-content: flex-end;
@@ -587,16 +559,15 @@ body.dark .titulo-ultimas p {
     margin-left: auto;
     margin-right: 0;
     text-align: center;
-}
+  }
 
-  /* PESQUISAR */
-  /* esconde a busca do cabeçalho */
   .nav-direita .busca-container {
     display: none;
   }
 
+  /* PESQUISAR */
   .busca-mobile {
-     display: none;
+    display: none;
   }
 
   .busca-mobile .busca-container {
@@ -609,6 +580,51 @@ body.dark .titulo-ultimas p {
     border-radius: 20px;
     border: 1px solid #ccc;
     outline: none;
+  }
+
+  /* MODO CLARO E ESCURO */
+  .sol,
+  .lua {
+    margin-top: 0;
+    position: relative;
+    top: 3px;
+  }
+
+  /* HAMBURGUER */
+  .hamburguer {
+    width: 40px;
+  }
+
+  .dropdown-content {
+    width: 190px;
+    right: 0;
+    left: auto;
+    top: 48px;
+    padding: 0;
+    box-sizing: border-box;
+    border-radius: 8px;
+  }
+
+  .dropdown-content ul {
+    width: 100%;
+    margin: 0;
+    padding: 0;
+  }
+
+  .dropdown-content li {
+    padding: 6px 10px;
+    width: 100%;
+    box-sizing: border-box;
+  }
+
+  .dropdown-content li a {
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+    gap: 5px;
+    width: 100%;
+    font-size: 14px;
+    white-space: nowrap;
   }
 
   /* BANNER */
@@ -633,57 +649,7 @@ body.dark .titulo-ultimas p {
     top: 85%;
     padding: 2px;
   }
-/* AJUSTE DOS ÍCONES NO MOBILE */
-.sol,
-.lua {
-    margin-top: 0;
-    position: relative;
-    top: 3px;
-}
 
-
-.nav-direita {
-    gap: 8px;
-}
-
-/* Hambúrguer um pouco maior */
-.hamburguer {
-    width: 40px;
-}
-
-/* Menu proporcional ao hambúrguer */
-.dropdown-content {
-        width: 190px;
-        right: 0;
-        left: auto;
-        top: 48px;
-        padding: 0;
-        box-sizing: border-box;
-        border-radius: 8px;
-    }
-
-/* Itens do menu proporcionais */
-.dropdown-content ul {
-        width: 100%;
-        margin: 0;
-        padding: 0;
-    }
-
-.dropdown-content li {
-        padding: 6px 10px;
-        width: 100%;
-        box-sizing: border-box;
-    }
-
-    .dropdown-content li a {
-        display: flex;
-        align-items: center;
-        justify-content: flex-start;
-        gap: 5px;
-        width: 100%;
-        font-size: 14px;
-        white-space: nowrap;
-    }
   /* NOTÍCIAS */
   .noticia {
     flex-direction: column;
@@ -717,8 +683,8 @@ body.dark .titulo-ultimas p {
 
   .text .button-banner {
     margin-top: 5px;
+  }
 }
-   }
 
 
 
@@ -822,25 +788,6 @@ body.dark .data {
   color: #b8b8b8;
 }
 
-/* FAVORITO */
-body.dark .favorito {
-  background: transparent;
-  border: none;
-}
-
-body.dark .favorito:hover {
-  background: transparent;
-  border: none;
-}
-
-body.dark .favorito i {
-  color: #bdbdbd;
-}
-
-body.dark .favorito.ativo i {
-  color: red;
-}
-
 /* JANELA DAS PÁGINAS */
 body.dark .paginas a {
   color: white;
@@ -864,6 +811,25 @@ body.dark .paginas a:hover {
 /* FOOTER */
 body.dark footer {
   background: linear-gradient(to right, #111, #7a0000, #111, #7a0000, #111);
+}
+
+/* FAVORITO */
+body.dark .favorito {
+  background: transparent;
+  border: none;
+}
+
+body.dark .favorito:hover {
+  background: transparent;
+  border: none;
+}
+
+body.dark .favorito i {
+  color: #bdbdbd;
+}
+
+body.dark .favorito.ativo i {
+  color: red;
 }
 
 /* BOTÕES */
