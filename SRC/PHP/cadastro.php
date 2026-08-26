@@ -1,5 +1,7 @@
 <?php
 
+session_start();
+
 require "conexao.php";
 
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
@@ -26,11 +28,26 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $senhaHash = password_hash($senha, PASSWORD_DEFAULT);
 
     // Insere o usuário
-    $sql = $conexao->prepare("INSERT INTO usuarios (nome, email, senha) VALUES (?, ?, ?)");
+    $sql = $conexao->prepare(
+        "INSERT INTO usuarios (nome, email, senha) VALUES (?, ?, ?)"
+    );
+
     $sql->bind_param("sss", $nome, $email, $senhaHash);
 
     if ($sql->execute()) {
-        echo "Cadastro realizado com sucesso!";
+
+        // Pega o ID do usuário que acabou de ser cadastrado
+        $idUsuario = $conexao->insert_id;
+
+        // Faz o login automaticamente
+        $_SESSION["usuario_id"] = $idUsuario;
+        $_SESSION["usuario_nome"] = $nome;
+        $_SESSION["usuario_email"] = $email;
+
+        // Redireciona para a página principal
+        header("Location: ../PAGES/PÁGINAS/index1.html");
+        exit;
+
     } else {
         echo "Erro ao cadastrar: " . $sql->error;
     }

@@ -7,7 +7,7 @@ require "conexao.php";
 
 if (!isset($_SESSION["usuario_id"])) {
 
-    header("Location: ../PÁGINAS/index.html");
+    header("Location: ../../index.html");
     exit;
 
 }

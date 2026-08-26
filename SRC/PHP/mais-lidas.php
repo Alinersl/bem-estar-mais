@@ -1,6 +1,6 @@
 <?php
 
-require "../PHP/conexao.php";
+require "conexao.php";
 
 $sql = "SELECT * FROM noticias ORDER BY visualizacoes DESC";
 
@@ -15,7 +15,7 @@ $resultado = $conexao->query($sql);
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-    <link rel="stylesheet" href="../CSS/style.css">
+    <link rel="stylesheet" href="../ASSETS/CSS/style.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
 
     <title>Mais Lidas - Bem Estar+</title>
@@ -28,8 +28,8 @@ $resultado = $conexao->query($sql);
         <nav>
 
             <div class="nav-esquerda">
-                <a href="../PÁGINAS/index1.html">
-                    <img src="../IMAGENS/LOGO/logo (2).png" alt="Logo Bem Estar+" class="logo">
+                <a href="../PAGES/PÁGINAS/index1.html">
+                    <img src="../ASSETS/IMAGENS/LOGO/logo (2).png" alt="Logo Bem Estar+" class="logo">
                 </a>
             </div>
 
@@ -43,18 +43,18 @@ $resultado = $conexao->query($sql);
 
                 <!-- MODO CLARO E ESCURO -->
                 <div class="sol" id="sol">
-                    <img src="../IMAGENS/ÍCONES/sol.png" alt="Modo claro">
+                    <img src="../ASSETS/IMAGENS/ÍCONES/sol.png" alt="Modo claro">
                 </div>
 
                 <div class="lua" id="lua">
-                    <img src="../IMAGENS/ÍCONES/lua.png" alt="Modo escuro">
+                    <img src="../ASSETS/IMAGENS/ÍCONES/lua.png" alt="Modo escuro">
                 </div>
 
                 <!-- MENU -->
                 <div class="dropdown">
 
                     <img
-                        src="../IMAGENS/ÍCONES/hamburguer.png"
+                        src="../ASSETS/IMAGENS/ÍCONES/hamburguer.png"
                         class="hamburguer"
                         id="hamburguer"
                         alt="Menu"
@@ -62,7 +62,7 @@ $resultado = $conexao->query($sql);
 
                     <div class="dropdown-content" id="menu">
                         <ul>
-                            <li><a href="./index.html#sobre">🏠 Sobre Nós</a></li>
+                            <li><a href="../../index.html">🏠 Sobre Nós</a></li>
                             <li><a href="#">🆕 Últimas Notícias</a></li>
                             <li><a href="./mais-lidas.php">🔥 Mais Lidas</a></li>
                             <li><a href="#">❤️ Favoritas</a></li>
@@ -134,7 +134,7 @@ $resultado = $conexao->query($sql);
 
     <div id="toast"></div>
 
-    <script src="../SCRIPT/script.js"></script>
+    <script src="../ASSETS/SCRIPT/script.js"></script>
 
 </body>
 

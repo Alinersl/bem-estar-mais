@@ -9,7 +9,7 @@ require "conexao.php";
 
 if (!isset($_SESSION["usuario_id"])) {
 
-    header("Location: ../PÁGINAS/index.html");
+    header("Location: ../../index.html");
 
     exit;
 
@@ -51,7 +51,7 @@ $usuario = $resultado->fetch_assoc();
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Meu Perfil - Bem Estar+</title>
 
-    <link rel="stylesheet" href="../CSS/styleperfil.css">
+    <link rel="stylesheet" href="../ASSETS/CSS/styleperfil.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
 </head>
 
