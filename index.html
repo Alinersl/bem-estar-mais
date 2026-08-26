@@ -5,7 +5,7 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-  <link rel="stylesheet" href="../CSS/stylesobre.css">
+  <link rel="stylesheet" href="./SRC/ASSETS/CSS/stylesobre.css">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
 
   <title>Bem Estar+</title>
@@ -18,265 +18,108 @@
     <nav>
 
       <div class="nav-esquerda">
-
         <a href="./index.html">
-          <img
-            src="../IMAGENS/LOGO/logo (2).png"
-            alt="Logo Bem Estar+"
-            class="logo"
-          >
+          <img src="/SRC/ASSETS/IMAGENS/LOGO/logo (2).png" alt="Logo Bem Estar+" class="logo">
         </a>
-
       </div>
-
 
       <div class="nav-direita">
 
         <!-- MODO CLARO -->
         <div class="sol" id="sol">
-          <img
-            src="../IMAGENS/ÍCONES/sol.png"
-            alt="Modo claro"
-          >
+          <img src="/SRC/ASSETS/IMAGENS/ÍCONES/sol.png" alt="Modo claro">
         </div>
 
         <!-- MODO ESCURO -->
         <div class="lua" id="lua">
-          <img
-            src="../IMAGENS/ÍCONES/lua.png"
-            alt="Modo escuro"
-          >
+          <img src="/SRC/ASSETS/IMAGENS/ÍCONES/lua.png" alt="Modo escuro">
         </div>
 
-
         <!-- BOTÃO CADASTRO / LOGIN -->
-        <img
-          src="../IMAGENS/ÍCONES/cadastro.png"
-          alt="Abrir login"
-          class="bonequinho"
-          id="btnLogin"
-        >
+        <img src="/SRC/ASSETS/IMAGENS/ÍCONES/cadastro.png" alt="Abrir login" class="bonequinho" id="btnLogin">
 
-
-        <!-- OVERLAY -->
         <div id="overlay" class="overlay">
-
           <div class="login-box">
-
 
             <!-- BOTÕES FECHAR -->
             <div class="x-preto">
-
-              <img
-                src="../IMAGENS/ÍCONES/x.png"
-                alt="Fechar"
-                id="btnFechar"
-                class="x-claro"
-              >
-
-              <img
-                src="../IMAGENS/ÍCONES/x-branco.png"
-                alt="Fechar"
-                id="btnFecharBranco"
-                class="x-escuro"
-              >
-
+              <img src="/SRC/ASSETS/IMAGENS/ÍCONES/x.png" alt="Fechar" id="btnFechar" class="x-claro">
+              <img src="/SRC/ASSETS/IMAGENS/ÍCONES/x-branco.png" alt="Fechar" id="btnFecharBranco" class="x-escuro">
             </div>
 
-
-            <!-- =========================
-                 CADASTRO
-            ========================== -->
-
+            <!-- CADASTRO -->
             <div class="cadastro" id="cadastro">
-
               <h2>Cadastro</h2>
+              <p>Crie sua conta e comece sua jornada saudável!</p>
+              <form action="/SRC/PHP/cadastro.php" method="POST">
 
-              <p>
-                Crie sua conta e comece sua jornada saudável!
-              </p>
-
-
-              <form action="../PHP/cadastro.php" method="POST">
-
-                <!-- NOME -->
+                <!-- nome -->
                 <div class="input-caixa">
-
                   <label>Nome</label>
-
-                  <input
-                    type="text"
-                    name="nome"
-                    placeholder="Nome de Usuário"
-                    required
-                  >
-
+                  <input type="text" name="nome" placeholder="Nome de Usuário" required>
                 </div>
 
-
-                <!-- EMAIL -->
+                <!-- email -->
                 <div class="input-caixa">
-
                   <label>Email</label>
-
-                  <input
-                    type="email"
-                    name="email"
-                    placeholder="Insira seu Email"
-                    required
-                  >
-
+                  <input type="email" name="email" placeholder="Insira seu Email" required>
                 </div>
 
-
-                <!-- SENHA -->
+                <!-- senha -->
                 <div class="input-caixa">
-
                   <label>Senha</label>
 
                   <div class="campo-senha">
-
-                    <input
-                      type="password"
-                      name="senha"
-                      id="senhaCadastro"
-                      placeholder="Digite sua Senha"
-                      required
-                    >
-
-                    <button
-                      type="button"
-                      class="olho-senha"
-                      onclick="mostrarSenha('senhaCadastro', this)"
-                      title="Mostrar senha"
-                    >
-
-                      <i class="fa-solid fa-eye"></i>
-
-                    </button>
-
+                    <input type="password" name="senha" id="senhaCadastro" placeholder="Digite sua Senha" required>
+                    <button type="button" class="olho-senha" onclick="mostrarSenha('senhaCadastro', this)"
+                      title="Mostrar senha"><i class="fa-solid fa-eye"></i></button>
                   </div>
 
                 </div>
 
-
-                <button
-                  type="submit"
-                  class="btn-cad"
-                >
-                  Cadastrar
-                </button>
+                <button type="submit" class="btn-cad">Cadastrar</button>
 
               </form>
-
-
-              <p class="trocar-formulario">
-
-                Já tem uma conta?
-
-                <span id="irParaLogin">
-                  Faça login
-                </span>
-
-              </p>
+              <p class="trocar-formulario">Já tem uma conta?<span id="irParaLogin">Faça login</span></p>
 
             </div>
 
-
-            <!-- =========================
-                 LOGIN
-            ========================== -->
-
+            <!-- LOGIN -->
             <div class="login" id="login">
 
               <h2>Login</h2>
+              <p>Entre na sua conta.</p>
+              <p id="mensagemErro" class="mensagem-erro"></p>
 
-              <p>
-                Entre na sua conta.
-              </p>
+              <form action="/SRC/PHP/login.php" method="POST">
 
-
-              <p
-                id="mensagemErro"
-                class="mensagem-erro"
-              ></p>
-
-
-              <form action="../PHP/login.php" method="POST">
-
-                <!-- EMAIL -->
+                <!-- email -->
                 <div class="input-caixa">
-
                   <label>Email</label>
-
-                  <input
-                    type="email"
-                    name="email"
-                    placeholder="Insira seu Email"
-                    required
-                  >
-
+                  <input type="email" name="email" placeholder="Insira seu Email" required>
                 </div>
 
-
-                <!-- SENHA -->
+                <!-- senha -->
                 <div class="input-caixa">
-
                   <label>Senha</label>
 
                   <div class="campo-senha">
-
-                    <input
-                      type="password"
-                      name="senha"
-                      id="senhaLogin"
-                      placeholder="Digite sua Senha"
-                      required
-                    >
-
-                    <button
-                      type="button"
-                      class="olho-senha"
-                      onclick="mostrarSenha('senhaLogin', this)"
-                      title="Mostrar senha"
-                    >
-
-                      <i class="fa-solid fa-eye"></i>
-
-                    </button>
-
+                    <input type="password" name="senha" id="senhaLogin" placeholder="Digite sua Senha" required>
+                    <button type="button" class="olho-senha" onclick="mostrarSenha('senhaLogin', this)"
+                      title="Mostrar senha"><i class="fa-solid fa-eye"></i></button>
                   </div>
 
                 </div>
 
-
-                <button
-                  type="submit"
-                  class="btn-cad"
-                >
-                  Entrar
-                </button>
+                <button type="submit" class="btn-cad">Entrar</button>
 
               </form>
 
-
-              <p class="trocar-formulario">
-
-                Não tem uma conta?
-
-                <span id="irParaCadastro">
-                  Cadastre-se
-                </span>
-
-              </p>
+              <p class="trocar-formulario">Não tem uma conta?<span id="irParaCadastro">Cadastre-se</span></p>
 
             </div>
-
-
           </div>
-
         </div>
-
       </div>
 
     </nav>
@@ -287,143 +130,64 @@
   <main>
 
     <div class="banner-center">
-
-      <h1>
-        Sua saúde começa pela sua
-        <span>alimentação</span>.
-      </h1>
-
-
-      <p>
-        Descubra como transformar seu corpo e sua rotina através
-        de uma nutrição equilibrada, saudável e inteligente.
+      <h1>Sua saúde começa pela sua<span>alimentação</span>.</h1>
+      <p>Descubra como transformar seu corpo e sua rotina através de uma nutrição equilibrada, saudável e inteligente.
       </p>
-
-
-      <a href="../PÁGINAS/index1.html">
-
-        <button>
-          Informações completas
-        </button>
-
+      <a href="/SRC/PAGES/PÁGINAS/index.pagina1.html">
+        <button>Informações completas</button>
       </a>
-
     </div>
 
   </main>
-
 
   <!-- BENEFÍCIOS -->
   <section class="beneficios">
 
     <div class="titulo">
-
-      <h2>
-        Por que cuidar da alimentação?
-      </h2>
-
-      <p>
-        Pequenas mudanças podem trazer resultados gigantes.
-      </p>
-
+      <h2>Por que cuidar da alimentação?</h2>
+      <p>Pequenas mudanças podem trazer resultados gigantes.</p>
     </div>
-
 
     <div class="cards">
 
-
       <div class="card">
-
-        <h3>
-          Mais Energia
-        </h3>
-
-        <p>
-          Uma alimentação equilibrada melhora disposição,
-          foco e produtividade no dia a dia.
-        </p>
-
+        <h3>Mais Energia</h3>
+        <p>Uma alimentação equilibrada melhora disposição, foco e produtividade no dia a dia.</p>
       </div>
 
-
       <div class="card">
-
-        <h3>
-          Saúde Física
-        </h3>
-
-        <p>
-          Nutrientes corretos ajudam o corpo a funcionar
-          melhor e fortalecem o organismo.
-        </p>
-
+        <h3>Saúde Física</h3>
+        <p>Nutrientes corretos ajudam o corpo a funcionar melhor e fortalecem o organismo.</p>
       </div>
 
-
       <div class="card">
-
-        <h3>
-          Bem-estar Mental
-        </h3>
-
-        <p>
-          Comer bem também influencia humor,
-          concentração e qualidade do sono.
-        </p>
-
+        <h3>Bem-estar Mental</h3>
+        <p>Comer bem também influencia humor, concentração e qualidade do sono.</p>
       </div>
-
 
     </div>
 
   </section>
-
 
   <!-- SOBRE -->
-  <section
-    class="sobre"
-    id="sobre"
-  >
+  <section class="sobre" id="sobre">
 
-    <img
-      src="../IMAGENS/PÁGINA PRINCIPAL/nutricao.e.qualidade.de.vida.jpg"
-      alt="imagem do lado esquerdo do sobre o site"
-    >
-
+    <img src="/SRC/ASSETS/IMAGENS/PÁGINA PRINCIPAL/nutricao.e.qualidade.de.vida.jpg" alt="imagem do lado esquerdo do sobre o site">
 
     <div class="texto">
-
-      <h2>
-        Nutrição é qualidade de vida.
-      </h2>
-
-      <p>
-        Nosso objetivo é ajudar pessoas a criarem hábitos
-        saudáveis sem dietas impossíveis ou restrições extremas.
-      </p>
-
-      <p>
-        Com acompanhamento, receitas e dicas práticas,
-        você aprende a cuidar do seu corpo de forma leve,
-        moderna e sustentável.
-      </p>
-
+      <h2>Nutrição é qualidade de vida.</h2>
+      <p>Nosso objetivo é ajudar pessoas a criarem hábitos saudáveis sem dietas impossíveis ou restrições extremas.</p>
+      <p>Com acompanhamento, receitas e dicas práticas, você aprende a cuidar do seu corpo de forma leve, moderna e sustentável.</p>
     </div>
 
   </section>
-
 
   <!-- FOOTER -->
   <footer>
-
-    <p>
-      © 2025 BemEstar+ | Todos os direitos reservados
-    </p>
-
+    <p>© 2025 BemEstar+ | Todos os direitos reservados</p>
   </footer>
 
-
-  <script src="../SCRIPT/scriptsobre.js"></script>
+  <script src="/SRC/ASSETS/SCRIPT/scriptsobre.js"></script>
 
 </body>
 
