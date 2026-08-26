@@ -31,14 +31,20 @@ $usuario = $resultado->fetch_assoc();
 
 // FOTO
 if (!empty($usuario["foto_perfil"])) {
-    $fotoPerfil = $usuario["foto_perfil"];
-} 
 
-else {
+    $fotoPerfil = $usuario["foto_perfil"];
+
+} else {
+
     $fotoPerfil = "../IMAGENS/perfil.png";
+
 }
 
-MENSAGENS
+
+// =========================
+// MENSAGENS
+// =========================
+
 $mensagem = "";
 
 $tipoMensagem = "";
