@@ -32,78 +32,394 @@ function mover() {
 }
 
 ////////////////// PESQUISAR //////////////////
+
 const campoBusca = document.getElementById('campoBusca');
+const campoBuscaMobile = document.getElementById('campoBuscaMobile');
+
 const sugestoesBox = document.getElementById('sugestoes');
-const noticias = document.querySelectorAll('.noticia');
+const sugestoesBoxMobile = document.getElementById('sugestoesMobile');
+
+const containerNoticias = document.querySelector('.container');
+
+const mensagemNaoEncontrada =
+    document.getElementById('mensagemNaoEncontrada');
+
+const paginas =
+    document.querySelector('.paginas');
+
 
 const sugestoes = [
-  "água",
-  "sono",
-  "açúcar",
-  "imunidade",
-  "metabolismo",
-  "frutas",
-  "ultraprocessados",
-  "proteína",
-  "digestão"
+    "água",
+    "sono",
+    "açúcar",
+    "imunidade",
+    "metabolismo",
+    "frutas",
+    "ultraprocessados",
+    "proteína",
+    "digestão"
 ];
 
-// remover acento
+
+// ==========================================
+// TODAS AS PÁGINAS DE NOTÍCIAS
+// ==========================================
+
+const paginasNoticias = [
+    "index.pagina1.html",
+    "index.pagina2.html",
+    "index.pagina3.html",
+    "index.pagina4.html"
+];
+
+
+// ==========================================
+// GUARDAR TODAS AS NOTÍCIAS
+// ==========================================
+
+let todasNoticias = [];
+
+
+// ==========================================
+// REMOVER ACENTOS
+// ==========================================
+
 function removerAcentos(texto) {
-  return texto.normalize("NFD").replace(/[\u0300-\u036f]/g, "");
+
+    return texto
+        .normalize("NFD")
+        .replace(/[\u0300-\u036f]/g, "");
+
 }
 
-// mostrar sugestões e filtrar notícias
-campoBusca.addEventListener('input', () => {
 
-  const valor = removerAcentos(campoBusca.value.toLowerCase());
+// ==========================================
+// CARREGAR NOTÍCIAS DAS 4 PÁGINAS
+// ==========================================
 
-  // Filtrar notícias
-  noticias.forEach(noticia => {
-    const texto = removerAcentos(noticia.textContent.toLowerCase());
+async function carregarTodasNoticias() {
 
-    if (valor === "" || texto.includes(valor)) {
-      noticia.style.display = "";
-    } else {
-      noticia.style.display = "none";
+    todasNoticias = [];
+
+    for (const pagina of paginasNoticias) {
+
+        try {
+
+            const resposta =
+                await fetch(pagina);
+
+            const html =
+                await resposta.text();
+
+            const parser =
+                new DOMParser();
+
+            const documento =
+                parser.parseFromString(
+                    html,
+                    "text/html"
+                );
+
+            const noticiasPagina =
+                documento.querySelectorAll(
+                    ".noticia"
+                );
+
+
+            noticiasPagina.forEach(noticia => {
+
+                todasNoticias.push(
+                    noticia.cloneNode(true)
+                );
+
+            });
+
+
+        } catch (erro) {
+
+            console.log(
+                "Erro ao carregar:",
+                pagina,
+                erro
+            );
+
+        }
+
     }
-  });
 
-  sugestoesBox.innerHTML = '';
+}
 
-  if (valor === '') {
-    sugestoesBox.style.display = 'none';
-    return;
-  }
 
-  const filtradas = sugestoes.filter(item =>
-    removerAcentos(item.toLowerCase()).includes(valor)
-  );
+// CARREGA ASSIM QUE ABRIR A PÁGINA
+carregarTodasNoticias();
 
-  filtradas.forEach(item => {
-    const div = document.createElement('div');
-    div.classList.add('sugestao');
-    div.textContent = item;
 
-    div.addEventListener('click', () => {
-      campoBusca.value = item;
-      campoBusca.dispatchEvent(new Event('input'));
-      sugestoesBox.style.display = 'none';
+// ==========================================
+// FILTRAR NOTÍCIAS
+// ==========================================
+
+function filtrarNoticias(valorPesquisa) {
+
+    const valor =
+        removerAcentos(
+            valorPesquisa
+                .toLowerCase()
+                .trim()
+        );
+
+
+    // ======================================
+    // SE A PESQUISA ESTIVER VAZIA
+    // ======================================
+
+    if (valor === "") {
+
+        location.reload();
+
+        return;
+
+    }
+
+
+    // LIMPA AS NOTÍCIAS DA PÁGINA ATUAL
+
+    const noticiasAtuais =
+        containerNoticias.querySelectorAll(
+            ".noticia"
+        );
+
+    noticiasAtuais.forEach(noticia => {
+
+        noticia.remove();
+
     });
 
-    sugestoesBox.appendChild(div);
-  });
 
-  sugestoesBox.style.display = filtradas.length ? 'block' : 'none';
-});
+    let encontradas = 0;
 
-// esconder sugestões ao clicar fora
-document.addEventListener('click', (e) => {
-  if (!e.target.closest('.busca-container')) {
-    sugestoesBox.style.display = 'none';
-  }
-});
 
+    // ======================================
+    // PROCURA NAS 4 PÁGINAS
+    // ======================================
+
+    todasNoticias.forEach(noticia => {
+
+        const texto =
+            removerAcentos(
+                noticia.textContent
+                    .toLowerCase()
+            );
+
+
+        if (texto.includes(valor)) {
+
+            const copia =
+                noticia.cloneNode(true);
+
+            containerNoticias.appendChild(
+                copia
+            );
+
+            encontradas++;
+
+        }
+
+    });
+
+
+    // ======================================
+    // NENHUMA NOTÍCIA ENCONTRADA
+    // ======================================
+
+    if (encontradas === 0) {
+
+        mensagemNaoEncontrada.style.display =
+            "block";
+
+    } else {
+
+        mensagemNaoEncontrada.style.display =
+            "none";
+
+    }
+
+
+    // ESCONDE NUMERAÇÃO DURANTE PESQUISA
+
+    if (paginas) {
+
+        paginas.style.display =
+            "none";
+
+    }
+
+}
+
+
+// ==========================================
+// CONFIGURAR PESQUISA
+// ==========================================
+
+function configurarPesquisa(
+    campo,
+    caixa
+) {
+
+    if (!campo || !caixa) {
+        return;
+    }
+
+
+    campo.addEventListener(
+        "input",
+        () => {
+
+            const valor =
+                removerAcentos(
+                    campo.value
+                        .toLowerCase()
+                        .trim()
+                );
+
+
+            // ==================================
+            // CAMPO VAZIO
+            // ==================================
+
+            if (valor === "") {
+
+                location.reload();
+
+                return;
+
+            }
+
+
+            filtrarNoticias(
+                campo.value
+            );
+
+
+            // ==================================
+            // SUGESTÕES
+            // ==================================
+
+            caixa.innerHTML = "";
+
+
+            const filtradas =
+                sugestoes.filter(item =>
+
+                    removerAcentos(
+                        item.toLowerCase()
+                    ).includes(valor)
+
+                );
+
+
+            filtradas.forEach(item => {
+
+                const div =
+                    document.createElement(
+                        "div"
+                    );
+
+                div.classList.add(
+                    "sugestao"
+                );
+
+                div.textContent =
+                    item;
+
+
+                div.addEventListener(
+                    "click",
+                    () => {
+
+                        campo.value =
+                            item;
+
+                        filtrarNoticias(
+                            item
+                        );
+
+                        caixa.style.display =
+                            "none";
+
+                    }
+                );
+
+
+                caixa.appendChild(
+                    div
+                );
+
+            });
+
+
+            caixa.style.display =
+                filtradas.length
+                    ? "block"
+                    : "none";
+
+        }
+    );
+
+}
+
+
+// ==========================================
+// DESKTOP
+// ==========================================
+
+configurarPesquisa(
+    campoBusca,
+    sugestoesBox
+);
+
+
+// ==========================================
+// MOBILE
+// ==========================================
+
+configurarPesquisa(
+    campoBuscaMobile,
+    sugestoesBoxMobile
+);
+
+
+// ==========================================
+// FECHAR SUGESTÕES
+// ==========================================
+
+document.addEventListener(
+    "click",
+    (e) => {
+
+        if (
+            !e.target.closest(
+                ".busca-container"
+            )
+        ) {
+
+            if (sugestoesBox) {
+
+                sugestoesBox.style.display =
+                    "none";
+
+            }
+
+            if (sugestoesBoxMobile) {
+
+                sugestoesBoxMobile.style.display =
+                    "none";
+
+            }
+
+        }
+
+    }
+);
 ////////////////// HAMBURGUER //////////////////
 
 const hamburguer = document.getElementById("hamburguer");
