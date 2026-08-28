@@ -412,5 +412,36 @@ document.querySelectorAll('.noticia a').forEach(link => {
 
     });
 
+}); 
+let encontrouNoticia = false;
+
+noticias.forEach(noticia => {
+
+  const texto = removerAcentos(
+    noticia.textContent.toLowerCase()
+  );
+
+  if (valor === "" || texto.includes(valor)) {
+
+    noticia.style.display = "";
+    encontrouNoticia = true;
+
+  } else {
+
+    noticia.style.display = "none";
+
+  }
+
 });
 
+/* MOVE PÁGINAS E FOOTER QUANDO NÃO TEM RESULTADO */
+
+if (valor !== "" && !encontrouNoticia) {
+
+  document.body.classList.add("sem-resultados");
+
+} else {
+
+  document.body.classList.remove("sem-resultados");
+
+}
