@@ -365,41 +365,52 @@ document.addEventListener("DOMContentLoaded", () => {
 
 document.querySelectorAll('.noticia a').forEach(link => {
 
-  link.addEventListener('click', async function (event) {
+    link.addEventListener('click', async function (event) {
 
-    const href = this.getAttribute('href');
+        const href = this.getAttribute('href');
 
-    const resultado = href.match(/noticia(\d+)\.html/i);
+        const resultado =
+            href.match(/noticia(\d+)\.html/i);
 
-    if (!resultado) {
-      return;
-    }
+        if (!resultado) {
+            return;
+        }
 
-    event.preventDefault();
+        event.preventDefault();
 
-    const idNoticia = resultado[1];
+        const idNoticia = resultado[1];
 
-    console.log("Registrando notícia:", idNoticia);
+        console.log(
+            "Registrando notícia:",
+            idNoticia
+        );
 
-    try {
+        try {
 
-      const resposta = await fetch(
-        `/bem-estar-mais/PHP/registrarvisualizacoes.php?id=${idNoticia}`
-      );
+            const resposta = await fetch(
+                `../../PHP/registrarvisualizacoes.php?id=${idNoticia}`
+            );
 
-      const texto = await resposta.text();
+            const texto =
+                await resposta.text();
 
-      console.log("PHP respondeu:", texto);
+            console.log(
+                "PHP respondeu:",
+                texto
+            );
 
-    } catch (erro) {
+        } catch (erro) {
 
-      console.log("Erro ao registrar:", erro);
+            console.log(
+                "Erro ao registrar:",
+                erro
+            );
 
-    }
+        }
 
-    window.location.href = href;
+        window.location.href = href;
 
-  });
+    });
 
 });
 

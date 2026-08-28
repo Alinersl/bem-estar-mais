@@ -420,6 +420,39 @@ section li {
     margin: 0;
 }
 
+.acoes-comentario {
+    display: flex;
+    gap: 10px;
+    margin-top: 10px;
+}
+
+.btn-editar-comentario,
+.btn-excluir-comentario {
+    border: none;
+    padding: 7px 12px;
+    border-radius: 6px;
+    cursor: pointer;
+    font-size: 14px;
+}
+
+.btn-editar-comentario {
+    background-color: #e0e0e0;
+    color: #222;
+}
+
+.btn-editar-comentario:hover {
+    background-color: #c7c7c7;
+}
+
+.btn-excluir-comentario {
+    background-color: #d32f2f;
+    color: white;
+}
+
+.btn-excluir-comentario:hover {
+    background-color: #a51e1e;
+}
+
 .perfil {
     background: transparent;
     border: none;
