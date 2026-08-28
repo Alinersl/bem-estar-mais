@@ -234,78 +234,100 @@ if (btnFinal && idFavorito) {
     });
 
 }
-// COMENTARIOS
+////////////////// COMENTÁRIOS //////////////////
 
 const btnComentar = document.getElementById("btnComentar");
 const listaComentarios = document.getElementById("listaComentarios");
 
-// DESCOBRE SOZINHO QUAL NOTÍCIA ESTÁ ABERTA
+// DESCOBRE QUAL NOTÍCIA ESTÁ ABERTA
 const caminhoPagina = window.location.pathname;
 
 const resultadoNoticia = caminhoPagina.match(/noticia(\d+)\.html/i);
 
-const noticiaId = resultadoNoticia ? resultadoNoticia[1] : null;
+const noticiaId = resultadoNoticia
+    ? resultadoNoticia[1]
+    : null;
 
+
+// ==========================================
+// PUBLICAR COMENTÁRIO
+// ==========================================
 
 // PUBLICAR COMENTÁRIO
 
 if (btnComentar && noticiaId) {
 
-    btnComentar.addEventListener("click", async () => {
+    btnComentar.addEventListener(
+        "click",
+        async () => {
 
-        const nomeInput = document.getElementById("nome");
-        const comentarioInput = document.getElementById("comentario");
+            const comentarioInput =
+                document.getElementById(
+                    "comentario"
+                );
 
-        const nome = nomeInput.value.trim();
-        const texto = comentarioInput.value.trim();
+            const texto =
+                comentarioInput.value.trim();
 
-        if (nome === "" || texto === "") {
+            if (texto === "") {
 
-            alert("Preencha nome e comentário.");
+                alert(
+                    "Digite um comentário."
+                );
 
-            return;
-        }
+                return;
+            }
 
-        const dados = new FormData();
+            const dados =
+                new FormData();
 
-        dados.append("noticia_id", noticiaId);
-        dados.append("nome", nome);
-        dados.append("comentario", texto);
-
-        try {
-
-            const resposta = await fetch(
-                "../PHP/comentar.php",
-                {
-                    method: "POST",
-                    body: dados
-                }
+            dados.append(
+                "noticia_id",
+                noticiaId
             );
 
-            const retorno = await resposta.text();
-
-            console.log(retorno);
-
-            nomeInput.value = "";
-            comentarioInput.value = "";
-
-            carregarComentarios();
-
-        } catch (erro) {
-
-            console.log(
-                "Erro ao publicar comentário:",
-                erro
+            dados.append(
+                "comentario",
+                texto
             );
 
-        }
+            try {
 
-    });
+                const resposta =
+                    await fetch(
+                        "../../PHP/comentar.php",
+                        {
+                            method: "POST",
+                            body: dados
+                        }
+                    );
+
+                const retorno =
+                    await resposta.text();
+
+                console.log(retorno);
+
+                comentarioInput.value = "";
+
+                carregarComentarios();
+
+            } catch (erro) {
+
+                console.log(
+                    "Erro ao publicar comentário:",
+                    erro
+                );
+
+            }
+
+        }
+    );
 
 }
 
-
-// CARREGAR COMENTÁRIOS SALVOS
+// ==========================================
+// CARREGAR COMENTÁRIOS
+// ==========================================
 
 async function carregarComentarios() {
 
@@ -316,13 +338,12 @@ async function carregarComentarios() {
     try {
 
         const resposta = await fetch(
-            `../PHP/buscar-comentarios.php?noticia_id=${noticiaId}`
+            `../../PHP/buscar-comentarios.php?noticia_id=${noticiaId}`
         );
 
         const comentarios = await resposta.json();
 
         listaComentarios.innerHTML = "";
-
 
         if (comentarios.length === 0) {
 
@@ -336,48 +357,204 @@ async function carregarComentarios() {
             return;
         }
 
-
         comentarios.forEach(item => {
 
             const caixa = document.createElement("div");
-
             caixa.className = "comentario";
 
+            // NOME
+            const nomeUsuario = document.createElement("h4");
+            nomeUsuario.textContent = item.nome;
 
-            const nomeUsuario =
-                document.createElement("h4");
-
-            nomeUsuario.textContent =
-                item.nome;
-
-
-            const data =
-                document.createElement("small");
+            // DATA
+            const data = document.createElement("small");
 
             data.textContent =
                 formatarDataComentario(
                     item.data_comentario
                 );
 
-
-            const texto =
-                document.createElement("p");
+            // TEXTO DO COMENTÁRIO
+            const texto = document.createElement("p");
 
             texto.textContent =
                 item.comentario;
 
-
             caixa.appendChild(nomeUsuario);
-
             caixa.appendChild(data);
-
             caixa.appendChild(texto);
 
 
-            listaComentarios.appendChild(caixa);
+            // ==========================================
+            // SÓ MOSTRA EDITAR/EXCLUIR PARA O DONO
+            // ==========================================
+
+            if (item.pode_editar) {
+
+                const acoes =
+                    document.createElement("div");
+
+                acoes.className =
+                    "acoes-comentario";
+
+
+                // ==========================
+                // BOTÃO EDITAR
+                // ==========================
+
+                const btnEditar =
+                    document.createElement("button");
+
+                btnEditar.textContent = "Editar";
+
+                btnEditar.className =
+                    "btn-editar-comentario";
+
+
+                btnEditar.addEventListener(
+                    "click",
+                    async () => {
+
+                        const novoTexto = prompt(
+                            "Edite seu comentário:",
+                            item.comentario
+                        );
+
+                        if (
+                            novoTexto === null ||
+                            novoTexto.trim() === ""
+                        ) {
+                            return;
+                        }
+
+                        const dados =
+                            new FormData();
+
+                        dados.append(
+                            "id",
+                            item.id
+                        );
+
+                        dados.append(
+                            "comentario",
+                            novoTexto.trim()
+                        );
+
+                        try {
+
+                            const resposta =
+                                await fetch(
+                                    "../../PHP/editar-comentario.php",
+                                    {
+                                        method: "POST",
+                                        body: dados
+                                    }
+                                );
+
+                            const retorno =
+                                await resposta.text();
+
+                            console.log(retorno);
+
+                            carregarComentarios();
+
+                        } catch (erro) {
+
+                            console.log(
+                                "Erro ao editar:",
+                                erro
+                            );
+
+                        }
+
+                    }
+                );
+
+
+                // ==========================
+                // BOTÃO EXCLUIR
+                // ==========================
+
+                const btnExcluir =
+                    document.createElement("button");
+
+                btnExcluir.textContent = "Excluir";
+
+                btnExcluir.className =
+                    "btn-excluir-comentario";
+
+
+                btnExcluir.addEventListener(
+                    "click",
+                    async () => {
+
+                        const confirmar = confirm(
+                            "Deseja excluir este comentário?"
+                        );
+
+                        if (!confirmar) {
+                            return;
+                        }
+
+                        const dados =
+                            new FormData();
+
+                        dados.append(
+                            "id",
+                            item.id
+                        );
+
+                        try {
+
+                            const resposta =
+                                await fetch(
+                                    "../../PHP/excluir-comentario.php",
+                                    {
+                                        method: "POST",
+                                        body: dados
+                                    }
+                                );
+
+                            const retorno =
+                                await resposta.text();
+
+                            console.log(retorno);
+
+                            carregarComentarios();
+
+                        } catch (erro) {
+
+                            console.log(
+                                "Erro ao excluir:",
+                                erro
+                            );
+
+                        }
+
+                    }
+                );
+
+
+                acoes.appendChild(
+                    btnEditar
+                );
+
+                acoes.appendChild(
+                    btnExcluir
+                );
+
+                caixa.appendChild(
+                    acoes
+                );
+
+            }
+
+
+            listaComentarios.appendChild(
+                caixa
+            );
 
         });
-
 
     } catch (erro) {
 
@@ -391,7 +568,9 @@ async function carregarComentarios() {
 }
 
 
-// FORMATA DATA DO MYSQL
+// ==========================================
+// FORMATAR DATA
+// ==========================================
 
 function formatarDataComentario(dataMysql) {
 
@@ -412,6 +591,8 @@ function formatarDataComentario(dataMysql) {
 }
 
 
-// CARREGA AUTOMATICAMENTE AO ABRIR A NOTÍCIA
+// ==========================================
+// CARREGA AO ABRIR A NOTÍCIA
+// ==========================================
 
 carregarComentarios();
