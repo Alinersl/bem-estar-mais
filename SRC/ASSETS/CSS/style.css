@@ -3,13 +3,18 @@
   padding: 0;
 }
 
+html {
+  height: 100%;
+}
+
 body {
   font-family: Arial, sans-serif;
   background-color: #f4f4f4;
   padding-top: 64px;
+  min-height: 100vh;
+  box-sizing: border-box;
   display: flex;
   flex-direction: column;
-  min-height: 100vh
 }
 
 /* HEADER */
@@ -403,6 +408,7 @@ footer {
   padding: 10px;
   background: linear-gradient(to right, #000000, #d32f2f, #000000, #d32f2f, #000000);
   margin-top: auto;
+  flex-shrink: 0;
 }
 
 footer p {
@@ -550,36 +556,6 @@ body.dark .titulo-ultimas h1 {
 
 body.dark .titulo-ultimas p {
   color: #ccc;
-}
-
-/* =========================================
-   PESQUISA SEM RESULTADOS
-========================================= */
-
-body.sem-resultados {
-  min-height: 100vh;
-  box-sizing: border-box;
-}
-
-/* quando não encontrar notícia */
-body.sem-resultados .paginas {
-  position: fixed;
-  bottom: 65px;
-  left: 0;
-  width: 100%;
-  margin: 0;
-  z-index: 900;
-}
-
-/* footer no final da tela */
-body.sem-resultados footer {
-  position: fixed;
-  bottom: 0;
-  left: 0;
-  width: 100%;
-  box-sizing: border-box;
-  margin: 0;
-  z-index: 900;
 }
 
 /* =========================================
@@ -906,7 +882,7 @@ body.sem-resultados footer {
 
   footer {
     padding: 10px 5px;
-    margin-top: 5px;
+    margin-top: auto;
   }
 
   footer p {

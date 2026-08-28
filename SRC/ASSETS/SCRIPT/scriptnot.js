@@ -173,7 +173,7 @@ function atualizarBotaoFavorito() {
 
 
 // ==========================================
-// CLIQUE
+// CLIQUE FAVORITO
 // ==========================================
 
 if (btnFinal && idFavorito) {
@@ -294,10 +294,10 @@ if (btnFinal && idFavorito) {
 // DESCOBRE QUAL NOTÍCIA ESTÁ ABERTA
 // ==========================================
 
-const nomeArquivo = window.location.pathname;
+const caminhoPagina = window.location.pathname;
 
 const resultadoId =
-    nomeArquivo.match(/noticia(\d+)\.html/i);
+    caminhoPagina.match(/noticia(\d+)\.html/i);
 
 const noticiaId =
     resultadoId
@@ -629,27 +629,38 @@ async function carregarComentarios() {
                         );
 
 
-                        const resposta =
-                            await fetch(
-                                "../../PHP/editar-comentario.php",
-                                {
-                                    method: "POST",
-                                    body: dados
-                                }
+                        try {
+
+                            const resposta =
+                                await fetch(
+                                    "../../PHP/editar-comentario.php",
+                                    {
+                                        method: "POST",
+                                        body: dados
+                                    }
+                                );
+
+
+                            const resultado =
+                                await resposta.text();
+
+
+                            console.log(
+                                "Editar:",
+                                resultado
                             );
 
 
-                        const resultado =
-                            await resposta.text();
+                            carregarComentarios();
 
+                        } catch (erro) {
 
-                        console.log(
-                            "Editar:",
-                            resultado
-                        );
+                            console.error(
+                                "Erro ao editar:",
+                                erro
+                            );
 
-
-                        carregarComentarios();
+                        }
 
                     }
                 );
@@ -704,27 +715,38 @@ async function carregarComentarios() {
                         );
 
 
-                        const resposta =
-                            await fetch(
-                                "../../PHP/excluir-comentario.php",
-                                {
-                                    method: "POST",
-                                    body: dados
-                                }
+                        try {
+
+                            const resposta =
+                                await fetch(
+                                    "../../PHP/excluir-comentario.php",
+                                    {
+                                        method: "POST",
+                                        body: dados
+                                    }
+                                );
+
+
+                            const resultado =
+                                await resposta.text();
+
+
+                            console.log(
+                                "Excluir:",
+                                resultado
                             );
 
 
-                        const resultado =
-                            await resposta.text();
+                            carregarComentarios();
 
+                        } catch (erro) {
 
-                        console.log(
-                            "Excluir:",
-                            resultado
-                        );
+                            console.error(
+                                "Erro ao excluir:",
+                                erro
+                            );
 
-
-                        carregarComentarios();
+                        }
 
                     }
                 );
