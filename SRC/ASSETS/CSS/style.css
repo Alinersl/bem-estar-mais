@@ -7,9 +7,12 @@ body {
   font-family: Arial, sans-serif;
   background-color: #f4f4f4;
   padding-top: 64px;
+
   display: flex;
   flex-direction: column;
-  min-height: 100vh
+  min-height: 100vh;
+
+  box-sizing: border-box;
 }
 
 /* HEADER */
@@ -903,8 +906,19 @@ body.sem-resultados footer {
 
 
   /*FOOTER*/
+  
+footer {
+  color: white;
+  text-align: center;
+  padding: 10px;
+  background: linear-gradient(to right, #000000, #d32f2f, #000000, #d32f2f, #000000);
+  margin-top: auto;
+}
 
-  footer {
+footer p {
+  font-family: Arial, sans-serif;
+}
+  /* footer {
     padding: 10px 5px;
     margin-top: 5px;
   }
@@ -912,7 +926,7 @@ body.sem-resultados footer {
   footer p {
     font-size: 0.8rem;
   }
-
+ */
 
   /*BOTÕES*/
 
