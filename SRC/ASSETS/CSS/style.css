@@ -11,10 +11,12 @@ body {
   font-family: Arial, sans-serif;
   background-color: #f4f4f4;
   padding-top: 64px;
-  min-height: 100vh;
-  box-sizing: border-box;
+
   display: flex;
   flex-direction: column;
+  min-height: 100vh;
+
+  box-sizing: border-box;
 }
 
 /* HEADER */
@@ -879,8 +881,19 @@ body.dark .titulo-ultimas p {
 
 
   /*FOOTER*/
+  
+footer {
+  color: white;
+  text-align: center;
+  padding: 10px;
+  background: linear-gradient(to right, #000000, #d32f2f, #000000, #d32f2f, #000000);
+  margin-top: auto;
+}
 
-  footer {
+footer p {
+  font-family: Arial, sans-serif;
+}
+  /* footer {
     padding: 10px 5px;
     margin-top: auto;
   }
@@ -888,7 +901,7 @@ body.dark .titulo-ultimas p {
   footer p {
     font-size: 0.8rem;
   }
-
+ */
 
   /*BOTÕES*/
 
