@@ -62,18 +62,52 @@ function mostrarMensagem(texto) {
 }
 
 
+// ==========================================
 // DESCOBRE QUAL NOTÍCIA ESTÁ ABERTA
+// ==========================================
 
 const paginaAtual = window.location.pathname;
 
-const resultadoFavorito = paginaAtual.match(/noticia(\d+)\.html/i);
+const nomeArquivo = paginaAtual
+    .split("/")
+    .pop();
 
-const idFavorito = resultadoFavorito
-    ? Number(resultadoFavorito[1])
-    : null;
+let idFavorito = null;
 
 
+// noticia1.html, noticia2.html, noticia3.html...
+const resultadoFavorito = nomeArquivo.match(
+    /^noticia(\d+)\.html$/i
+);
+
+if (resultadoFavorito) {
+
+    idFavorito = Number(
+        resultadoFavorito[1]
+    );
+
+} else {
+
+    // not.agua.html, not.banana.html,
+    // not.chocolate.html, not.ovo.html
+
+    const resultadoNomeado = nomeArquivo.match(
+        /^not\.(.+)\.html$/i
+    );
+
+    if (resultadoNomeado) {
+
+        idFavorito =
+            resultadoNomeado[1].toLowerCase();
+
+    }
+
+}
+
+
+// ==========================================
 // PEGA FAVORITOS
+// ==========================================
 
 function pegarFavoritos() {
 
@@ -92,20 +126,24 @@ function pegarFavoritos() {
 }
 
 
+// ==========================================
 // VERIFICA SE JÁ ESTÁ SALVA
+// ==========================================
 
 function estaFavoritada() {
 
     const favoritos = pegarFavoritos();
 
     return favoritos.some(item =>
-        Number(item.id) === idFavorito
+        String(item.id) === String(idFavorito)
     );
 
 }
 
 
+// ==========================================
 // MUDA O BOTÃO
+// ==========================================
 
 function atualizarBotaoFavorito() {
 
@@ -134,7 +172,9 @@ function atualizarBotaoFavorito() {
 }
 
 
+// ==========================================
 // CLIQUE
+// ==========================================
 
 if (btnFinal && idFavorito) {
 
@@ -145,7 +185,9 @@ if (btnFinal && idFavorito) {
         let favoritos = pegarFavoritos();
 
         const existe = favoritos.findIndex(
-            item => Number(item.id) === idFavorito
+            item =>
+                String(item.id) ===
+                String(idFavorito)
         );
 
 
@@ -173,15 +215,27 @@ if (btnFinal && idFavorito) {
         // PEGA DADOS DA NOTÍCIA
 
         const titulo =
-            document.querySelector(".tema h1");
+            document.querySelector(
+                ".tema h1, " +
+                ".tema-editado1 h1, " +
+                ".tema-editado2 h1, " +
+                ".tema-editado3 h1, " +
+                ".tema-editado4 h1, " +
+                ".tema-editado5 h1, " +
+                ".tema-editado6 h1, " +
+                ".tema-editado7 h1, " +
+                ".tema-editado8 h1"
+            );
 
         const data =
             document.querySelector(
                 ".cabecalho span:last-child"
             );
 
-        const numero =
-            String(idFavorito).padStart(2, "0");
+        const imagem =
+            document.querySelector(
+                ".topo-imagem img"
+            );
 
 
         const noticia = {
@@ -196,15 +250,11 @@ if (btnFinal && idFavorito) {
                 ? data.textContent.trim()
                 : "",
 
-            imagem:
-                "../IMAGENS/CAPA DAS NOTÍCIAS/capa.not." +
-                numero +
-                ".png",
+            imagem: imagem
+                ? imagem.src
+                : "",
 
-            link:
-                "../NOTÍCIAS/noticia" +
-                idFavorito +
-                ".html"
+            link: window.location.href
 
         };
 
@@ -234,6 +284,9 @@ if (btnFinal && idFavorito) {
     });
 
 }
+
+
+
 ////////////////// COMENTÁRIOS //////////////////
 
 const btnComentar = document.getElementById("btnComentar");
@@ -324,6 +377,8 @@ if (btnComentar && noticiaId) {
     );
 
 }
+
+
 
 // ==========================================
 // CARREGAR COMENTÁRIOS
