@@ -7,6 +7,9 @@ body {
   font-family: Arial, sans-serif;
   background-color: #f4f4f4;
   padding-top: 64px;
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh
 }
 
 /* HEADER */
@@ -134,6 +137,15 @@ textarea {
 
 textarea {
   height: 120px;
+}
+
+#mensagemNaoEncontrada {
+  display: none;
+  width: 100%;
+  text-align: center;
+  font-size: 20px;
+  font-weight: bold;
+  padding: 50px 20px;
 }
 
 /* MODO CLARO E ESCURO */
@@ -390,6 +402,7 @@ footer {
   text-align: center;
   padding: 10px;
   background: linear-gradient(to right, #000000, #d32f2f, #000000, #d32f2f, #000000);
+  margin-top: auto;
 }
 
 footer p {
@@ -568,6 +581,7 @@ body.sem-resultados footer {
   margin: 0;
   z-index: 900;
 }
+
 /* =========================================
    MOBILE
 ========================================= */
@@ -575,13 +589,15 @@ body.sem-resultados footer {
 @media (max-width: 768px) {
 
   /*NAVEGADOR*/
- body {
+  body {
     padding-top: 58px;
   }
+
   .carrossel {
     margin: 0;
     padding: 0;
   }
+
   nav {
     padding: 5px 10px;
     display: flex;
@@ -1059,37 +1075,4 @@ body.dark button {
 
 body.dark button:hover {
   background: #e6354d;
-}
-
-#mensagemNaoEncontrada {
-    display: none;
-    width: 100%;
-    text-align: center;
-    font-size: 20px;
-    font-weight: bold;
-    padding: 50px 20px;
-}
-
-/* =========================================
-   FOOTER SEMPRE NO FINAL
-========================================= */
-
-html,
-body {
-    min-height: 100%;
-}
-
-body {
-    min-height: 100vh;
-    display: flex;
-    flex-direction: column;
-}
-
-.container {
-    flex: 1;
-}
-
-footer {
-    margin-top: auto;
-    width: 100%;
 }
