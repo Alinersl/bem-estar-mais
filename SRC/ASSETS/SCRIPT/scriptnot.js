@@ -289,60 +289,85 @@ if (btnFinal && idFavorito) {
 
 ////////////////// COMENTÁRIOS //////////////////
 
-const btnComentar = document.getElementById("btnComentar");
-const listaComentarios = document.getElementById("listaComentarios");
 
+// ==========================================
 // DESCOBRE QUAL NOTÍCIA ESTÁ ABERTA
-const caminhoPagina = window.location.pathname;
+// ==========================================
 
-const resultadoNoticia = caminhoPagina.match(/noticia(\d+)\.html/i);
+const nomeArquivo = window.location.pathname;
 
-const noticiaId = resultadoNoticia
-    ? resultadoNoticia[1]
-    : null;
+const resultadoId =
+    nomeArquivo.match(/noticia(\d+)\.html/i);
+
+const noticiaId =
+    resultadoId
+        ? resultadoId[1]
+        : null;
+
+
+// ==========================================
+// ELEMENTOS
+// ==========================================
+
+const btnComentar =
+    document.getElementById("btnComentar");
+
+const campoComentario =
+    document.getElementById("comentario");
+
+const listaComentarios =
+    document.getElementById("listaComentarios");
 
 
 // ==========================================
 // PUBLICAR COMENTÁRIO
 // ==========================================
 
-// PUBLICAR COMENTÁRIO
-
-if (btnComentar && noticiaId) {
+if (btnComentar && campoComentario) {
 
     btnComentar.addEventListener(
         "click",
         async () => {
 
-            const comentarioInput =
-                document.getElementById(
-                    "comentario"
-                );
+            if (!noticiaId) {
 
-            const texto =
-                comentarioInput.value.trim();
+                alert("Notícia inválida.");
 
-            if (texto === "") {
+                return;
+
+            }
+
+
+            const comentario =
+                campoComentario.value.trim();
+
+
+            if (comentario === "") {
 
                 alert(
                     "Digite um comentário."
                 );
 
                 return;
+
             }
+
 
             const dados =
                 new FormData();
+
 
             dados.append(
                 "noticia_id",
                 noticiaId
             );
 
+
             dados.append(
                 "comentario",
-                texto
+                comentario
             );
+
 
             try {
 
@@ -355,20 +380,47 @@ if (btnComentar && noticiaId) {
                         }
                     );
 
-                const retorno =
+
+                const texto =
                     await resposta.text();
 
-                console.log(retorno);
 
-                comentarioInput.value = "";
+                console.log(
+                    "Resposta comentar.php:",
+                    texto
+                );
+
+
+                if (!resposta.ok) {
+
+                    alert(
+                        "Erro ao publicar comentário."
+                    );
+
+                    return;
+
+                }
+
+
+                alert(texto);
+
+
+                campoComentario.value = "";
+
 
                 carregarComentarios();
 
+
             } catch (erro) {
 
-                console.log(
-                    "Erro ao publicar comentário:",
+                console.error(
+                    "Erro ao comentar:",
                     erro
+                );
+
+
+                alert(
+                    "Não foi possível publicar o comentário."
                 );
 
             }
@@ -379,226 +431,316 @@ if (btnComentar && noticiaId) {
 }
 
 
-
 // ==========================================
 // CARREGAR COMENTÁRIOS
 // ==========================================
 
 async function carregarComentarios() {
 
-    if (!listaComentarios || !noticiaId) {
+    if (
+        !noticiaId ||
+        !listaComentarios
+    ) {
+
         return;
+
     }
+
 
     try {
 
-        const resposta = await fetch(
-            `../../PHP/buscar-comentarios.php?noticia_id=${noticiaId}`
+        const resposta =
+            await fetch(
+                `../../PHP/buscar-comentarios.php?noticia_id=${noticiaId}`
+            );
+
+
+        const textoResposta =
+            await resposta.text();
+
+
+        console.log(
+            "Resposta buscar-comentarios.php:",
+            textoResposta
         );
 
-        const comentarios = await resposta.json();
+
+        let comentarios;
+
+
+        try {
+
+            comentarios =
+                JSON.parse(textoResposta);
+
+        } catch (erro) {
+
+            console.error(
+                "buscar-comentarios.php não retornou JSON:",
+                textoResposta
+            );
+
+            return;
+
+        }
+
 
         listaComentarios.innerHTML = "";
 
-        if (comentarios.length === 0) {
 
-            const vazio = document.createElement("p");
+        // ==================================
+        // NENHUM COMENTÁRIO
+        // ==================================
 
-            vazio.textContent =
-                "Ainda não há comentários.";
+        if (
+            !Array.isArray(comentarios) ||
+            comentarios.length === 0
+        ) {
 
-            listaComentarios.appendChild(vazio);
+            listaComentarios.innerHTML =
+                "<p>Nenhum comentário ainda.</p>";
 
             return;
+
         }
+
+
+        // ==================================
+        // MOSTRAR COMENTÁRIOS
+        // ==================================
 
         comentarios.forEach(item => {
 
-            const caixa = document.createElement("div");
-            caixa.className = "comentario";
 
-            // NOME
-            const nomeUsuario = document.createElement("h4");
-            nomeUsuario.textContent = item.nome;
-
-            // DATA
-            const data = document.createElement("small");
-
-            data.textContent =
-                formatarDataComentario(
-                    item.data_comentario
+            const div =
+                document.createElement(
+                    "div"
                 );
 
-            // TEXTO DO COMENTÁRIO
-            const texto = document.createElement("p");
+
+            div.classList.add(
+                "comentario-item"
+            );
+
+
+            // NOME
+
+            const nome =
+                document.createElement(
+                    "strong"
+                );
+
+
+            nome.textContent =
+                item.nome;
+
+
+            // TEXTO
+
+            const texto =
+                document.createElement(
+                    "p"
+                );
+
 
             texto.textContent =
                 item.comentario;
 
-            caixa.appendChild(nomeUsuario);
-            caixa.appendChild(data);
-            caixa.appendChild(texto);
+
+            div.appendChild(nome);
+
+            div.appendChild(texto);
 
 
-            // ==========================================
-            // SÓ MOSTRA EDITAR/EXCLUIR PARA O DONO
-            // ==========================================
+            // ==================================
+            // SE O COMENTÁRIO FOR DO USUÁRIO
+            // ==================================
 
             if (item.pode_editar) {
 
+
                 const acoes =
-                    document.createElement("div");
-
-                acoes.className =
-                    "acoes-comentario";
-
-
-                // ==========================
-                // BOTÃO EDITAR
-                // ==========================
-
-                const btnEditar =
-                    document.createElement("button");
-
-                btnEditar.textContent = "Editar";
-
-                btnEditar.className =
-                    "btn-editar-comentario";
+                    document.createElement(
+                        "div"
+                    );
 
 
-                btnEditar.addEventListener(
+                acoes.classList.add(
+                    "acoes-comentario"
+                );
+
+
+                // ==============================
+                // EDITAR
+                // ==============================
+
+                const editar =
+                    document.createElement(
+                        "button"
+                    );
+
+
+                editar.type = "button";
+
+                editar.textContent =
+                    "Editar";
+
+
+                editar.classList.add(
+                    "btn-editar-comentario"
+                );
+
+
+                editar.addEventListener(
                     "click",
                     async () => {
 
-                        const novoTexto = prompt(
-                            "Edite seu comentário:",
-                            item.comentario
-                        );
+
+                        const novoTexto =
+                            prompt(
+                                "Edite seu comentário:",
+                                item.comentario
+                            );
+
 
                         if (
                             novoTexto === null ||
                             novoTexto.trim() === ""
                         ) {
+
                             return;
+
                         }
+
 
                         const dados =
                             new FormData();
+
 
                         dados.append(
                             "id",
                             item.id
                         );
+
 
                         dados.append(
                             "comentario",
                             novoTexto.trim()
                         );
 
-                        try {
 
-                            const resposta =
-                                await fetch(
-                                    "../../PHP/editar-comentario.php",
-                                    {
-                                        method: "POST",
-                                        body: dados
-                                    }
-                                );
-
-                            const retorno =
-                                await resposta.text();
-
-                            console.log(retorno);
-
-                            carregarComentarios();
-
-                        } catch (erro) {
-
-                            console.log(
-                                "Erro ao editar:",
-                                erro
+                        const resposta =
+                            await fetch(
+                                "../../PHP/editar-comentario.php",
+                                {
+                                    method: "POST",
+                                    body: dados
+                                }
                             );
 
-                        }
+
+                        const resultado =
+                            await resposta.text();
+
+
+                        console.log(
+                            "Editar:",
+                            resultado
+                        );
+
+
+                        carregarComentarios();
 
                     }
                 );
 
 
-                // ==========================
-                // BOTÃO EXCLUIR
-                // ==========================
+                // ==============================
+                // EXCLUIR
+                // ==============================
 
-                const btnExcluir =
-                    document.createElement("button");
-
-                btnExcluir.textContent = "Excluir";
-
-                btnExcluir.className =
-                    "btn-excluir-comentario";
+                const excluir =
+                    document.createElement(
+                        "button"
+                    );
 
 
-                btnExcluir.addEventListener(
+                excluir.type = "button";
+
+                excluir.textContent =
+                    "Excluir";
+
+
+                excluir.classList.add(
+                    "btn-excluir-comentario"
+                );
+
+
+                excluir.addEventListener(
                     "click",
                     async () => {
 
-                        const confirmar = confirm(
-                            "Deseja excluir este comentário?"
-                        );
+
+                        const confirmar =
+                            confirm(
+                                "Deseja excluir esse comentário?"
+                            );
+
 
                         if (!confirmar) {
+
                             return;
+
                         }
+
 
                         const dados =
                             new FormData();
+
 
                         dados.append(
                             "id",
                             item.id
                         );
 
-                        try {
 
-                            const resposta =
-                                await fetch(
-                                    "../../PHP/excluir-comentario.php",
-                                    {
-                                        method: "POST",
-                                        body: dados
-                                    }
-                                );
-
-                            const retorno =
-                                await resposta.text();
-
-                            console.log(retorno);
-
-                            carregarComentarios();
-
-                        } catch (erro) {
-
-                            console.log(
-                                "Erro ao excluir:",
-                                erro
+                        const resposta =
+                            await fetch(
+                                "../../PHP/excluir-comentario.php",
+                                {
+                                    method: "POST",
+                                    body: dados
+                                }
                             );
 
-                        }
+
+                        const resultado =
+                            await resposta.text();
+
+
+                        console.log(
+                            "Excluir:",
+                            resultado
+                        );
+
+
+                        carregarComentarios();
 
                     }
                 );
 
 
                 acoes.appendChild(
-                    btnEditar
+                    editar
                 );
+
 
                 acoes.appendChild(
-                    btnExcluir
+                    excluir
                 );
 
-                caixa.appendChild(
+
+                div.appendChild(
                     acoes
                 );
 
@@ -606,14 +748,15 @@ async function carregarComentarios() {
 
 
             listaComentarios.appendChild(
-                caixa
+                div
             );
 
         });
 
+
     } catch (erro) {
 
-        console.log(
+        console.error(
             "Erro ao carregar comentários:",
             erro
         );
@@ -624,30 +767,7 @@ async function carregarComentarios() {
 
 
 // ==========================================
-// FORMATAR DATA
-// ==========================================
-
-function formatarDataComentario(dataMysql) {
-
-    const data = new Date(dataMysql);
-
-    return (
-        data.toLocaleDateString("pt-BR") +
-        " às " +
-        data.toLocaleTimeString(
-            "pt-BR",
-            {
-                hour: "2-digit",
-                minute: "2-digit"
-            }
-        )
-    );
-
-}
-
-
-// ==========================================
-// CARREGA AO ABRIR A NOTÍCIA
+// CARREGA QUANDO ABRIR A NOTÍCIA
 // ==========================================
 
 carregarComentarios();
