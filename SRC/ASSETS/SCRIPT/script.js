@@ -1,35 +1,81 @@
 ////////////////// CARROSSEL //////////////////
+
 let index = 0;
 
 const slides = document.querySelector('.slides');
-const totalSlides = document.querySelectorAll('.slide').length;
+const slidesOriginais = document.querySelectorAll('.slide');
 
 const btnEsquerda = document.querySelector('.btn-esquerda');
 const btnDireita = document.querySelector('.btn-direita');
 
-btnDireita.addEventListener('click', () => {
-  index++;
+// CLONA O PRIMEIRO BANNER
+const primeiroClone = slidesOriginais[0].cloneNode(true);
+slides.appendChild(primeiroClone);
 
-  if (index >= totalSlides) {
-    index = 0;
-  }
+const totalSlides = slidesOriginais.length;
 
-  mover();
-});
+function mover(comAnimacao = true) {
 
-btnEsquerda.addEventListener('click', () => {
-  index--;
+  slides.style.transition = comAnimacao
+    ? "transform 0.6s ease-in-out"
+    : "none";
 
-  if (index < 0) {
-    index = totalSlides - 1;
-  }
-
-  mover();
-});
-
-function mover() {
   slides.style.transform = `translateX(-${index * 100}%)`;
 }
+
+
+// PRÓXIMO
+function proximoBanner() {
+
+  index++;
+  mover();
+
+  // Chegou no clone do primeiro
+  if (index === totalSlides) {
+
+    setTimeout(() => {
+
+      index = 0;
+
+      // volta para o primeiro SEM animação
+      mover(false);
+
+    }, 600);
+  }
+}
+
+
+// ANTERIOR
+function bannerAnterior() {
+
+  if (index === 0) {
+
+    index = totalSlides - 1;
+    mover(false);
+
+    requestAnimationFrame(() => {
+      requestAnimationFrame(() => {
+        mover(true);
+      });
+    });
+
+  } else {
+
+    index--;
+    mover();
+  }
+}
+
+
+// SETAS
+btnDireita.addEventListener('click', proximoBanner);
+btnEsquerda.addEventListener('click', bannerAnterior);
+
+
+// AUTOMÁTICO
+setInterval(() => {
+  proximoBanner();
+}, 3000);
 
 ////////////////// PESQUISAR //////////////////
 
