@@ -444,8 +444,11 @@ footer p {
 }
 
 #toast {
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
   position: fixed;
-  bottom: 20px;
+   bottom: auto !important;
   left: 50%;
   transform: translateX(-50%);
   background: #333;
@@ -459,6 +462,7 @@ footer p {
 
 #toast.show {
   opacity: 1;
+  visibility: visible;
 }
 
 /* TEXTO */
@@ -906,18 +910,19 @@ body.sem-resultados footer {
 
 
   /*FOOTER*/
-  
-footer {
-  color: white;
-  text-align: center;
-  padding: 10px;
-  background: linear-gradient(to right, #000000, #d32f2f, #000000, #d32f2f, #000000);
-  margin-top: auto;
-}
 
-footer p {
-  font-family: Arial, sans-serif;
-}
+  footer {
+    color: white;
+    text-align: center;
+    padding: 10px;
+    background: linear-gradient(to right, #000000, #d32f2f, #000000, #d32f2f, #000000);
+    margin-top: auto;
+  }
+
+  footer p {
+    font-family: Arial, sans-serif;
+  }
+
   /* footer {
     padding: 10px 5px;
     margin-top: 5px;
@@ -1039,22 +1044,22 @@ body.dark .data {
 
 /* JANELA DAS PÁGINAS */
 body.dark .paginas a {
+  background: #ff2e2e;
   color: white;
-  border: 1px solid #555;
+  border: 1px solid #111;
 }
 
 body.dark .paginas a.active {
-  background: #ff2e2e;
-  border-color: #ff2e2e;
+  background: white;
+  color: #111;
+  border-color: white;
+  font-weight: bold;
 }
 
-body.dark .active-branco {
-  background: #ff2e2e;
-  color: #ff2e2e;
-}
 
 body.dark .paginas a:hover {
-  color: #ffffff;
+  background: white;
+  color: #111;
 }
 
 /* FOOTER */

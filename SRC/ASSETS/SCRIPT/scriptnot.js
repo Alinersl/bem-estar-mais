@@ -294,10 +294,19 @@ if (btnFinal && idFavorito) {
 // DESCOBRE QUAL NOTÍCIA ESTÁ ABERTA
 // ==========================================
 
-const nomeArquivo = window.location.pathname;
+// const nomeArquivo = window.location.pathname;
+
+// const resultadoId =
+//     nomeArquivo.match(/noticia(\d+)\.html/i);
+
+// const noticiaId =
+//     resultadoId
+//         ? resultadoId[1]
+//         : null;
+const caminhoArquivoComentario = window.location.pathname;
 
 const resultadoId =
-    nomeArquivo.match(/noticia(\d+)\.html/i);
+    caminhoArquivoComentario.match(/noticia(\d+)\.html/i);
 
 const noticiaId =
     resultadoId
