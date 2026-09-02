@@ -726,4 +726,4 @@ document.addEventListener("DOMContentLoaded", () => {
 
     carregarComentarios();
 
-});
+}); 
