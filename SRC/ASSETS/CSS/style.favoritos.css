@@ -17,12 +17,21 @@ body {
     flex-direction: column;
 }
 
+
 /* HEADER */
+
 header {
     text-align: center;
     box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
     color: white;
-    background: linear-gradient(to right, #000000, #d32f2f, #000000, #d32f2f, #000000);
+    background: linear-gradient(
+        to right,
+        #000000,
+        #d32f2f,
+        #000000,
+        #d32f2f,
+        #000000
+    );
 }
 
 header p {
@@ -31,12 +40,21 @@ header p {
     font-family: Bookman, URW Bookman L, serif;
 }
 
+
 /* NAVEGADOR */
+
 nav {
     display: flex;
     align-items: center;
     justify-content: space-between;
-    background: linear-gradient(to right, #000000, #d32f2f, #000000, #d32f2f, #000000);
+    background: linear-gradient(
+        to right,
+        #000000,
+        #d32f2f,
+        #000000,
+        #d32f2f,
+        #000000
+    );
     padding: 5px 40px;
     position: fixed;
     top: 0;
@@ -52,14 +70,14 @@ nav {
     justify-content: flex-end;
 }
 
-.nav-direita>a {
+.nav-direita > a {
     color: #ffffff;
     font-weight: 500;
     transition: color 0.3s;
     font-size: 1rem;
 }
 
-.nav-direita>a:hover {
+.nav-direita > a:hover {
     color: #ffffff;
 }
 
@@ -77,7 +95,9 @@ nav {
     margin: 0;
 }
 
+
 /* MODO CLARO E ESCURO */
+
 .sol {
     margin: 10px 0 0 0;
     cursor: pointer;
@@ -100,7 +120,9 @@ nav {
     transform: scale(1.10);
 }
 
+
 /* FAVORITOS */
+
 #listaFavoritos {
     width: 100%;
     margin: 0 auto;
@@ -119,7 +141,7 @@ nav {
 #semFavoritos .icone-favorito {
     font-size: 55px;
     color: #C71F37;
-    margin: 40px 0 40px 0;
+    margin: 40px 0;
 }
 
 #semFavoritos h2 {
@@ -132,14 +154,39 @@ nav {
     margin: 0;
 }
 
+
+/* CARDS FAVORITOS */
+
+.noticia {
+    background-color: #ffffff;
+    color: #222222;
+}
+
+.noticia h2 {
+    color: #222222;
+}
+
+.noticia p {
+    color: #444444;
+}
+
+
 /* FOOTER */
+
 footer {
     margin-top: auto;
     width: 100%;
     color: white;
     text-align: center;
     padding: 10px;
-    background: linear-gradient(to right, #000000, #d32f2f, #000000, #d32f2f, #000000);
+    background: linear-gradient(
+        to right,
+        #000000,
+        #d32f2f,
+        #000000,
+        #d32f2f,
+        #000000
+    );
 }
 
 footer p {
@@ -147,8 +194,11 @@ footer p {
     margin: 0;
 }
 
+
 /* IMAGEM */
+
 /* modo claro e escuro */
+
 .sol img {
     max-width: 25px;
 }
@@ -157,27 +207,35 @@ footer p {
     max-width: 20px;
 }
 
+
 /* logo */
+
 .nav-esquerda img.logo {
     height: 50px;
     width: auto;
 }
 
+
 /* TÍTULO */
+
 h1 {
     text-align: center;
-    margin-top: 40px;
     margin: 150px;
     color: #d32f2f;
 }
 
+
 /* MOBILE */
+
 @media (max-width: 768px) {
+
     body {
         padding-top: 60px;
     }
 
+
     /* NAVEGADOR */
+
     nav {
         padding: 5px 10px;
     }
@@ -190,13 +248,17 @@ h1 {
         gap: 10px;
     }
 
+
     /* MODO CLARO E MODO ESCURO */
+
     .sol,
     .lua {
         margin-top: 0;
     }
 
+
     /* FAVORITOS */
+
     #listaFavoritos {
         width: 100%;
         padding: 0 15px;
@@ -224,7 +286,9 @@ h1 {
         line-height: 1.4;
     }
 
+
     /* FOOTER */
+
     footer {
         margin-top: auto;
         padding: 10px 5px;
@@ -234,8 +298,9 @@ h1 {
         font-size: 12px;
     }
 
+
     /* IMAGENS */
-    /* modo claro e modo escuro */
+
     .sol img {
         max-width: 22px;
     }
@@ -244,27 +309,43 @@ h1 {
         max-width: 18px;
     }
 
+
     /* TÍTULO */
+
     h1 {
         font-size: 28px;
         margin: 180px 10px 20px 10px;
         text-align: center;
     }
+
 }
 
+
 /* MODO ESCURO */
+
 body.dark {
-    background: #121212;
+    background-color: #121212;
     color: white;
 }
 
+
 /* HEADER E NAVEGAÇÃO */
+
 body.dark header,
 body.dark nav {
-    background: linear-gradient(to right, #111, #7a0000, #111, #7a0000, #111);
+    background: linear-gradient(
+        to right,
+        #111,
+        #7a0000,
+        #111,
+        #7a0000,
+        #111
+    );
 }
 
+
 /* MODO CLARO E ESCURO */
+
 body.dark .sol {
     display: none;
 }
@@ -273,7 +354,75 @@ body.dark .lua {
     display: block;
 }
 
+
+/* TÍTULO */
+
+body.dark h1 {
+    color: #ff4d4d;
+}
+
+
+/* FAVORITOS VAZIOS */
+
+body.dark #semFavoritos {
+    color: white;
+}
+
+body.dark #semFavoritos h2 {
+    color: white;
+}
+
+body.dark #semFavoritos p {
+    color: white;
+}
+
+body.dark #semFavoritos .icone-favorito {
+    color: #ff4d4d;
+}
+
+
+/* LISTA DE FAVORITOS */
+
+body.dark #listaFavoritos {
+    color: white;
+}
+
+
+/* CARDS FAVORITOS */
+
+body.dark .noticia {
+    background-color: #1e1e1e;
+    color: white;
+}
+
+body.dark .noticia .conteudo {
+    background-color: #1e1e1e;
+    color: white;
+}
+
+body.dark .noticia h2 {
+    color: white;
+}
+
+body.dark .noticia p {
+    color: #dddddd;
+}
+
+
 /* FOOTER */
+
 body.dark footer {
-    background: linear-gradient(to right, #111, #7a0000, #111, #7a0000, #111);
+    background: linear-gradient(
+        to right,
+        #111,
+        #7a0000,
+        #111,
+        #7a0000,
+        #111
+    );
+    color: white;
+}
+
+body.dark footer p {
+    color: white;
 }
