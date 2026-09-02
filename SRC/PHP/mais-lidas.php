@@ -83,7 +83,11 @@ $resultado = $conexao->query($sql);
                     </p>
 
                     <!-- botão da notícia -->
-                    <a href="<?php echo htmlspecialchars($noticia["link"]); ?>">
+                    <a href="<?php echo htmlspecialchars(
+                        "../PAGES/NOTÍCIAS/" . basename($noticia["link"]),
+                        ENT_QUOTES,
+                        "UTF-8"
+                    ); ?>">
                         <button>Saiba Mais</button>
                     </a>
 
