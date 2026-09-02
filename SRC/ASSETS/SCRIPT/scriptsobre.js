@@ -1,77 +1,61 @@
 // MODO CLARO E ESCURO
 
-document.addEventListener("DOMContentLoaded", () => {
+const body = document.body;
+const sol = document.getElementById("sol");
+const lua = document.getElementById("lua");
 
-    const body = document.body;
+function atualizarTema(tema) {
 
-    const sol = document.getElementById("sol");
-
-    const lua = document.getElementById("lua");
-
-
-    // Carrega o tema salvo
-
-    if (localStorage.getItem("tema") === "escuro") {
+    if (tema === "escuro") {
 
         body.classList.add("dark");
 
-        if (sol) sol.style.display = "none";
+        if (sol) {
+            sol.style.display = "none";
+        }
 
-        if (lua) lua.style.display = "block";
+        if (lua) {
+            lua.style.display = "block";
+        }
 
     } else {
 
         body.classList.remove("dark");
 
-        if (sol) sol.style.display = "block";
+        if (sol) {
+            sol.style.display = "block";
+        }
 
-        if (lua) lua.style.display = "none";
-
-    }
-
-
-    // Ativar modo escuro
-
-    if (sol) {
-
-        sol.addEventListener("click", () => {
-
-            body.classList.add("dark");
-
-            localStorage.setItem("tema", "escuro");
-
-            sol.style.display = "none";
-
-            if (lua) lua.style.display = "block";
-
-        });
-
-    }
-
-
-    // Voltar ao modo claro
-
-    if (lua) {
-
-        lua.addEventListener("click", () => {
-
-            body.classList.remove("dark");
-
-            localStorage.setItem("tema", "claro");
-
+        if (lua) {
             lua.style.display = "none";
-
-            if (sol) sol.style.display = "block";
-
-        });
-
+        }
     }
+}
 
-});
+const temaSalvo = localStorage.getItem("tema") || "claro";
+
+atualizarTema(temaSalvo);
+
+if (sol) {
+    sol.addEventListener("click", () => {
+
+        localStorage.setItem("tema", "escuro");
+
+        atualizarTema("escuro");
+    });
+}
+
+if (lua) {
+    lua.addEventListener("click", () => {
+
+        localStorage.setItem("tema", "claro");
+
+        atualizarTema("claro");
+    });
+}
 
 
 // CADASTRO E LOGIN
-
 
 const btnLogin = document.getElementById("btnLogin");
 
@@ -101,8 +85,6 @@ btnLogin.addEventListener("click", () => {
     cadastro.style.display = "none";
 
 });
-
-
 
 
 // IR PARA LOGIN
@@ -143,6 +125,8 @@ btnFecharBranco.addEventListener("click", () => {
     overlay.style.display = "none";
 
 });
+
+
 // ==============================
 // ERRO DE LOGIN
 // ==============================
@@ -168,6 +152,8 @@ if (parametros.get("erro") === "login") {
     }
 
 }
+
+
 // ==============================
 // ABRIR CADASTRO AUTOMATICAMENTE
 // ==============================
@@ -181,6 +167,7 @@ if (parametros.get("abrir") === "cadastro") {
     login.style.display = "none";
 
 }
+
 
 // ==============================
 // MOSTRAR / ESCONDER SENHA

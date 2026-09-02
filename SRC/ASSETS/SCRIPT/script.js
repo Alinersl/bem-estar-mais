@@ -466,6 +466,7 @@ document.addEventListener(
 
   }
 );
+
 ////////////////// HAMBURGUER //////////////////
 
 const hamburguer = document.getElementById("hamburguer");
@@ -681,47 +682,89 @@ document.querySelectorAll(".noticia").forEach(card => {
 
 });
 
-// MODO CLARO E ESCURO
+
+////////////////// MODO CLARO E ESCURO //////////////////
+
 document.addEventListener("DOMContentLoaded", () => {
+
   const body = document.body;
   const sol = document.getElementById("sol");
   const lua = document.getElementById("lua");
 
-  // Carrega o tema salvo
-  if (localStorage.getItem("tema") === "escuro") {
-    body.classList.add("dark");
+  function atualizarTema(tema) {
 
-    if (sol) sol.style.display = "none";
-    if (lua) lua.style.display = "block";
-  } else {
-    body.classList.remove("dark");
+    if (tema === "escuro") {
 
-    if (sol) sol.style.display = "block";
-    if (lua) lua.style.display = "none";
-  }
-
-  // Ativar modo escuro
-  if (sol) {
-    sol.addEventListener("click", () => {
       body.classList.add("dark");
-      localStorage.setItem("tema", "escuro");
 
-      sol.style.display = "none";
-      if (lua) lua.style.display = "block";
-    });
-  }
+      if (sol) {
+        sol.style.display = "none";
+      }
 
-  // Voltar ao modo claro
-  if (lua) {
-    lua.addEventListener("click", () => {
+      if (lua) {
+        lua.style.display = "block";
+      }
+
+    } else {
+
       body.classList.remove("dark");
-      localStorage.setItem("tema", "claro");
 
-      lua.style.display = "none";
-      if (sol) sol.style.display = "block";
-    });
+      if (sol) {
+        sol.style.display = "block";
+      }
+
+      if (lua) {
+        lua.style.display = "none";
+      }
+
+    }
+
   }
+
+
+  // PEGA O TEMA SALVO NAS OUTRAS PÁGINAS
+  const temaSalvo = localStorage.getItem("tema") || "claro";
+
+
+  // APLICA O TEMA SALVO NESSA PÁGINA
+  atualizarTema(temaSalvo);
+
+
+  // MODO ESCURO
+  if (sol) {
+
+    sol.addEventListener("click", () => {
+
+      localStorage.setItem(
+        "tema",
+        "escuro"
+      );
+
+      atualizarTema("escuro");
+
+    });
+
+  }
+
+
+  // MODO CLARO
+  if (lua) {
+
+    lua.addEventListener("click", () => {
+
+      localStorage.setItem(
+        "tema",
+        "claro"
+      );
+
+      atualizarTema("claro");
+
+    });
+
+  }
+
 });
+
 
 ////////////////// CONTADOR DE VISUALIZAÇÕES //////////////////
 
@@ -775,6 +818,7 @@ document.querySelectorAll('.noticia a').forEach(link => {
   });
 
 });
+
 let encontrouNoticia = false;
 
 noticias.forEach(noticia => {

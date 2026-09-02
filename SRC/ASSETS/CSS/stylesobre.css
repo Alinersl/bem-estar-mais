@@ -618,6 +618,10 @@ body.dark .cadastro {
   background: #121212;
 }
 
+body.dark .login p {
+  color: white;
+}
+
 body.dark .login-box {
   background: #121212;
 }

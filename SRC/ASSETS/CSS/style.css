@@ -395,8 +395,9 @@ button img {
 
 .paginas a:hover {
   border-color: red;
-  color: #751e1e;
+
   border: 1px solid #751e1e;
+  background-color: red;
 }
 
 .active-branco {
