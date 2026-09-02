@@ -298,10 +298,10 @@ textarea {
   border: 2px none;
 }
 
-.btn-direita:hover,
+/* .btn-direita:hover,
 .btn-esquerda:hover {
   background-color: #d8021e62;
-}
+} */
 
 button img {
   width: 40px;
@@ -449,8 +449,11 @@ footer p {
 }
 
 #toast {
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
   position: fixed;
-  bottom: 20px;
+   bottom: auto !important;
   left: 50%;
   transform: translateX(-50%);
   background: #333;
@@ -464,6 +467,7 @@ footer p {
 
 #toast.show {
   opacity: 1;
+  visibility: visible;
 }
 
 /* TEXTO */
@@ -831,35 +835,50 @@ body.dark .titulo-ultimas p {
 
   /*BANNER*/
 
-  .button-banner {
-    position: absolute;
+.text {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
 
-    left: 45%;
+  width: 90%;
 
-    transform: translate(-50%, -50%);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 
-    text-align: center;
-  }
+  text-align: center;
+  color: white;
+}
 
-  .text h2 {
-    margin: 10px;
-    margin-top: -20%;
-  }
+.text h2 {
+  font-size: 26px;
+  line-height: 1.15;
+  margin: 0 0 12px 0;
+  padding: 0;
+  text-align: center;
+}
 
-  .text button {
-    margin-top: 30px;
-  }
+.text p {
+  font-size: 15px;
+  line-height: 1.3;
+  margin: 0 0 14px 0;
+  padding: 0;
+  text-align: center;
+}
 
-  .btn-esquerda,
-  .btn-direita {
-    top: 85%;
-    padding: 2px;
-  }
+.text .button-banner {
+  position: static;
+  margin: 0;
+  padding: 8px 16px;
+  transform: none;
+}
 
-  .text .button-banner {
-    margin-top: 5px;
-  }
-
+.btn-esquerda,
+.btn-direita {
+  top: 85%;
+  padding: 2px;
+}
 
   /*NOTÍCIAS*/
 
@@ -881,18 +900,19 @@ body.dark .titulo-ultimas p {
 
 
   /*FOOTER*/
-  
-footer {
-  color: white;
-  text-align: center;
-  padding: 10px;
-  background: linear-gradient(to right, #000000, #d32f2f, #000000, #d32f2f, #000000);
-  margin-top: auto;
-}
 
-footer p {
-  font-family: Arial, sans-serif;
-}
+  footer {
+    color: white;
+    text-align: center;
+    padding: 10px;
+    background: linear-gradient(to right, #000000, #d32f2f, #000000, #d32f2f, #000000);
+    margin-top: auto;
+  }
+
+  footer p {
+    font-family: Arial, sans-serif;
+  }
+
   /* footer {
     padding: 10px 5px;
     margin-top: auto;
@@ -1014,22 +1034,22 @@ body.dark .data {
 
 /* JANELA DAS PÁGINAS */
 body.dark .paginas a {
+  background: #ff2e2e;
   color: white;
-  border: 1px solid #555;
+  border: 1px solid #111;
 }
 
 body.dark .paginas a.active {
-  background: #ff2e2e;
-  border-color: #ff2e2e;
+  background: white;
+  color: #111;
+  border-color: white;
+  font-weight: bold;
 }
 
-body.dark .active-branco {
-  background: #ff2e2e;
-  color: #ff2e2e;
-}
 
 body.dark .paginas a:hover {
-  color: #ffffff;
+  background: white;
+  color: #111;
 }
 
 /* FOOTER */
