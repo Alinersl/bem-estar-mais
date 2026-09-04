@@ -1,244 +1,190 @@
 // MODO CLARO E ESCURO
 
+// ==========================================
+// MODO CLARO E ESCURO
+// ==========================================
+
 const body = document.body;
-
 const sol = document.getElementById("sol");
-
 const lua = document.getElementById("lua");
 
+function atualizarTema(tema) {
+    const escuro = tema === "escuro";
 
-function atualizarTema() {
+    body.classList.toggle("dark", escuro);
 
-    const temaSalvo = localStorage.getItem("tema");
-
-
-    if (temaSalvo === "escuro") {
-
-        body.classList.add("dark");
-
-
-        if (sol) {
-
-            sol.style.display = "none";
-
-        }
-
-
-        if (lua) {
-
-            lua.style.display = "block";
-
-        }
-
-    } else {
-
-        body.classList.remove("dark");
-
-
-        if (sol) {
-
-            sol.style.display = "block";
-
-        }
-
-
-        if (lua) {
-
-            lua.style.display = "none";
-
-        }
-
+    if (sol) {
+        sol.style.display = escuro ? "none" : "block";
     }
 
+    if (lua) {
+        lua.style.display = escuro ? "block" : "none";
+    }
 }
 
+function carregarTema() {
+    const temaSalvo = localStorage.getItem("tema") || "claro";
+    atualizarTema(temaSalvo);
+}
 
-// APLICA O TEMA ASSIM QUE ENTRA NA PÁGINA
-
-atualizarTema();
-
-
-// ATIVAR MODO ESCURO
+carregarTema();
 
 if (sol) {
-
     sol.addEventListener("click", () => {
-
         localStorage.setItem("tema", "escuro");
-
-        atualizarTema();
-
+        atualizarTema("escuro");
     });
-
 }
-
-
-// ATIVAR MODO CLARO
 
 if (lua) {
-
     lua.addEventListener("click", () => {
-
         localStorage.setItem("tema", "claro");
-
-        atualizarTema();
-
+        atualizarTema("claro");
     });
-
 }
 
-
-// ATUALIZA O TEMA QUANDO A PÁGINA VOLTA DO CACHE
-
-window.addEventListener("pageshow", () => {
-
-    atualizarTema();
-
-});
-
-
+// ==========================================
 // FAVORITOS
+// ==========================================
 
 const lista = document.getElementById("listaFavoritos");
-
 const semFavoritos = document.getElementById("semFavoritos");
 
-
-let favoritos = [];
-
-
-try {
-
-    favoritos =
-        JSON.parse(
+function pegarFavoritos() {
+    try {
+        const favoritos = JSON.parse(
             localStorage.getItem("favoritos")
-        ) || [];
+        );
 
-} catch (erro) {
-
-    favoritos = [];
-
+        return Array.isArray(favoritos) ? favoritos : [];
+    } catch {
+        return [];
+    }
 }
 
+function renderizarFavoritos() {
+    if (!lista) return;
 
-if (favoritos.length === 0) {
+    const favoritos = pegarFavoritos();
 
+    lista.replaceChildren();
+
+    // Mostra a mensagem somente quando não há favoritos.
     if (semFavoritos) {
-
-        semFavoritos.style.display = "flex";
-
+        semFavoritos.style.display =
+            favoritos.length === 0 ? "block" : "none";
     }
-
-} else {
-
-    if (semFavoritos) {
-
-        semFavoritos.style.display = "none";
-
-    }
-
 
     favoritos.forEach((noticia, index) => {
-
         const card = document.createElement("div");
-
-
         card.classList.add("noticia");
 
+        // BOTÃO DE REMOVER
 
-        card.innerHTML = `
+        const botaoFavorito = document.createElement("button");
+        botaoFavorito.type = "button";
+        botaoFavorito.className = "favorito ativo";
+        botaoFavorito.dataset.index = index;
+        botaoFavorito.title = "Remover dos favoritos";
+        botaoFavorito.setAttribute(
+            "aria-label",
+            "Remover dos favoritos"
+        );
 
-            <button
-                class="favorito ativo"
-                data-index="${index}"
-                title="Remover dos favoritos"
-            >
+        const icone = document.createElement("i");
+        icone.className = "fa-solid fa-heart";
 
-                <i class="fa-solid fa-heart"></i>
+        botaoFavorito.appendChild(icone);
 
-            </button>
+        // IMAGEM
 
+        const imagem = document.createElement("img");
 
-            <img
-                src="${noticia.imagem}"
-                alt="${noticia.titulo}"
-            >
+        const idNumerico = /^\d+$/.test(String(noticia.id));
 
+        if (idNumerico) {
+            const numeroNoticia = String(noticia.id).padStart(2, "0");
 
-            <div class="conteudo">
-
-                <h2>
-                    ${noticia.titulo}
-                </h2>
-
-
-                ${
-                    noticia.data
-                        ? `<p class="data">${noticia.data}</p>`
-                        : ""
-                }
-
-
-                <a href="${noticia.link}">
-
-                    <button>
-                        Saiba Mais
-                    </button>
-
-                </a>
-
-            </div>
-
-        `;
-
-
-        if (lista) {
-
-            lista.appendChild(card);
-
+            imagem.src =
+                `/bem-estar-mais/SRC/ASSETS/IMAGENS/CAPA DAS NOTÍCIAS/capa.not.${numeroNoticia}.png`;
+        } else {
+            imagem.src = noticia.imagem || "";
         }
 
-    });
+        imagem.alt = noticia.titulo || "Notícia";
 
+        // CONTEÚDO
 
-    document
-        .querySelectorAll("#listaFavoritos .favorito")
-        .forEach(botao => {
+        const conteudo = document.createElement("div");
+        conteudo.classList.add("conteudo");
 
-            botao.addEventListener("click", () => {
+        const titulo = document.createElement("h2");
+        titulo.textContent = noticia.titulo || "Notícia";
 
-                const index =
-                    Number(
-                        botao.dataset.index
-                    );
+        conteudo.appendChild(titulo);
 
+        if (noticia.data) {
+            const data = document.createElement("p");
+            data.classList.add("data");
+            data.textContent = noticia.data;
 
-                favoritos.splice(index, 1);
+            conteudo.appendChild(data);
+        }
 
+        const link = document.createElement("a");
+        link.href = noticia.link || "#";
+
+        const botaoSaibaMais = document.createElement("button");
+        botaoSaibaMais.type = "button";
+        botaoSaibaMais.textContent = "Saiba Mais";
+
+        link.appendChild(botaoSaibaMais);
+        conteudo.appendChild(link);
+
+        card.appendChild(botaoFavorito);
+        card.appendChild(imagem);
+        card.appendChild(conteudo);
+
+        lista.appendChild(card);
+
+        // REMOVE E ATUALIZA A LISTA SEM RECARREGAR A PÁGINA.
+
+        botaoFavorito.addEventListener("click", () => {
+            const favoritosAtuais = pegarFavoritos();
+
+            const indiceAtual = favoritosAtuais.findIndex(item =>
+                String(item.id) === String(noticia.id)
+            );
+
+            if (indiceAtual !== -1) {
+                favoritosAtuais.splice(indiceAtual, 1);
 
                 localStorage.setItem(
                     "favoritos",
-                    JSON.stringify(favoritos)
+                    JSON.stringify(favoritosAtuais)
                 );
+            }
 
-
-                location.reload();
-
-            });
-
+            renderizarFavoritos();
         });
-
+    });
 }
 
+renderizarFavoritos();
 
-// CASO O TEMA MUDE EM OUTRA ABA
+// Atualiza ao voltar pelo navegador.
+window.addEventListener("pageshow", () => {
+    carregarTema();
+    renderizarFavoritos();
+});
 
-window.addEventListener("storage", (evento) => {
-
-    if (evento.key === "tema") {
-
-        atualizarTema();
-
+// Atualiza quando outra aba altera o tema ou os favoritos.
+window.addEventListener("storage", evento => {
+    if (evento.key === "tema" || evento.key === null) {
+        carregarTema();
     }
 
+    if (evento.key === "favoritos" || evento.key === null) {
+        renderizarFavoritos();
+    }
 });
