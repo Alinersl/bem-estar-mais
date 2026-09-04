@@ -1,853 +1,608 @@
-////////////////// CARROSSEL //////////////////
-
-let index = 0;
-
-const slides = document.querySelector('.slides');
-const slidesOriginais = document.querySelectorAll('.slide');
-
-const btnEsquerda = document.querySelector('.btn-esquerda');
-const btnDireita = document.querySelector('.btn-direita');
-
-// CLONA O PRIMEIRO BANNER
-const primeiroClone = slidesOriginais[0].cloneNode(true);
-slides.appendChild(primeiroClone);
-
-const totalSlides = slidesOriginais.length;
-
-function mover(comAnimacao = true) {
-
-  slides.style.transition = comAnimacao
-    ? "transform 0.6s ease-in-out"
-    : "none";
-
-  slides.style.transform = `translateX(-${index * 100}%)`;
-}
-
-
-// PRÓXIMO
-function proximoBanner() {
-
-  index++;
-  mover();
-
-  // Chegou no clone do primeiro
-  if (index === totalSlides) {
-
-    setTimeout(() => {
-
-      index = 0;
-
-      // volta para o primeiro SEM animação
-      mover(false);
-
-    }, 600);
-  }
-}
-
-
-// ANTERIOR
-function bannerAnterior() {
-
-  if (index === 0) {
-
-    index = totalSlides - 1;
-    mover(false);
-
-    requestAnimationFrame(() => {
-      requestAnimationFrame(() => {
-        mover(true);
-      });
-    });
-
-  } else {
-
-    index--;
-    mover();
-  }
-}
-
-
-// SETAS
-btnDireita.addEventListener('click', proximoBanner);
-btnEsquerda.addEventListener('click', bannerAnterior);
-
-
-// AUTOMÁTICO
-setInterval(() => {
-  proximoBanner();
-}, 3000);
-
-////////////////// PESQUISAR //////////////////
-
-const campoBusca = document.getElementById('campoBusca');
-const campoBuscaMobile = document.getElementById('campoBuscaMobile');
-
-const sugestoesBox = document.getElementById('sugestoes');
-const sugestoesBoxMobile = document.getElementById('sugestoesMobile');
-
-const containerNoticias = document.querySelector('.container');
-
-const mensagemNaoEncontrada =
-  document.getElementById('mensagemNaoEncontrada');
-
-const paginas =
-  document.querySelector('.paginas');
-
-
-const sugestoes = [
-  "água",
-  "sono",
-  "açúcar",
-  "imunidade",
-  "metabolismo",
-  "frutas",
-  "ultraprocessados",
-  "proteína",
-  "digestão"
-];
-
-
-// ==========================================
-// TODAS AS PÁGINAS DE NOTÍCIAS
-// ==========================================
-
-const paginasNoticias = [
-  "index.pagina1.html",
-  "index.pagina2.html",
-  "index.pagina3.html",
-  "index.pagina4.html"
-];
-
-
-// ==========================================
-// GUARDAR TODAS AS NOTÍCIAS
-// ==========================================
-
-let todasNoticias = [];
-
-
-// ==========================================
-// REMOVER ACENTOS
-// ==========================================
-
-function removerAcentos(texto) {
-
-  return texto
-    .normalize("NFD")
-    .replace(/[\u0300-\u036f]/g, "");
-
-}
-
-
-// ==========================================
-// CARREGAR NOTÍCIAS DAS 4 PÁGINAS
-// ==========================================
-
-async function carregarTodasNoticias() {
-
-  todasNoticias = [];
-
-  for (const pagina of paginasNoticias) {
-
-    try {
-
-      const resposta =
-        await fetch(pagina);
-
-      const html =
-        await resposta.text();
-
-      const parser =
-        new DOMParser();
-
-      const documento =
-        parser.parseFromString(
-          html,
-          "text/html"
-        );
-
-      const noticiasPagina =
-        documento.querySelectorAll(
-          ".noticia"
-        );
-
-
-      noticiasPagina.forEach(noticia => {
-
-        todasNoticias.push(
-          noticia.cloneNode(true)
-        );
-
-      });
-
-
-    } catch (erro) {
-
-      console.log(
-        "Erro ao carregar:",
-        pagina,
-        erro
-      );
-
-    }
-
-  }
-
-}
-
-
-// CARREGA ASSIM QUE ABRIR A PÁGINA
-carregarTodasNoticias();
-
-
-// ==========================================
-// FILTRAR NOTÍCIAS
-// ==========================================
-
-function filtrarNoticias(valorPesquisa) {
-
-  const valor =
-    removerAcentos(
-      valorPesquisa
-        .toLowerCase()
-        .trim()
-    );
-
-
-  // ======================================
-  // SE A PESQUISA ESTIVER VAZIA
-  // ======================================
-
-  if (valor === "") {
-
-    location.reload();
-
-    return;
-
-  }
-
-
-  // LIMPA AS NOTÍCIAS DA PÁGINA ATUAL
-
-  const noticiasAtuais =
-    containerNoticias.querySelectorAll(
-      ".noticia"
-    );
-
-  noticiasAtuais.forEach(noticia => {
-
-    noticia.remove();
-
-  });
-
-
-  let encontradas = 0;
-
-
-  // ======================================
-  // PROCURA NAS 4 PÁGINAS
-  // ======================================
-
-  todasNoticias.forEach(noticia => {
-
-    const texto =
-      removerAcentos(
-        noticia.textContent
-          .toLowerCase()
-      );
-
-
-    if (texto.includes(valor)) {
-
-      const copia =
-        noticia.cloneNode(true);
-
-      containerNoticias.appendChild(
-        copia
-      );
-
-      encontradas++;
-
-    }
-
-  });
-
-
-  // ======================================
-  // NENHUMA NOTÍCIA ENCONTRADA
-  // ======================================
-
-  if (encontradas === 0) {
-
-    mensagemNaoEncontrada.style.display =
-      "block";
-
-  } else {
-
-    mensagemNaoEncontrada.style.display =
-      "none";
-
-  }
-
-
-  // ESCONDE NUMERAÇÃO DURANTE PESQUISA
-
-  if (paginas) {
-
-    paginas.style.display =
-      "none";
-
-  }
-
-}
-
-
-// ==========================================
-// CONFIGURAR PESQUISA
-// ==========================================
-
-function configurarPesquisa(
-  campo,
-  caixa
-) {
-
-  if (!campo || !caixa) {
-    return;
-  }
-
-
-  campo.addEventListener(
-    "input",
-    () => {
-
-      const valor =
-        removerAcentos(
-          campo.value
-            .toLowerCase()
-            .trim()
-        );
-
-
-      // ==================================
-      // CAMPO VAZIO
-      // ==================================
-
-      if (valor === "") {
-
-        location.reload();
-
-        return;
-
-      }
-
-
-      filtrarNoticias(
-        campo.value
-      );
-
-
-      // ==================================
-      // SUGESTÕES
-      // ==================================
-
-      caixa.innerHTML = "";
-
-
-      const filtradas =
-        sugestoes.filter(item =>
-
-          removerAcentos(
-            item.toLowerCase()
-          ).includes(valor)
-
-        );
-
-
-      filtradas.forEach(item => {
-
-        const div =
-          document.createElement(
-            "div"
-          );
-
-        div.classList.add(
-          "sugestao"
-        );
-
-        div.textContent =
-          item;
-
-
-        div.addEventListener(
-          "click",
-          () => {
-
-            campo.value =
-              item;
-
-            filtrarNoticias(
-              item
+(() => {
+    function iniciar() {
+        // Evita executar este arquivo duas vezes na mesma página.
+        if (window.bemEstarScriptIniciado) return;
+        window.bemEstarScriptIniciado = true;
+
+        // ==========================================
+        // MODO CLARO E ESCURO
+        // ==========================================
+
+        if (!window.bemEstarTemaIniciado) {
+            window.bemEstarTemaIniciado = true;
+
+            const sol = document.getElementById("sol");
+            const lua = document.getElementById("lua");
+
+            function lerTema() {
+                try {
+                    return localStorage.getItem("tema") === "escuro"
+                        ? "escuro"
+                        : "claro";
+                } catch (erro) {
+                    console.error("Erro ao ler o tema:", erro);
+                    return "claro";
+                }
+            }
+
+            function aplicarTema(tema) {
+                const escuro = tema === "escuro";
+
+                document.body.classList.toggle("dark", escuro);
+
+                if (sol) {
+                    sol.style.display = escuro ? "none" : "block";
+                }
+
+                if (lua) {
+                    lua.style.display = escuro ? "block" : "none";
+                }
+            }
+
+            function salvarTema(tema) {
+                aplicarTema(tema);
+
+                try {
+                    localStorage.setItem("tema", tema);
+                } catch (erro) {
+                    console.error("Não foi possível salvar o tema:", erro);
+                }
+            }
+
+            aplicarTema(lerTema());
+
+            sol?.addEventListener("click", evento => {
+                evento.preventDefault();
+                salvarTema("escuro");
+            });
+
+            lua?.addEventListener("click", evento => {
+                evento.preventDefault();
+                salvarTema("claro");
+            });
+
+            // Reaplica ao voltar pelo botão do navegador.
+            window.addEventListener("pageshow", () => {
+                aplicarTema(lerTema());
+            });
+
+            // Atualiza se o tema mudar em outra aba.
+            window.addEventListener("storage", evento => {
+                if (evento.key === "tema" || evento.key === null) {
+                    aplicarTema(lerTema());
+                }
+            });
+        }
+
+        // Caminhos da estrutura atual do projeto.
+        const pastaPHP = "/bem-estar-mais/SRC/PHP/";
+        const pastaPaginas = "/bem-estar-mais/SRC/PAGES/PÁGINAS/";
+
+        // ==========================================
+        // CARROSSEL
+        // ==========================================
+
+        function iniciarCarrossel() {
+            const slides = document.querySelector(".slides");
+            if (!slides) return;
+
+            const originais = Array.from(slides.children).filter(
+                elemento => elemento.classList.contains("slide")
             );
 
-            caixa.style.display =
-              "none";
+            if (originais.length <= 1) return;
 
-          }
-        );
+            const btnEsquerda = document.querySelector(".btn-esquerda");
+            const btnDireita = document.querySelector(".btn-direita");
 
+            const primeiroClone = originais[0].cloneNode(true);
+            const ultimoClone = originais[originais.length - 1].cloneNode(true);
 
-        caixa.appendChild(
-          div
-        );
+            slides.prepend(ultimoClone);
+            slides.appendChild(primeiroClone);
 
-      });
+            let index = 1;
+            let animando = false;
+            let temporizador;
 
+            function mover(animacao) {
+                slides.style.transition = animacao
+                    ? "transform 0.6s ease-in-out"
+                    : "none";
 
-      caixa.style.display =
-        filtradas.length
-          ? "block"
-          : "none";
+                slides.style.transform = `translateX(-${index * 100}%)`;
+            }
 
+            function finalizarMovimento() {
+                if (!animando) return;
+
+                clearTimeout(temporizador);
+
+                if (index === originais.length + 1) {
+                    index = 1;
+                } else if (index === 0) {
+                    index = originais.length;
+                }
+
+                mover(false);
+                animando = false;
+            }
+
+            function avancar(direcao) {
+                if (animando) return;
+
+                // Garante que o reposicionamento anterior foi aplicado.
+                void slides.offsetWidth;
+
+                animando = true;
+                index += direcao;
+                mover(true);
+
+                temporizador = setTimeout(finalizarMovimento, 700);
+            }
+
+            slides.addEventListener("transitionend", evento => {
+                if (
+                    evento.target === slides &&
+                    evento.propertyName === "transform"
+                ) {
+                    finalizarMovimento();
+                }
+            });
+
+            btnDireita?.addEventListener("click", evento => {
+                evento.preventDefault();
+                avancar(1);
+            });
+
+            btnEsquerda?.addEventListener("click", evento => {
+                evento.preventDefault();
+                avancar(-1);
+            });
+
+            mover(false);
+
+            setInterval(() => {
+                if (!document.hidden) avancar(1);
+            }, 3000);
+        }
+
+        iniciarCarrossel();
+
+        // ==========================================
+        // HAMBÚRGUER
+        // ==========================================
+
+        const hamburguer = document.getElementById("hamburguer");
+        const menu = document.getElementById("menu");
+
+        if (hamburguer && menu) {
+            hamburguer.addEventListener("click", evento => {
+                evento.preventDefault();
+                menu.classList.toggle("ativo");
+            });
+
+            document.addEventListener("click", evento => {
+                if (!evento.target.closest(".dropdown")) {
+                    menu.classList.remove("ativo");
+                }
+            });
+        }
+
+        // ==========================================
+        // FAVORITOS
+        // ==========================================
+
+        const toast = document.getElementById("toast");
+        let tempoToast;
+
+        function mostrarMensagem(texto) {
+            if (!toast) return;
+
+            clearTimeout(tempoToast);
+            toast.textContent = texto;
+            toast.classList.add("show");
+
+            tempoToast = setTimeout(() => {
+                toast.classList.remove("show");
+            }, 2000);
+        }
+
+        function pegarFavoritos() {
+            try {
+                const favoritos = JSON.parse(
+                    localStorage.getItem("favoritos")
+                );
+
+                return Array.isArray(favoritos) ? favoritos : [];
+            } catch {
+                return [];
+            }
+        }
+
+        function identificarNoticia(link) {
+            if (!link) return null;
+
+            const nome = new URL(
+                link.href,
+                window.location.href
+            ).pathname.split("/").pop();
+
+            const resultado = nome.match(/^noticia(\d+)\.html$/i);
+            return resultado ? Number(resultado[1]) : null;
+        }
+
+        function atualizarFavoritos() {
+            const favoritos = pegarFavoritos();
+
+            document.querySelectorAll(".noticia").forEach(card => {
+                const botao = card.querySelector(".favorito");
+                const link = card.querySelector(".conteudo a");
+                const id = identificarNoticia(link);
+
+                if (!botao || id === null) return;
+
+                const salvo = favoritos.some(
+                    item => String(item.id) === String(id)
+                );
+
+                botao.classList.toggle("ativo", salvo);
+
+                const icone = botao.querySelector("i");
+
+                if (icone) {
+                    icone.classList.toggle("fa-solid", salvo);
+                    icone.classList.toggle("fa-regular", !salvo);
+                }
+            });
+        }
+
+        // Funciona também nos cards criados pela pesquisa.
+        document.addEventListener("click", evento => {
+            const botao = evento.target.closest(".noticia .favorito");
+            if (!botao) return;
+
+            const card = botao.closest(".noticia");
+            const link = card.querySelector(".conteudo a");
+            const id = identificarNoticia(link);
+
+            if (id === null) return;
+
+            evento.preventDefault();
+
+            const favoritos = pegarFavoritos();
+            const indice = favoritos.findIndex(
+                item => String(item.id) === String(id)
+            );
+
+            const removendo = indice !== -1;
+
+            if (removendo) {
+                favoritos.splice(indice, 1);
+            } else {
+                favoritos.push({
+                    id,
+                    titulo:
+                        card.querySelector(".conteudo h2")
+                            ?.textContent.trim() || "Notícia",
+                    data:
+                        card.querySelector(".data")
+                            ?.textContent.trim() || "",
+                    imagem: card.querySelector("img")?.src || "",
+                    link: link.href
+                });
+            }
+
+            try {
+                localStorage.setItem(
+                    "favoritos",
+                    JSON.stringify(favoritos)
+                );
+
+                atualizarFavoritos();
+
+                mostrarMensagem(
+                    removendo
+                        ? "🤍 Removido dos favoritos!"
+                        : "❤️ Adicionado aos favoritos!"
+                );
+            } catch (erro) {
+                console.error("Erro ao salvar favoritos:", erro);
+                mostrarMensagem("Não foi possível salvar os favoritos.");
+            }
+        });
+
+        atualizarFavoritos();
+
+        window.addEventListener("pageshow", atualizarFavoritos);
+
+        window.addEventListener("storage", evento => {
+            if (evento.key === "favoritos" || evento.key === null) {
+                atualizarFavoritos();
+            }
+        });
+
+        // ==========================================
+        // CONTADOR DE VISUALIZAÇÕES
+        // ==========================================
+
+        document.addEventListener("click", evento => {
+            const link = evento.target.closest(".noticia a");
+            if (!link) return;
+
+            const id = identificarNoticia(link);
+            if (id === null) return;
+
+            // Mantém a navegação normal do link.
+            fetch(
+                `${pastaPHP}registrarvisualizacoes.php?id=${id}`,
+                {
+                    keepalive: true,
+                    cache: "no-store"
+                }
+            )
+                .then(resposta => {
+                    if (!resposta.ok) {
+                        throw new Error(`HTTP ${resposta.status}`);
+                    }
+                })
+                .catch(erro => {
+                    console.error("Erro ao registrar visualização:", erro);
+                });
+        });
+
+        // ==========================================
+        // PESQUISA
+        // ==========================================
+
+        function iniciarPesquisa() {
+            const container = document.querySelector(".container");
+            const campoBusca = document.getElementById("campoBusca");
+            const campoMobile = document.getElementById("campoBuscaMobile");
+
+            if (!container || (!campoBusca && !campoMobile)) return;
+
+            const sugestoesBox = document.getElementById("sugestoes");
+            const sugestoesMobile = document.getElementById("sugestoesMobile");
+            const paginas = document.querySelector(".paginas");
+            const displayPaginas = paginas?.style.display || "";
+
+            let mensagem = document.getElementById("mensagemNaoEncontrada");
+
+            if (!mensagem) {
+                mensagem = document.createElement("p");
+                mensagem.id = "mensagemNaoEncontrada";
+            }
+
+            // A mensagem precisa estar fora de blocos invisíveis.
+            container.prepend(mensagem);
+            mensagem.style.display = "none";
+            mensagem.setAttribute("role", "status");
+
+            const originais = Array.from(
+                container.querySelectorAll(".noticia")
+            );
+
+            let todasNoticias = [...originais];
+            let carregamento;
+            let falhaCarregamento = false;
+            let versaoPesquisa = 0;
+
+            const sugestoes = [
+                "água",
+                "sono",
+                "açúcar",
+                "imunidade",
+                "metabolismo",
+                "frutas",
+                "ultraprocessados",
+                "proteína",
+                "digestão"
+            ];
+
+            function normalizar(texto) {
+                return texto
+                    .toLowerCase()
+                    .normalize("NFD")
+                    .replace(/[\u0300-\u036f]/g, "")
+                    .trim();
+            }
+
+            async function carregarTodasNoticias() {
+                const mapa = new Map();
+
+                function adicionar(card) {
+                    const link = card.querySelector(".conteudo a");
+                    const chave = link?.href || card.textContent.trim();
+
+                    if (!mapa.has(chave)) mapa.set(chave, card);
+                }
+
+                originais.forEach(adicionar);
+
+                const resultados = await Promise.all(
+                    [1, 2, 3, 4].map(async numero => {
+                        const url = new URL(
+                            `${pastaPaginas}index.pagina${numero}.html`,
+                            window.location.origin
+                        );
+
+                        try {
+                            const resposta = await fetch(url);
+
+                            if (!resposta.ok) {
+                                throw new Error(`HTTP ${resposta.status}`);
+                            }
+
+                            const html = await resposta.text();
+                            const documento = new DOMParser().parseFromString(
+                                html,
+                                "text/html"
+                            );
+
+                            const cards = Array.from(
+                                documento.querySelectorAll(".noticia")
+                            );
+
+                            cards.forEach(card => {
+                                // Resolve os caminhos a partir da página original.
+                                card.querySelectorAll("[href], [src]").forEach(
+                                    elemento => {
+                                        ["href", "src"].forEach(atributo => {
+                                            const valor = elemento.getAttribute(
+                                                atributo
+                                            );
+
+                                            if (valor) {
+                                                elemento.setAttribute(
+                                                    atributo,
+                                                    new URL(valor, url).href
+                                                );
+                                            }
+                                        });
+                                    }
+                                );
+                            });
+
+                            return cards;
+                        } catch (erro) {
+                            falhaCarregamento = true;
+                            console.error("Erro ao carregar:", url.href, erro);
+                            return [];
+                        }
+                    })
+                );
+
+                resultados.flat().forEach(adicionar);
+                todasNoticias = Array.from(mapa.values());
+            }
+
+            async function filtrarNoticias(texto) {
+                const versao = ++versaoPesquisa;
+                const valor = normalizar(texto);
+
+                if (!valor) {
+                    container.querySelectorAll(".noticia").forEach(card => {
+                        card.remove();
+                    });
+
+                    originais.forEach(card => container.appendChild(card));
+
+                    mensagem.style.display = "none";
+                    document.body.classList.remove("sem-resultados");
+
+                    if (paginas) paginas.style.display = displayPaginas;
+
+                    atualizarFavoritos();
+                    return;
+                }
+
+                if (!carregamento) {
+                    carregamento = carregarTodasNoticias();
+                }
+
+                mensagem.textContent = "Buscando notícias...";
+                mensagem.style.display = "block";
+
+                await carregamento;
+
+                // Ignora uma pesquisa antiga se a pessoa já digitou outra.
+                if (versao !== versaoPesquisa) return;
+
+                container.querySelectorAll(".noticia").forEach(card => {
+                    card.remove();
+                });
+
+                const encontradas = todasNoticias.filter(card => {
+                    return normalizar(card.textContent).includes(valor);
+                });
+
+                encontradas.forEach(card => {
+                    container.appendChild(card.cloneNode(true));
+                });
+
+                mensagem.textContent = falhaCarregamento
+                    ? "Não foi possível pesquisar todas as páginas. Recarregue e tente novamente."
+                    : "Notícia não encontrada.";
+
+                mensagem.style.display =
+                    encontradas.length === 0 || falhaCarregamento
+                        ? "block"
+                        : "none";
+
+                document.body.classList.toggle(
+                    "sem-resultados",
+                    encontradas.length === 0
+                );
+
+                if (paginas) paginas.style.display = "none";
+
+                atualizarFavoritos();
+            }
+
+            function configurarPesquisa(campo, caixa) {
+                if (!campo) return;
+
+                function pesquisar(texto) {
+                    if (campoBusca) campoBusca.value = texto;
+                    if (campoMobile) campoMobile.value = texto;
+
+                    filtrarNoticias(texto);
+                }
+
+                campo.addEventListener("input", () => {
+                    pesquisar(campo.value);
+
+                    [sugestoesBox, sugestoesMobile].forEach(elemento => {
+                        if (elemento) elemento.style.display = "none";
+                    });
+
+                    if (!caixa) return;
+
+                    caixa.replaceChildren();
+
+                    const valor = normalizar(campo.value);
+
+                    if (!valor) return;
+
+                    const filtradas = sugestoes.filter(item => {
+                        return normalizar(item).includes(valor);
+                    });
+
+                    filtradas.forEach(item => {
+                        const div = document.createElement("div");
+                        div.classList.add("sugestao");
+                        div.textContent = item;
+
+                        div.addEventListener("click", () => {
+                            pesquisar(item);
+                            caixa.style.display = "none";
+                        });
+
+                        caixa.appendChild(div);
+                    });
+
+                    caixa.style.display = filtradas.length ? "block" : "none";
+                });
+            }
+
+            configurarPesquisa(campoBusca, sugestoesBox);
+            configurarPesquisa(campoMobile, sugestoesMobile);
+
+            document.addEventListener("click", evento => {
+                if (!evento.target.closest(".busca-container")) {
+                    if (sugestoesBox) sugestoesBox.style.display = "none";
+                    if (sugestoesMobile) sugestoesMobile.style.display = "none";
+                }
+            });
+        }
+
+        iniciarPesquisa();
     }
-  );
 
-}
-
-
-// ==========================================
-// DESKTOP
-// ==========================================
-
-configurarPesquisa(
-  campoBusca,
-  sugestoesBox
-);
-
-
-// ==========================================
-// MOBILE
-// ==========================================
-
-configurarPesquisa(
-  campoBuscaMobile,
-  sugestoesBoxMobile
-);
-
-
-// ==========================================
-// FECHAR SUGESTÕES
-// ==========================================
-
-document.addEventListener(
-  "click",
-  (e) => {
-
-    if (
-      !e.target.closest(
-        ".busca-container"
-      )
-    ) {
-
-      if (sugestoesBox) {
-
-        sugestoesBox.style.display =
-          "none";
-
-      }
-
-      if (sugestoesBoxMobile) {
-
-        sugestoesBoxMobile.style.display =
-          "none";
-
-      }
-
-    }
-
-  }
-);
-
-////////////////// HAMBURGUER //////////////////
-
-const hamburguer = document.getElementById("hamburguer");
-const menu = document.getElementById("menu");
-
-hamburguer.addEventListener("click", () => {
-  menu.classList.toggle("ativo");
-});
-
-// Fecha o menu ao clicar fora
-document.addEventListener("click", (e) => {
-  if (!e.target.closest(".dropdown")) {
-    menu.classList.remove("ativo");
-  }
-});
-
-////////////////// FAVORITOS //////////////////
-
-const toast = document.getElementById("toast");
-
-function mostrarMensagem(texto) {
-
-  if (!toast) return;
-
-  toast.textContent = texto;
-  toast.classList.add("show");
-
-  setTimeout(() => {
-    toast.classList.remove("show");
-  }, 2000);
-}
-
-
-// PEGA FAVORITOS SALVOS
-
-function pegarFavoritos() {
-
-  try {
-
-    return JSON.parse(
-      localStorage.getItem("favoritos")
-    ) || [];
-
-  } catch (erro) {
-
-    return [];
-
-  }
-
-}
-
-
-// PEGA TODOS OS CARDS DE NOTÍCIA
-
-document.querySelectorAll(".noticia").forEach(card => {
-
-  const btn = card.querySelector(".favorito");
-
-  if (!btn) return;
-
-
-  // PEGA O LINK DA NOTÍCIA
-
-  const link = card.querySelector(".conteudo a");
-
-  if (!link) return;
-
-
-  const href = link.getAttribute("href");
-
-
-  // DESCOBRE O ID DA NOTÍCIA
-
-  const resultado = href.match(/noticia(\d+)\.html/i);
-
-  if (!resultado) return;
-
-
-  const idNoticia = Number(resultado[1]);
-
-
-  const icone = btn.querySelector("i");
-
-
-  // ==========================================
-  // VERIFICA SE JÁ ESTÁ FAVORITADA
-  // ==========================================
-
-  let favoritos = pegarFavoritos();
-
-  const jaFavoritada = favoritos.some(
-    item => Number(item.id) === idNoticia
-  );
-
-
-  if (jaFavoritada) {
-
-    btn.classList.add("ativo");
-
-    icone.classList.remove("fa-regular");
-    icone.classList.add("fa-solid");
-
-  }
-
-
-  // ==========================================
-  // CLIQUE NO CORAÇÃO
-  // ==========================================
-
-  btn.addEventListener("click", () => {
-
-    let favoritos = pegarFavoritos();
-
-
-    const indice = favoritos.findIndex(
-      item => Number(item.id) === idNoticia
-    );
-
-
-    // ========================================
-    // SE JÁ EXISTE → REMOVE
-    // ========================================
-
-    if (indice !== -1) {
-
-      favoritos.splice(indice, 1);
-
-      localStorage.setItem(
-        "favoritos",
-        JSON.stringify(favoritos)
-      );
-
-
-      btn.classList.remove("ativo");
-
-      icone.classList.remove("fa-solid");
-      icone.classList.add("fa-regular");
-
-
-      mostrarMensagem(
-        "🤍 Removido dos favoritos!"
-      );
-
-
-      return;
-    }
-
-
-    // ========================================
-    // SE NÃO EXISTE → ADICIONA
-    // ========================================
-
-    const tituloElemento =
-      card.querySelector(".conteudo h2");
-
-    const dataElemento =
-      card.querySelector(".data");
-
-    const imagemElemento =
-      card.querySelector("img");
-
-
-    const noticia = {
-
-      id: idNoticia,
-
-      titulo:
-        tituloElemento
-          ? tituloElemento.textContent.trim()
-          : "Notícia",
-
-      data:
-        dataElemento
-          ? dataElemento.textContent.trim()
-          : "",
-
-      imagem:
-        imagemElemento
-          ? imagemElemento.getAttribute("src")
-          : "",
-
-      link: href
-
-    };
-
-
-    favoritos.push(noticia);
-
-
-    localStorage.setItem(
-      "favoritos",
-      JSON.stringify(favoritos)
-    );
-
-
-    btn.classList.add("ativo");
-
-    icone.classList.remove("fa-regular");
-    icone.classList.add("fa-solid");
-
-
-    mostrarMensagem(
-      "❤️ Adicionado aos favoritos!"
-    );
-
-
-    console.log(
-      "Favoritos:",
-      favoritos
-    );
-
-  });
-
-});
-
-
-////////////////// MODO CLARO E ESCURO //////////////////
-
-document.addEventListener("DOMContentLoaded", () => {
-
-  const body = document.body;
-  const sol = document.getElementById("sol");
-  const lua = document.getElementById("lua");
-
-  function atualizarTema(tema) {
-
-    if (tema === "escuro") {
-
-      body.classList.add("dark");
-
-      if (sol) {
-        sol.style.display = "none";
-      }
-
-      if (lua) {
-        lua.style.display = "block";
-      }
-
+    if (document.readyState === "loading") {
+        document.addEventListener("DOMContentLoaded", iniciar, { once: true });
     } else {
-
-      body.classList.remove("dark");
-
-      if (sol) {
-        sol.style.display = "block";
-      }
-
-      if (lua) {
-        lua.style.display = "none";
-      }
-
+        iniciar();
     }
-
-  }
-
-
-  // PEGA O TEMA SALVO NAS OUTRAS PÁGINAS
-  const temaSalvo = localStorage.getItem("tema") || "claro";
-
-
-  // APLICA O TEMA SALVO NESSA PÁGINA
-  atualizarTema(temaSalvo);
-
-
-  // MODO ESCURO
-  if (sol) {
-
-    sol.addEventListener("click", () => {
-
-      localStorage.setItem(
-        "tema",
-        "escuro"
-      );
-
-      atualizarTema("escuro");
-
-    });
-
-  }
-
-
-  // MODO CLARO
-  if (lua) {
-
-    lua.addEventListener("click", () => {
-
-      localStorage.setItem(
-        "tema",
-        "claro"
-      );
-
-      atualizarTema("claro");
-
-    });
-
-  }
-
-});
-
-
-////////////////// CONTADOR DE VISUALIZAÇÕES //////////////////
-
-document.querySelectorAll('.noticia a').forEach(link => {
-
-  link.addEventListener('click', async function (event) {
-
-    const href = this.getAttribute('href');
-
-    const resultado =
-      href.match(/noticia(\d+)\.html/i);
-
-    if (!resultado) {
-      return;
-    }
-
-    event.preventDefault();
-
-    const idNoticia = resultado[1];
-
-    console.log(
-      "Registrando notícia:",
-      idNoticia
-    );
-
-    try {
-
-      const resposta = await fetch(
-        `../../PHP/registrarvisualizacoes.php?id=${idNoticia}`
-      );
-
-      const texto =
-        await resposta.text();
-
-      console.log(
-        "PHP respondeu:",
-        texto
-      );
-
-    } catch (erro) {
-
-      console.log(
-        "Erro ao registrar:",
-        erro
-      );
-
-    }
-
-    window.location.href = href;
-
-  });
-
-});
-
-let encontrouNoticia = false;
-
-noticias.forEach(noticia => {
-
-  const texto = removerAcentos(
-    noticia.textContent.toLowerCase()
-  );
-
-  if (valor === "" || texto.includes(valor)) {
-
-    noticia.style.display = "";
-    encontrouNoticia = true;
-
-  } else {
-
-    noticia.style.display = "none";
-
-  }
-
-});
-
-/* MOVE PÁGINAS E FOOTER QUANDO NÃO TEM RESULTADO */
-
-if (valor !== "" && !encontrouNoticia) {
-
-  document.body.classList.add("sem-resultados");
-
-} else {
-
-  document.body.classList.remove("sem-resultados");
-
-}
+})();

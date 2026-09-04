@@ -59,43 +59,52 @@ $resultado = $conexao->query($sql);
     <!-- NOTÍCIAS -->
     <div class="container">
 
-        <?php while ($noticia = $resultado->fetch_assoc()) { ?>
+       <?php while ($noticia = $resultado->fetch_assoc()) { ?>
 
-            <div class="noticia">
+    <div class="noticia">
 
-                <!-- FAVORITOS -->
-                <button class="favorito"><i class="fa-regular fa-heart"></i></button>
+        <!-- FAVORITOS -->
+        <button class="favorito">
+            <i class="fa-regular fa-heart"></i>
+        </button>
 
-                <!-- imagem da notpicia -->
-                <img src="<?php echo htmlspecialchars($noticia["imagem"]); ?>"
-                alt="<?php echo htmlspecialchars($noticia["titulo"]); ?>">
+        <!-- IMAGEM DA NOTÍCIA -->
+        <?php
+        $numeroCapa = str_pad($noticia["id"], 2, "0", STR_PAD_LEFT);
+        $caminhoImagem = "../ASSETS/IMAGENS/CAPA DAS NOTÍCIAS/capa.not.$numeroCapa.png";
+        ?>
 
-                <div class="conteudo">
+        <img
+            src="<?php echo htmlspecialchars($caminhoImagem, ENT_QUOTES, "UTF-8"); ?>"
+            alt="<?php echo htmlspecialchars($noticia["titulo"], ENT_QUOTES, "UTF-8"); ?>"
+        >
 
-                <!-- título da notícia -->
-                    <h2><?php echo htmlspecialchars($noticia["titulo"]); ?></h2>
+        <div class="conteudo">
 
-                    <!-- VISUALIZAÇÕES -->
-                    <p class="visualizacoes"> 
-                        👁
-                        <?php echo $noticia["visualizacoes"]; ?>
-                        visualizações
-                    </p>
+            <!-- TÍTULO -->
+            <h2>
+                <?php echo htmlspecialchars($noticia["titulo"], ENT_QUOTES, "UTF-8"); ?>
+            </h2>
 
-                    <!-- botão da notícia -->
-                    <a href="<?php echo htmlspecialchars(
-                        "../PAGES/NOTÍCIAS/" . basename($noticia["link"]),
-                        ENT_QUOTES,
-                        "UTF-8"
-                    ); ?>">
-                        <button>Saiba Mais</button>
-                    </a>
+            <!-- VISUALIZAÇÕES -->
+            <p class="visualizacoes">
+                👁 <?php echo (int) $noticia["visualizacoes"]; ?> visualizações
+            </p>
 
-                </div>
+            <!-- BOTÃO -->
+            <a href="<?php echo htmlspecialchars(
+                "../PAGES/NOTÍCIAS/" . basename($noticia["link"]),
+                ENT_QUOTES,
+                "UTF-8"
+            ); ?>">
+                <button>Saiba Mais</button>
+            </a>
 
-            </div>
+        </div>
 
-        <?php } ?>
+    </div>
+
+    <?php } ?>
 
     </div>
 

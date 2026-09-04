@@ -5,7 +5,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-    <link rel="stylesheet" href="../../ASSETS/CSS/style.favoritos.css">
+    <link rel="stylesheet" href="../../ASSETS/CSS/stylefavoritos.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
 
     <title>Favoritas - Bem Estar+</title>
@@ -15,12 +15,15 @@
 
     <!-- NAVEGADOR -->
     <header>
-
         <nav>
 
             <div class="nav-esquerda">
                 <a href="../../../index.html">
-                    <img src="../../ASSETS/IMAGENS/LOGO/logo (2).png" alt="Logo Bem Estar+" class="logo">
+                    <img
+                        src="../../ASSETS/IMAGENS/LOGO/logo (2).png"
+                        alt="Logo Bem Estar+"
+                        class="logo"
+                    >
                 </a>
             </div>
 
@@ -28,22 +31,31 @@
 
                 <!-- MODO CLARO E ESCURO -->
                 <div class="sol" id="sol">
-                    <img src="../../ASSETS/IMAGENS/ÍCONES/sol.png" alt="Modo claro">
+                    <img
+                        src="../../ASSETS/IMAGENS/ÍCONES/sol.png"
+                        alt="Ativar modo escuro"
+                    >
                 </div>
 
                 <div class="lua" id="lua">
-                    <img src="../../ASSETS/IMAGENS/ÍCONES/lua.png" alt="Modo escuro">
+                    <img
+                        src="../../ASSETS/IMAGENS/ÍCONES/lua.png"
+                        alt="Ativar modo claro"
+                    >
                 </div>
 
-        </nav>
+            </div>
 
+        </nav>
     </header>
 
     <h1>Notícias Favoritas</h1>
 
+    <!-- LISTA DE FAVORITOS -->
     <div class="container" id="listaFavoritos"></div>
 
-    <div id="semFavoritos">
+    <!-- APARECE SOMENTE QUANDO NÃO HÁ FAVORITOS -->
+    <div id="semFavoritos" style="display: none;" role="status">
         <i class="fa-regular fa-heart icone-favorito"></i>
         <h2>Você ainda não possui notícias favoritas.</h2>
         <p>Clique no coração de uma notícia para adicioná-la aqui.</p>

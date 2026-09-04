@@ -1,158 +1,186 @@
 document.addEventListener("DOMContentLoaded", () => {
 
+    // ==========================================
+    // MODO CLARO E ESCURO
+    // ==========================================
+
+    const body = document.body;
+    const sol = document.getElementById("sol");
+    const lua = document.getElementById("lua");
+
+    function atualizarTema(tema) {
+        const escuro = tema === "escuro";
+
+        body.classList.toggle("dark", escuro);
+
+        if (sol) {
+            sol.style.display = escuro ? "none" : "block";
+        }
+
+        if (lua) {
+            lua.style.display = escuro ? "block" : "none";
+        }
+    }
+
+    function carregarTema() {
+        const temaSalvo = localStorage.getItem("tema") || "claro";
+        atualizarTema(temaSalvo);
+    }
+
+    carregarTema();
+
+    if (sol) {
+        sol.addEventListener("click", () => {
+            localStorage.setItem("tema", "escuro");
+            atualizarTema("escuro");
+        });
+    }
+
+    if (lua) {
+        lua.addEventListener("click", () => {
+            localStorage.setItem("tema", "claro");
+            atualizarTema("claro");
+        });
+    }
+
+    // ==========================================
+    // FAVORITOS
+    // ==========================================
+
     const lista = document.getElementById("listaFavoritos");
     const semFavoritos = document.getElementById("semFavoritos");
 
-    let favoritos = JSON.parse(localStorage.getItem("favoritos")) || [];
+    function pegarFavoritos() {
+        try {
+            const favoritos = JSON.parse(
+                localStorage.getItem("favoritos")
+            );
 
-    if (favoritos.length === 0) {
-
-        if (semFavoritos) {
-            semFavoritos.style.display = "block";
+            return Array.isArray(favoritos) ? favoritos : [];
+        } catch {
+            return [];
         }
+    }
 
-    } else {
+    function renderizarFavoritos() {
+        if (!lista) return;
+
+        const favoritos = pegarFavoritos();
+
+        lista.replaceChildren();
+
+        // Mostra a mensagem somente quando não há favoritos.
+        if (semFavoritos) {
+            semFavoritos.style.display =
+                favoritos.length === 0 ? "block" : "none";
+        }
 
         favoritos.forEach((noticia, index) => {
-
             const card = document.createElement("div");
-
             card.classList.add("noticia");
 
-            card.innerHTML = `
-                <button class="favorito ativo" data-index="${index}" title="Remover dos favoritos">
-                    <i class="fa-solid fa-heart"></i>
-                </button>
+            // BOTÃO DE REMOVER
 
-                <img src="${noticia.imagem}" alt="${noticia.titulo}">
+            const botaoFavorito = document.createElement("button");
+            botaoFavorito.type = "button";
+            botaoFavorito.className = "favorito ativo";
+            botaoFavorito.dataset.index = index;
+            botaoFavorito.title = "Remover dos favoritos";
+            botaoFavorito.setAttribute(
+                "aria-label",
+                "Remover dos favoritos"
+            );
 
-                <div class="conteudo">
+            const icone = document.createElement("i");
+            icone.className = "fa-solid fa-heart";
 
-                    <h2>${noticia.titulo}</h2>
+            botaoFavorito.appendChild(icone);
 
-                    ${noticia.data ? `<p class="data">${noticia.data}</p>` : ""}
+            // IMAGEM
 
-                    <a href="${noticia.link}">
-                        <button>Saiba Mais</button>
-                    </a>
+            const imagem = document.createElement("img");
 
-                </div>
-            `;
+            const numeroNoticia = String(noticia.id).padStart(2, "0");
+
+            imagem.src =
+                `/bem-estar-mais/SRC/ASSETS/IMAGENS/CAPA DAS NOTÍCIAS/capa.not.${numeroNoticia}.png`;
+
+            imagem.alt = noticia.titulo || "Notícia";
+
+            // CONTEÚDO
+
+            const conteudo = document.createElement("div");
+            conteudo.classList.add("conteudo");
+
+            const titulo = document.createElement("h2");
+            titulo.textContent = noticia.titulo || "Notícia";
+
+            conteudo.appendChild(titulo);
+
+            if (noticia.data) {
+                const data = document.createElement("p");
+                data.classList.add("data");
+                data.textContent = noticia.data;
+
+                conteudo.appendChild(data);
+            }
+
+            const link = document.createElement("a");
+            link.href = noticia.link || "#";
+
+            const botaoSaibaMais = document.createElement("button");
+            botaoSaibaMais.type = "button";
+            botaoSaibaMais.textContent = "Saiba Mais";
+
+            link.appendChild(botaoSaibaMais);
+            conteudo.appendChild(link);
+
+            card.appendChild(botaoFavorito);
+            card.appendChild(imagem);
+            card.appendChild(conteudo);
 
             lista.appendChild(card);
-        });
 
+            // REMOVE E ATUALIZA A LISTA SEM RECARREGAR A PÁGINA.
 
-        document.querySelectorAll("#listaFavoritos .favorito").forEach(botao => {
+            botaoFavorito.addEventListener("click", () => {
+                const favoritosAtuais = pegarFavoritos();
 
-            botao.addEventListener("click", () => {
-
-                const index = Number(botao.dataset.index);
-
-                favoritos.splice(index, 1);
-
-                localStorage.setItem(
-                    "favoritos",
-                    JSON.stringify(favoritos)
+                const indiceAtual = favoritosAtuais.findIndex(item =>
+                    String(item.id) === String(noticia.id) &&
+                    item.link === noticia.link
                 );
 
-                location.reload();
+                if (indiceAtual !== -1) {
+                    favoritosAtuais.splice(indiceAtual, 1);
 
+                    localStorage.setItem(
+                        "favoritos",
+                        JSON.stringify(favoritosAtuais)
+                    );
+                }
+
+                renderizarFavoritos();
             });
-
         });
-
     }
 
+    renderizarFavoritos();
 
-    // MODO CLARO E ESCURO
+    // Atualiza ao voltar pelo navegador.
+    window.addEventListener("pageshow", () => {
+        carregarTema();
+        renderizarFavoritos();
+    });
 
-    const body = document.body;
-
-    const sol = document.getElementById("sol");
-
-    const lua = document.getElementById("lua");
-
-
-    function atualizarTema(tema) {
-
-        if (tema === "escuro") {
-
-            body.classList.add("dark");
-
-
-            if (sol) {
-
-                sol.style.display = "none";
-
-            }
-
-
-            if (lua) {
-
-                lua.style.display = "block";
-
-            }
-
-
-        } else {
-
-            body.classList.remove("dark");
-
-
-            if (sol) {
-
-                sol.style.display = "block";
-
-            }
-
-
-            if (lua) {
-
-                lua.style.display = "none";
-
-            }
-
+    // Atualiza quando outra aba altera o tema ou os favoritos.
+    window.addEventListener("storage", evento => {
+        if (evento.key === "tema" || evento.key === null) {
+            carregarTema();
         }
 
-    }
-
-
-    const temaSalvo = localStorage.getItem("tema") || "claro";
-
-
-    atualizarTema(temaSalvo);
-
-
-    if (sol) {
-
-        sol.addEventListener("click", () => {
-
-            localStorage.setItem(
-                "tema",
-                "escuro"
-            );
-
-            atualizarTema("escuro");
-
-        });
-
-    }
-
-
-    if (lua) {
-
-        lua.addEventListener("click", () => {
-
-            localStorage.setItem(
-                "tema",
-                "claro"
-            );
-
-            atualizarTema("claro");
-
-        });
-
-    }
-
+        if (evento.key === "favoritos" || evento.key === null) {
+            renderizarFavoritos();
+        }
+    });
 });
