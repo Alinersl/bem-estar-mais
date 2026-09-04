@@ -130,7 +130,7 @@ if (isset($_GET["erro"])) {
 <nav>
     <div>
         <a href="../../index.html" class="logo-link" title="Voltar para a página inicial">
-            <img src= "../../ASSETS/IMAGENS/LOGO/logo (2).png">
+            <img src= "../ASSETS/IMAGENS/LOGO/logo (2).png" alt="logo do site" class= "logo">
         </a>
     </div>
 

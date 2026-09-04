@@ -454,7 +454,7 @@ footer p {
   left: 50%;
   transform: translate(-50%, -50%);
   position: fixed;
-   bottom: auto !important;
+  bottom: auto !important;
   left: 50%;
   transform: translateX(-50%);
   background: #333;
