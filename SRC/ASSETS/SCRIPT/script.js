@@ -76,7 +76,7 @@
 
         // Caminhos da estrutura atual do projeto.
         const pastaPHP = "/bem-estar-mais/SRC/PHP/";
-        const pastaPaginas = "/bem-estar-mais/SRC/PAGES/PÁGINAS/";
+        const pastaPaginas = new URL("./", window.location.href);
 
         // ==========================================
         // CARROSSEL
@@ -423,8 +423,8 @@
                 const resultados = await Promise.all(
                     [1, 2, 3, 4].map(async numero => {
                         const url = new URL(
-                            `${pastaPaginas}index.pagina${numero}.html`,
-                            window.location.origin
+                        `index.pagina${numero}.html`,
+                        pastaPaginas
                         );
 
                         try {
@@ -521,14 +521,12 @@
                     container.appendChild(card.cloneNode(true));
                 });
 
-                mensagem.textContent = falhaCarregamento
-                    ? "Não foi possível pesquisar todas as páginas. Recarregue e tente novamente."
-                    : "Notícia não encontrada.";
+                mensagem.textContent = "Notícia não encontrada.";
 
                 mensagem.style.display =
-                    encontradas.length === 0 || falhaCarregamento
-                        ? "block"
-                        : "none";
+                encontradas.length === 0
+                ? "block"
+                : "none";
 
                 document.body.classList.toggle(
                     "sem-resultados",
