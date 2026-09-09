@@ -171,6 +171,33 @@ titulo = 'Comer distraído aumenta o consumo de comida',
 imagem = '../IMAGENS/CAPA DAS NOTÍCIAS/capa.not.25.png'
 WHERE id = 25;
 
+INSERT INTO noticias (titulo, link, imagem, visualizacoes)
+VALUES
+(
+    'Chocolate melhora o humor?',
+    'not.chocolate.html',
+    '../ASSETS/IMAGENS/BANNER PÁGINA PRINCIPAL/banner.chocolate.png',
+    0
+),
+(
+    'Pouca água dá cansaço?',
+    'not.agua.html',
+    '../ASSETS/IMAGENS/BANNER PÁGINA PRINCIPAL/banner.agua.png',
+    0
+),
+(
+    'Ovo faz bem ou mal?',
+    'not.ovo.html',
+    '../ASSETS/IMAGENS/BANNER PÁGINA PRINCIPAL/banner.ovo.png',
+    0
+),
+(
+    'Banana dá energia?',
+    'not.banana.html',
+    '../ASSETS/IMAGENS/BANNER PÁGINA PRINCIPAL/banner.banana.png',
+    0
+);
+
 ALTER TABLE noticias
 ADD COLUMN data_publicacao DATE;
 
@@ -221,4 +248,11 @@ CREATE TABLE comentarios (
 );
 
 ALTER TABLE usuarios
-ADD COLUMN foto_perfil VARCHAR(255) DEFAULT NULL;
+ADD COLUMN foto_perfil VARCHAR(255) DEFAULT NULL; 
+
+ALTER TABLE comentarios
+ADD COLUMN usuario_id INT NULL AFTER noticia_id; 
+
+
+
+
