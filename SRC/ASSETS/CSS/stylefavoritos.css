@@ -292,10 +292,7 @@ footer {
 }
 
 footer p {
-    margin: 0;
-    font-family: Arial, sans-serif;
-    font-size: 14px;
-    line-height: 1.5;
+  font-family: Arial, sans-serif;
 }
 
 /* MENSAGEM TEMPORÁRIA */
@@ -581,12 +578,17 @@ body.dark #semFavoritos .icone-favorito {
 
     /* FOOTER */
     footer {
-        padding: 12px 75px 12px 10px;
-    }
+    color: white;
+    text-align: center;
+    padding: 10px;
+    background: linear-gradient(to right, #000000, #d32f2f, #000000, #d32f2f, #000000);
+    margin-top: auto;
+  }
+
 
     footer p {
-        font-size: 12px;
-    }
+    font-family: Arial, sans-serif;
+  }
 }
 
 /* REDUZ ANIMAÇÕES QUANDO SOLICITADO NO SISTEMA */

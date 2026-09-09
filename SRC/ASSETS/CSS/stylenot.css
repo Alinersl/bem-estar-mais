@@ -350,7 +350,7 @@ section li {
     max-width: calc(100% - 40px);
     margin: 40px auto;
     padding: 22px;
-    background-color: #ffffff;
+    background-color: #1e1e1e;
     border-radius: 12px;
     box-shadow: 0 5px 18px rgba(0, 0, 0, 0.08);
 }
