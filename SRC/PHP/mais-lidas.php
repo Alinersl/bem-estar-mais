@@ -27,7 +27,7 @@ $resultado = $conexao->query($sql);
         <nav>
 
             <div class="nav-esquerda">
-                <a href="../PAGES/PÁGINAS/index1.html">
+                <a href="../ASSETS/index.html">
                     <img src="../ASSETS/IMAGENS/LOGO/logo (2).png" alt="Logo Bem Estar+" class="logo">
                 </a>
             </div>
