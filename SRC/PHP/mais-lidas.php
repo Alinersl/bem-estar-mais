@@ -13,9 +13,22 @@ $resultado = $conexao->query($sql);
 
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="../ASSETS/CSS/style.css">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0"
+    >
+
+    <link
+        rel="stylesheet"
+        href="../ASSETS/CSS/style.css"
+    >
+
+    <link
+        rel="stylesheet"
+        href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css"
+    >
+
     <title>Mais Lidas - Bem Estar+</title>
 </head>
 
@@ -23,99 +36,185 @@ $resultado = $conexao->query($sql);
 
     <!-- NAVEGADOR -->
     <header>
-
         <nav>
 
             <div class="nav-esquerda">
                 <a href="../PAGES/PÁGINAS/index1.html">
-                    <img src="../ASSETS/IMAGENS/LOGO/logo (2).png" alt="Logo Bem Estar+" class="logo">
+                    <img
+                        src="../ASSETS/IMAGENS/LOGO/logo (2).png"
+                        alt="Logo Bem Estar+"
+                        class="logo"
+                    >
                 </a>
             </div>
 
             <!-- MODO CLARO E ESCURO -->
             <div class="nav-direita">
+
                 <div class="sol" id="sol">
-                    <img src="../ASSETS/IMAGENS/ÍCONES/sol.png" alt="Modo claro">
+                    <img
+                        src="../ASSETS/IMAGENS/ÍCONES/sol.png"
+                        alt="Modo claro"
+                    >
                 </div>
 
                 <div class="lua" id="lua">
-                    <img src="../ASSETS/IMAGENS/ÍCONES/lua.png" alt="Modo escuro">
+                    <img
+                        src="../ASSETS/IMAGENS/ÍCONES/lua.png"
+                        alt="Modo escuro"
+                    >
                 </div>
+
             </div>
 
         </nav>
-
     </header>
 
-    <!-- NOTÍCAS MAIS LIDAS -->
-    <h1 style="
+    <!-- TÍTULO -->
+    <h1
+        style="
             text-align: center;
             margin-top: 110px;
             margin-bottom: 35px;
-            "
+        "
     >
-        🔥 Notícias Mais Lidas</h1>
+        🔥 Notícias Mais Lidas
+    </h1>
 
     <!-- NOTÍCIAS -->
     <div class="container">
 
-       <?php while ($noticia = $resultado->fetch_assoc()) { ?>
+        <?php while ($noticia = $resultado->fetch_assoc()) { ?>
 
-    <div class="noticia">
+            <?php
+            /*
+             * FORMATA A DATA
+             * Exemplo: 2025-02-20 vira 20/02/2025
+             */
 
-        <!-- FAVORITOS -->
-        <button class="favorito">
-            <i class="fa-regular fa-heart"></i>
-        </button>
+            $dataFormatada = "";
 
-        <!-- IMAGEM DA NOTÍCIA -->
-        <?php
-        $numeroCapa = str_pad($noticia["id"], 2, "0", STR_PAD_LEFT);
-        $caminhoImagem = "../ASSETS/IMAGENS/CAPA DAS NOTÍCIAS/capa.not.$numeroCapa.png";
-        ?>
+            if (!empty($noticia["data_publicacao"])) {
+                $dataPublicacao = DateTime::createFromFormat(
+                    "Y-m-d",
+                    $noticia["data_publicacao"]
+                );
 
-        <img
-            src="<?php echo htmlspecialchars($caminhoImagem, ENT_QUOTES, "UTF-8"); ?>"
-            alt="<?php echo htmlspecialchars($noticia["titulo"], ENT_QUOTES, "UTF-8"); ?>"
-        >
+                if ($dataPublicacao) {
+                    $dataFormatada = $dataPublicacao->format("d/m/Y");
+                }
+            }
 
-        <div class="conteudo">
+            /*
+             * MONTA O CAMINHO DA IMAGEM
+             */
 
-            <!-- TÍTULO -->
-            <h2>
-                <?php echo htmlspecialchars($noticia["titulo"], ENT_QUOTES, "UTF-8"); ?>
-            </h2>
+            $numeroCapa = str_pad(
+                $noticia["id"],
+                2,
+                "0",
+                STR_PAD_LEFT
+            );
 
-            <!-- VISUALIZAÇÕES -->
-            <p class="visualizacoes">
-                👁 <?php echo (int) $noticia["visualizacoes"]; ?> visualizações
-            </p>
+            $caminhoImagem =
+                "../ASSETS/IMAGENS/CAPA DAS NOTÍCIAS/capa.not." .
+                $numeroCapa .
+                ".png";
 
-            <!-- BOTÃO -->
-            <a href="<?php echo htmlspecialchars(
-                "../PAGES/NOTÍCIAS/" . basename($noticia["link"]),
-                ENT_QUOTES,
-                "UTF-8"
-            ); ?>">
-                <button>Saiba Mais</button>
-            </a>
+            /*
+             * MONTA O CAMINHO DA NOTÍCIA
+             */
 
-        </div>
+            $caminhoNoticia =
+                "../PAGES/NOTÍCIAS/" .
+                basename($noticia["link"]);
+            ?>
 
-    </div>
+            <div class="noticia">
 
-    <?php } ?>
+                <!-- FAVORITOS -->
+                <button
+                    type="button"
+                    class="favorito"
+                >
+                    <i class="fa-regular fa-heart"></i>
+                </button>
+
+                <!-- IMAGEM DA NOTÍCIA -->
+                <img
+                    src="<?php echo htmlspecialchars(
+                        $caminhoImagem,
+                        ENT_QUOTES,
+                        "UTF-8"
+                    ); ?>"
+                    alt="<?php echo htmlspecialchars(
+                        $noticia["titulo"],
+                        ENT_QUOTES,
+                        "UTF-8"
+                    ); ?>"
+                >
+
+                <div class="conteudo">
+
+                    <!-- TÍTULO -->
+                    <h2>
+                        <?php echo htmlspecialchars(
+                            $noticia["titulo"],
+                            ENT_QUOTES,
+                            "UTF-8"
+                        ); ?>
+                    </h2>
+
+                    <!-- DATA -->
+                    <?php if ($dataFormatada !== "") { ?>
+
+                        <p class="data">
+                            <?php echo htmlspecialchars(
+                                $dataFormatada,
+                                ENT_QUOTES,
+                                "UTF-8"
+                            ); ?>
+                        </p>
+
+                    <?php } ?>
+
+                    <!-- VISUALIZAÇÕES -->
+                    <p class="visualizacoes">
+                        👁
+                        <?php echo (int) $noticia["visualizacoes"]; ?>
+                        visualizações
+                    </p>
+
+                    <!-- BOTÃO -->
+                    <a
+                        href="<?php echo htmlspecialchars(
+                            $caminhoNoticia,
+                            ENT_QUOTES,
+                            "UTF-8"
+                        ); ?>"
+                    >
+                        <button type="button">
+                            Saiba Mais
+                        </button>
+                    </a>
+
+                </div>
+
+            </div>
+
+        <?php } ?>
 
     </div>
 
     <!-- FOOTER -->
     <footer>
-        <p>© 2025 BemEstar+ | Todos os direitos reservados</p>
+        <p>
+            © 2025 BemEstar+ | Todos os direitos reservados
+        </p>
     </footer>
 
     <!-- MENSAGEM DOS FAVORITOS -->
     <div id="toast"></div>
-
 
     <div style="display: none !important;">
 
@@ -124,27 +223,47 @@ $resultado = $conexao->query($sql);
             <div class="slide"></div>
         </div>
 
-        <button type="button" class="btn-esquerda"></button>
-        <button type="button" class="btn-direita"></button>
+        <button
+            type="button"
+            class="btn-esquerda"
+        ></button>
+
+        <button
+            type="button"
+            class="btn-direita"
+        ></button>
 
         <!-- PESQUISA INVISÍVEL -->
         <div class="busca-container">
-            <input type="text" id="campoBusca">
+            <input
+                type="text"
+                id="campoBusca"
+            >
+
             <div id="sugestoes"></div>
         </div>
 
-        <input type="text" id="campoBuscaMobile">
-        
+        <input
+            type="text"
+            id="campoBuscaMobile"
+        >
+
         <div id="sugestoesMobile"></div>
-        
+
         <p id="mensagemNaoEncontrada"></p>
-        
+
         <div class="paginas"></div>
 
         <!-- HAMBÚRGUER INVISÍVEL -->
         <div class="dropdown">
-            <button type="button" id="hamburguer"></button>
+
+            <button
+                type="button"
+                id="hamburguer"
+            ></button>
+
             <div id="menu"></div>
+
         </div>
 
     </div>
