@@ -1,7 +1,3 @@
-/* =========================================================
-   RESET
-========================================================= */
-
 * {
     margin: 0;
     padding: 0;
@@ -14,31 +10,20 @@ html {
 
 body {
     min-height: 100vh;
-
     background: #f5f5f5;
     color: #222;
-
     font-family: Arial, Helvetica, sans-serif;
-
     transition:
         background-color .3s ease,
         color .3s ease;
         padding-top: 80px;
-
-
 }
 
-button,
-a,
-input {
+button,a,input {
     font-family: inherit;
 }
 
-
-/* =========================================================
-   NAVEGAÇÃO
-========================================================= */
-
+/* NAVEGAÇÃO */
 nav {
   display: flex;
   justify-content: space-between;
@@ -54,57 +39,37 @@ nav {
   
 }
 
-
-/* =========================================================
-   LOGO
-========================================================= */
-
+/* LOGO */
 .logo {
     display: flex; 
     align-items: center; 
-
     width: 150px;
     height: auto;
-
     margin-left: 0; 
     width: 150px;
 }
 
-
-/* =========================================================
-   LADO DIREITO DA NAV
-========================================================= */
-
+/* LADO DIREITO DA NAV */
 .nav-direita {
     display: flex;
     align-items: center;
-
     gap: 14px;
 }
 
-
-/* =========================================================
-   BOTÕES DA NAV
-========================================================= */
+/* BOTÕES DA NAV */
 
 .modo,
 .perfil {
     width: 42px;
     height: 42px;
-
     display: flex;
     align-items: center;
     justify-content: center;
-
     border: none;
     border-radius: 50%;
-
     background: rgba(255, 255, 255, .12);
-
     color: white;
-
     cursor: pointer;
-
     transition:
         background .25s ease,
         transform .25s ease;
@@ -121,7 +86,6 @@ nav {
 .modo:hover,
 .perfil:hover {
     background: rgba(255, 255, 255, .22);
-
     transform: translateY(-2px);
 }
 
@@ -130,126 +94,74 @@ nav {
     transform: scale(.94);
 }
 
-
-/* =========================================================
-   CONTEÚDO PRINCIPAL
-========================================================= */
-
+/* CONTEÚDO PRINCIPAL */
 .perfil-main {
     width: 100%;
     max-width: 1050px;
-
     margin: 45px auto;
-
     padding: 0 20px;
 }
 
 
-/* =========================================================
-   CARD PRINCIPAL
-========================================================= */
-
+/* CARD PRINCIPAL */
 .perfil-container {
     width: 100%;
-
     background: white;
-
     padding: 42px;
-
     border-radius: 18px;
-
-    box-shadow:
-        0 10px 35px rgba(0, 0, 0, .08);
-
+    box-shadow:0 10px 35px rgba(0, 0, 0, .08);
     border: 1px solid #eeeeee;
-
     transition:
         background .3s ease,
         border-color .3s ease,
         box-shadow .3s ease;
-
 }
 
-
-/* =========================================================
-   TOPO DO PERFIL
-========================================================= */
-
+/* TOPO DO PERFIL */
 .perfil-topo {
     display: flex;
     align-items: center;
-
     gap: 35px;
-
     padding-bottom: 35px;
-
     border-bottom: 1px solid #eeeeee;
 }
 
-
-/* =========================================================
-   FOTO
-========================================================= */
-
+/* FOTO */
 .foto-area {
     position: relative;
-
     width: 145px;
     height: 145px;
-
     flex-shrink: 0;
 }
 
 .foto-perfil {
     width: 145px;
     height: 145px;
-
     display: block;
-
     object-fit: cover;
-
     border-radius: 50%;
-
     border: 5px solid #d32f2f;
-
     background: #f1f1f1;
-
-    box-shadow:
-        0 6px 18px rgba(211, 47, 47, .25);
+    box-shadow:0 6px 18px rgba(211, 47, 47, .25);
 }
 
-
-/* =========================================================
-   BOTÃO TROCAR FOTO
-========================================================= */
-
+/* BOTÃO TROCAR FOTO */
 .trocar-foto {
     position: absolute;
-
     right: 0;
     bottom: 0;
-
     width: 43px;
     height: 43px;
-
     display: flex;
     align-items: center;
     justify-content: center;
-
     border: 3px solid white;
     border-radius: 50%;
-
     background: #d32f2f;
-
     color: white;
-
     cursor: pointer;
-
     font-size: 17px;
-
-    box-shadow:
-        0 3px 10px rgba(0, 0, 0, .2);
-
+    box-shadow: 0 3px 10px rgba(0, 0, 0, .2);
     transition:
         background .25s ease,
         transform .25s ease;
@@ -257,14 +169,10 @@ nav {
 
 .trocar-foto:hover {
     background: #b71c1c;
-
     transform: scale(1.08);
 }
 
-
-/* =========================================================
-   DADOS DO PERFIL
-========================================================= */
+/* DADOS DO PERFIL */
 
 .dados-perfil {
     flex: 1;
@@ -272,50 +180,33 @@ nav {
 
 .dados-perfil h1 {
     margin-bottom: 7px;
-
     color: #1f2937;
-
     font-size: 32px;
     font-weight: 700;
-
     line-height: 1.2;
 }
 
 .dados-perfil p {
     margin-bottom: 20px;
-
     color: #777;
-
     font-size: 16px;
 }
 
-
-/* =========================================================
-   BOTÃO MINHA CONTA
-========================================================= */
+/* BOTÃO MINHA CONTA */
 
 .entrar-conta {
     display: inline-flex;
     align-items: center;
     justify-content: center;
-
     padding: 11px 22px;
-
     border: none;
     border-radius: 30px;
-
     background: #d32f2f;
-
     color: white;
-
     font-size: 14px;
     font-weight: bold;
-
     cursor: pointer;
-
-    box-shadow:
-        0 4px 12px rgba(211, 47, 47, .22);
-
+    box-shadow: 0 4px 12px rgba(211, 47, 47, .22);
     transition:
         background .25s ease,
         transform .25s ease,
@@ -324,52 +215,35 @@ nav {
 
 .entrar-conta:hover {
     background: #b71c1c;
-
     transform: translateY(-2px);
-
-    box-shadow:
-        0 6px 16px rgba(211, 47, 47, .3);
+    box-shadow: 0 6px 16px rgba(211, 47, 47, .3);
 }
 
 .entrar-conta:active {
     transform: scale(.97);
 }
 
-
-/* =========================================================
-   ESTATÍSTICAS
-========================================================= */
+/* ESTATÍSTICAS */
 
 .estatisticas {
     display: grid;
-
     grid-template-columns: repeat(3, 1fr);
-
     gap: 18px;
-
     margin: 30px 0;
 }
 
 .estatistica {
     min-height: 125px;
-
     display: flex;
     flex-direction: column;
     align-items: center;
     justify-content: center;
-
     padding: 20px;
-
     background: #fff7f7;
-
     border: 1px solid #f5dede;
-
     border-left: 4px solid #d32f2f;
-
     border-radius: 12px;
-
     text-align: center;
-
     transition:
         transform .25s ease,
         box-shadow .25s ease,
@@ -378,93 +252,63 @@ nav {
 
 .estatistica:hover {
     transform: translateY(-4px);
-
-    box-shadow:
-        0 8px 20px rgba(0, 0, 0, .08);
+    box-shadow: 0 8px 20px rgba(0, 0, 0, .08);
 }
 
 .estatistica i {
     display: block;
-
     margin-bottom: 8px;
-
     color: #d32f2f;
-
     font-size: 23px;
     font-style: normal;
 }
 
 .estatistica strong {
     display: block;
-
     margin-bottom: 4px;
-
     color: #1f2937;
-
     font-size: 26px;
 }
 
 .estatistica span {
     color: #777;
-
     font-size: 13px;
 }
 
-
-/* =========================================================
-   CONFIGURAÇÕES
-========================================================= */
-
+/* CONFIGURAÇÕES */
 .configuracoes {
     margin-top: 38px;
 }
 
 .configuracoes h2 {
     position: relative;
-
     margin-bottom: 8px;
-
     padding-left: 15px;
-
     color: #1f2937;
-
     font-size: 23px;
 }
 
 .configuracoes h2::before {
     content: "";
-
     position: absolute;
-
     left: 0;
     top: 50%;
-
     width: 4px;
     height: 25px;
-
     background: #d32f2f;
-
     border-radius: 5px;
-
     transform: translateY(-50%);
 }
 
-
-/* =========================================================
-   ITEM DE CONFIGURAÇÃO
-========================================================= */
+/* ITEM DE CONFIGURAÇÃO */
 
 .config-item {
     min-height: 72px;
-
     display: flex;
     align-items: center;
     justify-content: space-between;
-
     padding: 16px 5px;
-
     border-bottom: 1px solid #eeeeee;
-
     transition:
         background .2s ease,
         padding .2s ease;
@@ -473,79 +317,53 @@ nav {
 .config-item:hover {
     padding-left: 10px;
     padding-right: 10px;
-
     background: #fafafa;
 }
 
-
-/* =========================================================
-   TEXTO DA CONFIGURAÇÃO
-========================================================= */
+/* TEXTO DA CONFIGURAÇÃO */
 
 .config-texto {
     display: flex;
     align-items: center;
-
     gap: 15px;
-
     min-width: 0;
 }
 
 .config-texto > i {
     width: 38px;
     height: 38px;
-
     display: flex;
     align-items: center;
     justify-content: center;
-
     flex-shrink: 0;
-
     border-radius: 10px;
-
     background: #fff0f0;
-
     color: #d32f2f;
-
     font-size: 19px;
     font-style: normal;
 }
 
 .config-texto h3 {
     margin-bottom: 3px;
-
     color: #222;
-
     font-size: 15px;
 }
 
 .config-texto p {
     max-width: 500px;
-
     overflow: hidden;
-
     color: #777;
-
     font-size: 13px;
-
     text-overflow: ellipsis;
     white-space: nowrap;
 }
 
-
-/* =========================================================
-   SETA
-========================================================= */
-
+/* SETA */
 .seta {
     margin-left: 15px;
-
     color: #aaa;
-
     font-size: 25px;
-
     line-height: 1;
-
     transition:
         color .2s ease,
         transform .2s ease;
@@ -553,21 +371,15 @@ nav {
 
 .config-item:hover .seta {
     color: #d32f2f;
-
     transform: translateX(3px);
 }
 
-
-/* =========================================================
-   SWITCH
-========================================================= */
+/* SWITCH */
 
 .switch {
     position: relative;
-
     width: 48px;
     height: 26px;
-
     flex-shrink: 0;
 }
 
@@ -577,36 +389,23 @@ nav {
 
 .slider {
     position: absolute;
-
     inset: 0;
-
     background: #d1d1d1;
-
     border-radius: 30px;
-
     cursor: pointer;
-
     transition: background .3s ease;
 }
 
 .slider::before {
     content: "";
-
     position: absolute;
-
     width: 20px;
     height: 20px;
-
     left: 3px;
     top: 3px;
-
     background: white;
-
     border-radius: 50%;
-
-    box-shadow:
-        0 2px 5px rgba(0, 0, 0, .2);
-
+    box-shadow:  0 2px 5px rgba(0, 0, 0, .2);
     transition:
         transform .3s ease;
 }
@@ -619,34 +418,21 @@ nav {
     transform: translateX(22px);
 }
 
-
-/* =========================================================
-   BOTÃO SAIR
-========================================================= */
-
+/* BOTÃO SAIR */
 .sair-conta {
     width: 100%;
-
     display: flex;
     align-items: center;
     justify-content: center;
-
     margin-top: 28px;
-
     padding: 13px 20px;
-
     border: 2px solid #d32f2f;
     border-radius: 30px;
-
     background: white;
-
     color: #d32f2f;
-
     font-size: 14px;
     font-weight: bold;
-
     text-decoration: none;
-
     transition:
         background .25s ease,
         color .25s ease,
@@ -656,20 +442,12 @@ nav {
 
 .sair-conta:hover {
     background: #d32f2f;
-
     color: white;
-
     transform: translateY(-2px);
-
-    box-shadow:
-        0 5px 15px rgba(211, 47, 47, .25);
+    box-shadow: 0 5px 15px rgba(211, 47, 47, .25);
 }
 
-
-/* =========================================================
-   FOOTER
-========================================================= */
-
+/* FOOTER */
 footer {
   background: linear-gradient(to right, #000000, #d32f2f, #000000, #d32f2f, #000000);
   padding: 10px;
@@ -677,40 +455,25 @@ footer {
   color: #ffffff;
 }
 
-
-
-/* =========================================================
-   MODO ESCURO
-========================================================= */
-
+/* MODO ESCURO */
 body.dark {
     background: #121212;
-
     color: #eeeeee;
 }
 
-
 /* CARD */
-
 body.dark .perfil-container {
     background: #1e1e1e;
-
     border-color: #303030;
-
-    box-shadow:
-        0 10px 35px rgba(0, 0, 0, .35);
+    box-shadow:0 10px 35px rgba(0, 0, 0, .35);
 }
 
-
 /* TOPO */
-
 body.dark .perfil-topo {
     border-color: #333333;
 }
 
-
 /* NOME */
-
 body.dark .dados-perfil h1 {
     color: #f5f5f5;
 }
@@ -719,14 +482,10 @@ body.dark .dados-perfil p {
     color: #aaa;
 }
 
-
 /* ESTATÍSTICAS */
-
 body.dark .estatistica {
     background: #2a1919;
-
     border-color: #472525;
-
     border-left-color: #d32f2f;
 }
 
@@ -738,9 +497,7 @@ body.dark .estatistica span {
     color: #aaa;
 }
 
-
 /* CONFIGURAÇÕES */
-
 body.dark .configuracoes h2 {
     color: #f5f5f5;
 }
@@ -765,37 +522,28 @@ body.dark .config-texto p {
     color: #999;
 }
 
-
 /* BOTÃO SAIR */
-
 body.dark .sair-conta {
     background: transparent;
-
     color: #ff5555;
 }
 
 body.dark .sair-conta:hover {
     background: #d32f2f;
-
     color: white;
 }
 
-
-/* =========================================================
-   RESPONSIVO — TABLET
-========================================================= */
+/* RESPONSIVO — TABLET */
 
 @media (max-width: 768px) {
 
     nav {
         height: 65px;
-
         padding: 0 20px;
     }
 
     .logo {
         margin-left: 5px;
-
         font-size: 21px;
     }
 
@@ -809,40 +557,27 @@ body.dark .sair-conta:hover {
         height: 38px;
     }
 
-
     /* MAIN */
-
     .perfil-main {
         margin: 25px auto;
-
         padding: 0 15px;
     }
 
-
     /* CARD */
-
     .perfil-container {
         padding: 28px 20px;
-
         border-radius: 14px;
     }
 
-
     /* TOPO */
-
     .perfil-topo {
         flex-direction: column;
-
         gap: 20px;
-
         text-align: center;
-
         padding-bottom: 28px;
     }
 
-
     /* FOTO */
-
     .foto-area {
         width: 125px;
         height: 125px;
@@ -856,35 +591,28 @@ body.dark .sair-conta:hover {
     .trocar-foto {
         width: 38px;
         height: 38px;
-
         font-size: 15px;
     }
 
-
     /* DADOS */
-
     .dados-perfil h1 {
         font-size: 26px;
     }
 
     .dados-perfil p {
         font-size: 14px;
-
         margin-bottom: 16px;
     }
 
 
     /* ESTATÍSTICAS */
-
     .estatisticas {
         gap: 10px;
-
         margin: 25px 0;
     }
 
     .estatistica {
         min-height: 110px;
-
         padding: 14px 7px;
     }
 
@@ -902,7 +630,6 @@ body.dark .sair-conta:hover {
 
 
     /* CONFIGURAÇÕES */
-
     .configuracoes {
         margin-top: 28px;
     }
@@ -913,7 +640,6 @@ body.dark .sair-conta:hover {
 
     .config-item {
         min-height: 65px;
-
         padding: 14px 0;
     }
 
@@ -924,7 +650,6 @@ body.dark .sair-conta:hover {
     .config-texto > i {
         width: 34px;
         height: 34px;
-
         font-size: 17px;
     }
 
@@ -934,7 +659,6 @@ body.dark .sair-conta:hover {
 
     .config-texto p {
         max-width: 250px;
-
         font-size: 11px;
     }
 
@@ -942,9 +666,7 @@ body.dark .sair-conta:hover {
         font-size: 21px;
     }
 
-
     /* SWITCH */
-
     .switch {
         width: 44px;
         height: 24px;
@@ -959,20 +681,15 @@ body.dark .sair-conta:hover {
         transform: translateX(20px);
     }
 
-
     /* FOOTER */
-
     footer {
         margin-top: 25px;
-
         padding: 12px;
     }
 }
 
 
-/* =========================================================
-   RESPONSIVO — CELULARES PEQUENOS
-========================================================= */
+/* RESPONSIVO — CELULARES PEQUENOS */
 
 @media (max-width: 450px) {
 
@@ -988,27 +705,20 @@ body.dark .sair-conta:hover {
     .perfil {
         width: 35px;
         height: 35px;
-
         font-size: 17px;
     }
 
-
     .perfil-main {
         margin: 15px auto;
-
         padding: 0 10px;
     }
 
-
     .perfil-container {
         padding: 24px 15px;
-
         border-radius: 12px;
     }
 
-
     /* FOTO */
-
     .foto-area {
         width: 110px;
         height: 110px;
@@ -1017,54 +727,41 @@ body.dark .sair-conta:hover {
     .foto-perfil {
         width: 110px;
         height: 110px;
-
         border-width: 4px;
     }
 
     .trocar-foto {
         width: 34px;
         height: 34px;
-
         border-width: 2px;
-
         font-size: 13px;
     }
 
-
     /* NOME */
-
     .dados-perfil h1 {
         font-size: 23px;
-
         word-break: break-word;
     }
 
     .dados-perfil p {
         max-width: 100%;
-
         overflow-wrap: anywhere;
-
         font-size: 13px;
     }
 
-
     /* ESTATÍSTICAS */
-
     .estatisticas {
         gap: 6px;
     }
 
     .estatistica {
         min-height: 100px;
-
         padding: 12px 4px;
-
         border-left-width: 3px;
     }
 
     .estatistica i {
         margin-bottom: 5px;
-
         font-size: 18px;
     }
 
@@ -1076,9 +773,7 @@ body.dark .sair-conta:hover {
         font-size: 9px;
     }
 
-
     /* CONFIGURAÇÕES */
-
     .config-item {
         padding: 13px 0;
     }
@@ -1090,7 +785,6 @@ body.dark .sair-conta:hover {
     .config-texto > i {
         width: 31px;
         height: 31px;
-
         font-size: 15px;
     }
 
@@ -1100,7 +794,6 @@ body.dark .sair-conta:hover {
 
     .config-texto p {
         max-width: 180px;
-
         font-size: 10px;
     }
 
@@ -1108,48 +801,32 @@ body.dark .sair-conta:hover {
         display: none;
     }
 
-
     /* SAIR */
-
     .sair-conta {
         padding: 12px;
-
         font-size: 13px;
     }
 
-
     /* FOOTER */
-
     footer {
         font-size: 11px;
     }
 }
 
-
-/* =========================================================
-   ACESSIBILIDADE
-========================================================= */
-
+/* ACESSIBILIDADE */
 button:focus-visible,
 a:focus-visible,
 input:focus-visible {
     outline: 3px solid rgba(211, 47, 47, .35);
-
     outline-offset: 3px;
 }
 
-/* =========================================
-   MELHORIAS MINHA CONTA
-========================================= */
-
-
+/* MELHORIAS MINHA CONTA */
 /* LOGO CLICÁVEL */
-
 .logo-link {
     text-decoration: none;
     color: inherit;
 }
-
 
 /* ITENS QUE PODEM SER CLICADOS */
 
@@ -1161,27 +838,17 @@ input:focus-visible {
     opacity: 0.85;
 }
 
-
-/* =========================================
-   FORMULÁRIOS DE EDIÇÃO
-========================================= */
+/* FORMULÁRIOS DE EDIÇÃO */
 
 .form-edicao {
     display: none;
-
     flex-direction: column;
-
     gap: 10px;
-
     padding: 20px;
-
     margin-bottom: 15px;
-
     border-radius: 12px;
-
     background: #f5f5f5;
 }
-
 
 .form-edicao.aberto {
     display: flex;
@@ -1192,92 +859,59 @@ input:focus-visible {
     font-weight: 600;
 }
 
-
 .form-edicao input {
     width: 100%;
-
     box-sizing: border-box;
-
     padding: 12px;
-
     border: 1px solid #ccc;
-
     border-radius: 8px;
-
     outline: none;
-
     font-size: 15px;
 }
-
 
 .form-edicao input:focus {
     border-color: #555;
 }
 
-
 .form-edicao button {
     width: fit-content;
-
     border: none;
-
     padding: 11px 20px;
-
     border-radius: 8px;
-
     cursor: pointer;
-
     font-weight: 600;
 }
 
-
-
-/* =========================================
-   MENSAGEM
-========================================= */
-
+/* MENSAGEM */
 .mensagem-perfil {
     width: 90%;
-
     max-width: 700px;
-
     margin: 25px auto;
-
     padding: 14px;
-
     border-radius: 10px;
-
     text-align: center;
-
     transition: opacity 0.5s;
 }
-
 
 .mensagem-perfil.sucesso {
     background: #dff5e5;
     color: #176b31;
 }
 
-
 .mensagem-perfil.erro {
     background: #ffe2e2;
     color: #a42020;
 }
 
-
-
-/* =========================================
-   MODO ESCURO
-========================================= */
+/* MODO ESCURO */
 
 body.dark .form-edicao {
     background: #222;
 }
 
-
 body.dark .form-edicao label {
     color: white;
 }
-
 
 body.dark .form-edicao input {
     background: #333;
@@ -1287,16 +921,10 @@ body.dark .form-edicao input {
     border-color: #555;
 }
 
-
-
-/* =========================================
-   BOTÃO SAIR
-========================================= */
+/* BOTÃO SAIR */
 
 button.sair-conta {
     border: none;
-
     font-family: inherit;
-
     cursor: pointer;
 }
