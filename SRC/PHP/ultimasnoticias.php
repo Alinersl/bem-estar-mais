@@ -31,7 +31,7 @@ $resultado = $conexao->query($sql);
     <nav>
 
         <div class="nav-esquerda">
-            <a href="../../index.html">
+            <a href="../../PAGES/PÁGINAS/index.pagina1.html">
                 <img src="../ASSETS/IMAGENS/LOGO/logo (2).png" alt="Logo Bem Estar+" class="logo">
             </a>
         </div>
