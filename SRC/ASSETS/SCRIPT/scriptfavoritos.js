@@ -269,26 +269,45 @@ function renderizarFavoritos() {
 
         // IMAGEM
 
-        const imagem =
-            document.createElement("img");
+        const imagem = document.createElement("img");
 
-        const idNumerico =
-            /^\d+$/.test(String(noticia.id));
+        function corrigirCaminhoImagem(caminho) {
+            if (!caminho) {
+                return "";
+            }
 
-        if (idNumerico) {
-            const numeroNoticia =
-                String(noticia.id).padStart(2, "0");
+            // Se já for um endereço completo ou absoluto, mantém.
+            if (
+                caminho.startsWith("http://") ||
+                caminho.startsWith("https://") ||
+                caminho.startsWith("/")
+            ) {
+                return caminho;
+            }
+
+            const caminhoNormalizado = caminho.replace(/\\/g, "/");
+            const posicaoAssets = caminhoNormalizado.indexOf("ASSETS/");
+
+            if (posicaoAssets !== -1) {
+                return (
+                    "/bem-estar-mais/SRC/" +
+                    caminhoNormalizado.substring(posicaoAssets)
+                );
+            }
+
+            return caminho;
+        }
+
+        if (noticia.imagem) {
+            imagem.src = corrigirCaminhoImagem(noticia.imagem);
+        } else {
+            const numeroNoticia = String(noticia.id).padStart(2, "0");
 
             imagem.src =
                 `/bem-estar-mais/SRC/ASSETS/IMAGENS/CAPA DAS NOTÍCIAS/capa.not.${numeroNoticia}.png`;
-
-        } else {
-            imagem.src =
-                noticia.imagem || "";
         }
 
-        imagem.alt =
-            noticia.titulo || "Notícia";
+        imagem.alt = noticia.titulo || "Notícia";
 
 
         // CONTEÚDO

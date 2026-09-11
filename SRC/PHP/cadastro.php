@@ -4,57 +4,97 @@ session_start();
 
 require "conexao.php";
 
-if ($_SERVER["REQUEST_METHOD"] == "POST") {
+if ($_SERVER["REQUEST_METHOD"] === "POST") {
 
-    $nome = trim($_POST["nome"]);
-    $email = trim($_POST["email"]);
-    $senha = $_POST["senha"];
+    $nome = trim($_POST["nome"] ?? "");
+    $email = trim($_POST["email"] ?? "");
+    $senha = $_POST["senha"] ?? "";
 
-    if (empty($nome) || empty($email) || empty($senha)) {
+    if ($nome === "" || $email === "" || $senha === "") {
         die("Preencha todos os campos.");
     }
 
-    // Verifica se o e-mail já existe
-    $verifica = $conexao->prepare("SELECT id FROM usuarios WHERE email = ?");
+    if (!filter_var($email, FILTER_VALIDATE_EMAIL)) {
+        die("Digite um e-mail válido.");
+    }
+
+    // VERIFICA SE O E-MAIL JÁ ESTÁ CADASTRADO
+    $verifica = $conexao->prepare(
+        "SELECT id FROM usuarios WHERE email = ?"
+    );
+
+    if (!$verifica) {
+        die("Erro ao verificar o e-mail.");
+    }
+
     $verifica->bind_param("s", $email);
     $verifica->execute();
+
     $resultado = $verifica->get_result();
 
     if ($resultado->num_rows > 0) {
+        $verifica->close();
+        $conexao->close();
+
         die("Este e-mail já está cadastrado.");
     }
 
-    // Criptografa a senha
-    $senhaHash = password_hash($senha, PASSWORD_DEFAULT);
-
-    // Insere o usuário
-    $sql = $conexao->prepare(
-        "INSERT INTO usuarios (nome, email, senha) VALUES (?, ?, ?)"
+    // CRIPTOGRAFA A SENHA
+    $senhaHash = password_hash(
+        $senha,
+        PASSWORD_DEFAULT
     );
 
-    $sql->bind_param("sss", $nome, $email, $senhaHash);
+    // CADASTRA O USUÁRIO
+    $sql = $conexao->prepare(
+        "INSERT INTO usuarios (nome, email, senha)
+         VALUES (?, ?, ?)"
+    );
+
+    if (!$sql) {
+        $verifica->close();
+        $conexao->close();
+
+        die("Erro ao preparar o cadastro.");
+    }
+
+    $sql->bind_param(
+        "sss",
+        $nome,
+        $email,
+        $senhaHash
+    );
 
     if ($sql->execute()) {
 
-        // Pega o ID do usuário que acabou de ser cadastrado
-        $idUsuario = $conexao->insert_id;
+        // ID DO USUÁRIO CADASTRADO
+        $idUsuario = $sql->insert_id;
 
-        // Faz o login automaticamente
+        // RENOVA O ID DA SESSÃO
+        session_regenerate_id(true);
+
+        // FAZ LOGIN AUTOMATICAMENTE
         $_SESSION["usuario_id"] = $idUsuario;
         $_SESSION["usuario_nome"] = $nome;
         $_SESSION["usuario_email"] = $email;
 
-        // Redireciona para a página principal
-        header("Location: ../PAGES/PÁGINAS/index1.html");
+        $sql->close();
+        $verifica->close();
+        $conexao->close();
+
+        // REDIRECIONA DIRETAMENTE PARA O PERFIL
+        header("Location: perfil.php");
         exit;
 
     } else {
-        echo "Erro ao cadastrar: " . $sql->error;
-    }
+        $erro = $sql->error;
 
-    $sql->close();
-    $verifica->close();
-    $conexao->close();
+        $sql->close();
+        $verifica->close();
+        $conexao->close();
+
+        die("Erro ao cadastrar: " . $erro);
+    }
 }
 
 ?>
