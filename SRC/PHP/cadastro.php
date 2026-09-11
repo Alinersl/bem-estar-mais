@@ -45,8 +45,8 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         $_SESSION["usuario_email"] = $email;
 
         // Redireciona para a página principal
-        header("Location: ../PAGES/PÁGINAS/index1.html");
-        exit;
+        header("Location: ../../index.html");
+        exit();
 
     } else {
         echo "Erro ao cadastrar: " . $sql->error;
