@@ -248,29 +248,54 @@ body > h1 {
 #semFavoritos {
     width: 100%;
     max-width: 700px;
+
     margin: auto;
     padding: 30px 20px 60px;
+
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+
     text-align: center;
+    box-sizing: border-box;
 }
 
 #semFavoritos .icone-favorito {
     display: block;
-    margin-bottom: 25px;
+
+    margin: 0 0 25px 0;
+
     color: #c71f37;
     font-size: 55px;
 }
 
 #semFavoritos h2 {
-    margin-bottom: 12px;
+    display: block;
+
+    width: 100%;
+
+    margin: 0 0 12px 0;
+
     color: #333;
     font-size: 22px;
     line-height: 1.4;
+
+    text-align: center;
 }
 
 #semFavoritos p {
+    display: block;
+
+    width: 100%;
+
+    margin: 0;
+
     color: #666;
     font-size: 16px;
     line-height: 1.5;
+
+    text-align: center;
 }
 
 /* FOOTER */
