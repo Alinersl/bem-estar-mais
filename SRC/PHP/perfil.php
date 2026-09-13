@@ -6,7 +6,6 @@ require "conexao.php";
 
 
 // Verifica se a pessoa está logada
-
 if (!isset($_SESSION["usuario_id"])) {
 
     header("Location: ../../index.html");
@@ -17,7 +16,6 @@ if (!isset($_SESSION["usuario_id"])) {
 
 
 // Pega o ID do usuário que está logado
-
 $id = $_SESSION["usuario_id"];
 
 
