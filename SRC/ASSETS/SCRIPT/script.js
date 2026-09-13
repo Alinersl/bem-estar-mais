@@ -4,10 +4,7 @@
         if (window.bemEstarScriptIniciado) return;
         window.bemEstarScriptIniciado = true;
 
-        // ==========================================
-        // MODO CLARO E ESCURO
-        // ==========================================
-
+        // MODO CLARO E MODO ESCURO
         if (!window.bemEstarTemaIniciado) {
             window.bemEstarTemaIniciado = true;
 
@@ -78,10 +75,7 @@
         const pastaPHP = "/bem-estar-mais/SRC/PHP/";
         const pastaPaginas = new URL("./", window.location.href);
 
-        // ==========================================
         // CARROSSEL
-        // ==========================================
-
         function iniciarCarrossel() {
             const slides = document.querySelector(".slides");
             if (!slides) return;
@@ -169,10 +163,7 @@
 
         iniciarCarrossel();
 
-        // ==========================================
-        // HAMBÚRGUER
-        // ==========================================
-
+    //    HAMBURGUER
         const hamburguer = document.getElementById("hamburguer");
         const menu = document.getElementById("menu");
 
@@ -189,10 +180,7 @@
             });
         }
 
-        // ==========================================
-        // FAVORITOS
-        // ==========================================
-
+    //    FAVORITOS
         const toast = document.getElementById("toast");
         let tempoToast;
 
@@ -322,10 +310,7 @@
             }
         });
 
-        // ==========================================
-        // CONTADOR DE VISUALIZAÇÕES
-        // ==========================================
-
+    //    VISUALIZAÇÕES
         document.addEventListener("click", evento => {
             const link = evento.target.closest(".noticia a");
             if (!link) return;
@@ -351,10 +336,7 @@
                 });
         });
 
-        // ==========================================
         // PESQUISA
-        // ==========================================
-
         function iniciarPesquisa() {
             const container = document.querySelector(".container");
             const campoBusca = document.getElementById("campoBusca");
