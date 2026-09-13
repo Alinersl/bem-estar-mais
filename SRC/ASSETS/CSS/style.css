@@ -641,6 +641,9 @@ button:hover {
     box-sizing: border-box;
   }
 
+
+
+  
   #campoBusca:focus {
     width: 150px;
   }
