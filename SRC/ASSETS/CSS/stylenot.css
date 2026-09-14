@@ -894,6 +894,13 @@ body.dark .form-comentario button {
     color: white;
 }
 
+body.dark .comentario-item {
+    color: black;
+}
+
+body.dark .comentario-item p {
+    color: black;
+}
 body.dark .form-comentario button:hover {
     background: #e6354d;
 }

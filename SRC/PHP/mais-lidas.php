@@ -6,6 +6,10 @@ $sql = "SELECT * FROM noticias ORDER BY visualizacoes DESC";
 
 $resultado = $conexao->query($sql);
 
+if (!$resultado) {
+    die("Erro ao carregar as notícias: " . $conexao->error);
+}
+
 ?>
 
 <!DOCTYPE html>
@@ -39,12 +43,14 @@ $resultado = $conexao->query($sql);
         <nav>
 
             <div class="nav-esquerda">
-                <a href="../../PAGES/PÁGINAS/index.pagina1.html">
+                <a href="../PAGES/PÁGINAS/index.pagina1.html">
+
                     <img
                         src="../ASSETS/IMAGENS/LOGO/logo (2).png"
                         alt="Logo Bem Estar+"
                         class="logo"
                     >
+
                 </a>
             </div>
 
@@ -52,17 +58,21 @@ $resultado = $conexao->query($sql);
             <div class="nav-direita">
 
                 <div class="sol" id="sol">
+
                     <img
                         src="../ASSETS/IMAGENS/ÍCONES/sol.png"
-                        alt="Modo claro"
+                        alt="Ativar modo escuro"
                     >
+
                 </div>
 
                 <div class="lua" id="lua">
+
                     <img
                         src="../ASSETS/IMAGENS/ÍCONES/lua.png"
-                        alt="Modo escuro"
+                        alt="Ativar modo claro"
                     >
+
                 </div>
 
             </div>
@@ -87,47 +97,75 @@ $resultado = $conexao->query($sql);
         <?php while ($noticia = $resultado->fetch_assoc()) { ?>
 
             <?php
+
+            $idNoticia = (int) $noticia["id"];
+
+            $nomeArquivoImagem = basename(
+                str_replace("\\", "/", $noticia["imagem"])
+            );
+
+            $nomeArquivoNoticia = basename(
+                str_replace("\\", "/", $noticia["link"])
+            );
+
             /*
-             * FORMATA A DATA
-             * Exemplo: 2025-02-20 vira 20/02/2025
+             * IDs 26, 27, 28 e 29 são as notícias
+             * dos banners da página principal.
+             */
+
+            $ehBanner =
+                $idNoticia >= 26 &&
+                $idNoticia <= 29;
+
+            if ($ehBanner) {
+
+                $caminhoImagem =
+                    "../ASSETS/IMAGENS/BANNER PÁGINA PRINCIPAL/" .
+                    $nomeArquivoImagem;
+
+                $caminhoNoticia =
+                    "../PAGES/NOTÍCIAS DOS BANNERS PRINCIPAIS/" .
+                    $nomeArquivoNoticia;
+
+            } else {
+
+                $numeroCapa = str_pad(
+                    $idNoticia,
+                    2,
+                    "0",
+                    STR_PAD_LEFT
+                );
+
+                $caminhoImagem =
+                    "../ASSETS/IMAGENS/CAPA DAS NOTÍCIAS/capa.not." .
+                    $numeroCapa .
+                    ".png";
+
+                $caminhoNoticia =
+                    "../PAGES/NOTÍCIAS/" .
+                    $nomeArquivoNoticia;
+            }
+
+            /*
+             * PADRONIZA A DATA COMO:
+             * 20/02/2025
              */
 
             $dataFormatada = "";
 
             if (!empty($noticia["data_publicacao"])) {
+
                 $dataPublicacao = DateTime::createFromFormat(
                     "Y-m-d",
                     $noticia["data_publicacao"]
                 );
 
                 if ($dataPublicacao) {
-                    $dataFormatada = $dataPublicacao->format("d/m/Y");
+                    $dataFormatada =
+                        $dataPublicacao->format("d/m/Y");
                 }
             }
 
-            /*
-             * MONTA O CAMINHO DA IMAGEM
-             */
-
-            $numeroCapa = str_pad(
-                $noticia["id"],
-                2,
-                "0",
-                STR_PAD_LEFT
-            );
-
-            $caminhoImagem =
-                "../ASSETS/IMAGENS/CAPA DAS NOTÍCIAS/capa.not." .
-                $numeroCapa .
-                ".png";
-
-            /*
-             * MONTA O CAMINHO DA NOTÍCIA
-             */
-
-            $caminhoNoticia =
-                "../PAGES/NOTÍCIAS/" .
-                basename($noticia["link"]);
             ?>
 
             <div class="noticia">
@@ -140,7 +178,7 @@ $resultado = $conexao->query($sql);
                     <i class="fa-regular fa-heart"></i>
                 </button>
 
-                <!-- IMAGEM DA NOTÍCIA -->
+                <!-- IMAGEM -->
                 <img
                     src="<?php echo htmlspecialchars(
                         $caminhoImagem,
@@ -156,7 +194,7 @@ $resultado = $conexao->query($sql);
 
                 <div class="conteudo">
 
-                    <!-- TÍTULO -->
+                    <!-- TÍTULO DA NOTÍCIA -->
                     <h2>
                         <?php echo htmlspecialchars(
                             $noticia["titulo"],
@@ -216,6 +254,7 @@ $resultado = $conexao->query($sql);
     <!-- MENSAGEM DOS FAVORITOS -->
     <div id="toast"></div>
 
+    <!-- ELEMENTOS NECESSÁRIOS PARA O SCRIPT.JS -->
     <div style="display: none !important;">
 
         <!-- CARROSSEL INVISÍVEL -->
@@ -235,12 +274,14 @@ $resultado = $conexao->query($sql);
 
         <!-- PESQUISA INVISÍVEL -->
         <div class="busca-container">
+
             <input
                 type="text"
                 id="campoBusca"
             >
 
             <div id="sugestoes"></div>
+
         </div>
 
         <input
