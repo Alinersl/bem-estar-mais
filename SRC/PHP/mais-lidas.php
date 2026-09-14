@@ -43,7 +43,7 @@ if (!$resultado) {
         <nav>
 
             <div class="nav-esquerda">
-                <a href="../PAGES/PÁGINAS/index1.html">
+                <a href="../PAGES/PÁGINAS/index.pagina1.html">
 
                     <img
                         src="../ASSETS/IMAGENS/LOGO/logo (2).png"
