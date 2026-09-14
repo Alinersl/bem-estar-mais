@@ -1,4 +1,4 @@
-/* RENOMEIE ESSE ARQUIVO COMO conexao.php */
+/* RENOMEAR ESSE ARQUIVO COMO conexao.php */
 <?php
 $servidor = '[INSIRA-SERVIDOR-MYSQL]';
 $usuario = '[INSIRA-USUARIO-MYSQL]';

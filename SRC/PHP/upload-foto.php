@@ -19,10 +19,7 @@ if (!isset($_SESSION["usuario_id"])) {
 $id = $_SESSION["usuario_id"];
 
 
-// ==========================================
-// VERIFICA ARQUIVO
-// ==========================================
-
+// VERIFICA O ARQUIVO
 if (
     !isset($_FILES["foto"]) ||
     $_FILES["foto"]["error"] !== UPLOAD_ERR_OK
@@ -38,10 +35,7 @@ if (
 
 
 
-// ==========================================
-// TAMANHO MÁXIMO: 2MB
-// ==========================================
-
+// TAMANHO MÁXIMO
 if ($_FILES["foto"]["size"] > 2 * 1024 * 1024) {
 
     header(
@@ -54,10 +48,7 @@ if ($_FILES["foto"]["size"] > 2 * 1024 * 1024) {
 
 
 
-// ==========================================
 // DESCOBRE TIPO REAL
-// ==========================================
-
 $finfo = new finfo(
     FILEINFO_MIME_TYPE
 );
@@ -69,10 +60,7 @@ $tipo = $finfo->file(
 
 
 
-// ==========================================
 // TIPOS PERMITIDOS
-// ==========================================
-
 $tiposPermitidos = [
 
     "image/jpeg" => "jpg",
@@ -105,10 +93,7 @@ $extensao =
 
 
 
-// ==========================================
 // PASTA
-// ==========================================
-
 $pasta =
     __DIR__ .
     "/../ASSETS/IMAGENS/PERFIL_USUARIOS/";
@@ -127,10 +112,7 @@ if (!is_dir($pasta)) {
 
 
 
-// ==========================================
 // NOME ALEATÓRIO
-// ==========================================
-
 $nomeArquivo =
     "perfil_" .
     $id .
@@ -149,10 +131,7 @@ $caminhoCompleto =
 
 
 
-// ==========================================
-// MOVE ARQUIVO
-// ==========================================
-
+// NOME DO ARQUIVO
 if (
     !move_uploaded_file(
         $_FILES["foto"]["tmp_name"],
@@ -171,17 +150,13 @@ if (
 
 
 // CAMINHO SALVO NO BANCO
-
 $caminhoBanco =
     "../ASSETS/IMAGENS/PERFIL_USUARIOS/" .
     $nomeArquivo;
 
 
 
-// ==========================================
-// ATUALIZA BANCO
-// ==========================================
-
+// ATUALIZA O BANCO DE DADOS
 $sql = $conexao->prepare(
     "UPDATE usuarios
      SET foto_perfil = ?

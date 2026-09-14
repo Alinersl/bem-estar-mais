@@ -444,6 +444,7 @@ h2 {
   max-width: 20px;
 }
 
+
 /* MOBILE */
 @media(max-width:850px) {
 
@@ -464,7 +465,6 @@ h2 {
   position: absolute;
   right: 15px;
   top: 35%;
-
   width: auto;
   display: flex;
   flex-direction: row;

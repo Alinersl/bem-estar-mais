@@ -3,10 +3,7 @@
         if (window.bemEstarNoticiaIniciada) return;
         window.bemEstarNoticiaIniciada = true;
 
-        // ==========================================
-        // MODO CLARO E ESCURO
-        // ==========================================
-
+    //   MODO CLARO E MODO ESCURO
         if (!window.bemEstarTemaIniciado) {
             window.bemEstarTemaIniciado = true;
 
@@ -71,10 +68,7 @@
             });
         }
 
-        // ==========================================
         // FAVORITOS
-        // ==========================================
-
         const toast = document.getElementById("toast");
         const btnFinal = document.querySelector(".favorito2");
         let tempoToast;
@@ -199,10 +193,7 @@
             }
         });
 
-        // ==========================================
         // COMENTÁRIOS
-        // ==========================================
-
         const pastaPHP = "/bem-estar-mais/SRC/PHP/";
 
         const noticiaId = Number(
@@ -239,10 +230,7 @@
             return texto.trim();
         }
 
-        // ==========================================
         // PUBLICAR
-        // ==========================================
-
         async function publicarComentario(evento) {
             evento.preventDefault();
 
@@ -299,10 +287,7 @@
             }
         }
 
-        // ==========================================
         // CARREGAR, EDITAR E EXCLUIR
-        // ==========================================
-
         async function carregarComentarios() {
             if (!listaComentarios) return;
 

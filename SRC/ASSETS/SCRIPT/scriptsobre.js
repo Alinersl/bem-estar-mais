@@ -1,5 +1,4 @@
 // MODO CLARO E ESCURO
-
 const body = document.body;
 const sol = document.getElementById("sol");
 const lua = document.getElementById("lua");
@@ -56,26 +55,17 @@ if (lua) {
 
 
 // CADASTRO E LOGIN
-
 const btnLogin = document.getElementById("btnLogin");
-
 const btnFechar = document.getElementById("btnFechar");
-
 const btnFecharBranco = document.getElementById("btnFecharBranco");
-
 const overlay = document.getElementById("overlay");
-
 const cadastro = document.getElementById("cadastro");
-
 const login = document.getElementById("login");
-
 const irParaLogin = document.getElementById("irParaLogin");
-
 const irParaCadastro = document.getElementById("irParaCadastro");
 
 
 // ABRIR POPUP PELO BONEQUINHO
-
 btnLogin.addEventListener("click", () => {
 
     overlay.style.display = "flex";
@@ -88,7 +78,6 @@ btnLogin.addEventListener("click", () => {
 
 
 // IR PARA LOGIN
-
 irParaLogin.addEventListener("click", () => {
 
     cadastro.style.display = "none";
@@ -99,7 +88,6 @@ irParaLogin.addEventListener("click", () => {
 
 
 // IR PARA CADASTRO
-
 irParaCadastro.addEventListener("click", () => {
 
     login.style.display = "none";
@@ -110,7 +98,6 @@ irParaCadastro.addEventListener("click", () => {
 
 
 // FECHAR NO X PRETO
-
 btnFechar.addEventListener("click", () => {
 
     overlay.style.display = "none";
@@ -119,7 +106,6 @@ btnFechar.addEventListener("click", () => {
 
 
 // FECHAR NO X BRANCO
-
 btnFecharBranco.addEventListener("click", () => {
 
     overlay.style.display = "none";
@@ -127,10 +113,7 @@ btnFecharBranco.addEventListener("click", () => {
 });
 
 
-// ==============================
-// ERRO DE LOGIN
-// ==============================
-
+// ERRO DE LOGUIN
 const parametros = new URLSearchParams(window.location.search);
 
 if (parametros.get("erro") === "login") {
@@ -153,11 +136,7 @@ if (parametros.get("erro") === "login") {
 
 }
 
-
-// ==============================
 // ABRIR CADASTRO AUTOMATICAMENTE
-// ==============================
-
 if (parametros.get("abrir") === "cadastro") {
 
     overlay.style.display = "flex";
@@ -169,14 +148,10 @@ if (parametros.get("abrir") === "cadastro") {
 }
 
 
-// ==============================
-// MOSTRAR / ESCONDER SENHA
-// ==============================
-
+// MOSTRAR E ESCONDER A SENHA
 function mostrarSenha(idCampo, botao) {
 
     const campo = document.getElementById(idCampo);
-
     const icone = botao.querySelector("i");
 
     if (campo.type === "password") {
