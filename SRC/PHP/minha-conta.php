@@ -517,6 +517,7 @@ document.addEventListener("DOMContentLoaded", () => {
     });
 
 });
+
 // LOGOUT
 document
     .getElementById("btnSair")

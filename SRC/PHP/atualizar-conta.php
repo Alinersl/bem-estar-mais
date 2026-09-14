@@ -19,10 +19,7 @@ $tipo = $_POST["tipo"] ?? "";
 
 
 
-// ==========================================
 // ALTERAR NOME
-// ==========================================
-
 if ($tipo === "nome") {
 
     $nome = trim(
@@ -68,10 +65,7 @@ if ($tipo === "nome") {
 
 
 
-// ==========================================
 // ALTERAR EMAIL
-// ==========================================
-
 if ($tipo === "email") {
 
     $email = trim(
@@ -96,7 +90,6 @@ if ($tipo === "email") {
 
 
     // VERIFICA SE EMAIL JÁ EXISTE
-
     $verificar = $conexao->prepare(
         "SELECT id
          FROM usuarios

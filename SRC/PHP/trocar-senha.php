@@ -29,10 +29,7 @@ $confirmarSenha =
 
 
 
-// ==========================================
 // CONFIRMAÇÃO
-// ==========================================
-
 if ($novaSenha !== $confirmarSenha) {
 
     header(
@@ -45,10 +42,7 @@ if ($novaSenha !== $confirmarSenha) {
 
 
 
-// ==========================================
 // TAMANHO MÍNIMO
-// ==========================================
-
 if (strlen($novaSenha) < 6) {
 
     header(
@@ -61,10 +55,7 @@ if (strlen($novaSenha) < 6) {
 
 
 
-// ==========================================
-// BUSCA SENHA ATUAL
-// ==========================================
-
+// BUSCAR SENHA ATUAL
 $sql = $conexao->prepare(
     "SELECT senha
      FROM usuarios
@@ -90,10 +81,7 @@ $usuario =
 
 
 
-// ==========================================
-// VERIFICA SENHA
-// ==========================================
-
+// VERIFICA A SENHA
 if (
     !password_verify(
         $senhaAtual,
@@ -111,10 +99,7 @@ if (
 
 
 
-// ==========================================
-// NOVA SENHA CRIPTOGRAFADA
-// ==========================================
-
+// NOVA SENHA
 $senhaHash =
     password_hash(
         $novaSenha,

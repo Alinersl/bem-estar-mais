@@ -19,9 +19,18 @@ body {
         padding-top: 80px;
 }
 
+/* fazem os três terem a mesma fonte */
 button,a,input {
     font-family: inherit;
 }
+
+button:focus-visible,
+a:focus-visible,
+input:focus-visible {
+    outline: 3px solid rgba(211, 47, 47, .35);
+    outline-offset: 3px;
+}
+/* coloca um contorno nos botões, links e inputs quando eles recebem foco visível */
 
 /* NAVEGAÇÃO */
 nav {
@@ -39,24 +48,11 @@ nav {
   
 }
 
-/* LOGO */
-.logo {
-    display: flex; 
-    align-items: center; 
-    width: 150px;
-    height: auto;
-    margin-left: 0; 
-    width: 150px;
-}
-
-/* LADO DIREITO DA NAV */
 .nav-direita {
     display: flex;
     align-items: center;
     gap: 14px;
 }
-
-/* BOTÕES DA NAV */
 
 .modo,
 .perfil {
@@ -94,6 +90,21 @@ nav {
     transform: scale(.94);
 }
 
+/* LOGO */
+.logo {
+    display: flex; 
+    align-items: center; 
+    width: 150px;
+    height: auto;
+    margin-left: 0; 
+    width: 150px;
+}
+
+.logo-link {
+    text-decoration: none;
+    color: inherit;
+}
+
 /* CONTEÚDO PRINCIPAL */
 .perfil-main {
     width: 100%;
@@ -102,8 +113,6 @@ nav {
     padding: 0 20px;
 }
 
-
-/* CARD PRINCIPAL */
 .perfil-container {
     width: 100%;
     background: white;
@@ -111,10 +120,8 @@ nav {
     border-radius: 18px;
     box-shadow:0 10px 35px rgba(0, 0, 0, .08);
     border: 1px solid #eeeeee;
-    transition:
-        background .3s ease,
-        border-color .3s ease,
-        box-shadow .3s ease;
+    transition: background .3s ease, border-color .3s ease, box-shadow .3s ease;
+    /* o fundo, a cor da borda e a sombra muda levemnte em 0,3 segundos */
 }
 
 /* TOPO DO PERFIL */
@@ -162,9 +169,7 @@ nav {
     cursor: pointer;
     font-size: 17px;
     box-shadow: 0 3px 10px rgba(0, 0, 0, .2);
-    transition:
-        background .25s ease,
-        transform .25s ease;
+    transition: background .25s ease, transform .25s ease;
 }
 
 .trocar-foto:hover {
@@ -173,7 +178,6 @@ nav {
 }
 
 /* DADOS DO PERFIL */
-
 .dados-perfil {
     flex: 1;
 }
@@ -193,7 +197,6 @@ nav {
 }
 
 /* BOTÃO MINHA CONTA */
-
 .entrar-conta {
     display: inline-flex;
     align-items: center;
@@ -207,10 +210,7 @@ nav {
     font-weight: bold;
     cursor: pointer;
     box-shadow: 0 4px 12px rgba(211, 47, 47, .22);
-    transition:
-        background .25s ease,
-        transform .25s ease,
-        box-shadow .25s ease;
+    transition: background .25s ease, transform .25s ease, box-shadow .25s ease;
 }
 
 .entrar-conta:hover {
@@ -224,7 +224,6 @@ nav {
 }
 
 /* ESTATÍSTICAS */
-
 .estatisticas {
     display: grid;
     grid-template-columns: repeat(3, 1fr);
@@ -244,10 +243,7 @@ nav {
     border-left: 4px solid #d32f2f;
     border-radius: 12px;
     text-align: center;
-    transition:
-        transform .25s ease,
-        box-shadow .25s ease,
-        background .25s ease;
+    transition: transform .25s ease, box-shadow .25s ease, background .25s ease;
 }
 
 .estatistica:hover {
@@ -300,8 +296,6 @@ nav {
     transform: translateY(-50%);
 }
 
-/* ITEM DE CONFIGURAÇÃO */
-
 .config-item {
     min-height: 72px;
     display: flex;
@@ -309,9 +303,7 @@ nav {
     justify-content: space-between;
     padding: 16px 5px;
     border-bottom: 1px solid #eeeeee;
-    transition:
-        background .2s ease,
-        padding .2s ease;
+    transition: background .2s ease, padding .2s ease;
 }
 
 .config-item:hover {
@@ -319,8 +311,6 @@ nav {
     padding-right: 10px;
     background: #fafafa;
 }
-
-/* TEXTO DA CONFIGURAÇÃO */
 
 .config-texto {
     display: flex;
@@ -358,23 +348,27 @@ nav {
     white-space: nowrap;
 }
 
+.config-clicavel {
+    cursor: pointer;
+}
+
+.config-clicavel:hover {
+    opacity: 0.85;
+}
+
 /* SETA */
 .seta {
     margin-left: 15px;
     color: #aaa;
     font-size: 25px;
     line-height: 1;
-    transition:
-        color .2s ease,
-        transform .2s ease;
+    transition: color .2s ease, transform .2s ease;
 }
 
 .config-item:hover .seta {
     color: #d32f2f;
     transform: translateX(3px);
 }
-
-/* SWITCH */
 
 .switch {
     position: relative;
@@ -433,11 +427,7 @@ nav {
     font-size: 14px;
     font-weight: bold;
     text-decoration: none;
-    transition:
-        background .25s ease,
-        color .25s ease,
-        transform .25s ease,
-        box-shadow .25s ease;
+    transition: background .25s ease, color .25s ease, transform .25s ease, box-shadow .25s ease;
 }
 
 .sair-conta:hover {
@@ -447,6 +437,76 @@ nav {
     box-shadow: 0 5px 15px rgba(211, 47, 47, .25);
 }
 
+button.sair-conta {
+    border: none;
+    font-family: inherit;
+    cursor: pointer;
+}
+
+/* FORMULÁRIOS DE EDIÇÃO */
+.form-edicao {
+    display: none;
+    flex-direction: column;
+    gap: 10px;
+    padding: 20px;
+    margin-bottom: 15px;
+    border-radius: 12px;
+    background: #f5f5f5;
+}
+
+.form-edicao.aberto {
+    display: flex;
+}
+
+
+.form-edicao label {
+    font-weight: 600;
+}
+
+.form-edicao input {
+    width: 100%;
+    box-sizing: border-box;
+    padding: 12px;
+    border: 1px solid #ccc;
+    border-radius: 8px;
+    outline: none;
+    font-size: 15px;
+}
+
+.form-edicao input:focus {
+    border-color: #555;
+}
+
+.form-edicao button {
+    width: fit-content;
+    border: none;
+    padding: 11px 20px;
+    border-radius: 8px;
+    cursor: pointer;
+    font-weight: 600;
+}
+
+/* MENSAGEM */
+.mensagem-perfil {
+    width: 90%;
+    max-width: 700px;
+    margin: 25px auto;
+    padding: 14px;
+    border-radius: 10px;
+    text-align: center;
+    transition: opacity 0.5s;
+}
+
+.mensagem-perfil.sucesso {
+    background: #dff5e5;
+    color: #176b31;
+}
+
+.mensagem-perfil.erro {
+    background: #ffe2e2;
+    color: #a42020;
+}
+
 /* FOOTER */
 footer {
   background: linear-gradient(to right, #000000, #d32f2f, #000000, #d32f2f, #000000);
@@ -454,6 +514,7 @@ footer {
   text-align: center;
   color: #ffffff;
 }
+
 
 /* MODO ESCURO */
 body.dark {
@@ -533,22 +594,36 @@ body.dark .sair-conta:hover {
     color: white;
 }
 
-/* RESPONSIVO — TABLET */
+body.dark .form-edicao {
+    background: #222;
+}
+
+body.dark .form-edicao label {
+    color: white;
+}
+
+body.dark .form-edicao input {
+    background: #333;
+    color: white;
+    border-color: #555;
+}
+
 
 @media (max-width: 768px) {
-
+/* NAVEGADOR */
     nav {
         height: 65px;
         padding: 0 20px;
     }
 
+    .nav-direita {
+        gap: 8px;
+    }
+
+    /* LOGO */
     .logo {
         margin-left: 5px;
         font-size: 21px;
-    }
-
-    .nav-direita {
-        gap: 8px;
     }
 
     .modo,
@@ -666,7 +741,6 @@ body.dark .sair-conta:hover {
         font-size: 21px;
     }
 
-    /* SWITCH */
     .switch {
         width: 44px;
         height: 24px;
@@ -688,9 +762,7 @@ body.dark .sair-conta:hover {
     }
 }
 
-
-/* RESPONSIVO — CELULARES PEQUENOS */
-
+/* CELULARES PEQUENOS */
 @media (max-width: 450px) {
 
     nav {
@@ -813,118 +885,3 @@ body.dark .sair-conta:hover {
     }
 }
 
-/* ACESSIBILIDADE */
-button:focus-visible,
-a:focus-visible,
-input:focus-visible {
-    outline: 3px solid rgba(211, 47, 47, .35);
-    outline-offset: 3px;
-}
-
-/* MELHORIAS MINHA CONTA */
-/* LOGO CLICÁVEL */
-.logo-link {
-    text-decoration: none;
-    color: inherit;
-}
-
-/* ITENS QUE PODEM SER CLICADOS */
-
-.config-clicavel {
-    cursor: pointer;
-}
-
-.config-clicavel:hover {
-    opacity: 0.85;
-}
-
-/* FORMULÁRIOS DE EDIÇÃO */
-
-.form-edicao {
-    display: none;
-    flex-direction: column;
-    gap: 10px;
-    padding: 20px;
-    margin-bottom: 15px;
-    border-radius: 12px;
-    background: #f5f5f5;
-}
-
-.form-edicao.aberto {
-    display: flex;
-}
-
-
-.form-edicao label {
-    font-weight: 600;
-}
-
-.form-edicao input {
-    width: 100%;
-    box-sizing: border-box;
-    padding: 12px;
-    border: 1px solid #ccc;
-    border-radius: 8px;
-    outline: none;
-    font-size: 15px;
-}
-
-.form-edicao input:focus {
-    border-color: #555;
-}
-
-.form-edicao button {
-    width: fit-content;
-    border: none;
-    padding: 11px 20px;
-    border-radius: 8px;
-    cursor: pointer;
-    font-weight: 600;
-}
-
-/* MENSAGEM */
-.mensagem-perfil {
-    width: 90%;
-    max-width: 700px;
-    margin: 25px auto;
-    padding: 14px;
-    border-radius: 10px;
-    text-align: center;
-    transition: opacity 0.5s;
-}
-
-.mensagem-perfil.sucesso {
-    background: #dff5e5;
-    color: #176b31;
-}
-
-.mensagem-perfil.erro {
-    background: #ffe2e2;
-    color: #a42020;
-}
-
-/* MODO ESCURO */
-
-body.dark .form-edicao {
-    background: #222;
-}
-
-body.dark .form-edicao label {
-    color: white;
-}
-
-body.dark .form-edicao input {
-    background: #333;
-
-    color: white;
-
-    border-color: #555;
-}
-
-/* BOTÃO SAIR */
-
-button.sair-conta {
-    border: none;
-    font-family: inherit;
-    cursor: pointer;
-}

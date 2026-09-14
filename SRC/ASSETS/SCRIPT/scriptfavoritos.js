@@ -1,7 +1,4 @@
-// ==========================================
-// MODO CLARO E ESCURO
-// ==========================================
-
+// MODO CLARO E MODO ESCURO
 const body = document.body;
 const sol = document.getElementById("sol");
 const lua = document.getElementById("lua");
@@ -43,11 +40,7 @@ if (lua) {
     });
 }
 
-
-// ==========================================
 // FAVORITOS
-// ==========================================
-
 const lista =
     document.getElementById("listaFavoritos");
 
@@ -76,10 +69,7 @@ function pegarFavoritos() {
 }
 
 
-// ==========================================
-// FORMATAÇÃO DAS DATAS
-// ==========================================
-
+// DATAS
 function formatarData(dataOriginal) {
     if (!dataOriginal) {
         return "";
@@ -206,11 +196,7 @@ function formatarData(dataOriginal) {
     return dataOriginal;
 }
 
-
-// ==========================================
-// RENDERIZAÇÃO DOS FAVORITOS
-// ==========================================
-
+// FAVORITOS
 function renderizarFavoritos() {
     if (!lista) {
         return;
@@ -268,7 +254,6 @@ function renderizarFavoritos() {
 
 
         // IMAGEM
-
         const imagem =
             document.createElement("img");
 
@@ -292,7 +277,6 @@ function renderizarFavoritos() {
 
 
         // CONTEÚDO
-
         const conteudo =
             document.createElement("div");
 
@@ -300,7 +284,6 @@ function renderizarFavoritos() {
 
 
         // TÍTULO
-
         const titulo =
             document.createElement("h2");
 
@@ -311,7 +294,6 @@ function renderizarFavoritos() {
 
 
         // DATA
-
         const dataOriginal =
             noticia.data ||
             noticia.data_publicacao ||
@@ -331,7 +313,6 @@ function renderizarFavoritos() {
 
 
         // LINK DA NOTÍCIA
-
         const link =
             document.createElement("a");
 
@@ -340,7 +321,6 @@ function renderizarFavoritos() {
 
 
         // BOTÃO SAIBA MAIS
-
         const botaoSaibaMais =
             document.createElement("button");
 
@@ -355,7 +335,6 @@ function renderizarFavoritos() {
 
 
         // MONTA O CARD
-
         card.appendChild(botaoFavorito);
         card.appendChild(imagem);
         card.appendChild(conteudo);
@@ -364,7 +343,6 @@ function renderizarFavoritos() {
 
 
         // REMOVE O FAVORITO
-
         botaoFavorito.addEventListener(
             "click",
             () => {
@@ -400,12 +378,10 @@ function renderizarFavoritos() {
 
 
 // PRIMEIRO CARREGAMENTO
-
 renderizarFavoritos();
 
 
 // ATUALIZA AO VOLTAR PELO NAVEGADOR
-
 window.addEventListener("pageshow", () => {
     carregarTema();
     renderizarFavoritos();
@@ -413,7 +389,6 @@ window.addEventListener("pageshow", () => {
 
 
 // ATUALIZA QUANDO OUTRA ABA MUDA OS DADOS
-
 window.addEventListener(
     "storage",
     evento => {
