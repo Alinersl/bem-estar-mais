@@ -1,258 +1,346 @@
+
 CREATE DATABASE bem_estar_definitivo;
+
+
 USE bem_estar_definitivo;
 
+
+
+-- ==========================================
+-- TABELA DE USUÁRIOS
+-- ==========================================
+
 CREATE TABLE usuarios (
-	id INT AUTO_INCREMENT PRIMARY KEY,
+    id INT AUTO_INCREMENT PRIMARY KEY,
     nome VARCHAR(100) NOT NULL,
-	email VARCHAR(100) NOT NULL UNIQUE,
-    senha VARCHAR(255)NOT NULL,
+    email VARCHAR(100) NOT NULL UNIQUE,
+    senha VARCHAR(255) NOT NULL,
+    foto_perfil VARCHAR(255) DEFAULT NULL,
     data_cadastro TIMESTAMP DEFAULT CURRENT_TIMESTAMP
-    ); 
-    
+);
+
+
+-- ==========================================
+-- TABELA DE NOTÍCIAS
+-- ==========================================
+
 CREATE TABLE noticias (
     id INT AUTO_INCREMENT PRIMARY KEY,
     titulo VARCHAR(255) NOT NULL,
     link VARCHAR(255) NOT NULL,
-    visualizacoes INT NOT NULL DEFAULT 0
+    imagem VARCHAR(255) NOT NULL,
+    visualizacoes INT NOT NULL DEFAULT 0,
+    data_publicacao DATE
 );
 
-INSERT INTO noticias (titulo, link) VALUES
-('Notícia 1', '../NOTÍCIAS/noticia1.html'),
-('Notícia 2', '../NOTÍCIAS/noticia2.html'),
-('Notícia 3', '../NOTÍCIAS/noticia3.html'),
-('Notícia 4', '../NOTÍCIAS/noticia4.html'),
-('Notícia 5', '../NOTÍCIAS/noticia5.html'),
-('Notícia 6', '../NOTÍCIAS/noticia6.html'),
-('Notícia 7', '../NOTÍCIAS/noticia7.html'),
-('Notícia 8', '../NOTÍCIAS/noticia8.html'),
-('Notícia 9', '../NOTÍCIAS/noticia9.html'),
-('Notícia 10', '../NOTÍCIAS/noticia10.html'),
-('Notícia 11', '../NOTÍCIAS/noticia11.html'),
-('Notícia 12', '../NOTÍCIAS/noticia12.html'),
-('Notícia 13', '../NOTÍCIAS/noticia13.html'),
-('Notícia 14', '../NOTÍCIAS/noticia14.html'),
-('Notícia 15', '../NOTÍCIAS/noticia15.html'),
-('Notícia 16', '../NOTÍCIAS/noticia16.html'),
-('Notícia 17', '../NOTÍCIAS/noticia17.html'),
-('Notícia 18', '../NOTÍCIAS/noticia18.html'),
-('Notícia 19', '../NOTÍCIAS/noticia19.html'),
-('Notícia 20', '../NOTÍCIAS/noticia20.html'),
-('Notícia 21', '../NOTÍCIAS/noticia21.html'),
-('Notícia 22', '../NOTÍCIAS/noticia22.html'),
-('Notícia 23', '../NOTÍCIAS/noticia23.html'),
-('Notícia 24', '../NOTÍCIAS/noticia24.html'),
-('Notícia 25', '../NOTÍCIAS/noticia25.html');
 
-ALTER TABLE noticias
-ADD COLUMN imagem VARCHAR(255) AFTER link;
+-- ==========================================
+-- NOTÍCIAS NORMAIS
+-- ==========================================
 
-UPDATE noticias SET
-titulo = 'Beber muita água durante a refeição pode prejudicar a digestão',
-imagem = '../IMAGENS/CAPA DAS NOTÍCIAS/capa.not.01.png'
-WHERE id = 1;
-
-UPDATE noticias SET
-titulo = 'Comer devagar reduz 20% das calorias',
-imagem = '../IMAGENS/CAPA DAS NOTÍCIAS/capa.not.02.png'
-WHERE id = 2;
-
-UPDATE noticias SET
-titulo = 'Fibras alimentam as bactérias boas do intestino',
-imagem = '../IMAGENS/CAPA DAS NOTÍCIAS/capa.not.03.png'
-WHERE id = 3;
-
-UPDATE noticias SET
-titulo = 'Comer frutas coloridas fortalece a imunidade',
-imagem = '../IMAGENS/CAPA DAS NOTÍCIAS/capa.not.04.png'
-WHERE id = 4;
-
-UPDATE noticias SET
-titulo = 'Açúcar em excesso enfraquece o sistema imunológico',
-imagem = '../IMAGENS/CAPA DAS NOTÍCIAS/capa.not.05.png'
-WHERE id = 5;
-
-UPDATE noticias SET
-titulo = 'Nem toda gordura engorda, algumas ajudam a emagrecer e proteger o coração',
-imagem = '../IMAGENS/CAPA DAS NOTÍCIAS/capa.not.06.png'
-WHERE id = 6;
-
-UPDATE noticias SET
-titulo = 'O que a indústria não quer que você saiba sobre “light”, “diet” e “zero”',
-imagem = '../IMAGENS/CAPA DAS NOTÍCIAS/capa.not.07.png'
-WHERE id = 7;
-
-UPDATE noticias SET
-titulo = 'Dormir bem fortalece o sistema imunológico',
-imagem = '../IMAGENS/CAPA DAS NOTÍCIAS/capa.not.08.png'
-WHERE id = 8;
-
-UPDATE noticias SET
-titulo = 'Metabolismo lento não é genética, é consequência de hábitos',
-imagem = '../IMAGENS/CAPA DAS NOTÍCIAS/capa.not.09.png'
-WHERE id = 9;
-
-UPDATE noticias SET
-titulo = 'Chocolate melhora o humor?',
-imagem = '../IMAGENS/CAPA DAS NOTÍCIAS/capa.not.10.png'
-WHERE id = 10;
-
-UPDATE noticias SET
-titulo = 'Ultraprocessados podem viciar o cérebro como drogas leves',
-imagem = '../IMAGENS/CAPA DAS NOTÍCIAS/capa.not.11.png'
-WHERE id = 11;
-
-UPDATE noticias SET
-titulo = 'Comer proteína no café da manhã reduz vontade de doces e controla a fome o dia inteiro',
-imagem = '../IMAGENS/CAPA DAS NOTÍCIAS/capa.not.12.png'
-WHERE id = 12;
-
-UPDATE noticias SET
-titulo = 'Ovo é aliado da alimentação saudável',
-imagem = '../IMAGENS/CAPA DAS NOTÍCIAS/capa.not.13.png'
-WHERE id = 13;
-
-UPDATE noticias SET
-titulo = 'Suco detox funciona ou é só marketing?',
-imagem = '../IMAGENS/CAPA DAS NOTÍCIAS/capa.not.14.png'
-WHERE id = 14;
-
-UPDATE noticias SET
-titulo = 'Novas bebidas saudáveis que estão substituindo refrigerantes',
-imagem = '../IMAGENS/CAPA DAS NOTÍCIAS/capa.not.15.png'
-WHERE id = 15;
-
-UPDATE noticias SET
-titulo = 'O impacto do açúcar no cérebro segundo pesquisas recentes',
-imagem = '../IMAGENS/CAPA DAS NOTÍCIAS/capa.not.16.png'
-WHERE id = 16;
-
-UPDATE noticias SET
-titulo = 'Como montar um prato saudável gastando pouco',
-imagem = '../IMAGENS/CAPA DAS NOTÍCIAS/capa.not.17.png'
-WHERE id = 17;
-
-UPDATE noticias SET
-titulo = 'Glúten faz mal para todo mundo?',
-imagem = '../IMAGENS/CAPA DAS NOTÍCIAS/capa.not.18.png'
-WHERE id = 18;
-
-UPDATE noticias SET
-titulo = 'Alimentos congelados perdem nutrientes?',
-imagem = '../IMAGENS/CAPA DAS NOTÍCIAS/capa.not.19.png'
-WHERE id = 19;
-
-UPDATE noticias SET
-titulo = 'Air fryer é mais saudável que fritura comum?',
-imagem = '../IMAGENS/CAPA DAS NOTÍCIAS/capa.not.20.png'
-WHERE id = 20;
-
-UPDATE noticias SET
-titulo = 'Alimentos enlatados são ruins para a saúde?',
-imagem = '../IMAGENS/CAPA DAS NOTÍCIAS/capa.not.21.png'
-WHERE id = 21;
-
-UPDATE noticias SET
-titulo = 'Macarrão instantâneo faz mal?',
-imagem = '../IMAGENS/CAPA DAS NOTÍCIAS/capa.not.22.png'
-WHERE id = 22;
-
-UPDATE noticias SET
-titulo = 'Açúcar mascavo é mais saudável que o branco?',
-imagem = '../IMAGENS/CAPA DAS NOTÍCIAS/capa.not.23.png'
-WHERE id = 23;
-
-UPDATE noticias SET
-titulo = 'Energéticos fazem mal à saúde?',
-imagem = '../IMAGENS/CAPA DAS NOTÍCIAS/capa.not.24.png'
-WHERE id = 24;
-
-UPDATE noticias SET
-titulo = 'Comer distraído aumenta o consumo de comida',
-imagem = '../IMAGENS/CAPA DAS NOTÍCIAS/capa.not.25.png'
-WHERE id = 25;
-
-INSERT INTO noticias (titulo, link, imagem, visualizacoes)
-VALUES
+INSERT INTO noticias
 (
+    id,
+    titulo,
+    link,
+    imagem,
+    visualizacoes,
+    data_publicacao
+)
+VALUES
+
+(
+    1,
+    'Beber muita água durante a refeição pode prejudicar a digestão',
+    '../NOTÍCIAS/noticia1.html',
+    '../ASSETS/IMAGENS/CAPA DAS NOTÍCIAS/capa.not.01.png',
+    0,
+    '2025-06-22'
+),
+
+(
+    2,
+    'Comer devagar reduz 20% das calorias',
+    '../NOTÍCIAS/noticia2.html',
+    '../ASSETS/IMAGENS/CAPA DAS NOTÍCIAS/capa.not.02.png',
+    0,
+    '2025-01-27'
+),
+
+(
+    3,
+    'Fibras alimentam as bactérias boas do intestino',
+    '../NOTÍCIAS/noticia3.html',
+    '../ASSETS/IMAGENS/CAPA DAS NOTÍCIAS/capa.not.03.png',
+    0,
+    '2025-03-30'
+),
+
+(
+    4,
+    'Comer frutas coloridas fortalece a imunidade',
+    '../NOTÍCIAS/noticia4.html',
+    '../ASSETS/IMAGENS/CAPA DAS NOTÍCIAS/capa.not.04.png',
+    0,
+    '2025-09-18'
+),
+
+(
+    5,
+    'Açúcar em excesso enfraquece o sistema imunológico',
+    '../NOTÍCIAS/noticia5.html',
+    '../ASSETS/IMAGENS/CAPA DAS NOTÍCIAS/capa.not.05.png',
+    0,
+    '2025-02-20'
+),
+
+(
+    6,
+    'Nem toda gordura engorda, algumas ajudam a emagrecer e proteger o coração',
+    '../NOTÍCIAS/noticia6.html',
+    '../ASSETS/IMAGENS/CAPA DAS NOTÍCIAS/capa.not.06.png',
+    0,
+    '2025-04-01'
+),
+
+(
+    7,
+    'O que a indústria não quer que você saiba sobre “light”, “diet” e “zero”',
+    '../NOTÍCIAS/noticia7.html',
+    '../ASSETS/IMAGENS/CAPA DAS NOTÍCIAS/capa.not.07.png',
+    0,
+    '2025-05-03'
+),
+
+(
+    8,
+    'Dormir bem fortalece o sistema imunológico',
+    '../NOTÍCIAS/noticia8.html',
+    '../ASSETS/IMAGENS/CAPA DAS NOTÍCIAS/capa.not.08.png',
+    0,
+    '2025-07-21'
+),
+
+(
+    9,
+    'Metabolismo lento não é genética, é consequência de hábitos',
+    '../NOTÍCIAS/noticia9.html',
+    '../ASSETS/IMAGENS/CAPA DAS NOTÍCIAS/capa.not.09.png',
+    0,
+    '2025-08-30'
+),
+
+(
+    10,
+    'Chocolate melhora o humor?',
+    '../NOTÍCIAS/noticia10.html',
+    '../ASSETS/IMAGENS/CAPA DAS NOTÍCIAS/capa.not.10.png',
+    0,
+    '2025-10-10'
+),
+
+(
+    11,
+    'Ultraprocessados podem viciar o cérebro como drogas leves',
+    '../NOTÍCIAS/noticia11.html',
+    '../ASSETS/IMAGENS/CAPA DAS NOTÍCIAS/capa.not.11.png',
+    0,
+    '2025-11-01'
+),
+
+(
+    12,
+    'Comer proteína no café da manhã reduz vontade de doces e controla a fome o dia inteiro',
+    '../NOTÍCIAS/noticia12.html',
+    '../ASSETS/IMAGENS/CAPA DAS NOTÍCIAS/capa.not.12.png',
+    0,
+    '2025-11-03'
+),
+
+(
+    13,
+    'Ovo é aliado da alimentação saudável',
+    '../NOTÍCIAS/noticia13.html',
+    '../ASSETS/IMAGENS/CAPA DAS NOTÍCIAS/capa.not.13.png',
+    0,
+    '2026-02-12'
+),
+
+(
+    14,
+    'Suco detox funciona ou é só marketing?',
+    '../NOTÍCIAS/noticia14.html',
+    '../ASSETS/IMAGENS/CAPA DAS NOTÍCIAS/capa.not.14.png',
+    0,
+    '2025-06-22'
+),
+
+(
+    15,
+    'Novas bebidas saudáveis que estão substituindo refrigerantes',
+    '../NOTÍCIAS/noticia15.html',
+    '../ASSETS/IMAGENS/CAPA DAS NOTÍCIAS/capa.not.15.png',
+    0,
+    '2025-01-27'
+),
+
+(
+    16,
+    'O impacto do açúcar no cérebro segundo pesquisas recentes',
+    '../NOTÍCIAS/noticia16.html',
+    '../ASSETS/IMAGENS/CAPA DAS NOTÍCIAS/capa.not.16.png',
+    0,
+    '2025-03-30'
+),
+
+(
+    17,
+    'Como montar um prato saudável gastando pouco',
+    '../NOTÍCIAS/noticia17.html',
+    '../ASSETS/IMAGENS/CAPA DAS NOTÍCIAS/capa.not.17.png',
+    0,
+    '2025-09-18'
+),
+
+(
+    18,
+    'Glúten faz mal para todo mundo?',
+    '../NOTÍCIAS/noticia18.html',
+    '../ASSETS/IMAGENS/CAPA DAS NOTÍCIAS/capa.not.18.png',
+    0,
+    '2025-02-20'
+),
+
+(
+    19,
+    'Alimentos congelados perdem nutrientes?',
+    '../NOTÍCIAS/noticia19.html',
+    '../ASSETS/IMAGENS/CAPA DAS NOTÍCIAS/capa.not.19.png',
+    0,
+    '2025-04-01'
+),
+
+(
+    20,
+    'Air fryer é mais saudável que fritura comum?',
+    '../NOTÍCIAS/noticia20.html',
+    '../ASSETS/IMAGENS/CAPA DAS NOTÍCIAS/capa.not.20.png',
+    0,
+    '2025-06-22'
+),
+
+(
+    21,
+    'Alimentos enlatados são ruins para a saúde?',
+    '../NOTÍCIAS/noticia21.html',
+    '../ASSETS/IMAGENS/CAPA DAS NOTÍCIAS/capa.not.21.png',
+    0,
+    '2025-01-27'
+),
+
+(
+    22,
+    'Macarrão instantâneo faz mal?',
+    '../NOTÍCIAS/noticia22.html',
+    '../ASSETS/IMAGENS/CAPA DAS NOTÍCIAS/capa.not.22.png',
+    0,
+    '2025-03-30'
+),
+
+(
+    23,
+    'Açúcar mascavo é mais saudável que o branco?',
+    '../NOTÍCIAS/noticia23.html',
+    '../ASSETS/IMAGENS/CAPA DAS NOTÍCIAS/capa.not.23.png',
+    0,
+    '2025-09-18'
+),
+
+(
+    24,
+    'Energéticos fazem mal à saúde?',
+    '../NOTÍCIAS/noticia24.html',
+    '../ASSETS/IMAGENS/CAPA DAS NOTÍCIAS/capa.not.24.png',
+    0,
+    '2025-02-20'
+),
+
+(
+    25,
+    'Comer distraído aumenta o consumo de comida',
+    '../NOTÍCIAS/noticia25.html',
+    '../ASSETS/IMAGENS/CAPA DAS NOTÍCIAS/capa.not.25.png',
+    0,
+    '2025-05-09'
+),
+
+
+-- ==========================================
+-- NOTÍCIAS DOS BANNERS
+-- ==========================================
+
+(
+    26,
     'Chocolate melhora o humor?',
     'not.chocolate.html',
     '../ASSETS/IMAGENS/BANNER PÁGINA PRINCIPAL/banner.chocolate.png',
-    0
+    0,
+    '2025-10-10'
 ),
+
 (
+    27,
     'Pouca água dá cansaço?',
     'not.agua.html',
     '../ASSETS/IMAGENS/BANNER PÁGINA PRINCIPAL/banner.agua.png',
-    0
+    0,
+    '2025-06-22'
 ),
+
 (
+    28,
     'Ovo faz bem ou mal?',
     'not.ovo.html',
     '../ASSETS/IMAGENS/BANNER PÁGINA PRINCIPAL/banner.ovo.png',
-    0
+    0,
+    '2026-02-12'
 ),
+
 (
+    29,
     'Banana dá energia?',
     'not.banana.html',
     '../ASSETS/IMAGENS/BANNER PÁGINA PRINCIPAL/banner.banana.png',
-    0
+    0,
+    '2025-09-18'
 );
 
-ALTER TABLE noticias
-ADD COLUMN data_publicacao DATE;
 
-UPDATE noticias
-SET data_publicacao = CASE id
+-- ==========================================
+-- TABELA DE COMENTÁRIOS
+-- ==========================================
 
-    WHEN 1 THEN '2025-06-22'
-    WHEN 2 THEN '2025-01-27'
-    WHEN 3 THEN '2025-03-30'
-    WHEN 4 THEN '2025-09-18'
-    WHEN 5 THEN '2025-02-20'
-    WHEN 6 THEN '2025-04-01'
-
-    WHEN 7 THEN '2025-05-03'
-    WHEN 8 THEN '2025-07-21'
-    WHEN 9 THEN '2025-08-30'
-    WHEN 10 THEN '2025-10-10'
-    WHEN 11 THEN '2025-11-01'
-    WHEN 12 THEN '2025-11-03'
-    WHEN 13 THEN '2026-02-12'
-
-    WHEN 14 THEN '2025-06-22'
-    WHEN 15 THEN '2025-01-27'
-    WHEN 16 THEN '2025-03-30'
-    WHEN 17 THEN '2025-09-18'
-    WHEN 18 THEN '2025-02-20'
-    WHEN 19 THEN '2025-04-01'
-
-    WHEN 20 THEN '2025-06-22'
-    WHEN 21 THEN '2025-01-27'
-    WHEN 22 THEN '2025-03-30'
-    WHEN 23 THEN '2025-09-18'
-    WHEN 24 THEN '2025-02-20'
-    WHEN 25 THEN '2025-05-09'
-
-END
-WHERE id BETWEEN 1 AND 25;
-
-SELECT id, titulo, data_publicacao
-FROM noticias
-ORDER BY data_publicacao DESC;
 CREATE TABLE comentarios (
     id INT AUTO_INCREMENT PRIMARY KEY,
     noticia_id INT NOT NULL,
+    usuario_id INT NULL,
     nome VARCHAR(100) NOT NULL,
     comentario TEXT NOT NULL,
     data_comentario TIMESTAMP DEFAULT CURRENT_TIMESTAMP
 );
 
-ALTER TABLE usuarios
-ADD COLUMN foto_perfil VARCHAR(255) DEFAULT NULL; 
 
-ALTER TABLE comentarios
-ADD COLUMN usuario_id INT NULL AFTER noticia_id; 
+-- ==========================================
+-- CONSULTA DAS NOTÍCIAS
+-- ==========================================
 
-
-
+SELECT
+    id,
+    titulo,
+    link,
+    imagem,
+    visualizacoes,
+    data_publicacao
+FROM noticias
+ORDER BY data_publicacao DESC;
 

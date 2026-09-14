@@ -1,13 +1,30 @@
 <?php
 
-include 'conexao.php';
+require "conexao.php";
 
-/* BUSCA AS NOTÍCIAS DA MAIS NOVA PARA A MAIS ANTIGA */
-$sql = "SELECT id, titulo, data_publicacao
+/*
+ * BUSCA AS NOTÍCIAS DA MAIS NOVA
+ * PARA A MAIS ANTIGA
+ */
+
+$sql = "SELECT
+            id,
+            titulo,
+            link,
+            imagem,
+            visualizacoes,
+            data_publicacao
         FROM noticias
         ORDER BY data_publicacao DESC";
 
 $resultado = $conexao->query($sql);
+
+if (!$resultado) {
+    die(
+        "Erro ao carregar as notícias: " .
+        $conexao->error
+    );
+}
 
 ?>
 
@@ -15,315 +32,559 @@ $resultado = $conexao->query($sql);
 <html lang="pt-BR">
 
 <head>
+
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="../ASSETS/CSS/style.css">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0"
+    >
+
+    <link
+        rel="stylesheet"
+        href="../ASSETS/CSS/style.css"
+    >
+
+    <link
+        rel="stylesheet"
+        href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css"
+    >
 
     <title>Últimas Notícias | Bem Estar+</title>
+
 </head>
 
 <body>
 
-<!-- NAVEGADOR -->
-<header>
+    <!-- NAVEGADOR -->
+    <header>
 
-    <nav>
+        <nav>
 
-        <div class="nav-esquerda">
-            <a href="../PAGES/PÁGINAS/index.pagina1.html">
-                <img src="../ASSETS/IMAGENS/LOGO/logo (2).png" alt="Logo Bem Estar+" class="logo">
-            </a>
-        </div>
+            <div class="nav-esquerda">
 
-        <!-- MODO CLARO E MODO ESCURO-->
-        <div class="nav-direita">
+                <a href="/bem-estar-mais/SRC/PAGES/PÁGINAS/index.pagina1.html">
 
-            <div class="sol" id="sol">
-                <img src="../ASSETS/IMAGENS/ÍCONES/sol.png" alt="Modo claro">
+                    <img
+                        src="/bem-estar-mais/SRC/ASSETS/IMAGENS/LOGO/logo (2).png"
+                        alt="Logo Bem Estar+"
+                        class="logo"
+                    >
+
+                </a>
+
             </div>
 
-            <div class="lua" id="lua">
-                <img src="../ASSETS/IMAGENS/ÍCONES/lua.png" alt="Modo escuro">
+            <!-- MODO CLARO E ESCURO -->
+            <div class="nav-direita">
+
+                <div class="sol" id="sol">
+
+                    <img
+                        src="../ASSETS/IMAGENS/ÍCONES/sol.png"
+                        alt="Ativar modo escuro"
+                    >
+
+                </div>
+
+                <div class="lua" id="lua">
+
+                    <img
+                        src="../ASSETS/IMAGENS/ÍCONES/lua.png"
+                        alt="Ativar modo claro"
+                    >
+
+                </div>
+
             </div>
 
-        </div>
+        </nav>
 
-    </nav>
+    </header>
 
-</header>
 
-<!-- ÚLTIMAS NOTÍCIAS -->
-<div class="titulo-ultimas">
-    <h1>🆕 Últimas Notícias</h1>
-    <p>Confira as notícias mais recentes do Bem Estar+</p>
-</div>
+    <!-- TÍTULO -->
+    <div class="titulo-ultimas">
 
-<!-- NOTÍCIAS -->
-<div class="container">
+        <h1>🆕 Últimas Notícias</h1>
 
-<?php
-
-if ($resultado && $resultado->num_rows > 0) {
-    while ($noticia = $resultado->fetch_assoc()) {
-        $id = $noticia['id'];
-        /*Converte:
-        1 -> 01
-        2 -> 02
-        9 -> 09
-        10 -> 10*/
-
-        $numeroImagem = str_pad(
-            $id,
-            2,
-            '0',
-            STR_PAD_LEFT
-        );
-        /*Converte:
-        2025-09-18
-        para:
-        18/09/2025*/
-
-        $data = date(
-            'd/m/Y',
-            strtotime($noticia['data_publicacao'])
-        );
-
-?>
-
-<!-- NOTÍCIAS -->
-    <div class="noticia">
-
-        <button class="favorito"><i class="fa-regular fa-heart"></i></button>
-
-        <img src="../ASSETS/IMAGENS/CAPA DAS NOTÍCIAS/capa.not.<?= $numeroImagem ?>.png" alt="<?= htmlspecialchars($noticia['titulo']) ?>">
-
-        <div class="conteudo">
-            <!-- título da notícia -->
-            <h2><?= htmlspecialchars($noticia['titulo']) ?></h2>
-
-            <!-- data da notícia -->
-            <p class="data"><?= $data ?></p>
-
-            <!-- botão da notícia -->
-            <a href="../PAGES/NOTÍCIAS/noticia<?= $id ?>.html">
-                <button>Saiba Mais</button>
-            </a>
-        </div>
+        <p>
+            Confira as notícias mais recentes do Bem Estar+
+        </p>
 
     </div>
 
-<?php
 
-    }
+    <!-- NOTÍCIAS -->
+    <div class="container">
 
-} else {
-    echo "<p>Nenhuma notícia encontrada.</p>";
-}
+        <?php if (
+            $resultado &&
+            $resultado->num_rows > 0
+        ) { ?>
 
-?>
+            <?php while (
+                $noticia = $resultado->fetch_assoc()
+            ) { ?>
 
-</div>
+                <?php
 
-<!-- FOOTER -->
-<footer>
-    <p>© 2025 BemEstar+ | Todos os direitos reservados</p>
-</footer>
+                $idNoticia = (int) $noticia["id"];
 
-<!-- MENSAGEM FAVORITOS -->
-<div id="toast"></div>
+                $nomeArquivoImagem = basename(
+                    str_replace(
+                        "\\",
+                        "/",
+                        $noticia["imagem"]
+                    )
+                );
+
+                $nomeArquivoNoticia = basename(
+                    str_replace(
+                        "\\",
+                        "/",
+                        $noticia["link"]
+                    )
+                );
+
+                /*
+                 * IDs 26 A 29 SÃO OS BANNERS
+                 */
+
+                $ehBanner =
+                    $idNoticia >= 26 &&
+                    $idNoticia <= 29;
+
+                if ($ehBanner) {
+
+                    $caminhoImagem =
+                        "../ASSETS/IMAGENS/" .
+                        "BANNER PÁGINA PRINCIPAL/" .
+                        $nomeArquivoImagem;
+
+                    $caminhoNoticia =
+                        "../PAGES/" .
+                        "NOTÍCIAS DOS BANNERS PRINCIPAIS/" .
+                        $nomeArquivoNoticia;
+
+                } else {
+
+                    $numeroImagem = str_pad(
+                        $idNoticia,
+                        2,
+                        "0",
+                        STR_PAD_LEFT
+                    );
+
+                    $caminhoImagem =
+                        "../ASSETS/IMAGENS/" .
+                        "CAPA DAS NOTÍCIAS/" .
+                        "capa.not." .
+                        $numeroImagem .
+                        ".png";
+
+                    $caminhoNoticia =
+                        "../PAGES/NOTÍCIAS/" .
+                        $nomeArquivoNoticia;
+                }
+
+                /*
+                 * FORMATA A DATA
+                 */
+
+                $dataFormatada = "";
+
+                if (!empty(
+                    $noticia["data_publicacao"]
+                )) {
+
+                    $dataPublicacao =
+                        DateTime::createFromFormat(
+                            "Y-m-d",
+                            $noticia["data_publicacao"]
+                        );
+
+                    if ($dataPublicacao) {
+                        $dataFormatada =
+                            $dataPublicacao->format(
+                                "d/m/Y"
+                            );
+                    }
+                }
+
+                ?>
+
+                <div
+                    class="noticia"
+                    data-id="<?php echo $idNoticia; ?>"
+                >
+
+                    <!-- FAVORITO -->
+                    <button
+                        type="button"
+                        class="favorito"
+                        data-id="<?php echo $idNoticia; ?>"
+                        aria-label="Adicionar aos favoritos"
+                    >
+                        <i class="fa-regular fa-heart"></i>
+                    </button>
+
+                    <!-- IMAGEM -->
+                    <img
+                        src="<?php echo htmlspecialchars(
+                            $caminhoImagem,
+                            ENT_QUOTES,
+                            "UTF-8"
+                        ); ?>"
+                        alt="<?php echo htmlspecialchars(
+                            $noticia["titulo"],
+                            ENT_QUOTES,
+                            "UTF-8"
+                        ); ?>"
+                    >
+
+                    <div class="conteudo">
+
+                        <!-- TÍTULO -->
+                        <h2>
+                            <?php echo htmlspecialchars(
+                                $noticia["titulo"],
+                                ENT_QUOTES,
+                                "UTF-8"
+                            ); ?>
+                        </h2>
+
+                        <!-- DATA -->
+                        <?php if (
+                            $dataFormatada !== ""
+                        ) { ?>
+
+                            <p class="data">
+                                <?php echo htmlspecialchars(
+                                    $dataFormatada,
+                                    ENT_QUOTES,
+                                    "UTF-8"
+                                ); ?>
+                            </p>
+
+                        <?php } ?>
+
+                        <!-- BOTÃO -->
+                        <a
+                            class="link-noticia"
+                            data-id="<?php echo $idNoticia; ?>"
+                            href="<?php echo htmlspecialchars(
+                                $caminhoNoticia,
+                                ENT_QUOTES,
+                                "UTF-8"
+                            ); ?>"
+                        >
+                            <button type="button">
+                                Saiba Mais
+                            </button>
+                        </a>
+
+                    </div>
+
+                </div>
+
+            <?php } ?>
+
+        <?php } else { ?>
+
+            <p>Nenhuma notícia encontrada.</p>
+
+        <?php } ?>
+
+    </div>
 
 
-<script>
+    <!-- FOOTER -->
+    <footer>
 
-// FAVORITOS
-const toast = document.getElementById("toast");
+        <p>
+            © 2025 BemEstar+ | Todos os direitos reservados
+        </p>
 
-function mostrarMensagem(texto) {
-    if (!toast) return;
-    toast.textContent = texto;
-    toast.classList.add("show");
-    setTimeout(() => {
-        toast.classList.remove("show");
-    }, 2000);
-}
-
-document.querySelectorAll(".favorito").forEach(btn => {
-    btn.addEventListener("click", () => {
-        btn.classList.toggle("ativo");
-        const icone = btn.querySelector("i");
-
-        if (!icone) return;
-
-        if (btn.classList.contains("ativo")) {
-            icone.classList.remove(
-                "fa-regular"
-            );
-
-            icone.classList.add(
-                "fa-solid"
-            );
-
-            mostrarMensagem(
-                "❤️ Adicionado com sucesso!"
-            );
-
-        } else {
-            icone.classList.remove(
-                "fa-solid"
-            );
-
-            icone.classList.add(
-                "fa-regular"
-            );
-
-            mostrarMensagem(
-                "🤍 Removido dos favoritos!"
-            );
-
-        }
-
-    });
-
-});
-
-// MODO CLARO E MODO ESCURO
-const body = document.body;
-const sol = document.getElementById("sol");
-const lua = document.getElementById("lua");
+    </footer>
 
 
-// carrega o tema salvo
-if (
-    localStorage.getItem("tema")
-    ===
-    "escuro"
-) {
+    <!-- MENSAGEM DOS FAVORITOS -->
+    <div id="toast"></div>
 
-    body.classList.add("dark");
 
-    if (sol) {
-        sol.style.display = "none";
-    }
+    <script>
 
-    if (lua) {
-        lua.style.display = "block";
-    }
+        // =====================================
+        // FAVORITOS
+        // =====================================
 
-} else {
-    body.classList.remove("dark");
+        const toast =
+            document.getElementById("toast");
 
-    if (sol) {
-        sol.style.display = "block";
-    }
-
-    if (lua) {
-        lua.style.display = "none";
-    }
-
-}
-
-// ativa o modo escuro
-if (sol) {
-    sol.addEventListener(
-        "click",
-        () => {
-            body.classList.add("dark");
-
-            localStorage.setItem(
-                "tema",
-                "escuro"
-            );
-
-            sol.style.display = "none";
-
-            if (lua) {
-                lua.style.display = "block";
+        function mostrarMensagem(texto) {
+            if (!toast) {
+                return;
             }
 
+            toast.textContent = texto;
+            toast.classList.add("show");
+
+            setTimeout(() => {
+                toast.classList.remove("show");
+            }, 2000);
         }
-    );
 
-}
+        function pegarFavoritos() {
+            try {
+                const favoritos = JSON.parse(
+                    localStorage.getItem("favoritos")
+                );
 
-// ativa o modo claro
-if (lua) {
+                return Array.isArray(favoritos)
+                    ? favoritos
+                    : [];
 
-    lua.addEventListener(
-        "click",
-        () => {
+            } catch (erro) {
+                return [];
+            }
+        }
 
-            body.classList.remove("dark");
-
+        function salvarFavoritos(favoritos) {
             localStorage.setItem(
-                "tema",
-                "claro"
+                "favoritos",
+                JSON.stringify(favoritos)
             );
+        }
 
-            lua.style.display = "none";
+        function atualizarCoracoes() {
+            const favoritos = pegarFavoritos();
+
+            document
+                .querySelectorAll(".favorito")
+                .forEach(botao => {
+
+                    const id = String(
+                        botao.dataset.id
+                    );
+
+                    const favoritada =
+                        favoritos.some(
+                            noticia =>
+                                String(noticia.id) === id
+                        );
+
+                    const icone =
+                        botao.querySelector("i");
+
+                    botao.classList.toggle(
+                        "ativo",
+                        favoritada
+                    );
+
+                    if (icone) {
+                        icone.classList.toggle(
+                            "fa-solid",
+                            favoritada
+                        );
+
+                        icone.classList.toggle(
+                            "fa-regular",
+                            !favoritada
+                        );
+                    }
+                });
+        }
+
+        document
+            .querySelectorAll(".favorito")
+            .forEach(botao => {
+
+                botao.addEventListener(
+                    "click",
+                    () => {
+
+                        const card =
+                            botao.closest(".noticia");
+
+                        if (!card) {
+                            return;
+                        }
+
+                        const id =
+                            String(card.dataset.id);
+
+                        const titulo =
+                            card.querySelector("h2")
+                                ?.textContent
+                                .trim() || "Notícia";
+
+                        const imagem =
+                            card.querySelector("img")
+                                ?.src || "";
+
+                        const data =
+                            card.querySelector(".data")
+                                ?.textContent
+                                .trim() || "";
+
+                        const link =
+                            card.querySelector(
+                                ".link-noticia"
+                            )?.href || "#";
+
+                        const favoritos =
+                            pegarFavoritos();
+
+                        const indice =
+                            favoritos.findIndex(
+                                noticia =>
+                                    String(noticia.id) === id
+                            );
+
+                        if (indice === -1) {
+
+                            favoritos.push({
+                                id: id,
+                                titulo: titulo,
+                                imagem: imagem,
+                                data: data,
+                                link: link
+                            });
+
+                            mostrarMensagem(
+                                "❤️ Adicionado com sucesso!"
+                            );
+
+                        } else {
+
+                            favoritos.splice(
+                                indice,
+                                1
+                            );
+
+                            mostrarMensagem(
+                                "🤍 Removido dos favoritos!"
+                            );
+                        }
+
+                        salvarFavoritos(favoritos);
+                        atualizarCoracoes();
+                    }
+                );
+            });
+
+        atualizarCoracoes();
+
+
+        // =====================================
+        // MODO CLARO E ESCURO
+        // =====================================
+
+        const body = document.body;
+        const sol = document.getElementById("sol");
+        const lua = document.getElementById("lua");
+
+        function atualizarTema(tema) {
+            const escuro = tema === "escuro";
+
+            body.classList.toggle(
+                "dark",
+                escuro
+            );
 
             if (sol) {
-                sol.style.display = "block";
+                sol.style.display =
+                    escuro ? "none" : "block";
             }
 
+            if (lua) {
+                lua.style.display =
+                    escuro ? "block" : "none";
+            }
         }
-    );
 
-}
+        const temaSalvo =
+            localStorage.getItem("tema") ||
+            "claro";
 
-// VISUALIZAÇÕES
-document
-    .querySelectorAll(".noticia a")
-    .forEach(link => {
+        atualizarTema(temaSalvo);
 
-        link.addEventListener(
-            "click",
-            async function(event) {
-
-                const href =
-                    this.getAttribute("href");
-
-                if (!href) {
-                    return;
-                }
-
-                const resultado =
-                    href.match(
-                        /noticia(\d+)\.html/i
+        if (sol) {
+            sol.addEventListener(
+                "click",
+                () => {
+                    localStorage.setItem(
+                        "tema",
+                        "escuro"
                     );
 
-                if (!resultado) {
-                    return;
+                    atualizarTema("escuro");
                 }
+            );
+        }
 
-                event.preventDefault();
-
-                const idNoticia =
-                    resultado[1];
-
-                try {
-
-                    await fetch(
-                        `registrarvisualizacoes.php?id=${idNoticia}`
+        if (lua) {
+            lua.addEventListener(
+                "click",
+                () => {
+                    localStorage.setItem(
+                        "tema",
+                        "claro"
                     );
 
-                } catch (erro) {
-                    console.log(
-                        "Erro ao registrar visualização:",
-                        erro
-                    );
-
+                    atualizarTema("claro");
                 }
+            );
+        }
 
-                window.location.href =
-                    href;
 
-            }
-        );
+        // =====================================
+        // VISUALIZAÇÕES
+        // =====================================
 
-    });
+        document
+            .querySelectorAll(".link-noticia")
+            .forEach(link => {
 
-</script>
+                link.addEventListener(
+                    "click",
+                    async function (evento) {
+
+                        const href =
+                            this.getAttribute("href");
+
+                        const idNoticia =
+                            this.dataset.id;
+
+                        if (
+                            !href ||
+                            !idNoticia
+                        ) {
+                            return;
+                        }
+
+                        evento.preventDefault();
+
+                        try {
+                            await fetch(
+                                "registrarvisualizacoes.php?id=" +
+                                encodeURIComponent(idNoticia)
+                            );
+
+                        } catch (erro) {
+                            console.log(
+                                "Erro ao registrar visualização:",
+                                erro
+                            );
+                        }
+
+                        window.location.href = href;
+                    }
+                );
+            });
+
+    </script>
 
 </body>
 
