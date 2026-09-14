@@ -83,7 +83,7 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
         $conexao->close();
 
         // REDIRECIONA DIRETAMENTE PARA O PERFIL
-        header("Location: perfil.php");
+        header("Location: minha-conta.php");
         exit;
 
     } else {
